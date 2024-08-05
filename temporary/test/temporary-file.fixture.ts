@@ -6,16 +6,19 @@ import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../applicati
 import { TemporaryFile } from '../domain/temporary-file.ts';
 import { DownloadTemporaryFileQuery, DownloadTemporaryFileUseCase } from '../application/use-case/query/download-temporary-file.use-case.ts';
 import { getFileHash } from '../../shared/domain/file-hash.ts';
+import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../application/use-case/query/inspect-temporary-file.use-case.ts';
 
 export const createTemporaryFileFixture = () => {
   const dateProvider = new StubDateProvider();
   const temporaryFileProvider = new FakeTemporaryFileProvider();
   const temporaryStorageProvider = new FakeTemporaryStorageProvider();
   const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider, dateProvider);
+  const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileProvider);
   const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider);
 
   let thrownError: Error;
   let filePathDownloaded: string;
+  let inspectedFile: any;
 
   return {
     givenNowIs(now: Date) {
@@ -38,6 +41,13 @@ export const createTemporaryFileFixture = () => {
 
       return fileId;
     },
+    whenTemporaryFileIsInspected: async (inspectTemporaryFileQuery: InspectTemporaryFileQuery) => {
+      try {
+        inspectedFile = await inspectTemporaryFileUseCase.handle(inspectTemporaryFileQuery);
+      } catch (error) {
+        thrownError = error;
+      }
+    },
     whenTemporaryFileIsDownloaded: async (requestTemporaryFileQuery: DownloadTemporaryFileQuery) => {
       filePathDownloaded = `${temporaryStorageProvider.directory}/${requestTemporaryFileQuery.id}`;
       const file = await Deno.open(filePathDownloaded, { create: true, write: true });
@@ -57,6 +67,9 @@ export const createTemporaryFileFixture = () => {
     },
     thenFileStoredShallBe: (expectedFile: TemporaryFile) => {
       assertEquals(expectedFile, temporaryFileProvider.store.get(expectedFile.id));
+    },
+    thenInspectedFileShallBe: (expectedFileData: { id: string; name: string; size: number; createdAt: string }) => {
+      assertEquals(expectedFileData, inspectedFile);
     },
     thenDownloadedFileShallBeEqualToFile: async (filePath: string) => {
       const hash1 = await getFileHash(filePath);

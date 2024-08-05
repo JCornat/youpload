@@ -11,17 +11,15 @@ describe('Feature: Send temporary file', () => {
     fixture = createTemporaryFileFixture();
   });
 
-  it('should save a valid temporary file', async () => {
+  it('shall save a valid temporary file', async () => {
     fixture.givenNowIs(new Date('2024-08-05 08:00:00'));
 
-    const sendTemporaryFileCommand: SendTemporaryFileCommand = {
+    const command: SendTemporaryFileCommand = {
       name: 'test-file',
       filePath: './temporary/test/file/test.txt',
     };
 
-    const fileId = await fixture.whenTemporaryFileIsSent(
-      sendTemporaryFileCommand,
-    );
+    const fileId = await fixture.whenTemporaryFileIsSent(command);
 
     const expectedFile = temporaryFileBuilder()
       .withId(fileId)
@@ -30,10 +28,10 @@ describe('Feature: Send temporary file', () => {
       .createdAt(new Date('2024-08-05 08:00:00'))
       .build();
 
-    fixture.thenFileIsStored(expectedFile);
+    fixture.thenFileStoredShallBe(expectedFile);
   });
 
-  it('should not save a non existing file', async () => {
+  it('shall not save a non existing file', async () => {
     const sendTemporaryFileCommand: SendTemporaryFileCommand = {
       name: 'test-file',
       filePath: './temporary/test/file/404.txt',

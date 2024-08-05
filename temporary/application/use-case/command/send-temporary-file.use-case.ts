@@ -1,6 +1,6 @@
-import { TemporaryFileProvider } from '../../../domain/temporary-file.provider.ts';
+import { TemporaryFileProvider } from '../../../infra/temporary-file.provider.ts';
 import { TemporaryFile } from '../../../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from '../../../domain/temporary-storage.provider.ts';
+import { TemporaryStorageProvider } from '../../../infra/temporary-storage.provider.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
 import { NotFoundException } from '../../../../shared/lib/exceptions.ts';

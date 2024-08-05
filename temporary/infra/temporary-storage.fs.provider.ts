@@ -1,9 +1,9 @@
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
-import { TemporaryFile } from './temporary-file.ts';
+import { TemporaryFile } from '../domain/temporary-file.ts';
 import { TemporaryStorageProvider } from './temporary-storage.provider.ts';
 
-export class FakeTemporaryStorageProvider implements TemporaryStorageProvider {
-  directory = './temporary/test/file/tmp';
+export class TemporaryStorageFileSystemProvider implements TemporaryStorageProvider {
+  directory = './temporary/test/fs';
 
   async save(temporaryFile: TemporaryFile, filePath: string): Promise<void> {
     const destination = `${this.directory}/${temporaryFile.id}`;

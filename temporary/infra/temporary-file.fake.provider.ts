@@ -1,9 +1,9 @@
-import { TemporaryFile } from './temporary-file.ts';
+import { TemporaryFile } from '../domain/temporary-file.ts';
 import { TemporaryFileProvider } from './temporary-file.provider.ts';
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
 import { NotFoundException } from '../../shared/lib/exceptions.ts';
 
-export class FakeTemporaryFileProvider implements TemporaryFileProvider {
+export class TemporaryFileFakeProvider implements TemporaryFileProvider {
   store: Map<EntityId, TemporaryFile> = new Map();
 
   save(temporaryFile: TemporaryFile): Promise<void> {

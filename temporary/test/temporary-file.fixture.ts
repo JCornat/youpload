@@ -1,7 +1,7 @@
 import { assertEquals, assertInstanceOf } from 'jsr:@std/assert@1';
 import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
-import { FakeTemporaryFileProvider } from '../domain/temporary-file.provider.fake.ts';
-import { FakeTemporaryStorageProvider } from '../domain/temporary-storage.provider.fake.ts';
+import { TemporaryFileFakeProvider } from '../infra/temporary-file.fake.provider.ts';
+import { TemporaryStorageFakeProvider } from '../infra/temporary-storage.fake.provider.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../application/use-case/command/send-temporary-file.use-case.ts';
 import { TemporaryFile } from '../domain/temporary-file.ts';
 import { DownloadTemporaryFileQuery, DownloadTemporaryFileUseCase } from '../application/use-case/query/download-temporary-file.use-case.ts';
@@ -10,8 +10,8 @@ import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../appli
 
 export const createTemporaryFileFixture = () => {
   const dateProvider = new StubDateProvider();
-  const temporaryFileProvider = new FakeTemporaryFileProvider();
-  const temporaryStorageProvider = new FakeTemporaryStorageProvider();
+  const temporaryFileProvider = new TemporaryFileFakeProvider();
+  const temporaryStorageProvider = new TemporaryStorageFakeProvider();
   const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider, dateProvider);
   const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileProvider);
   const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider);

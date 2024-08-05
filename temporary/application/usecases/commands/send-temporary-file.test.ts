@@ -1,8 +1,9 @@
 import { assertEquals } from "jsr:@std/assert@1";
-import { afterEach, beforeEach, describe, it } from "jsr:@std/testing@0.224.0/bdd";
+import { beforeEach, describe, it } from "jsr:@std/testing@0.224.0/bdd";
 import {SendTemporaryFileCommand, SendTemporaryFileUseCase} from "./send-temporary-file.use-case.ts";
 import {FakeTemporaryFileProvider} from "../../../domain/temporary-file.provider.fake.ts";
 import { TemporaryFile } from "../../../domain/temporary-file.ts";
+import { FakeTemporaryStorageProvider } from "../../../domain/temporary-storage.provider.fake.ts";
 
 describe('Feature: Send temporary file', () => {
   let fixture: Fixture;
@@ -12,21 +13,26 @@ describe('Feature: Send temporary file', () => {
   })
 
   it('should save a valid temporary file', async () => {
-    const temporaryFile = temporaryFileBuilder().withName('test.jpg').build();
     const sendTemporaryFileCommand: SendTemporaryFileCommand = {
-      temporaryFile,
+      name: 'coucou',
+      filePath: './test.txt'
     }
 
     await fixture.whenTemporaryFileIsSent(sendTemporaryFileCommand);
 
-    const expectedFile = {}
+    const expectedFile = {
+      name: 'coucou',
+      size: 40,
+    }
+
     fixture.thenFileIsStored(expectedFile)
   })
 })
 
 export const createFixture = () => {
   const temporaryFileProvider = new FakeTemporaryFileProvider();
-  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider)
+  const temporaryStorageProvider = new FakeTemporaryStorageProvider();
+  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider);
   let thrownError: Error;
 
   return {
@@ -46,15 +52,17 @@ export const createFixture = () => {
 export type Fixture = ReturnType<typeof createFixture>;
 
 export const temporaryFileBuilder = ({
-  id = '0',
-  name = 'coucou.jpg',
+  id = 'MON-UUID-V4',
+  name = 'coucou.txt',
   size = 100,
+  createdAt = new Date(),
 }: {
   id?: string,
   name?: string,
   size?: number,
+  createdAt?: Date,
 } = {}) => {
-  const props = {id, name, size}
+  const props = {id, name, size, createdAt}
 
   return {
     withId(_id: string) {
@@ -65,6 +73,9 @@ export const temporaryFileBuilder = ({
     },
     withSize(_size: number) {
       return temporaryFileBuilder({...props, size: _size})
+    },
+    withCreatedAt(_createdAt: Date) {
+      return temporaryFileBuilder({...props, createdAt: _createdAt})
     },
     build() {
       return TemporaryFile.create(props);

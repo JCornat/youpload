@@ -4,13 +4,17 @@ import { ArgumentInvalidException } from "../../shared/lib/exceptions.ts";
 
 export interface TemporaryFileProps {
     id: EntityId;
-    name?: string;
+    name: string;
+    size: number;
+    createdAt: Date;
 }
 
 export class TemporaryFile extends Entity {
     private constructor(
         id: EntityId,
-        private readonly _name: string
+        private readonly _name: string,
+        private readonly _size: number,
+        private readonly _createdAt: Date,
     ) {
         super(id);
     }
@@ -20,10 +24,18 @@ export class TemporaryFile extends Entity {
             throw new ArgumentInvalidException('Value cannot be empty');
         }
 
-        return new TemporaryFile(props.id, props.name);
+        return new TemporaryFile(props.id, props.name, props.size, props.createdAt);
     }
 
     get name() {
         return this._name;
+    }
+
+    get size() {
+        return this._size;
+    }
+
+    get createdAt() {
+        return this._createdAt;
     }
 }

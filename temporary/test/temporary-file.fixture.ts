@@ -1,7 +1,7 @@
 import { assertEquals, assertInstanceOf } from 'jsr:@std/assert@1';
 import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
-import { TemporaryFileFakeProvider } from '../infra/temporary-file.fake.provider.ts';
-import { TemporaryStorageFakeProvider } from '../infra/temporary-storage.fake.provider.ts';
+import { TemporaryFileFakeProvider } from '../infrastructure/temporary-file.fake.provider.ts';
+import { TemporaryStorageFakeProvider } from '../infrastructure/temporary-storage.fake.provider.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../application/use-case/command/send-temporary-file.use-case.ts';
 import { TemporaryFile } from '../domain/temporary-file.ts';
 import { DownloadTemporaryFileQuery, DownloadTemporaryFileUseCase } from '../application/use-case/query/download-temporary-file.use-case.ts';

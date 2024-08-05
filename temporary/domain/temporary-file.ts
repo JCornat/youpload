@@ -38,4 +38,10 @@ export class TemporaryFile extends Entity {
   get createdAt() {
     return this._createdAt;
   }
+
+  static reconstitute(data: any) {
+    const createdAt = new Date(data.date);
+
+    return new TemporaryFile(data.id, data.name, data.size, createdAt);
+  }
 }

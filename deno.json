@@ -1,4 +1,10 @@
 {
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 200,
+    "semiColons": true,
+    "singleQuote": true
+  },
   "test": {
     "include": [
       "temporary/**/*.spec.ts"

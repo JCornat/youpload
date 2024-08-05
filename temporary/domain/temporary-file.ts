@@ -1,41 +1,41 @@
-import { EntityId } from "../../shared/domain/model/entity-id.ts";
-import {Entity} from "../../shared/domain/model/entity.ts";
-import { ArgumentInvalidException } from "../../shared/lib/exceptions.ts";
+import { EntityId } from '../../shared/domain/model/entity-id.ts';
+import { Entity } from '../../shared/domain/model/entity.ts';
+import { ArgumentInvalidException } from '../../shared/lib/exceptions.ts';
 
 export interface TemporaryFileProps {
-    id: EntityId;
-    name: string;
-    size: number;
-    createdAt: Date;
+  id: EntityId;
+  name: string;
+  size: number;
+  createdAt: Date;
 }
 
 export class TemporaryFile extends Entity {
-    private constructor(
-        id: EntityId,
-        private readonly _name: string,
-        private readonly _size: number,
-        private readonly _createdAt: Date,
-    ) {
-        super(id);
+  private constructor(
+    id: EntityId,
+    private readonly _name: string,
+    private readonly _size: number,
+    private readonly _createdAt: Date,
+  ) {
+    super(id);
+  }
+
+  static create(props: TemporaryFileProps): TemporaryFile {
+    if (!props.name) {
+      throw new ArgumentInvalidException('Value cannot be empty');
     }
 
-    static create(props: TemporaryFileProps): TemporaryFile {
-        if (!props.name) {
-            throw new ArgumentInvalidException('Value cannot be empty');
-        }
+    return new TemporaryFile(props.id, props.name, props.size, props.createdAt);
+  }
 
-        return new TemporaryFile(props.id, props.name, props.size, props.createdAt);
-    }
+  get name() {
+    return this._name;
+  }
 
-    get name() {
-        return this._name;
-    }
+  get size() {
+    return this._size;
+  }
 
-    get size() {
-        return this._size;
-    }
-
-    get createdAt() {
-        return this._createdAt;
-    }
+  get createdAt() {
+    return this._createdAt;
+  }
 }

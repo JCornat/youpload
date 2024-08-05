@@ -1,11 +1,11 @@
-import { TemporaryFile } from "./temporary-file.ts";
-import {TemporaryFileProvider} from "./temporary-file.provider.ts";
+import { TemporaryFile } from './temporary-file.ts';
+import { TemporaryFileProvider } from './temporary-file.provider.ts';
 
 export class FakeTemporaryFileProvider implements TemporaryFileProvider {
-    sentFile?: TemporaryFile;
+  sentFile?: TemporaryFile;
 
-    save(temporaryFile: TemporaryFile): Promise<void> {
-        this.sentFile = temporaryFile;
-        return Promise.resolve();
-    }
+  save(temporaryFile: TemporaryFile): Promise<void> {
+    this.sentFile = temporaryFile;
+    return Promise.resolve();
+  }
 }

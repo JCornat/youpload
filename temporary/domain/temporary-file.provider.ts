@@ -1,5 +1,5 @@
-import {TemporaryFile} from "./temporary-file.ts";
+import { TemporaryFile } from './temporary-file.ts';
 
 export interface TemporaryFileProvider {
-    save(temporaryFile: TemporaryFile): Promise<void>
+  save(temporaryFile: TemporaryFile): Promise<void>;
 }

@@ -1,8 +1,8 @@
-import { TemporaryFile } from "../domain/temporary-file.ts";
+import { TemporaryFile } from '../domain/temporary-file.ts';
 
 export const temporaryFileBuilder = ({
-  id = "MON-UUID-V4",
-  name = "coucou.txt",
+  id = 'MON-UUID-V4',
+  name = 'coucou.txt',
   size = 100,
   createdAt = new Date(),
 }: {

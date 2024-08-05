@@ -1,0 +1,10 @@
+[*]
+charset = utf-8
+end_of_line = lf
+ij_wrap_on_typing = false
+
+[{*.ts,*.ts.default}]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 2
+ij_visual_guides = 140

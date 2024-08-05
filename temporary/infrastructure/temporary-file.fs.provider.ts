@@ -13,7 +13,8 @@ export class TemporaryFileFileSystemProvider implements TemporaryFileProvider {
     const temporaryFiles = await this.getContent();
     temporaryFiles.push(temporaryFile);
 
-    await Deno.writeTextFile(this.temporaryFilePath, JSON.stringify(temporaryFiles), { create: true });
+    const z = temporaryFiles.map((temp) => ({ id: temp.id, name: temp.name, size: temp.size, createdAt: temp.createdAt }));
+    await Deno.writeTextFile(this.temporaryFilePath, JSON.stringify(z), { create: true });
   }
 
   async get(id: EntityId): Promise<TemporaryFile> {

@@ -7,6 +7,7 @@ export interface TemporaryFileProps {
   name: string;
   size: number;
   createdAt: Date;
+  expireAt: Date;
 }
 
 export class TemporaryFile extends Entity {
@@ -15,6 +16,7 @@ export class TemporaryFile extends Entity {
     private readonly _name: string,
     private readonly _size: number,
     private readonly _createdAt: Date,
+    private readonly _expireAt: Date,
   ) {
     super(id);
   }
@@ -24,7 +26,7 @@ export class TemporaryFile extends Entity {
       throw new ArgumentInvalidException('Value cannot be empty');
     }
 
-    return new TemporaryFile(props.id, props.name, props.size, props.createdAt);
+    return new TemporaryFile(props.id, props.name, props.size, props.createdAt, props.expireAt);
   }
 
   get name() {
@@ -39,18 +41,24 @@ export class TemporaryFile extends Entity {
     return this._createdAt;
   }
 
+  get expireAt() {
+    return this._expireAt;
+  }
+
   serialize() {
     return {
       id: this.id,
       name: this.name,
       size: this.size,
       createdAt: this.createdAt.toISOString(),
+      expireAt: this.expireAt.toISOString(),
     };
   }
 
   static reconstitute(data: any) {
     const createdAt = new Date(data.createdAt);
+    const expireAt = new Date(data.expireAt);
 
-    return new TemporaryFile(data.id, data.name, data.size, createdAt);
+    return new TemporaryFile(data.id, data.name, data.size, createdAt, expireAt);
   }
 }

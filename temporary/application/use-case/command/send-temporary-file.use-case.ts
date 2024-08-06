@@ -9,6 +9,7 @@ import { extname } from 'https://deno.land/std@0.177.0/path/posix.ts';
 export interface SendTemporaryFileCommand {
   name: string;
   filePath: string;
+  expireAt: Date;
 }
 
 export class SendTemporaryFileUseCase {
@@ -23,8 +24,9 @@ export class SendTemporaryFileUseCase {
     const stats = await this.getFileStats(filePath);
 
     const createdAt = this.dateProvider.getNow();
+    const expireAt = new Date(sendTemporaryFileCommand.expireAt);
     const id = crypto.randomUUID();
-    const temporaryFile = TemporaryFile.create({ id, name: sendTemporaryFileCommand.name, size: stats.size, createdAt });
+    const temporaryFile = TemporaryFile.create({ id, name: sendTemporaryFileCommand.name, size: stats.size, createdAt, expireAt });
     await this.temporaryFileProvider.save(temporaryFile);
 
     await this.temporaryStorageProvider.save(temporaryFile, filePath);

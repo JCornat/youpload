@@ -13,7 +13,7 @@ export class TemporaryFileFileSystemRepository implements TemporaryFileRepositor
     const temporaryFiles = await this.getContent();
     temporaryFiles.push(temporaryFile);
 
-    const z = temporaryFiles.map((temp) => ({ id: temp.id, name: temp.name, size: temp.size, createdAt: temp.createdAt }));
+    const z = temporaryFiles.map((temp) => ({ id: temp.id, name: temp.name, size: temp.size, createdAt: temp.createdAt, expireAt: temp.expireAt }));
     await Deno.writeTextFile(this.temporaryFilePath, JSON.stringify(z), { create: true });
   }
 

@@ -11,6 +11,14 @@ export const handler: Handlers = {
   async POST(req, ctx) {
     const form = await req.formData();
     const file = form.get('my-file') as File;
+    const amount = form.get('amount') as string;
+    const expireAt = addHours(new Date(), +amount);
+
+    function addHours(date: Date, hours: number) {
+      const hoursToAdd = hours * 60 * 60 * 1000;
+      date.setTime(date.getTime() + hoursToAdd);
+      return date;
+    }
 
     if (!file) {
       return ctx.render({
@@ -29,6 +37,7 @@ export const handler: Handlers = {
     const command: SendTemporaryFileCommand = {
       name,
       filePath: `./${name}`,
+      expireAt,
     };
 
     const id = await sendTemporaryFileUseCase.handle(command);
@@ -58,7 +67,10 @@ export default function Home() {
 
         <>
           <form method='post' encType='multipart/form-data'>
+            <input type='number' name='amount' value="1"/>
+            <br/>
             <input type='file' name='my-file'/>
+            <br/>
             <button type='submit'>Upload</button>
           </form>
         </>

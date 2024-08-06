@@ -17,6 +17,7 @@ describe('Feature: Send temporary file', () => {
     const command: SendTemporaryFileCommand = {
       name: 'test-file.txt',
       filePath: './temporary/test/file/test.txt',
+      expireAt: new Date('2024-08-05 08:00:00'),
     };
 
     const fileId = await fixture.whenTemporaryFileIsSent(command);
@@ -26,6 +27,7 @@ describe('Feature: Send temporary file', () => {
       .withName('test-file.txt')
       .withSize(6)
       .createdAt(new Date('2024-08-05 08:00:00'))
+      .expireAt(new Date('2024-08-05 08:00:00') )
       .build();
 
     fixture.thenFileStoredShallBe(expectedFile);
@@ -35,6 +37,7 @@ describe('Feature: Send temporary file', () => {
     const sendTemporaryFileCommand: SendTemporaryFileCommand = {
       name: '404.txt',
       filePath: './temporary/test/file/404.txt',
+      expireAt: new Date('2024-08-05 08:00:00'),
     };
 
     await fixture.whenTemporaryFileIsSent(sendTemporaryFileCommand);

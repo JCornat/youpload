@@ -1,5 +1,5 @@
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
-import { TemporaryFileRepository } from '../../../domain/temporary-file.repository.ts';
+import { TemporaryFileRepository } from '../../../domain/repository/temporary-file.repository.ts';
 import { ExpiredFileException } from '../../../../shared/lib/exceptions.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 

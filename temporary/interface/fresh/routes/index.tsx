@@ -1,9 +1,9 @@
-import { TemporaryFileFileSystemRepository } from '../../../infrastructure/temporary-file.fs.repository.ts';
-import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/temporary-storage.fs.provider.ts';
+import { TemporaryFileFileSystemRepository } from '../../../infrastructure/repository/temporary-file.fs.repository.ts';
+import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/provider/temporary-storage.fs.provider.ts';
 import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../../../application/use-case/command/send-temporary-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
-import { FileStatFileSystemProvider } from '../../../infrastructure/file-stat.fs.provider.ts';
+import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {

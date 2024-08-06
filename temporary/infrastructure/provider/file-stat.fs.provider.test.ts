@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from 'jsr:@std/testing/bdd';
 import { assertEquals, assertInstanceOf, unreachable } from 'jsr:@std/assert@1';
-import { NotFoundException } from '../../shared/lib/exceptions.ts';
+import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 import { FileStatFileSystemProvider } from './file-stat.fs.provider.ts';
 
 describe('FileStatFileSystemProvider', () => {

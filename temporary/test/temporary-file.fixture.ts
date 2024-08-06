@@ -1,13 +1,13 @@
 import { assertEquals, assertInstanceOf } from 'jsr:@std/assert@1';
 import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
-import { TemporaryFileFakeRepository } from '../infrastructure/temporary-file.fake.repository.ts';
-import { TemporaryStorageFakeProvider } from '../infrastructure/temporary-storage.fake.provider.ts';
+import { TemporaryFileFakeRepository } from '../infrastructure/repository/temporary-file.fake.repository.ts';
+import { TemporaryStorageFakeProvider } from '../infrastructure/provider/temporary-storage.fake.provider.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../application/use-case/command/send-temporary-file.use-case.ts';
 import { TemporaryFile } from '../domain/temporary-file.ts';
 import { DownloadTemporaryFileQuery, DownloadTemporaryFileUseCase } from '../application/use-case/query/download-temporary-file.use-case.ts';
 import { getFileHash } from '../../shared/domain/file-hash.ts';
 import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../application/use-case/query/inspect-temporary-file.use-case.ts';
-import { FileStatFakeProvider } from '../infrastructure/file-stat.fake.provider.ts';
+import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.provider.ts';
 
 export const createTemporaryFileFixture = () => {
   const dateProvider = new StubDateProvider();

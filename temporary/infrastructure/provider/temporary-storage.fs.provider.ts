@@ -1,7 +1,7 @@
-import { EntityId } from '../../shared/domain/model/entity-id.ts';
-import { TemporaryFile } from '../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from '../domain/temporary-storage.provider.ts';
-import { NotFoundException } from '../../shared/lib/exceptions.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { TemporaryFile } from '../../domain/temporary-file.ts';
+import { TemporaryStorageProvider } from '../../domain/provider/temporary-storage.provider.ts';
+import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 export class TemporaryStorageFileSystemProvider implements TemporaryStorageProvider {
   constructor(

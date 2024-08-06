@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
 import { TemporaryStorageFileSystemProvider } from './temporary-storage.fs.provider.ts';
-import { temporaryFileBuilder } from '../test/temporary-file.builder.ts';
+import { temporaryFileBuilder } from '../../test/temporary-file.builder.ts';
 import { assertExists, assertInstanceOf, unreachable } from 'jsr:@std/assert@1';
-import { NotFoundException } from '../../shared/lib/exceptions.ts';
+import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 describe('TemporaryStorageFileSystemProvider', () => {
   let temporaryStorageProvider: TemporaryStorageFileSystemProvider;

@@ -1,9 +1,9 @@
-import { TemporaryFileRepository } from '../../../domain/temporary-file.repository.ts';
+import { TemporaryFileRepository } from '../../../domain/repository/temporary-file.repository.ts';
 import { TemporaryFile } from '../../../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from '../../../domain/temporary-storage.provider.ts';
+import { TemporaryStorageProvider } from '../../../domain/provider/temporary-storage.provider.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
-import { FileStatProvider } from '../../../domain/file-stat.provider.ts';
+import { FileStatProvider } from '../../../domain/provider/file-stat.provider.ts';
 
 export interface SendTemporaryFileCommand {
   name: string;

@@ -1,7 +1,7 @@
-import { TemporaryFile } from '../domain/temporary-file.ts';
-import { TemporaryFileRepository } from '../domain/temporary-file.repository.ts';
-import { EntityId } from '../../shared/domain/model/entity-id.ts';
-import { NotFoundException, ParseErrorException } from '../../shared/lib/exceptions.ts';
+import { TemporaryFile } from '../../domain/temporary-file.ts';
+import { TemporaryFileRepository } from '../../domain/repository/temporary-file.repository.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
 
 export class TemporaryFileFileSystemRepository implements TemporaryFileRepository {
   constructor(

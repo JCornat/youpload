@@ -16,10 +16,7 @@ describe('Feature: Request temporary file', () => {
     fixture.givenNowIs(new Date('2023-01-19T19:10:00.000Z'));
 
     const storedFile = temporaryFileBuilder()
-      .withId(crypto.randomUUID())
-      .withName('test')
-      .withSize(10)
-      .createdAt(new Date('2023-01-19T19:10:00.000Z'))
+      .expireAt(new Date('2023-01-19T20:10:00.000Z'))
       .build();
 
     fixture.givenStoredFile(storedFile);
@@ -37,10 +34,6 @@ describe('Feature: Request temporary file', () => {
     fixture.givenNowIs(new Date('2023-01-19T19:11:00.000Z'));
 
     const storedFile = temporaryFileBuilder()
-      .withId(crypto.randomUUID())
-      .withName('test')
-      .withSize(10)
-      .createdAt(new Date('2023-01-19T18:10:00.000Z'))
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 

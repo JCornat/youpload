@@ -1,7 +1,7 @@
 import { TemporaryFile } from '../domain/temporary-file.ts';
 
 export const temporaryFileBuilder = ({
-  id = 'MON-UUID-V4',
+  id = crypto.randomUUID(),
   name = 'coucou.txt',
   size = 100,
   createdAt = new Date(),

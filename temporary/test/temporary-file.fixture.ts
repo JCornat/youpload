@@ -32,7 +32,8 @@ export const createTemporaryFileFixture = () => {
     givenStoredFile(file: TemporaryFile) {
       temporaryFileRepository.store.set(file.id, file);
     },
-    async givenBinaryFile(file: TemporaryFile, filePath: string) {
+    async givenStoredBinaryFile(file: TemporaryFile, filePath: string) {
+      this.givenStoredFile(file);
       await temporaryStorageProvider.save(file, filePath);
     },
     whenTemporaryFileIsSent: async (sendTemporaryFileCommand: SendTemporaryFileCommand) => {

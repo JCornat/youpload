@@ -26,14 +26,8 @@ describe('Feature: Request temporary file', () => {
   });
 
   it('shall give a link for a valid temporary file', async () => {
-    const storedFile = temporaryFileBuilder()
-      .withId(crypto.randomUUID())
-      .withName('test.txt')
-      .withSize(10)
-      .build();
-
-    fixture.givenStoredFile(storedFile);
-    await fixture.givenBinaryFile(storedFile, './temporary/test/file/reference.txt');
+    const storedFile = temporaryFileBuilder().build();
+    await fixture.givenStoredBinaryFile(storedFile, './temporary/test/file/reference.txt');
 
     const command: DownloadTemporaryFileQuery = {
       id: storedFile.id,
@@ -48,14 +42,10 @@ describe('Feature: Request temporary file', () => {
     fixture.givenNowIs(new Date('2023-01-19T19:11:00.000Z'));
 
     const storedFile = temporaryFileBuilder()
-      .withId(crypto.randomUUID())
-      .withName('test.txt')
-      .withSize(10)
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 
-    fixture.givenStoredFile(storedFile);
-    await fixture.givenBinaryFile(storedFile, './temporary/test/file/reference.txt');
+    await fixture.givenStoredBinaryFile(storedFile, './temporary/test/file/reference.txt');
 
     const command: DownloadTemporaryFileQuery = {
       id: storedFile.id,
@@ -67,12 +57,7 @@ describe('Feature: Request temporary file', () => {
   });
 
   it('shall return an error for non existing file', async () => {
-    const storedFile = temporaryFileBuilder()
-      .withId(crypto.randomUUID())
-      .withName('404.txt')
-      .withSize(10)
-      .build();
-
+    const storedFile = temporaryFileBuilder().build();
     fixture.givenStoredFile(storedFile);
 
     const command: DownloadTemporaryFileQuery = {

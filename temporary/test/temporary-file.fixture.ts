@@ -7,12 +7,14 @@ import { TemporaryFile } from '../domain/temporary-file.ts';
 import { DownloadTemporaryFileQuery, DownloadTemporaryFileUseCase } from '../application/use-case/query/download-temporary-file.use-case.ts';
 import { getFileHash } from '../../shared/domain/file-hash.ts';
 import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../application/use-case/query/inspect-temporary-file.use-case.ts';
+import { FileStatFakeProvider } from '../infrastructure/file-stat.fake.provider.ts';
 
 export const createTemporaryFileFixture = () => {
   const dateProvider = new StubDateProvider();
   const temporaryFileRepository = new TemporaryFileFakeRepository();
   const temporaryStorageProvider = new TemporaryStorageFakeProvider();
-  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
+  const fileStatProvider = new FileStatFakeProvider();
+  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, fileStatProvider, dateProvider);
   const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileRepository, dateProvider);
   const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
 
@@ -23,6 +25,9 @@ export const createTemporaryFileFixture = () => {
   return {
     givenNowIs(now: Date) {
       dateProvider.now = now;
+    },
+    givenFileHasSize(filePath: string, size: number) {
+      fileStatProvider.addFileSize(filePath, size);
     },
     givenStoredFile(file: TemporaryFile) {
       temporaryFileRepository.store.set(file.id, file);

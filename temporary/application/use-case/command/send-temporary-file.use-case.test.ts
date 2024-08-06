@@ -13,6 +13,7 @@ describe('Feature: Send temporary file', () => {
 
   it('shall save a valid temporary file', async () => {
     fixture.givenNowIs(new Date('2024-08-05 08:00:00'));
+    fixture.givenFileHasSize('./temporary/test/file/test.txt', 6);
 
     const command: SendTemporaryFileCommand = {
       name: 'test-file.txt',

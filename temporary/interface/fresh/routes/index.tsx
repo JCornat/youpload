@@ -3,6 +3,7 @@ import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/temp
 import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../../../application/use-case/command/send-temporary-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
+import { FileStatFileSystemProvider } from '../../../infrastructure/file-stat.fs.provider.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -31,8 +32,9 @@ export const handler: Handlers = {
 
     const temporaryFileRepository = new TemporaryFileFileSystemRepository();
     const temporaryStorageProvider = new TemporaryStorageFileSystemProvider();
+    const fileStatProvider = new FileStatFileSystemProvider();
     const dateProvider = new StubDateProvider();
-    const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
+    const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, fileStatProvider, dateProvider);
 
     const command: SendTemporaryFileCommand = {
       name,

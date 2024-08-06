@@ -16,7 +16,7 @@ describe('Feature: Request temporary file', () => {
     fixture.givenNowIs(new Date('2023-01-19T19:10:00.000Z'));
 
     const storedFile = temporaryFileBuilder()
-      .withId('A.txt')
+      .withId(crypto.randomUUID())
       .withName('test')
       .withSize(10)
       .createdAt(new Date('2023-01-19T19:10:00.000Z'))
@@ -30,12 +30,12 @@ describe('Feature: Request temporary file', () => {
 
     await fixture.whenTemporaryFileIsInspected(command);
 
-    fixture.thenInspectedFileShallBe({ id: 'A.txt', name: 'test', size: 10, createdAt: '2023-01-19T19:10:00.000Z' });
+    fixture.thenInspectedFileShallBe({ id: storedFile.id, name: storedFile.name, size: storedFile.size, createdAt: storedFile.createdAt.toISOString() });
   });
 
   it('shall return an error for non existing file', async () => {
     const command: InspectTemporaryFileQuery = {
-      id: '404.txt',
+      id: crypto.randomUUID(),
     };
 
     await fixture.whenTemporaryFileIsInspected(command);

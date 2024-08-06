@@ -28,7 +28,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
   describe('save', () => {
     it(`shall return an error is file doesn't exist`, async () => {
       const temporaryFile = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-05 08:00:00'))
@@ -44,7 +44,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
 
     it('shall save a file', async () => {
       const temporaryFile = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-05 08:00:00'))
@@ -63,7 +63,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
 
   describe('getStream', () => {
     it(`shall not stream and return an error is file doesn't exist`, async () => {
-      const id = `${crypto.randomUUID()}.txt`;
+      const id = crypto.randomUUID();
 
       try {
         await temporaryStorageProvider.getStream(id);
@@ -74,7 +74,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
     });
 
     it('shall get a stream for valid file', async () => {
-      const id = `${crypto.randomUUID()}.txt`;
+      const id = crypto.randomUUID();
       await Deno.copyFile('./temporary/test/file/test.txt', `./temporary/test/file/tmp/${id}`);
 
       const stream = await temporaryStorageProvider.getStream(id);

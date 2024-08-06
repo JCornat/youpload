@@ -15,7 +15,7 @@ describe('Feature: Send temporary file', () => {
     fixture.givenNowIs(new Date('2024-08-05 08:00:00'));
 
     const command: SendTemporaryFileCommand = {
-      name: 'test-file',
+      name: 'test-file.txt',
       filePath: './temporary/test/file/test.txt',
     };
 
@@ -23,7 +23,7 @@ describe('Feature: Send temporary file', () => {
 
     const expectedFile = temporaryFileBuilder()
       .withId(fileId)
-      .withName('test-file')
+      .withName('test-file.txt')
       .withSize(6)
       .createdAt(new Date('2024-08-05 08:00:00'))
       .build();
@@ -33,7 +33,7 @@ describe('Feature: Send temporary file', () => {
 
   it('shall not save a non existing file', async () => {
     const sendTemporaryFileCommand: SendTemporaryFileCommand = {
-      name: 'test-file',
+      name: '404.txt',
       filePath: './temporary/test/file/404.txt',
     };
 

@@ -23,7 +23,7 @@ export class SendTemporaryFileUseCase {
     const stats = await this.getFileStats(filePath);
 
     const createdAt = this.dateProvider.getNow();
-    const id = `${crypto.randomUUID()}${extname(filePath)}`;
+    const id = crypto.randomUUID();
     const temporaryFile = TemporaryFile.create({ id, name: sendTemporaryFileCommand.name, size: stats.size, createdAt });
     await this.temporaryFileProvider.save(temporaryFile);
 

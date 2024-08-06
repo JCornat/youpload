@@ -24,7 +24,7 @@ describe('TemporaryFileFileSystemRepository', () => {
   describe('save', () => {
     it('shall save a valid file when there is no file saved', async () => {
       const temporaryFile = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-05 08:00:00'))
@@ -39,14 +39,14 @@ describe('TemporaryFileFileSystemRepository', () => {
 
     it('shall save a valid file when there is files already saved', async () => {
       const temporaryFile1 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(10)
         .withName('BBBBB.txt')
         .createdAt(new Date('2024-08-07 08:00:00'))
         .build();
 
       const temporaryFile2 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(20)
         .withName('AAAAA.jpg')
         .createdAt(new Date('2024-08-06 08:00:00'))
@@ -56,7 +56,7 @@ describe('TemporaryFileFileSystemRepository', () => {
       await Deno.writeTextFile('./tmp-temporary-file.ts', JSON.stringify(content));
 
       const temporaryFile = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-08 08:00:00'))
@@ -73,7 +73,7 @@ describe('TemporaryFileFileSystemRepository', () => {
       await Deno.writeTextFile('./tmp-temporary-file.ts', 'AAAAAAAAA');
 
       const temporaryFile = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-08 08:00:00'))
@@ -91,7 +91,7 @@ describe('TemporaryFileFileSystemRepository', () => {
   describe('get', () => {
     it('shall get an error if there is no saved file', async () => {
       try {
-        await temporaryFileRepository.get('A.txt');
+        await temporaryFileRepository.get(crypto.randomUUID());
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -100,14 +100,14 @@ describe('TemporaryFileFileSystemRepository', () => {
 
     it('shall get no file if requested file is not saved', async () => {
       const temporaryFile1 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(10)
         .withName('BBBBB.txt')
         .createdAt(new Date('2024-08-07 08:00:00'))
         .build();
 
       const temporaryFile2 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(20)
         .withName('AAAAA.jpg')
         .createdAt(new Date('2024-08-06 08:00:00'))
@@ -117,7 +117,7 @@ describe('TemporaryFileFileSystemRepository', () => {
       await Deno.writeTextFile('./tmp-temporary-file.ts', JSON.stringify(content));
 
       try {
-        await temporaryFileRepository.get('A.txt');
+        await temporaryFileRepository.get('AAAA');
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -126,14 +126,14 @@ describe('TemporaryFileFileSystemRepository', () => {
 
     it('shall get requested file if saved', async () => {
       const temporaryFile1 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(10)
         .withName('BBBBB.txt')
         .createdAt(new Date('2024-08-07 08:00:00'))
         .build();
 
       const temporaryFile2 = temporaryFileBuilder()
-        .withId(`${crypto.randomUUID()}.txt`)
+        .withId(crypto.randomUUID())
         .withSize(20)
         .withName('AAAAA.jpg')
         .createdAt(new Date('2024-08-06 08:00:00'))

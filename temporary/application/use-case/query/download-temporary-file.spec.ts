@@ -27,8 +27,8 @@ describe('Feature: Request temporary file', () => {
 
   it('shall give a link for a valid temporary file', async () => {
     const storedFile = temporaryFileBuilder()
-      .withId('A.txt')
-      .withName('test')
+      .withId(crypto.randomUUID())
+      .withName('test.txt')
       .withSize(10)
       .build();
 
@@ -46,8 +46,8 @@ describe('Feature: Request temporary file', () => {
 
   it('shall return an error for non existing file', async () => {
     const storedFile = temporaryFileBuilder()
-      .withId('404.txt')
-      .withName('test')
+      .withId(crypto.randomUUID())
+      .withName('404.txt')
       .withSize(10)
       .build();
 

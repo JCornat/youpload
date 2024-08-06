@@ -7,7 +7,7 @@ import * as $_app from './routes/_app.tsx';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $index from './routes/index.tsx';
-import * as $upload from './routes/upload.tsx';
+import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
 
 import { type Manifest } from '$fresh/server.ts';
 
@@ -18,7 +18,7 @@ const manifest = {
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/index.tsx': $index,
-    './routes/upload.tsx': $upload,
+    './routes/success-upload/[id].tsx': $success_upload_id_,
   },
   islands: {},
   baseUrl: import.meta.url,

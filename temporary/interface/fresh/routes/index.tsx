@@ -1,8 +1,8 @@
-import {TemporaryFileFileSystemRepository} from "../../../infrastructure/temporary-file.fs.repository.ts";
-import {TemporaryStorageFileSystemProvider} from "../../../infrastructure/temporary-storage.fs.provider.ts";
-import {StubDateProvider} from "../../../../shared/domain/date.provider.stub.ts";
-import {SendTemporaryFileCommand, SendTemporaryFileUseCase} from "../../../application/use-case/command/send-temporary-file.use-case.ts";
-import { Handlers } from "$fresh/server.ts";
+import { TemporaryFileFileSystemRepository } from '../../../infrastructure/temporary-file.fs.repository.ts';
+import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/temporary-storage.fs.provider.ts';
+import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
+import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../../../application/use-case/command/send-temporary-file.use-case.ts';
+import { Handlers } from '$fresh/server.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {
@@ -44,7 +44,7 @@ export const handler: Handlers = {
     await Deno.remove(name);
 
     const headers = new Headers();
-    headers.set("location", `/success-upload/${id}`);
+    headers.set('location', `/success-upload/${id}`);
     return new Response(null, {
       status: 303, // See Other
       headers,
@@ -67,10 +67,10 @@ export default function Home() {
 
         <>
           <form method='post' encType='multipart/form-data'>
-            <input type='number' name='amount' value="1"/>
-            <br/>
-            <input type='file' name='my-file'/>
-            <br/>
+            <input type='number' name='amount' value='1' />
+            <br />
+            <input type='file' name='my-file' />
+            <br />
             <button type='submit'>Upload</button>
           </form>
         </>

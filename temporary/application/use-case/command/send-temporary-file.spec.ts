@@ -27,7 +27,7 @@ describe('Feature: Send temporary file', () => {
       .withName('test-file.txt')
       .withSize(6)
       .createdAt(new Date('2024-08-05 08:00:00'))
-      .expireAt(new Date('2024-08-05 08:00:00') )
+      .expireAt(new Date('2024-08-05 08:00:00'))
       .build();
 
     fixture.thenFileStoredShallBe(expectedFile);

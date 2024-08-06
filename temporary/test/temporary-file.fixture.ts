@@ -13,8 +13,8 @@ export const createTemporaryFileFixture = () => {
   const temporaryFileRepository = new TemporaryFileFakeRepository();
   const temporaryStorageProvider = new TemporaryStorageFakeProvider();
   const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
-  const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileRepository);
-  const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider);
+  const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileRepository, dateProvider);
+  const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
 
   let thrownError: Error;
   let filePathDownloaded: string;

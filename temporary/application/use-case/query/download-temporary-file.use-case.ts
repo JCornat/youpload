@@ -1,6 +1,6 @@
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
-import { TemporaryFileProvider } from '../../../infrastructure/temporary-file.provider.ts';
-import { TemporaryStorageProvider } from '../../../infrastructure/temporary-storage.provider.ts';
+import { TemporaryFileRepository } from '../../../domain/temporary-file.repository.ts';
+import { TemporaryStorageProvider } from '../../../domain/temporary-storage.provider.ts';
 
 export interface DownloadTemporaryFileQuery {
   id: EntityId;
@@ -8,13 +8,13 @@ export interface DownloadTemporaryFileQuery {
 
 export class DownloadTemporaryFileUseCase {
   constructor(
-    private readonly temporaryFileProvider: TemporaryFileProvider,
+    private readonly temporaryFileRepository: TemporaryFileRepository,
     private readonly temporaryStorageProvider: TemporaryStorageProvider,
   ) {
   }
 
   async handle(requestTemporaryFileQuery: DownloadTemporaryFileQuery) {
-    const file = await this.temporaryFileProvider.get(requestTemporaryFileQuery.id);
+    const file = await this.temporaryFileRepository.get(requestTemporaryFileQuery.id);
 
     return this.temporaryStorageProvider.getStream(file.id);
   }

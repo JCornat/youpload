@@ -1,6 +1,6 @@
 import { Handlers, type PageProps } from '$fresh/server.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../../../application/use-case/command/send-temporary-file.use-case.ts';
-import { TemporaryFileFileSystemProvider } from '../../../infrastructure/temporary-file.fs.provider.ts';
+import { TemporaryFileFileSystemRepository } from '../../../infrastructure/temporary-file.fs.repository.ts';
 import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
 import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/temporary-storage.fs.provider.ts';
 
@@ -27,10 +27,10 @@ export const handler: Handlers<Props> = {
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
-    const temporaryFileProvider = new TemporaryFileFileSystemProvider();
+    const temporaryFileRepository = new TemporaryFileFileSystemRepository();
     const temporaryStorageProvider = new TemporaryStorageFileSystemProvider();
     const dateProvider = new StubDateProvider();
-    const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider, dateProvider);
+    const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
 
     const command: SendTemporaryFileCommand = {
       name,

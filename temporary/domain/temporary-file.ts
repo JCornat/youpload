@@ -39,6 +39,15 @@ export class TemporaryFile extends Entity {
     return this._createdAt;
   }
 
+  serialize() {
+    return {
+      id: this.id,
+      name: this.name,
+      size: this.size,
+      createdAt: this.createdAt.toISOString(),
+    };
+  }
+
   static reconstitute(data: any) {
     const createdAt = new Date(data.createdAt);
 

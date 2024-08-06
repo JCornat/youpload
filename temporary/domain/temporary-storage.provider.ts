@@ -1,4 +1,4 @@
-import { TemporaryFile } from '../domain/temporary-file.ts';
+import { TemporaryFile } from './temporary-file.ts';
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
 
 export interface TemporaryStorageProvider {

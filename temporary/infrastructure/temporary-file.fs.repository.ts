@@ -1,11 +1,11 @@
 import { TemporaryFile } from '../domain/temporary-file.ts';
-import { TemporaryFileProvider } from './temporary-file.provider.ts';
+import { TemporaryFileRepository } from '../domain/temporary-file.repository.ts';
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
-import { NotFoundException } from '../../shared/lib/exceptions.ts';
+import { NotFoundException, ParseErrorException } from '../../shared/lib/exceptions.ts';
 
-export class TemporaryFileFileSystemProvider implements TemporaryFileProvider {
+export class TemporaryFileFileSystemRepository implements TemporaryFileRepository {
   constructor(
-    private readonly temporaryFilePath = './temporary-file.ts',
+    public temporaryFilePath = './temporary-file.ts',
   ) {
   }
 
@@ -39,7 +39,14 @@ export class TemporaryFileFileSystemProvider implements TemporaryFileProvider {
       content = '[]';
     }
 
-    const array = JSON.parse(content);
+    let array: any;
+
+    try {
+      array = JSON.parse(content);
+    } catch {
+      throw new ParseErrorException();
+    }
+
     return array.map((item: Record<string, unknown>) => TemporaryFile.reconstitute(item));
   }
 }

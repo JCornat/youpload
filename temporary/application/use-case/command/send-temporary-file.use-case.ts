@@ -1,6 +1,6 @@
-import { TemporaryFileProvider } from '../../../infrastructure/temporary-file.provider.ts';
+import { TemporaryFileRepository } from '../../../domain/temporary-file.repository.ts';
 import { TemporaryFile } from '../../../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from '../../../infrastructure/temporary-storage.provider.ts';
+import { TemporaryStorageProvider } from '../../../domain/temporary-storage.provider.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
 import { NotFoundException } from '../../../../shared/lib/exceptions.ts';
@@ -13,7 +13,7 @@ export interface SendTemporaryFileCommand {
 
 export class SendTemporaryFileUseCase {
   constructor(
-    private readonly temporaryFileProvider: TemporaryFileProvider,
+    private readonly temporaryFileProvider: TemporaryFileRepository,
     private readonly temporaryStorageProvider: TemporaryStorageProvider,
     private readonly dateProvider: DateProvider,
   ) {}

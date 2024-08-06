@@ -1,5 +1,5 @@
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
-import { TemporaryFileProvider } from '../../../infrastructure/temporary-file.provider.ts';
+import { TemporaryFileRepository } from '../../../domain/temporary-file.repository.ts';
 
 export interface InspectTemporaryFileQuery {
   id: EntityId;
@@ -7,7 +7,7 @@ export interface InspectTemporaryFileQuery {
 
 export class InspectTemporaryFileUseCase {
   constructor(
-    private readonly temporaryFileProvider: TemporaryFileProvider,
+    private readonly temporaryFileProvider: TemporaryFileRepository,
   ) {
   }
 

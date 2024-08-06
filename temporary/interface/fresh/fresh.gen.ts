@@ -5,6 +5,7 @@
 import * as $_404 from './routes/_404.tsx';
 import * as $_app from './routes/_app.tsx';
 import * as $f_id_ from './routes/f/[id].tsx';
+import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $index from './routes/index.tsx';
 import * as $upload from './routes/upload.tsx';
 
@@ -15,6 +16,7 @@ const manifest = {
     './routes/_404.tsx': $_404,
     './routes/_app.tsx': $_app,
     './routes/f/[id].tsx': $f_id_,
+    './routes/file-not-found.tsx': $file_not_found,
     './routes/index.tsx': $index,
     './routes/upload.tsx': $upload,
   },

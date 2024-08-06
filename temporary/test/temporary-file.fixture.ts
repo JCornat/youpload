@@ -1,6 +1,6 @@
 import { assertEquals, assertInstanceOf } from 'jsr:@std/assert@1';
 import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
-import { TemporaryFileFakeProvider } from '../infrastructure/temporary-file.fake.provider.ts';
+import { TemporaryFileFakeRepository } from '../infrastructure/temporary-file.fake.repository.ts';
 import { TemporaryStorageFakeProvider } from '../infrastructure/temporary-storage.fake.provider.ts';
 import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../application/use-case/command/send-temporary-file.use-case.ts';
 import { TemporaryFile } from '../domain/temporary-file.ts';
@@ -10,11 +10,11 @@ import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../appli
 
 export const createTemporaryFileFixture = () => {
   const dateProvider = new StubDateProvider();
-  const temporaryFileProvider = new TemporaryFileFakeProvider();
+  const temporaryFileRepository = new TemporaryFileFakeRepository();
   const temporaryStorageProvider = new TemporaryStorageFakeProvider();
-  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider, dateProvider);
-  const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileProvider);
-  const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileProvider, temporaryStorageProvider);
+  const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, dateProvider);
+  const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileRepository);
+  const downloadTemporaryFileUseCase = new DownloadTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider);
 
   let thrownError: Error;
   let filePathDownloaded: string;
@@ -25,7 +25,7 @@ export const createTemporaryFileFixture = () => {
       dateProvider.now = now;
     },
     givenStoredFile(file: TemporaryFile) {
-      temporaryFileProvider.store.set(file.id, file);
+      temporaryFileRepository.store.set(file.id, file);
     },
     async givenBinaryFile(file: TemporaryFile, filePath: string) {
       await temporaryStorageProvider.save(file, filePath);
@@ -66,7 +66,7 @@ export const createTemporaryFileFixture = () => {
       }
     },
     thenFileStoredShallBe: (expectedFile: TemporaryFile) => {
-      assertEquals(expectedFile, temporaryFileProvider.store.get(expectedFile.id));
+      assertEquals(expectedFile, temporaryFileRepository.store.get(expectedFile.id));
     },
     thenInspectedFileShallBe: (expectedFileData: { id: string; name: string; size: number; createdAt: string }) => {
       assertEquals(expectedFileData, inspectedFile);

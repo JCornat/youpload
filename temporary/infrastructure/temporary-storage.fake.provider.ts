@@ -1,6 +1,6 @@
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
 import { TemporaryFile } from '../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from './temporary-storage.provider.ts';
+import { TemporaryStorageProvider } from '../domain/temporary-storage.provider.ts';
 
 export class TemporaryStorageFakeProvider implements TemporaryStorageProvider {
   directory = './temporary/test/file/tmp';

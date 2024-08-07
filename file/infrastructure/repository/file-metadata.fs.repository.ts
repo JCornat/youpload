@@ -1,7 +1,7 @@
-import { FileMetadata, FileMetadataSerialized } from 'file/domain/file-metadata.ts';
-import { FileMetadataRepository } from 'file/domain/repository/file-metadata.repository.ts';
-import { EntityId } from 'shared/domain/model/entity-id.ts';
-import { NotFoundException, ParseErrorException } from 'shared/lib/exceptions.ts';
+import { FileMetadata, FileMetadataSerialized } from '#file/domain/file-metadata.ts';
+import { FileMetadataRepository } from '#file/domain/repository/file-metadata.repository.ts';
+import { EntityId } from '#shared/domain/model/entity-id.ts';
+import { NotFoundException, ParseErrorException } from '#shared/lib/exceptions.ts';
 
 export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(

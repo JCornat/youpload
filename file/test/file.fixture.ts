@@ -1,13 +1,13 @@
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { StubDateProvider } from 'shared/domain/date.provider.stub.ts';
-import { FileMetadataFakeRepository } from 'file/infrastructure/repository/file-metadata.fake.repository.ts';
-import { FileStorageFakeProvider } from 'file/infrastructure/provider/file-storage.fake.provider.ts';
-import { UploadFileCommand, UploadFileUseCase } from 'file/application/use-case/command/upload-file.use-case.ts';
-import { FileMetadata } from 'file/domain/file-metadata.ts';
-import { DownloadFileQuery, DownloadFileUseCase } from 'file/application/use-case/query/download-file.use-case.ts';
-import { getFileHash } from 'shared/domain/file-hash.ts';
-import { InspectFileQuery, InspectFileUseCase } from 'file/application/use-case/query/inspect-file.use-case.ts';
-import { FileStatFakeProvider } from 'file/infrastructure/provider/file-stat.fake.provider.ts';
+import { StubDateProvider } from '#shared/domain/date.provider.stub.ts';
+import { FileMetadataFakeRepository } from '#file/infrastructure/repository/file-metadata.fake.repository.ts';
+import { FileStorageFakeProvider } from '#file/infrastructure/provider/file-storage.fake.provider.ts';
+import { UploadFileCommand, UploadFileUseCase } from '#file/application/use-case/command/upload-file.use-case.ts';
+import { FileMetadata } from '#file/domain/file-metadata.ts';
+import { DownloadFileQuery, DownloadFileUseCase } from '#file/application/use-case/query/download-file.use-case.ts';
+import { getFileHash } from '#shared/domain/file-hash.ts';
+import { InspectFileQuery, InspectFileUseCase } from '#file/application/use-case/query/inspect-file.use-case.ts';
+import { FileStatFakeProvider } from '#file/infrastructure/provider/file-stat.fake.provider.ts';
 
 export const createFileFixture = () => {
   const dateProvider = new StubDateProvider();

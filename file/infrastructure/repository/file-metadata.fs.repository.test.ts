@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { FileMetadataFileSystemRepository } from 'file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { fileMetadataBuilder } from 'file/test/file-metadata.builder.ts';
+import { FileMetadataFileSystemRepository } from '#file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { fileMetadataBuilder } from '#file/test/file-metadata.builder.ts';
 import { assertEquals, assertInstanceOf, unreachable } from '@std/assert';
-import { NotFoundException, ParseErrorException } from 'shared/lib/exceptions.ts';
+import { NotFoundException, ParseErrorException } from '#shared/lib/exceptions.ts';
 
 describe('FileFileSystemRepository', () => {
   let fileMetadataRepository: FileMetadataFileSystemRepository;

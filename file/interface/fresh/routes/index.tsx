@@ -1,9 +1,9 @@
-import { FileMetadataFileSystemRepository } from 'file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { FileStorageFileSystemProvider } from 'file/infrastructure/provider/file-storage.fs.provider.ts';
-import { StubDateProvider } from 'shared/domain/date.provider.stub.ts';
-import { UploadFileCommand, UploadFileUseCase } from 'file/application/use-case/command/upload-file.use-case.ts';
+import { FileMetadataFileSystemRepository } from '#file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { FileStorageFileSystemProvider } from '#file/infrastructure/provider/file-storage.fs.provider.ts';
+import { StubDateProvider } from '#shared/domain/date.provider.stub.ts';
+import { UploadFileCommand, UploadFileUseCase } from '#file/application/use-case/command/upload-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
-import { FileStatFileSystemProvider } from 'file/infrastructure/provider/file-stat.fs.provider.ts';
+import { FileStatFileSystemProvider } from '#file/infrastructure/provider/file-stat.fs.provider.ts';
 
 export const handler: Handlers = {
   async GET(_req, ctx) {

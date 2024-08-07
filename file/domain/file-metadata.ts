@@ -1,6 +1,6 @@
-import { EntityId } from 'shared/domain/model/entity-id.ts';
-import { Entity } from 'shared/domain/model/entity.ts';
-import { ArgumentInvalidException } from 'shared/lib/exceptions.ts';
+import { EntityId } from '#shared/domain/model/entity-id.ts';
+import { Entity } from '#shared/domain/model/entity.ts';
+import { ArgumentInvalidException } from '#shared/lib/exceptions.ts';
 
 export interface FileMetadataProps {
   id: EntityId;

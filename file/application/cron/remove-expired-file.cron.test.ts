@@ -8,8 +8,8 @@ describe('Feature: Remove expired file', () => {
     fixture = createFileFixture();
   });
 
-  it('shall remove an expired file from repository and file system', async () => {
-    // fixture.givenStoredFile()
+  it('shall remove an expired file from repository and file system', () => {
+    fixture.givenNowIs(new Date('2024-08-05 08:00:00'));
   });
 
   it('shall remove a non existing expired file from repository', async () => {

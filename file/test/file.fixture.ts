@@ -20,7 +20,7 @@ export const createFileFixture = () => {
 
   let thrownError: Error;
   let filePathDownloaded: string;
-  let inspectedFileMetadata: any;
+  let inspectedFileMetadata: { id: string; name: string; size: number; createdAt: string };
 
   return {
     givenNowIs(now: Date) {

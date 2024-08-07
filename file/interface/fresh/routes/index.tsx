@@ -6,7 +6,7 @@ import { Handlers } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
 
 export const handler: Handlers = {
-  async GET(req, ctx) {
+  async GET(_req, ctx) {
     return await ctx.render();
   },
   async POST(req, ctx) {

@@ -5,7 +5,7 @@ import { InspectFileQuery, InspectFileUseCase } from '../../../../application/us
 import { StubDateProvider } from '../../../../../shared/domain/date.provider.stub.ts';
 
 export const handler: Handlers = {
-  async GET(req, ctx) {
+  async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const dateProvider = new StubDateProvider();
     const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);

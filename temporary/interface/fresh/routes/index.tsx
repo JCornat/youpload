@@ -1,4 +1,4 @@
-import { FileFileSystemRepository } from '../../../infrastructure/repository/file.fs.repository.ts';
+import { FileMetadataFileSystemRepository } from '../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { FileStorageFileSystemProvider } from '../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
@@ -30,11 +30,11 @@ export const handler: Handlers = {
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
-    const fileRepository = new FileFileSystemRepository();
+    const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const fileStorageProvider = new FileStorageFileSystemProvider();
     const fileStatProvider = new FileStatFileSystemProvider();
     const dateProvider = new StubDateProvider();
-    const uploadFileUseCase = new UploadFileUseCase(fileRepository, fileStorageProvider, fileStatProvider, dateProvider);
+    const uploadFileUseCase = new UploadFileUseCase(fileMetadataRepository, fileStorageProvider, fileStatProvider, dateProvider);
 
     const command: UploadFileCommand = {
       name,

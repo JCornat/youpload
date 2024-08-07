@@ -2,7 +2,7 @@ import { EntityId } from '../../shared/domain/model/entity-id.ts';
 import { Entity } from '../../shared/domain/model/entity.ts';
 import { ArgumentInvalidException } from '../../shared/lib/exceptions.ts';
 
-export interface FileProps {
+export interface FileMetadataProps {
   id: EntityId;
   name: string;
   size: number;
@@ -10,7 +10,15 @@ export interface FileProps {
   expireAt: Date;
 }
 
-export class File extends Entity {
+export interface FileMetadataSerialized {
+  id: EntityId;
+  name: string;
+  size: number;
+  createdAt: string;
+  expireAt: string;
+}
+
+export class FileMetadata extends Entity {
   private constructor(
     id: EntityId,
     private readonly _name: string,
@@ -21,12 +29,12 @@ export class File extends Entity {
     super(id);
   }
 
-  static create(props: FileProps): File {
+  static create(props: FileMetadataProps): FileMetadata {
     if (!props.name) {
       throw new ArgumentInvalidException('Value cannot be empty');
     }
 
-    return new File(props.id, props.name, props.size, props.createdAt, props.expireAt);
+    return new FileMetadata(props.id, props.name, props.size, props.createdAt, props.expireAt);
   }
 
   get name() {
@@ -55,10 +63,10 @@ export class File extends Entity {
     };
   }
 
-  static reconstitute(data: any) {
+  static reconstitute(data: FileMetadataSerialized) {
     const createdAt = new Date(data.createdAt);
     const expireAt = new Date(data.expireAt);
 
-    return new File(data.id, data.name, data.size, createdAt, expireAt);
+    return new FileMetadata(data.id, data.name, data.size, createdAt, expireAt);
   }
 }

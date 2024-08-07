@@ -1,6 +1,6 @@
-import { File } from '../domain/file.ts';
+import { FileMetadata } from '../domain/file-metadata.ts';
 
-export const fileBuilder = ({
+export const fileMetadataBuilder = ({
   id = crypto.randomUUID(),
   name = 'coucou.txt',
   size = 100,
@@ -17,22 +17,22 @@ export const fileBuilder = ({
 
   return {
     withId(_id: string) {
-      return fileBuilder({ ...props, id: _id });
+      return fileMetadataBuilder({ ...props, id: _id });
     },
     withName(_name: string) {
-      return fileBuilder({ ...props, name: _name });
+      return fileMetadataBuilder({ ...props, name: _name });
     },
     withSize(_size: number) {
-      return fileBuilder({ ...props, size: _size });
+      return fileMetadataBuilder({ ...props, size: _size });
     },
     createdAt(_createdAt: Date) {
-      return fileBuilder({ ...props, createdAt: _createdAt });
+      return fileMetadataBuilder({ ...props, createdAt: _createdAt });
     },
     expireAt(_expireAt: Date) {
-      return fileBuilder({ ...props, expireAt: _expireAt });
+      return fileMetadataBuilder({ ...props, expireAt: _expireAt });
     },
     build() {
-      return File.create(props);
+      return FileMetadata.create(props);
     },
   };
 };

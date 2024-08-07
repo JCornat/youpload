@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
 import { FileStorageFileSystemProvider } from './file-storage.fs.provider.ts';
-import { fileBuilder } from '../../test/file.builder.ts';
+import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
 import { assertExists, assertInstanceOf, unreachable } from 'jsr:@std/assert@1';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
@@ -27,7 +27,7 @@ describe('FileStorageFileSystemProvider', () => {
 
   describe('save', () => {
     it(`shall return an error is file doesn't exist`, async () => {
-      const file = fileBuilder()
+      const fileMetadata = fileMetadataBuilder()
         .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
@@ -35,7 +35,7 @@ describe('FileStorageFileSystemProvider', () => {
         .build();
 
       try {
-        await fileStorageProvider.save(file, './temporary/test/file/404.txt');
+        await fileStorageProvider.save(fileMetadata, './temporary/test/file/404.txt');
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -43,17 +43,17 @@ describe('FileStorageFileSystemProvider', () => {
     });
 
     it('shall save a file', async () => {
-      const file = fileBuilder()
+      const fileMetadata = fileMetadataBuilder()
         .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-05 08:00:00'))
         .build();
 
-      await fileStorageProvider.save(file, './temporary/test/file/test.txt');
+      await fileStorageProvider.save(fileMetadata, './temporary/test/file/test.txt');
 
       try {
-        const fileStat = await Deno.lstat(`./temporary/test/file/tmp/${file.id}`);
+        const fileStat = await Deno.lstat(`./temporary/test/file/tmp/${fileMetadata.id}`);
         assertExists(fileStat);
       } catch {
         unreachable();

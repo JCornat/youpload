@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
 import { createFileFixture, FileFixture } from '../../../test/file.fixture.ts';
-import { fileBuilder } from '../../../test/file.builder.ts';
+import { fileMetadataBuilder } from '../../../test/file-metadata.builder.ts';
 import { DownloadFileQuery } from './download-file.use-case.ts';
 import { ExpiredFileException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
 
@@ -26,11 +26,11 @@ describe('Feature: Download file', () => {
   });
 
   it('shall give a link for a valid file', async () => {
-    const storedFile = fileBuilder().build();
-    await fixture.givenStoredBinaryFile(storedFile, './temporary/test/file/reference.txt');
+    const storedFileMetadata = fileMetadataBuilder().build();
+    await fixture.givenStoredBinaryFile(storedFileMetadata, './temporary/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
-      id: storedFile.id,
+      id: storedFileMetadata.id,
     };
 
     await fixture.whenFileIsDownloaded(command);
@@ -41,14 +41,14 @@ describe('Feature: Download file', () => {
   it('shall return an error for expired file', async () => {
     fixture.givenNowIs(new Date('2023-01-19T19:11:00.000Z'));
 
-    const storedFile = fileBuilder()
+    const storedFileMetadata = fileMetadataBuilder()
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 
-    await fixture.givenStoredBinaryFile(storedFile, './temporary/test/file/reference.txt');
+    await fixture.givenStoredBinaryFile(storedFileMetadata, './temporary/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
-      id: storedFile.id,
+      id: storedFileMetadata.id,
     };
 
     await fixture.whenFileIsDownloaded(command);
@@ -57,8 +57,8 @@ describe('Feature: Download file', () => {
   });
 
   it('shall return an error for non existing file', async () => {
-    const storedFile = fileBuilder().build();
-    fixture.givenStoredFile(storedFile);
+    const storedFileMetadata = fileMetadataBuilder().build();
+    fixture.givenStoredFile(storedFileMetadata);
 
     const command: DownloadFileQuery = {
       id: 'A.txt',

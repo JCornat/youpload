@@ -1,4 +1,4 @@
-import { FileFileSystemRepository } from '../../../../infrastructure/repository/file.fs.repository.ts';
+import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { FileStorageFileSystemProvider } from '../../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { DownloadFileUseCase } from '../../../../application/use-case/query/download-file.use-case.ts';
 import { Handlers } from 'https://deno.land/x/fresh@1.6.8/src/server/types.ts';
@@ -7,22 +7,22 @@ import { StubDateProvider } from '../../../../../shared/domain/date.provider.stu
 
 export const handler: Handlers = {
   async GET(req, ctx) {
-    const fileRepository = new FileFileSystemRepository();
+    const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const fileStorageProvider = new FileStorageFileSystemProvider();
     const dateProvider = new StubDateProvider();
-    const inspectFileUseCase = new InspectFileUseCase(fileRepository, dateProvider);
-    const downloadFileUseCase = new DownloadFileUseCase(fileRepository, fileStorageProvider, dateProvider);
+    const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
+    const downloadFileUseCase = new DownloadFileUseCase(fileMetadataRepository, fileStorageProvider, dateProvider);
 
     const query = {
       id: ctx.params.id,
     };
 
     try {
-      const file = await inspectFileUseCase.handle(query);
+      const fileMetadata = await inspectFileUseCase.handle(query);
       const stream = await downloadFileUseCase.handle(query);
       return new Response(stream, {
         headers: {
-          'Content-Disposition': `attachment; filename="${file.name}"`,
+          'Content-Disposition': `attachment; filename="${fileMetadata.name}"`,
         },
       });
     } catch {

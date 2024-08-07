@@ -1,9 +1,9 @@
 import { assertEquals, assertInstanceOf } from 'jsr:@std/assert@1';
 import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
-import { FileFakeRepository } from '../infrastructure/repository/file.fake.repository.ts';
+import { FileMetadataFakeRepository } from '../infrastructure/repository/file-metadata.fake.repository.ts';
 import { FileStorageFakeProvider } from '../infrastructure/provider/file-storage.fake.provider.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../application/use-case/command/upload-file.use-case.ts';
-import { File } from '../domain/file.ts';
+import { FileMetadata } from '../domain/file-metadata.ts';
 import { DownloadFileQuery, DownloadFileUseCase } from '../application/use-case/query/download-file.use-case.ts';
 import { getFileHash } from '../../shared/domain/file-hash.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../application/use-case/query/inspect-file.use-case.ts';
@@ -11,7 +11,7 @@ import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.
 
 export const createFileFixture = () => {
   const dateProvider = new StubDateProvider();
-  const fileRepository = new FileFakeRepository();
+  const fileRepository = new FileMetadataFakeRepository();
   const fileStorageProvider = new FileStorageFakeProvider();
   const fileStatProvider = new FileStatFakeProvider();
   const uploadFileUseCase = new UploadFileUseCase(fileRepository, fileStorageProvider, fileStatProvider, dateProvider);
@@ -20,7 +20,7 @@ export const createFileFixture = () => {
 
   let thrownError: Error;
   let filePathDownloaded: string;
-  let inspectedFile: any;
+  let inspectedFileMetadata: any;
 
   return {
     givenNowIs(now: Date) {
@@ -29,10 +29,10 @@ export const createFileFixture = () => {
     givenFileHasSize(filePath: string, size: number) {
       fileStatProvider.addFileSize(filePath, size);
     },
-    givenStoredFile(file: File) {
+    givenStoredFile(file: FileMetadata) {
       fileRepository.store.set(file.id, file);
     },
-    async givenStoredBinaryFile(file: File, filePath: string) {
+    async givenStoredBinaryFile(file: FileMetadata, filePath: string) {
       this.givenStoredFile(file);
       await fileStorageProvider.save(file, filePath);
     },
@@ -49,7 +49,7 @@ export const createFileFixture = () => {
     },
     whenFileIsInspected: async (query: InspectFileQuery) => {
       try {
-        inspectedFile = await inspectFileUseCase.handle(query);
+        inspectedFileMetadata = await inspectFileUseCase.handle(query);
       } catch (error) {
         thrownError = error;
       }
@@ -71,11 +71,11 @@ export const createFileFixture = () => {
         //
       }
     },
-    thenFileStoredShallBe: (expectedFile: File) => {
+    thenFileStoredShallBe: (expectedFile: FileMetadata) => {
       assertEquals(expectedFile, fileRepository.store.get(expectedFile.id));
     },
     thenInspectedFileShallBe: (expectedFileData: { id: string; name: string; size: number; createdAt: string }) => {
-      assertEquals(expectedFileData, inspectedFile);
+      assertEquals(expectedFileData, inspectedFileMetadata);
     },
     thenDownloadedFileShallBeEqualToFile: async (filePath: string) => {
       const hash1 = await getFileHash(filePath);

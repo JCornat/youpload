@@ -1,23 +1,23 @@
 import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from 'https://deno.land/x/fresh@1.6.8/src/server/types.ts';
-import { FileFileSystemRepository } from '../../../../infrastructure/repository/file.fs.repository.ts';
+import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
 import { StubDateProvider } from '../../../../../shared/domain/date.provider.stub.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {
-    const fileRepository = new FileFileSystemRepository();
+    const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const dateProvider = new StubDateProvider();
-    const inspectFileUseCase = new InspectFileUseCase(fileRepository, dateProvider);
+    const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
 
     const query: InspectFileQuery = {
       id: ctx.params.id,
     };
 
     try {
-      const file = await inspectFileUseCase.handle(query);
-      const url = `/f/${file.id}`;
-      return ctx.render({ url, name: file.name });
+      const fileMetadata = await inspectFileUseCase.handle(query);
+      const url = `/f/${fileMetadata.id}`;
+      return ctx.render({ url, name: fileMetadata.name });
     } catch {
       return new Response('', {
         status: 307,

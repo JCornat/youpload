@@ -1,5 +1,5 @@
-import { FileRepository } from '../../../domain/repository/file.repository.ts';
-import { File } from '../../../domain/file.ts';
+import { FileMetadataRepository } from '../../../domain/repository/file-metadata.repository.ts';
+import { FileMetadata } from '../../../domain/file-metadata.ts';
 import { FileStorageProvider } from '../../../domain/provider/file-storage.provider.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
@@ -13,7 +13,7 @@ export interface UploadFileCommand {
 
 export class UploadFileUseCase {
   constructor(
-    private readonly fileRepository: FileRepository,
+    private readonly fileMetadataRepository: FileMetadataRepository,
     private readonly fileStorageProvider: FileStorageProvider,
     private readonly fileStatProvider: FileStatProvider,
     private readonly dateProvider: DateProvider,
@@ -26,10 +26,10 @@ export class UploadFileUseCase {
     const createdAt = this.dateProvider.getNow();
     const expireAt = new Date(sendFileCommand.expireAt);
     const id = crypto.randomUUID();
-    const file = File.create({ id, name: sendFileCommand.name, size, createdAt, expireAt });
-    await this.fileRepository.save(file);
+    const fileMetadata = FileMetadata.create({ id, name: sendFileCommand.name, size, createdAt, expireAt });
+    await this.fileMetadataRepository.save(fileMetadata);
 
-    await this.fileStorageProvider.save(file, filePath);
+    await this.fileStorageProvider.save(fileMetadata, filePath);
 
     return id;
   }

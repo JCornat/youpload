@@ -1,5 +1,5 @@
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { File } from '../../domain/file.ts';
+import { FileMetadata } from '../../domain/file-metadata.ts';
 import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
@@ -9,7 +9,7 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
   ) {
   }
 
-  async save(file: File, filePath: string): Promise<void> {
+  async save(file: FileMetadata, filePath: string): Promise<void> {
     const destination = `${this.directory}/${file.id}`;
 
     try {

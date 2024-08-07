@@ -1,34 +1,35 @@
-import { File } from '../../domain/file.ts';
-import { FileRepository } from '../../domain/repository/file.repository.ts';
+import {FileMetadata, FileMetadataSerialized} from '../../domain/file-metadata.ts';
+import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
 
-export class FileFileSystemRepository implements FileRepository {
+export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(
-    public filePath = './file.ts',
+    public filePath = './file-metadata.ts',
   ) {
   }
 
-  async save(file: File): Promise<void> {
+  async save(fileMetadata: FileMetadata): Promise<void> {
     const files = await this.getContent();
-    files.push(file);
+    files.push(fileMetadata);
 
     const serializedFiles = files.map((temp) => temp.serialize());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 
-  async get(id: EntityId): Promise<File> {
-    const files = await this.getContent();
-    const file = files.find((item) => item.id === id);
-    if (!file) {
+  async get(id: EntityId): Promise<FileMetadata> {
+    const fileMetadataList = await this.getContent();
+    const fileMetadata = fileMetadataList.find((item) => item.id === id);
+    if (!fileMetadata) {
       throw new NotFoundException();
     }
 
-    return file;
+    return fileMetadata;
   }
 
-  private async getContent(): Promise<File[]> {
+  private async getContent(): Promise<FileMetadata[]> {
     let content: string;
+
     try {
       content = await Deno.readTextFile(this.filePath);
     } catch (error) {
@@ -39,7 +40,7 @@ export class FileFileSystemRepository implements FileRepository {
       content = '[]';
     }
 
-    let array: any;
+    let array: FileMetadataSerialized[];
 
     try {
       array = JSON.parse(content);
@@ -47,6 +48,6 @@ export class FileFileSystemRepository implements FileRepository {
       throw new ParseErrorException();
     }
 
-    return array.map((item: Record<string, unknown>) => File.reconstitute(item));
+    return array.map((item) => FileMetadata.reconstitute(item));
   }
 }

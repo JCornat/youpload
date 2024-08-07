@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from 'jsr:@std/testing@0.224.0/bdd';
 import { UploadFileCommand } from './upload-file.use-case.ts';
-import { fileBuilder } from '../../../test/file.builder.ts';
+import { fileMetadataBuilder } from '../../../test/file-metadata.builder.ts';
 import { createFileFixture, FileFixture } from '../../../test/file.fixture.ts';
 import { NotFoundException } from '../../../../shared/lib/exceptions.ts';
 
@@ -23,7 +23,7 @@ describe('Feature: Send file', () => {
 
     const fileId = await fixture.whenFileIsSent(command);
 
-    const expectedFile = fileBuilder()
+    const expectedFileMetadata = fileMetadataBuilder()
       .withId(fileId)
       .withName('test-file.txt')
       .withSize(6)
@@ -31,7 +31,7 @@ describe('Feature: Send file', () => {
       .expireAt(new Date('2024-08-05 08:00:00'))
       .build();
 
-    fixture.thenFileStoredShallBe(expectedFile);
+    fixture.thenFileStoredShallBe(expectedFileMetadata);
   });
 
   it('shall not save a non existing file', async () => {

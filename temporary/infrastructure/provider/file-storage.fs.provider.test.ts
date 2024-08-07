@@ -1,11 +1,11 @@
 import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
-import { TemporaryStorageFileSystemProvider } from './temporary-storage.fs.provider.ts';
-import { temporaryFileBuilder } from '../../test/temporary-file.builder.ts';
+import { FileStorageFileSystemProvider } from './file-storage.fs.provider.ts';
+import { fileBuilder } from '../../test/file.builder.ts';
 import { assertExists, assertInstanceOf, unreachable } from 'jsr:@std/assert@1';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
-describe('TemporaryStorageFileSystemProvider', () => {
-  let temporaryStorageProvider: TemporaryStorageFileSystemProvider;
+describe('FileStorageFileSystemProvider', () => {
+  let fileStorageProvider: FileStorageFileSystemProvider;
 
   beforeAll(async () => {
     try {
@@ -22,12 +22,12 @@ describe('TemporaryStorageFileSystemProvider', () => {
   });
 
   beforeEach(() => {
-    temporaryStorageProvider = new TemporaryStorageFileSystemProvider('./temporary/test/file/tmp');
+    fileStorageProvider = new FileStorageFileSystemProvider('./temporary/test/file/tmp');
   });
 
   describe('save', () => {
     it(`shall return an error is file doesn't exist`, async () => {
-      const temporaryFile = temporaryFileBuilder()
+      const file = fileBuilder()
         .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
@@ -35,7 +35,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
         .build();
 
       try {
-        await temporaryStorageProvider.save(temporaryFile, './temporary/test/file/404.txt');
+        await fileStorageProvider.save(file, './temporary/test/file/404.txt');
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -43,18 +43,18 @@ describe('TemporaryStorageFileSystemProvider', () => {
     });
 
     it('shall save a file', async () => {
-      const temporaryFile = temporaryFileBuilder()
+      const file = fileBuilder()
         .withId(crypto.randomUUID())
         .withSize(1)
         .withName('test.txt')
         .createdAt(new Date('2024-08-05 08:00:00'))
         .build();
 
-      await temporaryStorageProvider.save(temporaryFile, './temporary/test/file/test.txt');
+      await fileStorageProvider.save(file, './temporary/test/file/test.txt');
 
       try {
-        const file = await Deno.lstat(`./temporary/test/file/tmp/${temporaryFile.id}`);
-        assertExists(file);
+        const fileStat = await Deno.lstat(`./temporary/test/file/tmp/${file.id}`);
+        assertExists(fileStat);
       } catch {
         unreachable();
       }
@@ -66,7 +66,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
       const id = crypto.randomUUID();
 
       try {
-        await temporaryStorageProvider.getStream(id);
+        await fileStorageProvider.getStream(id);
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -77,7 +77,7 @@ describe('TemporaryStorageFileSystemProvider', () => {
       const id = crypto.randomUUID();
       await Deno.copyFile('./temporary/test/file/test.txt', `./temporary/test/file/tmp/${id}`);
 
-      const stream = await temporaryStorageProvider.getStream(id);
+      const stream = await fileStorageProvider.getStream(id);
       assertInstanceOf(stream, ReadableStream);
       await stream.cancel();
     });

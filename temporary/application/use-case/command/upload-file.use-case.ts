@@ -1,0 +1,36 @@
+import { FileRepository } from '../../../domain/repository/file.repository.ts';
+import { File } from '../../../domain/file.ts';
+import { FileStorageProvider } from '../../../domain/provider/file-storage.provider.ts';
+import { DateProvider } from '../../../../shared/domain/date.provider.ts';
+import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
+import { FileStatProvider } from '../../../domain/provider/file-stat.provider.ts';
+
+export interface UploadFileCommand {
+  name: string;
+  filePath: string;
+  expireAt: Date;
+}
+
+export class UploadFileUseCase {
+  constructor(
+    private readonly fileRepository: FileRepository,
+    private readonly fileStorageProvider: FileStorageProvider,
+    private readonly fileStatProvider: FileStatProvider,
+    private readonly dateProvider: DateProvider,
+  ) {}
+
+  async handle(sendFileCommand: UploadFileCommand): Promise<EntityId> {
+    const filePath = sendFileCommand.filePath;
+    const size = await this.fileStatProvider.getSize(filePath);
+
+    const createdAt = this.dateProvider.getNow();
+    const expireAt = new Date(sendFileCommand.expireAt);
+    const id = crypto.randomUUID();
+    const file = File.create({ id, name: sendFileCommand.name, size, createdAt, expireAt });
+    await this.fileRepository.save(file);
+
+    await this.fileStorageProvider.save(file, filePath);
+
+    return id;
+  }
+}

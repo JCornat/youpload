@@ -1,6 +1,6 @@
-import { TemporaryFile } from '../domain/temporary-file.ts';
+import { File } from '../domain/file.ts';
 
-export const temporaryFileBuilder = ({
+export const fileBuilder = ({
   id = crypto.randomUUID(),
   name = 'coucou.txt',
   size = 100,
@@ -17,22 +17,22 @@ export const temporaryFileBuilder = ({
 
   return {
     withId(_id: string) {
-      return temporaryFileBuilder({ ...props, id: _id });
+      return fileBuilder({ ...props, id: _id });
     },
     withName(_name: string) {
-      return temporaryFileBuilder({ ...props, name: _name });
+      return fileBuilder({ ...props, name: _name });
     },
     withSize(_size: number) {
-      return temporaryFileBuilder({ ...props, size: _size });
+      return fileBuilder({ ...props, size: _size });
     },
     createdAt(_createdAt: Date) {
-      return temporaryFileBuilder({ ...props, createdAt: _createdAt });
+      return fileBuilder({ ...props, createdAt: _createdAt });
     },
     expireAt(_expireAt: Date) {
-      return temporaryFileBuilder({ ...props, expireAt: _expireAt });
+      return fileBuilder({ ...props, expireAt: _expireAt });
     },
     build() {
-      return TemporaryFile.create(props);
+      return File.create(props);
     },
   };
 };

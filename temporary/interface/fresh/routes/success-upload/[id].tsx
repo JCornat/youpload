@@ -1,21 +1,21 @@
 import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from 'https://deno.land/x/fresh@1.6.8/src/server/types.ts';
-import { TemporaryFileFileSystemRepository } from '../../../../infrastructure/repository/temporary-file.fs.repository.ts';
-import { InspectTemporaryFileQuery, InspectTemporaryFileUseCase } from '../../../../application/use-case/query/inspect-temporary-file.use-case.ts';
+import { FileFileSystemRepository } from '../../../../infrastructure/repository/file.fs.repository.ts';
+import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
 import { StubDateProvider } from '../../../../../shared/domain/date.provider.stub.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {
-    const temporaryFileRepository = new TemporaryFileFileSystemRepository();
+    const fileRepository = new FileFileSystemRepository();
     const dateProvider = new StubDateProvider();
-    const inspectTemporaryFileUseCase = new InspectTemporaryFileUseCase(temporaryFileRepository, dateProvider);
+    const inspectFileUseCase = new InspectFileUseCase(fileRepository, dateProvider);
 
-    const query: InspectTemporaryFileQuery = {
+    const query: InspectFileQuery = {
       id: ctx.params.id,
     };
 
     try {
-      const file = await inspectTemporaryFileUseCase.handle(query);
+      const file = await inspectFileUseCase.handle(query);
       const url = `/f/${file.id}`;
       return ctx.render({ url, name: file.name });
     } catch {

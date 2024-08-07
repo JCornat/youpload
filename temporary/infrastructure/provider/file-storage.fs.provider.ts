@@ -1,16 +1,16 @@
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { TemporaryFile } from '../../domain/temporary-file.ts';
-import { TemporaryStorageProvider } from '../../domain/provider/temporary-storage.provider.ts';
+import { File } from '../../domain/file.ts';
+import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
-export class TemporaryStorageFileSystemProvider implements TemporaryStorageProvider {
+export class FileStorageFileSystemProvider implements FileStorageProvider {
   constructor(
     public directory = './temporary/test/fs',
   ) {
   }
 
-  async save(temporaryFile: TemporaryFile, filePath: string): Promise<void> {
-    const destination = `${this.directory}/${temporaryFile.id}`;
+  async save(file: File, filePath: string): Promise<void> {
+    const destination = `${this.directory}/${file.id}`;
 
     try {
       await Deno.copyFile(filePath, destination);

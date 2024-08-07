@@ -2,7 +2,7 @@ import { EntityId } from '../../shared/domain/model/entity-id.ts';
 import { Entity } from '../../shared/domain/model/entity.ts';
 import { ArgumentInvalidException } from '../../shared/lib/exceptions.ts';
 
-export interface TemporaryFileProps {
+export interface FileProps {
   id: EntityId;
   name: string;
   size: number;
@@ -10,7 +10,7 @@ export interface TemporaryFileProps {
   expireAt: Date;
 }
 
-export class TemporaryFile extends Entity {
+export class File extends Entity {
   private constructor(
     id: EntityId,
     private readonly _name: string,
@@ -21,12 +21,12 @@ export class TemporaryFile extends Entity {
     super(id);
   }
 
-  static create(props: TemporaryFileProps): TemporaryFile {
+  static create(props: FileProps): File {
     if (!props.name) {
       throw new ArgumentInvalidException('Value cannot be empty');
     }
 
-    return new TemporaryFile(props.id, props.name, props.size, props.createdAt, props.expireAt);
+    return new File(props.id, props.name, props.size, props.createdAt, props.expireAt);
   }
 
   get name() {
@@ -59,6 +59,6 @@ export class TemporaryFile extends Entity {
     const createdAt = new Date(data.createdAt);
     const expireAt = new Date(data.expireAt);
 
-    return new TemporaryFile(data.id, data.name, data.size, createdAt, expireAt);
+    return new File(data.id, data.name, data.size, createdAt, expireAt);
   }
 }

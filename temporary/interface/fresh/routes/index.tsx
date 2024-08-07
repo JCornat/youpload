@@ -1,7 +1,7 @@
-import { TemporaryFileFileSystemRepository } from '../../../infrastructure/repository/temporary-file.fs.repository.ts';
-import { TemporaryStorageFileSystemProvider } from '../../../infrastructure/provider/temporary-storage.fs.provider.ts';
+import { FileFileSystemRepository } from '../../../infrastructure/repository/file.fs.repository.ts';
+import { FileStorageFileSystemProvider } from '../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
-import { SendTemporaryFileCommand, SendTemporaryFileUseCase } from '../../../application/use-case/command/send-temporary-file.use-case.ts';
+import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
 
@@ -30,19 +30,19 @@ export const handler: Handlers = {
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
-    const temporaryFileRepository = new TemporaryFileFileSystemRepository();
-    const temporaryStorageProvider = new TemporaryStorageFileSystemProvider();
+    const fileRepository = new FileFileSystemRepository();
+    const fileStorageProvider = new FileStorageFileSystemProvider();
     const fileStatProvider = new FileStatFileSystemProvider();
     const dateProvider = new StubDateProvider();
-    const sendTemporaryFileUseCase = new SendTemporaryFileUseCase(temporaryFileRepository, temporaryStorageProvider, fileStatProvider, dateProvider);
+    const uploadFileUseCase = new UploadFileUseCase(fileRepository, fileStorageProvider, fileStatProvider, dateProvider);
 
-    const command: SendTemporaryFileCommand = {
+    const command: UploadFileCommand = {
       name,
       filePath: `./${name}`,
       expireAt,
     };
 
-    const id = await sendTemporaryFileUseCase.handle(command);
+    const id = await uploadFileUseCase.handle(command);
     await Deno.remove(name);
 
     const headers = new Headers();

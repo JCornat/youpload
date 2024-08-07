@@ -1,11 +1,11 @@
 import { beforeEach, describe, it } from 'jsr:@std/testing@0.224.0/bdd';
-import { createTemporaryFileFixture, TemporaryFileFixture } from '../../test/temporary-file.fixture.ts';
+import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
 
 describe('Feature: Remove expired file', () => {
-  let fixture: TemporaryFileFixture;
+  let fixture: FileFixture;
 
   beforeEach(() => {
-    fixture = createTemporaryFileFixture();
+    fixture = createFileFixture();
   });
 
   it('shall remove an expired file from repository and file system', async () => {

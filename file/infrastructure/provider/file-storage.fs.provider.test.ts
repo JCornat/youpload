@@ -1,15 +1,15 @@
-import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
-import { FileStorageFileSystemProvider } from './file-storage.fs.provider.ts';
-import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
-import { assertExists, assertInstanceOf, unreachable } from 'jsr:@std/assert@1';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
+import { FileStorageFileSystemProvider } from 'file/infrastructure/provider/file-storage.fs.provider.ts';
+import { fileMetadataBuilder } from 'file/test/file-metadata.builder.ts';
+import { assertExists, assertInstanceOf, unreachable } from '@std/assert';
+import { NotFoundException } from 'shared/lib/exceptions.ts';
 
 describe('FileStorageFileSystemProvider', () => {
   let fileStorageProvider: FileStorageFileSystemProvider;
 
   beforeAll(async () => {
     try {
-      await Deno.remove('./temporary/test/file/tmp', { recursive: true });
+      await Deno.remove('./file/test/file/tmp', { recursive: true });
     } catch (error) {
       if (!(error instanceof Deno.errors.NotFound)) {
         throw error;
@@ -18,11 +18,11 @@ describe('FileStorageFileSystemProvider', () => {
       console.info('No tmp directory, skip');
     }
 
-    await Deno.mkdir('./temporary/test/file/tmp');
+    await Deno.mkdir('./file/test/file/tmp');
   });
 
   beforeEach(() => {
-    fileStorageProvider = new FileStorageFileSystemProvider('./temporary/test/file/tmp');
+    fileStorageProvider = new FileStorageFileSystemProvider('./file/test/file/tmp');
   });
 
   describe('save', () => {
@@ -35,7 +35,7 @@ describe('FileStorageFileSystemProvider', () => {
         .build();
 
       try {
-        await fileStorageProvider.save(fileMetadata, './temporary/test/file/404.txt');
+        await fileStorageProvider.save(fileMetadata, './file/test/file/404.txt');
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -50,10 +50,10 @@ describe('FileStorageFileSystemProvider', () => {
         .createdAt(new Date('2024-08-05 08:00:00'))
         .build();
 
-      await fileStorageProvider.save(fileMetadata, './temporary/test/file/test.txt');
+      await fileStorageProvider.save(fileMetadata, './file/test/file/test.txt');
 
       try {
-        const fileStat = await Deno.lstat(`./temporary/test/file/tmp/${fileMetadata.id}`);
+        const fileStat = await Deno.lstat(`./file/test/file/tmp/${fileMetadata.id}`);
         assertExists(fileStat);
       } catch {
         unreachable();
@@ -75,7 +75,7 @@ describe('FileStorageFileSystemProvider', () => {
 
     it('shall get a stream for valid file', async () => {
       const id = crypto.randomUUID();
-      await Deno.copyFile('./temporary/test/file/test.txt', `./temporary/test/file/tmp/${id}`);
+      await Deno.copyFile('./file/test/file/test.txt', `./file/test/file/tmp/${id}`);
 
       const stream = await fileStorageProvider.getStream(id);
       assertInstanceOf(stream, ReadableStream);

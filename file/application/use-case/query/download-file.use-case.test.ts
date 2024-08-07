@@ -1,15 +1,15 @@
-import { beforeAll, beforeEach, describe, it } from 'jsr:@std/testing/bdd';
-import { createFileFixture, FileFixture } from '../../../test/file.fixture.ts';
-import { fileMetadataBuilder } from '../../../test/file-metadata.builder.ts';
-import { DownloadFileQuery } from './download-file.use-case.ts';
-import { ExpiredFileException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
+import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
+import { createFileFixture, FileFixture } from 'file/test/file.fixture.ts';
+import { fileMetadataBuilder } from 'file/test/file-metadata.builder.ts';
+import { DownloadFileQuery } from 'file/application/use-case/query/download-file.use-case.ts';
+import { ExpiredFileException, NotFoundException } from 'shared/lib/exceptions.ts';
 
 describe('Feature: Download file', () => {
   let fixture: FileFixture;
 
   beforeAll(async () => {
     try {
-      await Deno.remove('./temporary/test/file/tmp', { recursive: true });
+      await Deno.remove('./file/test/file/tmp', { recursive: true });
     } catch (error) {
       if (!(error instanceof Deno.errors.NotFound)) {
         throw error;
@@ -18,7 +18,7 @@ describe('Feature: Download file', () => {
       console.info('No tmp directory, skip');
     }
 
-    await Deno.mkdir('./temporary/test/file/tmp');
+    await Deno.mkdir('./file/test/file/tmp');
   });
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('Feature: Download file', () => {
 
   it('shall give a link for a valid file', async () => {
     const storedFileMetadata = fileMetadataBuilder().build();
-    await fixture.givenStoredBinaryFile(storedFileMetadata, './temporary/test/file/reference.txt');
+    await fixture.givenStoredBinaryFile(storedFileMetadata, './file/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,
@@ -35,7 +35,7 @@ describe('Feature: Download file', () => {
 
     await fixture.whenFileIsDownloaded(command);
 
-    await fixture.thenDownloadedFileShallBeEqualToFile('./temporary/test/file/reference.txt');
+    await fixture.thenDownloadedFileShallBeEqualToFile('./file/test/file/reference.txt');
   });
 
   it('shall return an error for expired file', async () => {
@@ -45,7 +45,7 @@ describe('Feature: Download file', () => {
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 
-    await fixture.givenStoredBinaryFile(storedFileMetadata, './temporary/test/file/reference.txt');
+    await fixture.givenStoredBinaryFile(storedFileMetadata, './file/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,

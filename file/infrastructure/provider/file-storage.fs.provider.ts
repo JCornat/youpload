@@ -1,11 +1,11 @@
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { FileMetadata } from '../../domain/file-metadata.ts';
-import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { EntityId } from 'shared/domain/model/entity-id.ts';
+import { FileMetadata } from 'file/domain/file-metadata.ts';
+import { FileStorageProvider } from 'file/domain/provider/file-storage.provider.ts';
+import { NotFoundException } from 'shared/lib/exceptions.ts';
 
 export class FileStorageFileSystemProvider implements FileStorageProvider {
   constructor(
-    public directory = './temporary/test/fs',
+    public directory = './file/test/fs',
   ) {
   }
 
@@ -25,6 +25,7 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
 
   async getStream(fileId: EntityId): Promise<ReadableStream> {
     const destination = `${this.directory}/${fileId}`;
+
     try {
       await Deno.lstat(destination);
     } catch (error) {

@@ -1,9 +1,9 @@
-import { beforeEach, describe, it } from 'jsr:@std/testing/bdd';
-import { createFileFixture, FileFixture } from '../../../test/file.fixture.ts';
-import { fileMetadataBuilder } from '../../../test/file-metadata.builder.ts';
-import { DownloadFileQuery } from './download-file.use-case.ts';
-import { ExpiredFileException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
-import { InspectFileQuery } from './inspect-file.use-case.ts';
+import { beforeEach, describe, it } from '@std/testing/bdd';
+import { createFileFixture, FileFixture } from 'file/test/file.fixture.ts';
+import { fileMetadataBuilder } from 'file/test/file-metadata.builder.ts';
+import { DownloadFileQuery } from 'file/application/use-case/query/download-file.use-case.ts';
+import { ExpiredFileException, NotFoundException } from 'shared/lib/exceptions.ts';
+import { InspectFileQuery } from 'file/application/use-case/query/inspect-file.use-case.ts';
 
 describe('Feature: Inspect file', () => {
   let fixture: FileFixture;

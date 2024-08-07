@@ -1,8 +1,8 @@
 import { type PageProps } from '$fresh/server.ts';
-import { Handlers } from 'https://deno.land/x/fresh@1.6.8/src/server/types.ts';
-import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
-import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
-import { StubDateProvider } from '../../../../../shared/domain/date.provider.stub.ts';
+import { Handlers } from '$fresh/src/server/types.ts';
+import { FileMetadataFileSystemRepository } from 'file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { InspectFileQuery, InspectFileUseCase } from 'file/application/use-case/query/inspect-file.use-case.ts';
+import { StubDateProvider } from 'shared/domain/date.provider.stub.ts';
 
 export const handler: Handlers = {
   async GET(_req, ctx) {

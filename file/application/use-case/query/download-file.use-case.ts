@@ -1,8 +1,8 @@
-import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
-import { FileMetadataRepository } from '../../../domain/repository/file-metadata.repository.ts';
-import { FileStorageProvider } from '../../../domain/provider/file-storage.provider.ts';
-import { DateProvider } from '../../../../shared/domain/date.provider.ts';
-import { ExpiredFileException } from '../../../../shared/lib/exceptions.ts';
+import { EntityId } from 'shared/domain/model/entity-id.ts';
+import { FileMetadataRepository } from 'file/domain/repository/file-metadata.repository.ts';
+import { FileStorageProvider } from 'file/domain/provider/file-storage.provider.ts';
+import { DateProvider } from 'shared/domain/date.provider.ts';
+import { ExpiredFileException } from 'shared/lib/exceptions.ts';
 
 export interface DownloadFileQuery {
   id: EntityId;

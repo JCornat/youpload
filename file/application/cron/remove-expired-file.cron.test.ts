@@ -1,5 +1,5 @@
-import { beforeEach, describe, it } from 'jsr:@std/testing@0.224.0/bdd';
-import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
+import { beforeEach, describe, it } from '@std/testing/bdd';
+import { createFileFixture, FileFixture } from 'file/test/file.fixture.ts';
 
 describe('Feature: Remove expired file', () => {
   let fixture: FileFixture;

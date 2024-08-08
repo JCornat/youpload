@@ -1,5 +1,5 @@
 import { FileMetadataRepository } from '../../../domain/repository/file-metadata.repository.ts';
-import { FileMetadata } from '../../../domain/file-metadata.ts';
+import { FileMetadata } from '../../../domain/model/file-metadata.ts';
 import { FileStorageProvider } from '../../../domain/provider/file-storage.provider.ts';
 import { DateProvider } from '../../../../shared/domain/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';

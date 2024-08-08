@@ -1,4 +1,4 @@
-import { FileMetadata, FileMetadataSerialized } from '../../domain/file-metadata.ts';
+import { FileMetadata, FileMetadataSerialized } from '../../domain/model/file-metadata.ts';
 import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';

@@ -23,8 +23,8 @@ export class InspectFileUseCase {
 
     return {
       id: fileMetadata.id,
-      name: fileMetadata.name,
-      size: fileMetadata.size,
+      name: fileMetadata.name.value,
+      size: fileMetadata.size.value,
       createdAt: fileMetadata.createdAt.toISOString(),
     };
   }

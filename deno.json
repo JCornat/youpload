@@ -19,7 +19,8 @@
     "build": "deno run -A file/interface/fresh/dev.ts build",
     "preview": "deno run -A file/interface/fresh/main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
-    "test": "deno test --allow-read --allow-write"
+    "test": "deno test --allow-read --allow-write",
+    "watch-test": "deno test --watch --allow-read --allow-write"
   },
   "exclude": [
     "**/_fresh/*"

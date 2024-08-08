@@ -1,6 +1,8 @@
-import { EntityId } from '../../shared/domain/model/entity-id.ts';
-import { Entity } from '../../shared/domain/model/entity.ts';
-import { ArgumentInvalidException } from '../../shared/lib/exceptions.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { Entity } from '../../../shared/domain/model/entity.ts';
+import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { FileName } from '../value-object/file-name.ts';
+import { FileSize } from '../value-object/file-size.ts';
 
 export interface FileMetadataProps {
   id: EntityId;
@@ -21,8 +23,8 @@ export interface FileMetadataSerialized {
 export class FileMetadata extends Entity {
   private constructor(
     id: EntityId,
-    private readonly _name: string,
-    private readonly _size: number,
+    private readonly _name: FileName,
+    private readonly _size: FileSize,
     private readonly _createdAt: Date,
     private readonly _expireAt: Date,
   ) {
@@ -34,7 +36,7 @@ export class FileMetadata extends Entity {
       throw new ArgumentInvalidException('Value cannot be empty');
     }
 
-    return new FileMetadata(props.id, props.name, props.size, props.createdAt, props.expireAt);
+    return new FileMetadata(props.id, FileName.create(props.name), FileSize.create(props.size), props.createdAt, props.expireAt);
   }
 
   get name() {
@@ -56,8 +58,8 @@ export class FileMetadata extends Entity {
   serialize() {
     return {
       id: this.id,
-      name: this.name,
-      size: this.size,
+      name: this.name.value,
+      size: this.size.value,
       createdAt: this.createdAt.toISOString(),
       expireAt: this.expireAt.toISOString(),
     };
@@ -67,6 +69,6 @@ export class FileMetadata extends Entity {
     const createdAt = new Date(data.createdAt);
     const expireAt = new Date(data.expireAt);
 
-    return new FileMetadata(data.id, data.name, data.size, createdAt, expireAt);
+    return new FileMetadata(data.id, FileName.create(data.name), FileSize.create(data.size), createdAt, expireAt);
   }
 }

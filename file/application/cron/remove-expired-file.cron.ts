@@ -1,6 +1,5 @@
-import {FileMetadataRepository} from "../../domain/repository/file-metadata.repository.ts";
-import {FileStorageProvider} from "../../domain/provider/file-storage.provider.ts";
-import {FileExpiredEvent} from "../../domain/model/file-expired-event.ts";
+import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
+import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
 
 export class RemoveExpiredFileCron {
   constructor(
@@ -11,7 +10,8 @@ export class RemoveExpiredFileCron {
   async execute(): Promise<void> {
     const fileMetadataList = await this.fileMetadataRepository.getAllExpired();
     fileMetadataList.forEach((fileMetadata) => {
-      fileMetadata.expire();
+      this.fileMetadataRepository.remove(fileMetadata.id);
+      this.fileStorageProvider.remove(fileMetadata.id);
     });
   }
 }

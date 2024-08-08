@@ -1,10 +1,8 @@
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { Entity } from '../../../shared/domain/model/entity.ts';
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 import { FileName } from '../value-object/file-name.ts';
 import { FileSize } from '../value-object/file-size.ts';
-import {FileExpiredEvent} from "./file-expired-event.ts";
 
 export interface FileMetadataProps {
   id: EntityId;
@@ -39,11 +37,6 @@ export class FileMetadata extends AggregateRoot {
     }
 
     return new FileMetadata(props.id, FileName.create(props.name), FileSize.create(props.size), props.createdAt, props.expireAt);
-  }
-
-  expire() {
-    const event = new FileExpiredEvent(this.id)
-    this.addDomainEvent(event);
   }
 
   get name() {

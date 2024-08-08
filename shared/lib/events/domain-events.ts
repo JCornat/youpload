@@ -1,6 +1,6 @@
-import { DomainEvent } from './domain-event';
+import { DomainEvent } from './domain-event.ts';
 
-type DomainCallback = (event: DomainEvent)=> void;
+type DomainCallback = (event: DomainEvent) => void;
 
 export class DomainEvents {
   private static subscriptionsMap = new Map<string, DomainCallback[]>();
@@ -10,7 +10,7 @@ export class DomainEvents {
       this.subscriptionsMap.set(eventClassName, []);
     }
 
-    this.subscriptionsMap.get(eventClassName).push(callback);
+    this.subscriptionsMap.get(eventClassName)!.push(callback);
   }
 
   static clearSubscriptions() {
@@ -21,7 +21,11 @@ export class DomainEvents {
     const eventClassName: string = event.constructor.name;
 
     if (this.subscriptionsMap.has(eventClassName)) {
-      const subscriptions: DomainCallback[] = this.subscriptionsMap.get(eventClassName);
+      const subscriptions: DomainCallback[] | undefined = this.subscriptionsMap.get(eventClassName);
+      if (!subscriptions) {
+        return;
+      }
+
       for (const subscription of subscriptions) {
         subscription(event);
       }

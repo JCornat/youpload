@@ -5,4 +5,5 @@ export interface FileMetadataRepository {
   save(file: FileMetadata): Promise<void>;
   get(id: EntityId): Promise<FileMetadata>;
   getAllExpired(): Promise<FileMetadata[]>;
+  remove(id: EntityId): Promise<void>;
 }

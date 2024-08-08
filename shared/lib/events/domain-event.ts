@@ -1,7 +1,6 @@
-import { EntityId } from '../../domain/model/entity-id';
-import { Time } from '../time';
+import { EntityId } from '../../domain/model/entity-id.ts';
 
 export interface DomainEvent {
-  dateTimeOccurred: Time;
-  getAggregateId (): EntityId;
+  dateTimeOccurred: Date;
+  getAggregateId(): EntityId;
 }

@@ -1,6 +1,6 @@
-import { EntityId } from '#shared/domain/model/entity-id.ts';
-import { FileMetadata } from '#file/domain/file-metadata.ts';
-import { FileStorageProvider } from '#file/domain/provider/file-storage.provider.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { FileMetadata } from '../../domain/file-metadata.ts';
+import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
 
 export class FileStorageFakeProvider implements FileStorageProvider {
   directory = './file/test/file/tmp';

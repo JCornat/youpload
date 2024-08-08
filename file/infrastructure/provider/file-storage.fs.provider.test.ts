@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
-import { FileStorageFileSystemProvider } from '#file/infrastructure/provider/file-storage.fs.provider.ts';
-import { fileMetadataBuilder } from '#file/test/file-metadata.builder.ts';
+import { FileStorageFileSystemProvider } from './file-storage.fs.provider.ts';
+import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
 import { assertExists, assertInstanceOf, unreachable } from '@std/assert';
-import { NotFoundException } from '#shared/lib/exceptions.ts';
+import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 describe('FileStorageFileSystemProvider', () => {
   let fileStorageProvider: FileStorageFileSystemProvider;

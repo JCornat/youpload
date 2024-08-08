@@ -1,4 +1,4 @@
-import { FileMetadata } from '#file/domain/file-metadata.ts';
+import { FileMetadata } from '../domain/file-metadata.ts';
 
 export const fileMetadataBuilder = ({
   id = crypto.randomUUID(),

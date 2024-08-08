@@ -1,5 +1,5 @@
-import { FileStatProvider } from '#file/domain/provider/file-stat.provider.ts';
-import { NotFoundException } from '#shared/lib/exceptions.ts';
+import { FileStatProvider } from '../../domain/provider/file-stat.provider.ts';
+import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 export class FileStatFakeProvider implements FileStatProvider {
   private list = new Map<string, number>();

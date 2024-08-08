@@ -1,5 +1,5 @@
-import { FileMetadata } from '#file/domain/file-metadata.ts';
-import { EntityId } from '#shared/domain/model/entity-id.ts';
+import { FileMetadata } from '../file-metadata.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 
 export interface FileStorageProvider {
   save(fileMetadata: FileMetadata, filePath: string): Promise<void>;

@@ -85,11 +85,30 @@ describe('FileStorageFileSystemProvider', () => {
 
   describe('remove', () => {
     it('shall remove a valid file', async () => {
+      const id = crypto.randomUUID();
+      await Deno.copyFile('./file/test/file/test.txt', `./file/test/file/tmp/${id}`);
 
+      await fileStorageProvider.remove(id);
+
+      try {
+        await Deno.lstat(`./file/test/file/tmp/${id}`)
+        unreachable();
+      } catch (error) {
+        assertInstanceOf(error, Deno.errors.NotFound);
+      }
     });
 
     it('shall get an error when removing a non existing file', async () => {
+      const notExistingId = crypto.randomUUID();
 
+      try {
+        await fileStorageProvider.remove(notExistingId);
+        console.log('1')
+        unreachable();
+      } catch (error) {
+        console.log('2')
+        assertInstanceOf(error, NotFoundException);
+      }
     });
   })
 });

@@ -146,4 +146,57 @@ describe('FileFileSystemRepository', () => {
       assertEquals(requestedFileMetadata, fileMetadata2);
     });
   });
+
+  describe('getAllExpired', () => {
+    it('shall return files expired', async () => {
+      const fileMetadata1 = fileMetadataBuilder()
+        .expireAt(new Date('2024-08-07 08:00:01'))
+        .build();
+
+      const fileMetadata2 = fileMetadataBuilder()
+        .expireAt(new Date('2024-08-07 07:59:59'))
+        .build();
+
+      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
+
+      const now = new Date('2024-08-07 08:00:00')
+      const requestedFileMetadata = await fileMetadataRepository.getAllExpired(now);
+      assertEquals(requestedFileMetadata, [fileMetadata2]);
+    });
+
+    it('shall return no files if non are expired', async () => {
+      const fileMetadata1 = fileMetadataBuilder()
+        .expireAt(new Date('2024-08-07 08:00:01'))
+        .build();
+
+      const fileMetadata2 = fileMetadataBuilder()
+        .expireAt(new Date('2024-08-07 08:00:02'))
+        .build();
+
+      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
+
+      const now = new Date('2024-08-07 08:00:00')
+      const requestedFileMetadata = await fileMetadataRepository.getAllExpired(now);
+      assertEquals(requestedFileMetadata, []);
+    });
+  });
+
+  describe('remove', () => {
+    it('shall remove file expired', async () => {
+      const fileMetadata1 = fileMetadataBuilder()
+        .build();
+
+      const fileMetadata2 = fileMetadataBuilder()
+        .build();
+
+      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
+
+      await fileMetadataRepository.remove(fileMetadata1.id);
+      const fileContent = await Deno.readTextFile('./tmp-file-metadata.ts')
+      assertEquals(JSON.parse(fileContent), [fileMetadata2.serialize()]);
+    });
+  });
 });

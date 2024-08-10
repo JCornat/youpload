@@ -51,11 +51,16 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     return array.map((item) => FileMetadata.reconstitute(item));
   }
 
-  getAllExpired(now: Date): Promise<FileMetadata[]> {
-    return Promise.resolve([]);
+  async getAllExpired(now: Date): Promise<FileMetadata[]> {
+    const fileMetadataList = await this.getContent();
+    return fileMetadataList.filter((fileMetadata: FileMetadata) => fileMetadata.expireAt.getTime() < now.getTime());
   }
 
-  remove(id: EntityId): Promise<void> {
-    return Promise.resolve(undefined);
+  async remove(id: EntityId): Promise<void> {
+    const files = await this.getContent();
+    const updatedFiles = files.filter((file) => file.id !== id);
+
+    const serializedFiles = updatedFiles.map((temp) => temp.serialize());
+    await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 }

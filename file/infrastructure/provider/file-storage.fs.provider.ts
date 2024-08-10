@@ -39,7 +39,19 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
     return read.readable;
   }
 
-  remove(fileId: EntityId): Promise<void> {
-    return Promise.resolve(undefined);
+  async remove(fileId: EntityId): Promise<void> {
+    const destination = `${this.directory}/${fileId}`;
+
+    try {
+      await Deno.lstat(destination);
+    } catch (error) {
+      if (error instanceof Deno.errors.NotFound) {
+        throw new NotFoundException();
+      }
+
+      throw error;
+    }
+
+    await Deno.remove(destination);
   }
 }

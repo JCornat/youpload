@@ -50,4 +50,12 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
 
     return array.map((item) => FileMetadata.reconstitute(item));
   }
+
+  getAllExpired(now: Date): Promise<FileMetadata[]> {
+    return Promise.resolve([]);
+  }
+
+  remove(id: EntityId): Promise<void> {
+    return Promise.resolve(undefined);
+  }
 }

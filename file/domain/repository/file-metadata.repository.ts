@@ -4,6 +4,6 @@ import { FileMetadata } from '../model/file-metadata.ts';
 export interface FileMetadataRepository {
   save(file: FileMetadata): Promise<void>;
   get(id: EntityId): Promise<FileMetadata>;
-  getAllExpired(): Promise<FileMetadata[]>;
+  getAllExpired(now: Date): Promise<FileMetadata[]>;
   remove(id: EntityId): Promise<void>;
 }

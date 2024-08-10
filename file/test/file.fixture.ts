@@ -8,15 +8,18 @@ import { DownloadFileQuery, DownloadFileUseCase } from '../application/use-case/
 import { getFileHash } from '../../shared/domain/file-hash.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../application/use-case/query/inspect-file.use-case.ts';
 import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.provider.ts';
+import { RemoveExpiredFilesCron } from '../application/cron/remove-expired-file.cron.ts';
+import {EntityId} from "../../shared/domain/model/entity-id.ts";
 
 export const createFileFixture = () => {
   const dateProvider = new StubDateProvider();
-  const fileRepository = new FileMetadataFakeRepository();
+  const fileMetadataRepository = new FileMetadataFakeRepository();
   const fileStorageProvider = new FileStorageFakeProvider();
   const fileStatProvider = new FileStatFakeProvider();
-  const uploadFileUseCase = new UploadFileUseCase(fileRepository, fileStorageProvider, fileStatProvider, dateProvider);
-  const inspectFileUseCase = new InspectFileUseCase(fileRepository, dateProvider);
-  const downloadFileUseCase = new DownloadFileUseCase(fileRepository, fileStorageProvider, dateProvider);
+  const uploadFileUseCase = new UploadFileUseCase(fileMetadataRepository, fileStorageProvider, fileStatProvider, dateProvider);
+  const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
+  const downloadFileUseCase = new DownloadFileUseCase(fileMetadataRepository, fileStorageProvider, dateProvider);
+  const removeExpiredFilesCron = new RemoveExpiredFilesCron(fileMetadataRepository, fileStorageProvider, dateProvider);
 
   let thrownError: Error;
   let filePathDownloaded: string;
@@ -29,12 +32,12 @@ export const createFileFixture = () => {
     givenFileHasSize(filePath: string, size: number) {
       fileStatProvider.addFileSize(filePath, size);
     },
-    givenStoredFile(file: FileMetadata) {
-      fileRepository.store.set(file.id, file);
+    givenFileMetadata(file: FileMetadata) {
+      fileMetadataRepository.store.set(file.id, file);
     },
-    async givenStoredBinaryFile(file: FileMetadata, filePath: string) {
-      this.givenStoredFile(file);
-      await fileStorageProvider.save(file, filePath);
+    async givenFile(fileMetadata: FileMetadata, filePath: string) {
+      this.givenFileMetadata(fileMetadata);
+      await fileStorageProvider.save(fileMetadata.id, filePath);
     },
     whenFileIsSent: async (command: UploadFileCommand) => {
       let fileId = '';
@@ -47,9 +50,16 @@ export const createFileFixture = () => {
 
       return fileId;
     },
-    whenFileIsInspected: async (query: InspectFileQuery) => {
+    whenFileMetadataIsInspected: async (query: InspectFileQuery) => {
       try {
         inspectedFileMetadata = await inspectFileUseCase.handle(query);
+      } catch (error) {
+        thrownError = error;
+      }
+    },
+    whenExpiredFilesAreRemoved: async () => {
+      try {
+        await removeExpiredFilesCron.execute();
       } catch (error) {
         thrownError = error;
       }
@@ -71,8 +81,8 @@ export const createFileFixture = () => {
         //
       }
     },
-    thenFileStoredShallBe: (expectedFile: FileMetadata) => {
-      assertEquals(expectedFile, fileRepository.store.get(expectedFile.id));
+    thenFileStoredShallBe: (expectedFileMetadata: FileMetadata) => {
+      assertEquals(expectedFileMetadata, fileMetadataRepository.store.get(expectedFileMetadata.id));
     },
     thenInspectedFileShallBe: (expectedFileData: { id: string; name: string; size: number; createdAt: string }) => {
       assertEquals(expectedFileData, inspectedFileMetadata);
@@ -84,6 +94,22 @@ export const createFileFixture = () => {
     },
     thenExpectedErrorShallBe: (errorClass: new () => Error) => {
       assertInstanceOf(thrownError, errorClass);
+    },
+    thenRemainingFilesShouldBe: async (expectedFileMetadataList: FileMetadata[]) => {
+      const fileMetadataList = await fileMetadataRepository.getAll();
+      assertEquals(fileMetadataList, expectedFileMetadataList);
+    },
+    thenFollowingStoredFilesShouldBeRemoved: async (expectedFileIds: EntityId[]) => {
+      for (const fileId of expectedFileIds) {
+        const exists = await fileStorageProvider.exist(fileId);
+        assertEquals(exists, false);
+      }
+    },
+    thenFollowingStoredFilesShouldNotBeRemoved: async (expectedFileIds: EntityId[]) => {
+      for (const fileId of expectedFileIds) {
+        const exists = await fileStorageProvider.exist(fileId);
+        assertEquals(exists, true);
+      }
     },
   };
 };

@@ -1,5 +1,4 @@
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { FileMetadata } from '../../domain/model/file-metadata.ts';
 import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
@@ -9,8 +8,8 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
   ) {
   }
 
-  async save(file: FileMetadata, filePath: string): Promise<void> {
-    const destination = `${this.directory}/${file.id}`;
+  async save(fileId: EntityId, filePath: string): Promise<void> {
+    const destination = `${this.directory}/${fileId}`;
 
     try {
       await Deno.copyFile(filePath, destination);
@@ -38,5 +37,9 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
 
     const read = await Deno.open(destination);
     return read.readable;
+  }
+
+  remove(fileId: EntityId): Promise<void> {
+    return Promise.resolve(undefined);
   }
 }

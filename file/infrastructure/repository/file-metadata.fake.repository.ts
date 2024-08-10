@@ -19,4 +19,19 @@ export class FileMetadataFakeRepository implements FileMetadataRepository {
 
     return Promise.resolve(fileMetadata);
   }
+
+  getAllExpired(now: Date): Promise<FileMetadata[]> {
+    const list = [...this.store.values()];
+    const expiredList = list.filter((fileMetadata: FileMetadata) => fileMetadata.expireAt.getTime() < now.getTime());
+    return Promise.resolve(expiredList);
+  }
+
+  remove(id: EntityId): Promise<void> {
+    this.store.delete(id);
+    return Promise.resolve();
+  }
+
+  getAll(): Promise<FileMetadata[]> {
+    return Promise.resolve([...this.store.values()]);
+  }
 }

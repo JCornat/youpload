@@ -29,7 +29,7 @@ export class UploadFileUseCase {
     const fileMetadata = FileMetadata.create({ id, name: sendFileCommand.name, size, createdAt, expireAt });
     await this.fileMetadataRepository.save(fileMetadata);
 
-    await this.fileStorageProvider.save(fileMetadata, filePath);
+    await this.fileStorageProvider.save(fileMetadata.id, filePath);
 
     return id;
   }

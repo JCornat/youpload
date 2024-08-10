@@ -35,7 +35,7 @@ describe('FileStorageFileSystemProvider', () => {
         .build();
 
       try {
-        await fileStorageProvider.save(fileMetadata, './file/test/file/404.txt');
+        await fileStorageProvider.save(fileMetadata.id, './file/test/file/404.txt');
         unreachable();
       } catch (error) {
         assertInstanceOf(error, NotFoundException);
@@ -50,7 +50,7 @@ describe('FileStorageFileSystemProvider', () => {
         .createdAt(new Date('2024-08-05 08:00:00'))
         .build();
 
-      await fileStorageProvider.save(fileMetadata, './file/test/file/test.txt');
+      await fileStorageProvider.save(fileMetadata.id, './file/test/file/test.txt');
 
       try {
         const fileStat = await Deno.lstat(`./file/test/file/tmp/${fileMetadata.id}`);
@@ -82,4 +82,14 @@ describe('FileStorageFileSystemProvider', () => {
       await stream.cancel();
     });
   });
+
+  describe('remove', () => {
+    it('shall remove a valid file', async () => {
+
+    });
+
+    it('shall get an error when removing a non existing file', async () => {
+
+    });
+  })
 });

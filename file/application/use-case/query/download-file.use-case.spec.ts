@@ -27,7 +27,7 @@ describe('Feature: Download file', () => {
 
   it('shall give a link for a valid file', async () => {
     const storedFileMetadata = fileMetadataBuilder().build();
-    await fixture.givenStoredBinaryFile(storedFileMetadata, './file/test/file/reference.txt');
+    await fixture.givenFile(storedFileMetadata, './file/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,
@@ -45,7 +45,7 @@ describe('Feature: Download file', () => {
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 
-    await fixture.givenStoredBinaryFile(storedFileMetadata, './file/test/file/reference.txt');
+    await fixture.givenFile(storedFileMetadata, './file/test/file/reference.txt');
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,
@@ -58,7 +58,7 @@ describe('Feature: Download file', () => {
 
   it('shall return an error for non existing file', async () => {
     const storedFileMetadata = fileMetadataBuilder().build();
-    fixture.givenStoredFile(storedFileMetadata);
+    fixture.givenFileMetadata(storedFileMetadata);
 
     const command: DownloadFileQuery = {
       id: 'A.txt',

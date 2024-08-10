@@ -19,13 +19,13 @@ describe('Feature: Inspect file', () => {
       .expireAt(new Date('2023-01-19T20:10:00.000Z'))
       .build();
 
-    fixture.givenStoredFile(storedFileMetadata);
+    fixture.givenFileMetadata(storedFileMetadata);
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,
     };
 
-    await fixture.whenFileIsInspected(command);
+    await fixture.whenFileMetadataIsInspected(command);
 
     fixture.thenInspectedFileShallBe({ id: storedFileMetadata.id, name: storedFileMetadata.name.value, size: storedFileMetadata.size.value, createdAt: storedFileMetadata.createdAt.toISOString() });
   });
@@ -37,13 +37,13 @@ describe('Feature: Inspect file', () => {
       .expireAt(new Date('2023-01-19T19:10:00.000Z'))
       .build();
 
-    fixture.givenStoredFile(storedFileMetadata);
+    fixture.givenFileMetadata(storedFileMetadata);
 
     const command: DownloadFileQuery = {
       id: storedFileMetadata.id,
     };
 
-    await fixture.whenFileIsInspected(command);
+    await fixture.whenFileMetadataIsInspected(command);
 
     fixture.thenExpectedErrorShallBe(ExpiredFileException);
   });
@@ -53,7 +53,7 @@ describe('Feature: Inspect file', () => {
       id: crypto.randomUUID(),
     };
 
-    await fixture.whenFileIsInspected(command);
+    await fixture.whenFileMetadataIsInspected(command);
 
     fixture.thenExpectedErrorShallBe(NotFoundException);
   });

@@ -91,7 +91,7 @@ describe('FileStorageFileSystemProvider', () => {
       await fileStorageProvider.remove(id);
 
       try {
-        await Deno.lstat(`./file/test/file/tmp/${id}`)
+        await Deno.lstat(`./file/test/file/tmp/${id}`);
         unreachable();
       } catch (error) {
         assertInstanceOf(error, Deno.errors.NotFound);
@@ -103,12 +103,12 @@ describe('FileStorageFileSystemProvider', () => {
 
       try {
         await fileStorageProvider.remove(notExistingId);
-        console.log('1')
+        console.log('1');
         unreachable();
       } catch (error) {
-        console.log('2')
+        console.log('2');
         assertInstanceOf(error, NotFoundException);
       }
     });
-  })
+  });
 });

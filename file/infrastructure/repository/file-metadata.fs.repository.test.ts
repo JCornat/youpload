@@ -160,7 +160,7 @@ describe('FileFileSystemRepository', () => {
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
 
-      const now = new Date('2024-08-07 08:00:00')
+      const now = new Date('2024-08-07 08:00:00');
       const requestedFileMetadata = await fileMetadataRepository.getAllExpired(now);
       assertEquals(requestedFileMetadata, [fileMetadata2]);
     });
@@ -177,7 +177,7 @@ describe('FileFileSystemRepository', () => {
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
 
-      const now = new Date('2024-08-07 08:00:00')
+      const now = new Date('2024-08-07 08:00:00');
       const requestedFileMetadata = await fileMetadataRepository.getAllExpired(now);
       assertEquals(requestedFileMetadata, []);
     });
@@ -195,7 +195,7 @@ describe('FileFileSystemRepository', () => {
       await Deno.writeTextFile('./tmp-file-metadata.ts', JSON.stringify(content));
 
       await fileMetadataRepository.remove(fileMetadata1.id);
-      const fileContent = await Deno.readTextFile('./tmp-file-metadata.ts')
+      const fileContent = await Deno.readTextFile('./tmp-file-metadata.ts');
       assertEquals(JSON.parse(fileContent), [fileMetadata2.serialize()]);
     });
   });

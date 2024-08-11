@@ -27,7 +27,7 @@ describe('Feature: Inspect file', () => {
 
     await fixture.whenFileMetadataIsInspected(command);
 
-    fixture.thenInspectedFileShallBe({ id: storedFileMetadata.id, name: storedFileMetadata.name.value, size: storedFileMetadata.size.value, createdAt: storedFileMetadata.createdAt.toISOString() });
+    fixture.thenInspectedFileShallBe(storedFileMetadata);
   });
 
   it('shall give an error for expired file', async () => {

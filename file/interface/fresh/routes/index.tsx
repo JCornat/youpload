@@ -46,7 +46,7 @@ export const handler: Handlers = {
     await Deno.remove(name);
 
     const headers = new Headers();
-    headers.set('location', `/success-upload/${id}`);
+    headers.set('location', `/file/${id}`);
     return new Response(null, {
       status: 303, // See Other
       headers,

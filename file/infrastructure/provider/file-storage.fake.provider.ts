@@ -17,7 +17,7 @@ export class FileStorageFakeProvider implements FileStorageProvider {
 
   async remove(fileId: EntityId): Promise<void> {
     const destination = `${this.directory}/${fileId}`;
-    await Deno.remove(destination)
+    await Deno.remove(destination);
   }
 
   async exist(fileId: EntityId): Promise<boolean> {

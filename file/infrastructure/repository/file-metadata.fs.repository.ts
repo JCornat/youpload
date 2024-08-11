@@ -6,8 +6,7 @@ import { NotFoundException, ParseErrorException } from '../../../shared/lib/exce
 export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(
     public filePath = './file-metadata.ts',
-  ) {
-  }
+  ) {}
 
   async save(fileMetadata: FileMetadata): Promise<void> {
     const files = await this.getContent();

@@ -9,7 +9,7 @@ import { getFileHash } from '../../shared/domain/file-hash.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../application/use-case/query/inspect-file.use-case.ts';
 import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.provider.ts';
 import { RemoveExpiredFilesCron } from '../application/cron/remove-expired-file.cron.ts';
-import {EntityId} from "../../shared/domain/model/entity-id.ts";
+import { EntityId } from '../../shared/domain/model/entity-id.ts';
 
 export const createFileFixture = () => {
   const dateProvider = new StubDateProvider();
@@ -23,7 +23,7 @@ export const createFileFixture = () => {
 
   let thrownError: Error;
   let filePathDownloaded: string;
-  let inspectedFileMetadata: { id: string; name: string; size: number; createdAt: string };
+  let inspectedFileMetadata: FileMetadata;
 
   return {
     givenNowIs(now: Date) {
@@ -84,7 +84,7 @@ export const createFileFixture = () => {
     thenFileStoredShallBe: (expectedFileMetadata: FileMetadata) => {
       assertEquals(expectedFileMetadata, fileMetadataRepository.store.get(expectedFileMetadata.id));
     },
-    thenInspectedFileShallBe: (expectedFileData: { id: string; name: string; size: number; createdAt: string }) => {
+    thenInspectedFileShallBe: (expectedFileData: FileMetadata) => {
       assertEquals(expectedFileData, inspectedFileMetadata);
     },
     thenDownloadedFileShallBeEqualToFile: async (filePath: string) => {

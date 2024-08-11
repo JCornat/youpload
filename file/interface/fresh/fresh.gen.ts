@@ -6,6 +6,8 @@ import * as $_404 from './routes/_404.tsx';
 import * as $_app from './routes/_app.tsx';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
+import * as $file_id_ from './routes/file/[id].tsx';
+import * as $file_id_download from './routes/file/[id]/download.ts';
 import * as $index from './routes/index.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
 
@@ -17,6 +19,8 @@ const manifest = {
     './routes/_app.tsx': $_app,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
+    './routes/file/[id].tsx': $file_id_,
+    './routes/file/[id]/download.ts': $file_id_download,
     './routes/index.tsx': $index,
     './routes/success-upload/[id].tsx': $success_upload_id_,
   },

@@ -35,7 +35,7 @@ export const handler: Handlers = {
   },
 };
 
-export default function FileDetail(props: PageProps<{ url: string; name: string; size: number; createdAt: string; expireAt: string }>) {
+export default function FileDetail(props: PageProps<{ url: string; name: string; size: string; createdAt: string; expireAt: string }>) {
   const { url, name, size, createdAt, expireAt } = props.data;
 
   return (

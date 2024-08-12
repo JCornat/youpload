@@ -5,7 +5,7 @@ import { NotFoundException, ParseErrorException } from '../../../shared/lib/exce
 
 export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(
-    public filePath = './file-metadata.json',
+    public filePath = './config/file-metadata.json',
   ) {}
 
   async save(fileMetadata: FileMetadata): Promise<void> {

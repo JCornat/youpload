@@ -4,7 +4,7 @@ import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 export class FileStorageFileSystemProvider implements FileStorageProvider {
   constructor(
-    public directory = './file/test/fs',
+    public directory = './config/storage',
   ) {
   }
 

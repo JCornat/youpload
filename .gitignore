@@ -1,3 +1,8 @@
 .idea
 
+config
+!config/.gitkeep
+!config/storage/.gitkeep
+
 file/test/file/tmp
+!file/test/file/tmp/.gitkeep

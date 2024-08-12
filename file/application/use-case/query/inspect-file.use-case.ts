@@ -1,7 +1,7 @@
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
 import { FileMetadataRepository } from '../../../domain/repository/file-metadata.repository.ts';
 import { ExpiredFileException } from '../../../../shared/lib/exceptions.ts';
-import { DateProvider } from '../../../../shared/domain/date.provider.ts';
+import { DateProvider } from '../../../../shared/domain/provider/date.provider.ts';
 import { FileMetadata } from '../../../domain/model/file-metadata.ts';
 
 export interface InspectFileQuery {

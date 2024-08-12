@@ -2,7 +2,7 @@ import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
 import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
-import { StubDateProvider } from '../../../../../shared/domain/date.provider.stub.ts';
+import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
 
 export const handler: Handlers = {
   async GET(_req, ctx) {

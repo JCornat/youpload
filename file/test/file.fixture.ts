@@ -1,11 +1,11 @@
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { StubDateProvider } from '../../shared/domain/date.provider.stub.ts';
+import { StubDateProvider } from '../../shared/domain/provider/date.provider.stub.ts';
 import { FileMetadataFakeRepository } from '../infrastructure/repository/file-metadata.fake.repository.ts';
 import { FileStorageFakeProvider } from '../infrastructure/provider/file-storage.fake.provider.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../application/use-case/command/upload-file.use-case.ts';
 import { FileMetadata } from '../domain/model/file-metadata.ts';
 import { DownloadFileQuery, DownloadFileUseCase } from '../application/use-case/query/download-file.use-case.ts';
-import { getFileHash } from '../../shared/domain/file-hash.ts';
+import { getFileHash } from './helper/file-hash.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../application/use-case/query/inspect-file.use-case.ts';
 import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.provider.ts';
 import { RemoveExpiredFilesCron } from '../application/cron/remove-expired-file.cron.ts';

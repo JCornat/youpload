@@ -3,7 +3,7 @@ import { FileStorageFileSystemProvider } from '../../../../../infrastructure/pro
 import { DownloadFileUseCase } from '../../../../../application/use-case/query/download-file.use-case.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
 import { InspectFileUseCase } from '../../../../../application/use-case/query/inspect-file.use-case.ts';
-import { StubDateProvider } from '../../../../../../shared/domain/date.provider.stub.ts';
+import { StubDateProvider } from '../../../../../../shared/domain/provider/date.provider.stub.ts';
 
 export const handler: Handlers = {
   async GET(_req, ctx) {

@@ -1,6 +1,6 @@
 import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
 import { FileStorageProvider } from '../../domain/provider/file-storage.provider.ts';
-import { DateProvider } from '../../../shared/domain/date.provider.ts';
+import { DateProvider } from '../../../shared/domain/provider/date.provider.ts';
 
 export class RemoveExpiredFilesCron {
   constructor(

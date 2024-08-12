@@ -1,6 +1,6 @@
 import { FileMetadataFileSystemRepository } from '../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { FileStorageFileSystemProvider } from '../../../infrastructure/provider/file-storage.fs.provider.ts';
-import { StubDateProvider } from '../../../../shared/domain/date.provider.stub.ts';
+import { StubDateProvider } from '../../../../shared/domain/provider/date.provider.stub.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
@@ -14,6 +14,7 @@ interface Data {
 export const handler: Handlers = {
   async GET(req, ctx) {
     const cookies = getCookies(req.headers);
+    console.log(cookies);
     return await ctx.render({ isAllowed: cookies.auth === 'bar' });
   },
   async POST(req, ctx) {

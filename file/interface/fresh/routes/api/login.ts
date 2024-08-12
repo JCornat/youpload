@@ -11,7 +11,7 @@ export const handler: Handlers = {
         name: "auth",
         value: "bar", // this should be a unique value for each session
         maxAge: 120,
-        sameSite: "Lax", // this is important to prevent CSRF attacks
+        sameSite: "Strict", // this is important to prevent CSRF attacks
         domain: url.hostname,
         path: "/",
         secure: true,

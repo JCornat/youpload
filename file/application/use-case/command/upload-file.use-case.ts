@@ -19,14 +19,14 @@ export class UploadFileUseCase {
     private readonly dateProvider: DateProvider,
   ) {}
 
-  async handle(sendFileCommand: UploadFileCommand): Promise<EntityId> {
-    const filePath = sendFileCommand.filePath;
+  async handle(uploadFileCommand: UploadFileCommand): Promise<EntityId> {
+    const filePath = uploadFileCommand.filePath;
     const size = await this.fileStatProvider.getSize(filePath);
 
     const createdAt = this.dateProvider.getNow();
-    const expireAt = new Date(sendFileCommand.expireAt);
+    const expireAt = new Date(uploadFileCommand.expireAt);
     const id = crypto.randomUUID();
-    const fileMetadata = FileMetadata.create({ id, name: sendFileCommand.name, size, createdAt, expireAt });
+    const fileMetadata = FileMetadata.create({ id, name: uploadFileCommand.name, size, createdAt, expireAt });
     await this.fileMetadataRepository.save(fileMetadata);
 
     await this.fileStorageProvider.save(fileMetadata.id, filePath);

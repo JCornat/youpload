@@ -5,19 +5,19 @@ export const handler: Handlers = {
   async POST(req) {
     const url = new URL(req.url);
     const form = await req.formData();
-    if (form.get("username") === "deno" && form.get("password") === "land") {
+    if (form.get('username') === 'deno' && form.get('password') === 'land') {
       const headers = new Headers();
       setCookie(headers, {
-        name: "auth",
-        value: "bar", // this should be a unique value for each session
+        name: 'auth',
+        value: 'bar', // this should be a unique value for each session
         maxAge: 120,
-        sameSite: "Strict", // this is important to prevent CSRF attacks
+        sameSite: 'Strict', // this is important to prevent CSRF attacks
         domain: url.hostname,
-        path: "/",
+        path: '/',
         secure: true,
       });
 
-      headers.set("location", "/");
+      headers.set('location', '/');
       return new Response(null, {
         status: 303, // "See Other"
         headers,
@@ -27,5 +27,5 @@ export const handler: Handlers = {
         status: 403,
       });
     }
-  }
-}
+  },
+};

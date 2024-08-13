@@ -1,5 +1,5 @@
-import {ValueObject} from "../../../shared/lib/value-object.ts";
-import {ArgumentInvalidException} from "../../../shared/lib/exceptions.ts";
+import { ValueObject } from '../../../shared/lib/value-object.ts';
+import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 
 interface UserEmailProps {
   email: string;
@@ -23,7 +23,7 @@ export class UserEmail extends ValueObject<UserEmailProps> {
       throw new ArgumentInvalidException('Invalid email: It should contain an @');
     }
 
-    return new UserEmail({email: email})
+    return new UserEmail({ email: email });
   }
 
   get value() {

@@ -1,5 +1,5 @@
-import {ValueObject} from "../../../shared/lib/value-object.ts";
-import {ArgumentInvalidException} from "../../../shared/lib/exceptions.ts";
+import { ValueObject } from '../../../shared/lib/value-object.ts';
+import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 
 interface UserPasswordProps {
   password: string;
@@ -19,7 +19,7 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
       throw new ArgumentInvalidException('Invalid file name: Length cannot be greater than 50 characters');
     }
 
-    return new UserPassword({password: password})
+    return new UserPassword({ password: password });
   }
 
   get value() {

@@ -5,7 +5,7 @@ import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-c
 import { Handlers } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
 import { getCookies } from '@std/http/cookie';
-import {PageProps} from "$fresh/server.ts";
+import { PageProps } from '$fresh/server.ts';
 
 interface Data {
   isAllowed: boolean;
@@ -62,7 +62,7 @@ export const handler: Handlers = {
   },
 };
 
-export default function Home({data}: PageProps<Data>) {
+export default function Home({ data }: PageProps<Data>) {
   return (
     <div class='px-4 py-8 mx-auto bg-[#86efac]'>
       <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
@@ -75,8 +75,8 @@ export default function Home({data}: PageProps<Data>) {
         />
         <h1 class='text-4xl font-bold'>Welcome to Fresh</h1>
 
-        You currently {data.isAllowed ? "are" : "are not"} logged in.
-        <Login/>
+        You currently {data.isAllowed ? 'are' : 'are not'} logged in.
+        <Login />
         <>
           <form method='post' encType='multipart/form-data'>
             <input type='number' name='amount' value='1' />
@@ -93,10 +93,10 @@ export default function Home({data}: PageProps<Data>) {
 
 function Login() {
   return (
-    <form method="post" action="/api/login">
-      <input type="text" name="username" />
-      <input type="password" name="password" />
-      <button type="submit">Submit</button>
+    <form method='post' action='/api/login'>
+      <input type='text' name='username' />
+      <input type='password' name='password' />
+      <button type='submit'>Submit</button>
     </form>
   );
 }

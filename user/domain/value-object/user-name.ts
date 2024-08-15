@@ -11,12 +11,20 @@ export class UserName extends ValueObject<UserNameProps> {
   }
 
   static create(name: string): UserName {
-    if (name?.length < 0) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be less or equal to 0');
+    if (!name) {
+      throw new ArgumentInvalidException('Invalid user name: Cannot be null');
+    }
+
+    if (typeof name !== 'string') {
+      throw new ArgumentInvalidException('Invalid user name: Cannot be null');
+    }
+
+    if (name.length <= 2) {
+      throw new ArgumentInvalidException('Invalid user name: Length cannot be less or equal to 2');
     }
 
     if (name.length > 50) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be greater than 50 characters');
+      throw new ArgumentInvalidException('Invalid user name: Length cannot be greater than 50 characters');
     }
 
     return new UserName({ name });

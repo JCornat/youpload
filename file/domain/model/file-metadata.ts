@@ -6,8 +6,8 @@ import { FileSize } from '../value-object/file-size.ts';
 
 export interface FileMetadataProps {
   id: EntityId;
-  name: string;
-  size: number;
+  name: FileName;
+  size: FileSize;
   createdAt: Date;
   expireAt: Date;
 }
@@ -32,11 +32,7 @@ export class FileMetadata extends AggregateRoot {
   }
 
   static create(props: FileMetadataProps): FileMetadata {
-    if (!props.name) {
-      throw new ArgumentInvalidException('Value cannot be empty');
-    }
-
-    return new FileMetadata(props.id, FileName.create(props.name), FileSize.create(props.size), props.createdAt, props.expireAt);
+    return new FileMetadata(props.id, props.name, props.size, props.createdAt, props.expireAt);
   }
 
   get name() {

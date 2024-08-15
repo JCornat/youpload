@@ -11,8 +11,16 @@ export class UserEmail extends ValueObject<UserEmailProps> {
   }
 
   static create(email: string): UserEmail {
-    if (email?.length < 0) {
-      throw new ArgumentInvalidException('Invalid email: Length cannot be less or equal to 0');
+    if (!email) {
+      throw new ArgumentInvalidException('Invalid email: Cannot be null');
+    }
+
+    if (typeof email !== 'string') {
+      throw new ArgumentInvalidException('Invalid email: Must be a string');
+    }
+
+    if (email.length < 3) {
+      throw new ArgumentInvalidException('Invalid email: Length cannot be less than 3');
     }
 
     if (email.length > 50) {

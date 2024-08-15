@@ -11,12 +11,12 @@ export class UserPassword extends ValueObject<UserPasswordProps> {
   }
 
   static create(password: string): UserPassword {
-    if (password?.length < 0) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be less or equal to 0');
+    if (!password) {
+      throw new ArgumentInvalidException('Invalid password: Cannot be null');
     }
 
-    if (password.length > 50) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be greater than 50 characters');
+    if (typeof password !== 'string') {
+      throw new ArgumentInvalidException('Invalid password: Must be a string');
     }
 
     return new UserPassword({ password: password });

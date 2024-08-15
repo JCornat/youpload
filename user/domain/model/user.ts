@@ -6,9 +6,9 @@ import { UserPassword } from '../value-object/user-password.ts';
 
 export interface UserProps {
   id: EntityId;
-  name: string;
-  email: string;
-  password: string;
+  name: UserName;
+  email: UserEmail;
+  password: UserPassword;
 }
 
 export class User extends AggregateRoot {
@@ -22,7 +22,7 @@ export class User extends AggregateRoot {
   }
 
   static create(props: UserProps): User {
-    return new User(props.id, UserName.create(props.name), UserEmail.create(props.email), UserPassword.create(props.password));
+    return new User(props.id, props.name, props.email, props.password);
   }
 
   get name(): UserName {

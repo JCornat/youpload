@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
 import { FileStorageFileSystemProvider } from './file-storage.fs.provider.ts';
 import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
-import { assertExists, assertInstanceOf, unreachable } from '@std/assert';
+import { assertExists, assertInstanceOf } from '@std/assert';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 describe('FileStorageFileSystemProvider', () => {
@@ -34,12 +34,15 @@ describe('FileStorageFileSystemProvider', () => {
         .createdAt(new Date('2024-08-05 08:00:00'))
         .build();
 
+      let thrownError: Error | null = null;
+
       try {
         await fileStorageProvider.save(fileMetadata.id, './file/test/file/404.txt');
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, NotFoundException);
     });
 
     it('shall save a file', async () => {
@@ -52,12 +55,8 @@ describe('FileStorageFileSystemProvider', () => {
 
       await fileStorageProvider.save(fileMetadata.id, './file/test/file/test.txt');
 
-      try {
-        const fileStat = await Deno.lstat(`./file/test/file/tmp/${fileMetadata.id}`);
-        assertExists(fileStat);
-      } catch {
-        unreachable();
-      }
+      const fileStat = await Deno.lstat(`./file/test/file/tmp/${fileMetadata.id}`);
+      assertExists(fileStat);
     });
   });
 
@@ -65,12 +64,14 @@ describe('FileStorageFileSystemProvider', () => {
     it(`shall not stream and return an error is file doesn't exist`, async () => {
       const id = crypto.randomUUID();
 
+      let thrownError: Error | null = null;
+
       try {
         await fileStorageProvider.getStream(id);
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+      assertInstanceOf(thrownError, NotFoundException);
     });
 
     it('shall get a stream for valid file', async () => {
@@ -90,25 +91,27 @@ describe('FileStorageFileSystemProvider', () => {
 
       await fileStorageProvider.remove(id);
 
+      let thrownError: Error | null = null;
+
       try {
         await Deno.lstat(`./file/test/file/tmp/${id}`);
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, Deno.errors.NotFound);
+        thrownError = error;
       }
+      assertInstanceOf(thrownError, Deno.errors.NotFound);
     });
 
     it('shall get an error when removing a non existing file', async () => {
       const notExistingId = crypto.randomUUID();
 
+      let thrownError: Error | null = null;
       try {
         await fileStorageProvider.remove(notExistingId);
-        console.log('1');
-        unreachable();
       } catch (error) {
-        console.log('2');
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, NotFoundException);
     });
   });
 });

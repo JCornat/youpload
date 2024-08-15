@@ -2,6 +2,7 @@ import { SignUpCommand, SignUpUseCase } from '../domain/application/service/sign
 import { User } from '../domain/model/user.ts';
 import { assertEquals } from '@std/assert';
 import { UserFakeRepository } from '../infrastructure/repository/user.fake.repository.ts';
+import { PasswordHashingFakeRepository } from '../infrastructure/provider/password-hashing.fake.repository.ts';
 
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();

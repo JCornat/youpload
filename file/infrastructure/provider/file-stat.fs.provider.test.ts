@@ -1,5 +1,5 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { assertEquals, assertInstanceOf, unreachable } from '@std/assert';
+import { assertEquals, assertInstanceOf } from '@std/assert';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 import { FileStatFileSystemProvider } from './file-stat.fs.provider.ts';
 
@@ -12,12 +12,15 @@ describe('FileStatFileSystemProvider', () => {
 
   describe('getSize', () => {
     it(`shall return an error if file doesn't exist`, async () => {
+      let thrownError: Error | null = null;
+
       try {
         await fileStatProvider.getSize('./file/test/file/404.txt');
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, NotFoundException);
     });
 
     it(`shall return the size of a valid file`, async () => {

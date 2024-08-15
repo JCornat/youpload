@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import { FileMetadataFileSystemRepository } from './file-metadata.fs.repository.ts';
 import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
-import { assertEquals, assertInstanceOf, unreachable } from '@std/assert';
+import { assertEquals, assertInstanceOf } from '@std/assert';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
 
 const fileMetadataPath = './file/test/file/tmp/file-metadata.json';
@@ -81,23 +81,29 @@ describe('FileFileSystemRepository', () => {
         .createdAt(new Date('2024-08-08 08:00:00'))
         .build();
 
+      let thrownError: Error | null = null;
+
       try {
         await fileMetadataRepository.save(fileMetadata);
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, ParseErrorException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, ParseErrorException);
     });
   });
 
   describe('get', () => {
     it('shall get an error if there is no saved file', async () => {
+      let thrownError: Error | null = null;
+
       try {
         await fileMetadataRepository.get(crypto.randomUUID());
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, NotFoundException);
     });
 
     it('shall get no file if requested file is not saved', async () => {
@@ -118,12 +124,15 @@ describe('FileFileSystemRepository', () => {
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
+      let thrownError: Error | null = null;
+
       try {
         await fileMetadataRepository.get('AAAA');
-        unreachable();
       } catch (error) {
-        assertInstanceOf(error, NotFoundException);
+        thrownError = error;
       }
+
+      assertInstanceOf(thrownError, NotFoundException);
     });
 
     it('shall get requested file if saved', async () => {

@@ -4,7 +4,7 @@ import { UserRepository } from '../../repository/user.repository.ts';
 import { UserName } from '../../value-object/user-name.ts';
 import { UserEmail } from '../../value-object/user-email.ts';
 import { UserPassword } from '../../value-object/user-password.ts';
-import { ExistingUserMailException } from '../../../../shared/lib/exceptions.ts';
+import {ExistingUserMailException, NotFoundException} from '../../../../shared/lib/exceptions.ts';
 
 export interface SignUpCommand {
   name: string;
@@ -21,8 +21,17 @@ export class SignUpUseCase {
   async handle(signUpCommand: SignUpCommand) {
     const id = crypto.randomUUID();
 
-    const users = await this.userRepository.getAllByEmail(signUpCommand.email);
-    if (users.length > 0) {
+    let user: User | undefined;
+
+    try {
+      user = await this.userRepository.getByEmail(signUpCommand.email);
+    } catch (error) {
+      if (!(error instanceof NotFoundException)) {
+        throw error;
+      }
+    }
+
+    if (user) {
       throw new ExistingUserMailException();
     }
 

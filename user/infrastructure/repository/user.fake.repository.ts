@@ -12,10 +12,14 @@ export class UserFakeRepository implements UserRepository {
     return Promise.resolve();
   }
 
-  getAllByEmail(email: string): Promise<User[]> {
+  getByEmail(email: string): Promise<User> {
     const users = [...this.store.values()];
-    const filteredUsers = users.filter((user) => user.email.value === email);
-    return Promise.resolve(filteredUsers);
+    const filteredUser = users.find((user) => user.email.value === email);
+    if (!filteredUser) {
+      throw new NotFoundException();
+    }
+
+    return Promise.resolve(filteredUser);
   }
 
   get(id: EntityId): Promise<User> {

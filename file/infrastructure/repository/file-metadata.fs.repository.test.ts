@@ -25,13 +25,7 @@ describe('FileFileSystemRepository', () => {
 
   describe('save', () => {
     it('shall save a valid file when there is no file saved', async () => {
-      const fileMetadata = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(1)
-        .withName('test.txt')
-        .createdAt(new Date('2024-08-05 08:00:00'))
-        .build();
-
+      const fileMetadata = fileMetadataBuilder().build();
       await fileMetadataRepository.save(fileMetadata);
 
       const text = await Deno.readTextFile(fileMetadataPath);
@@ -40,30 +34,12 @@ describe('FileFileSystemRepository', () => {
     });
 
     it('shall save a valid file when there is files already saved', async () => {
-      const fileMetadata1 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(10)
-        .withName('BBBBB.txt')
-        .createdAt(new Date('2024-08-07 08:00:00'))
-        .build();
-
-      const fileMetadata2 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(20)
-        .withName('AAAAA.jpg')
-        .createdAt(new Date('2024-08-06 08:00:00'))
-        .build();
-
+      const fileMetadata1 = fileMetadataBuilder().build();
+      const fileMetadata2 = fileMetadataBuilder().build();
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
-      const fileMetadata = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(1)
-        .withName('test.txt')
-        .createdAt(new Date('2024-08-08 08:00:00'))
-        .build();
-
+      const fileMetadata = fileMetadataBuilder().build();
       await fileMetadataRepository.save(fileMetadata);
 
       const text = await Deno.readTextFile(fileMetadataPath);
@@ -73,13 +49,7 @@ describe('FileFileSystemRepository', () => {
 
     it('shall return an error if saved file is not parsable', async () => {
       await Deno.writeTextFile(fileMetadataPath, 'AAAAAAAAA');
-
-      const fileMetadata = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(1)
-        .withName('test.txt')
-        .createdAt(new Date('2024-08-08 08:00:00'))
-        .build();
+      const fileMetadata = fileMetadataBuilder().build();
 
       let thrownError: Error | null = null;
 
@@ -107,20 +77,8 @@ describe('FileFileSystemRepository', () => {
     });
 
     it('shall get no file if requested file is not saved', async () => {
-      const fileMetadata1 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(10)
-        .withName('BBBBB.txt')
-        .createdAt(new Date('2024-08-07 08:00:00'))
-        .build();
-
-      const fileMetadata2 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(20)
-        .withName('AAAAA.jpg')
-        .createdAt(new Date('2024-08-06 08:00:00'))
-        .build();
-
+      const fileMetadata1 = fileMetadataBuilder().build();
+      const fileMetadata2 = fileMetadataBuilder().build();
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
@@ -136,20 +94,8 @@ describe('FileFileSystemRepository', () => {
     });
 
     it('shall get requested file if saved', async () => {
-      const fileMetadata1 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(10)
-        .withName('BBBBB.txt')
-        .createdAt(new Date('2024-08-07 08:00:00'))
-        .build();
-
-      const fileMetadata2 = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(20)
-        .withName('AAAAA.jpg')
-        .createdAt(new Date('2024-08-06 08:00:00'))
-        .build();
-
+      const fileMetadata1 = fileMetadataBuilder().build();
+      const fileMetadata2 = fileMetadataBuilder().build();
       const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 

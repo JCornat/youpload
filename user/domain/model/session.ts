@@ -10,6 +10,15 @@ export interface SessionProps {
   lastUsedAt: Date;
 }
 
+export interface SessionSerialized {
+  id: EntityId;
+  userId: EntityId;
+  ip: string;
+  agent: string;
+  createdAt: string;
+  lastUsedAt: string;
+}
+
 export class Session extends AggregateRoot {
   private constructor(
     id: EntityId,
@@ -28,5 +37,39 @@ export class Session extends AggregateRoot {
 
   get userId(): EntityId {
     return this._userId;
+  }
+
+  get ip(): string {
+    return this._ip;
+  }
+
+  get agent(): string {
+    return this._agent;
+  }
+
+  get createdAt(): Date {
+    return this._createdAt;
+  }
+
+  get lastUsedAt(): Date {
+    return this._lastUsedAt;
+  }
+
+  serialize(): SessionSerialized {
+    return {
+      id: this.id,
+      userId: this.userId,
+      ip: this.ip,
+      agent: this.agent,
+      createdAt: this.createdAt.toISOString(),
+      lastUsedAt: this.lastUsedAt.toISOString(),
+    };
+  }
+
+  static reconstitute(data: SessionSerialized) {
+    const createdAt = new Date(data.createdAt);
+    const lastUsedAt = new Date(data.lastUsedAt);
+
+    return new Session(data.id, data.userId, data.ip, data.agent, createdAt, lastUsedAt);
   }
 }

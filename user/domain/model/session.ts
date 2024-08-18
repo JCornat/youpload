@@ -1,5 +1,5 @@
-import {AggregateRoot} from "../../../shared/lib/aggregate-root.ts";
-import {EntityId} from "../../../shared/domain/model/entity-id.ts";
+import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 
 export interface SessionProps {
   id: EntityId;

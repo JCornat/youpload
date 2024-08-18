@@ -9,10 +9,10 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
   ) {}
 
   async save(fileMetadata: FileMetadata): Promise<void> {
-    const files = await this.getContent();
-    files.push(fileMetadata);
+    const fileMetadataList = await this.getContent();
+    fileMetadataList.push(fileMetadata);
 
-    const serializedFiles = files.map((temp) => temp.serialize());
+    const serializedFiles = fileMetadataList.map((temp) => temp.serialize());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 

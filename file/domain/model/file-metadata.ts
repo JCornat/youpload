@@ -35,23 +35,23 @@ export class FileMetadata extends AggregateRoot {
     return new FileMetadata(props.id, props.name, props.size, props.createdAt, props.expireAt);
   }
 
-  get name() {
+  get name(): FileName {
     return this._name;
   }
 
-  get size() {
+  get size(): FileSize {
     return this._size;
   }
 
-  get createdAt() {
+  get createdAt(): Date {
     return this._createdAt;
   }
 
-  get expireAt() {
+  get expireAt(): Date {
     return this._expireAt;
   }
 
-  serialize() {
+  serialize(): FileMetadataSerialized {
     return {
       id: this.id,
       name: this.name.value,

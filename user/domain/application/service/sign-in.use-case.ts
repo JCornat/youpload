@@ -36,7 +36,7 @@ export class SignInUseCase {
       throw error;
     }
 
-    const isPasswordValid = await this.passwordHashingProvider.compare(user.password.value, signInCommand.password);
+    const isPasswordValid = await this.passwordHashingProvider.compare(signInCommand.password, user.password.value);
     if (!isPasswordValid) {
       throw new AuthenticationFailedException();
     }

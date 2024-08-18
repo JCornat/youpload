@@ -10,8 +10,9 @@ import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
 import * as $file_id_download from './routes/file/[id]/download.ts';
 import * as $index from './routes/index.tsx';
-import * as $login from './routes/login.ts';
 import * as $logout from './routes/logout.ts';
+import * as $sign_in from './routes/sign-in.tsx';
+import * as $sign_up from './routes/sign-up.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
 
 import { type Manifest } from '$fresh/server.ts';
@@ -26,8 +27,9 @@ const manifest = {
     './routes/file/[id].tsx': $file_id_,
     './routes/file/[id]/download.ts': $file_id_download,
     './routes/index.tsx': $index,
-    './routes/login.ts': $login,
     './routes/logout.ts': $logout,
+    './routes/sign-in.tsx': $sign_in,
+    './routes/sign-up.tsx': $sign_up,
     './routes/success-upload/[id].tsx': $success_upload_id_,
   },
   islands: {},

@@ -115,6 +115,9 @@ html {
 .justify-center {
   justify-content: center;
 }
+.justify-end {
+  justify-content: end;
+}
 .border-2 {
   border-width: 2px;
 }

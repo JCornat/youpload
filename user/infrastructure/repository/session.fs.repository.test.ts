@@ -4,7 +4,7 @@ import { SessionFileSystemRepository } from './session.fs.repository.ts';
 import { sessionBuilder } from '../../test/session.builder.ts';
 import { NotFoundException } from '../../../shared/lib/exceptions.ts';
 
-const sessionPath = './file/test/file/tmp/session.json';
+const sessionPath = './user/test/tmp/session.json';
 
 describe('SessionFileSystemRepository', () => {
   let sessionFileSystemRepository: SessionFileSystemRepository;

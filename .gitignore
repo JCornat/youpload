@@ -5,4 +5,8 @@ config
 !config/storage/.gitkeep
 
 file/test/file/tmp
-!file/test/file/tmp/.gitkeep
+file/test/tmp
+!file/test/tmp/.gitkeep
+
+user/test/tmp
+!user/test/tmp/.gitkeep

@@ -11,6 +11,13 @@ export interface UserProps {
   password: UserPassword;
 }
 
+export interface UserSerialized {
+  id: EntityId;
+  name: string;
+  email: string;
+  password: string;
+}
+
 export class User extends AggregateRoot {
   private constructor(
     id: EntityId,
@@ -35,5 +42,18 @@ export class User extends AggregateRoot {
 
   get password(): UserPassword {
     return this._password;
+  }
+
+  serialize(): UserSerialized {
+    return {
+      id: this.id,
+      name: this.name.value,
+      email: this.email.value,
+      password: this.password.value,
+    };
+  }
+
+  static reconstitute(data: UserSerialized) {
+    return new User(data.id, UserName.create(data.name), UserEmail.create(data.email), UserPassword.create(data.password));
   }
 }

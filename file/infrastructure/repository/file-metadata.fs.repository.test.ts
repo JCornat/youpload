@@ -4,7 +4,7 @@ import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
 import { assertEquals, assertInstanceOf } from '@std/assert';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
 
-const fileMetadataPath = './file/test/file/tmp/file-metadata.json';
+const fileMetadataPath = './file/test/tmp/file-metadata.json';
 
 describe('FileFileSystemRepository', () => {
   let fileMetadataRepository: FileMetadataFileSystemRepository;

@@ -1,9 +1,14 @@
-import { beforeEach, describe, it } from '@std/testing/bdd';
+import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
 import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
 import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
+import * as fs from '@std/fs';
 
 describe('Feature: Remove expired file', () => {
   let fixture: FileFixture;
+
+  beforeAll(async () => {
+    await fs.ensureDir('./file/test/file/tmp');
+  });
 
   beforeEach(() => {
     fixture = createFileFixture();

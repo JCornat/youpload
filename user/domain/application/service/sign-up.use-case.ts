@@ -4,7 +4,7 @@ import { UserRepository } from '../../repository/user.repository.ts';
 import { UserName } from '../../value-object/user-name.ts';
 import { UserEmail } from '../../value-object/user-email.ts';
 import { UserPassword } from '../../value-object/user-password.ts';
-import {ExistingUserMailException, NotFoundException} from '../../../../shared/lib/exceptions.ts';
+import { ExistingUserMailException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
 
 export interface SignUpCommand {
   name: string;

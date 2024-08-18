@@ -10,3 +10,6 @@ file/test/tmp
 
 user/test/tmp
 !user/test/tmp/.gitkeep
+
+# Fresh build directory
+_fresh/

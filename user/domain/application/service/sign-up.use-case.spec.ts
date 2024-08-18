@@ -2,7 +2,7 @@ import { beforeEach, describe, it } from '@std/testing/bdd';
 import { createUserFixture, UserFixture } from '../../../test/user.fixture.ts';
 import { SignUpCommand } from './sign-up.use-case.ts';
 import { userBuilder } from '../../../test/user.builder.ts';
-import { ArgumentInvalidException, ExistingUserMailException } from '../../../../shared/lib/exceptions.ts';
+import { ArgumentInvalidException, ExistingUserMailException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
 
 describe('Feature: Sign up', () => {
   let fixture: UserFixture;
@@ -16,6 +16,7 @@ describe('Feature: Sign up', () => {
       name: 'test',
       email: 'a@a',
       password: '123456789',
+      passwordRepeat: '123456789',
     };
 
     const id = await fixture.whenUserSignUp(command);
@@ -41,6 +42,7 @@ describe('Feature: Sign up', () => {
       name: 'test',
       email: 'test@test.com',
       password: '123456789',
+      passwordRepeat: '123456789',
     };
 
     await fixture.whenUserSignUp(command);
@@ -53,6 +55,7 @@ describe('Feature: Sign up', () => {
       name: '',
       email: 'test@test.com',
       password: '123456789',
+      passwordRepeat: '123456789',
     };
 
     await fixture.whenUserSignUp(command);
@@ -65,6 +68,7 @@ describe('Feature: Sign up', () => {
       name: 'test',
       email: 'email',
       password: '123456789',
+      passwordRepeat: '123456789',
     };
 
     await fixture.whenUserSignUp(command);
@@ -72,11 +76,25 @@ describe('Feature: Sign up', () => {
     fixture.thenExpectedErrorShallBe(ArgumentInvalidException);
   });
 
+  it('shall throw an error if password are not matching', async () => {
+    const command: SignUpCommand = {
+      name: 'test',
+      email: 'email',
+      password: '123456789',
+      passwordRepeat: '987654321',
+    };
+
+    await fixture.whenUserSignUp(command);
+
+    fixture.thenExpectedErrorShallBe(NotMatchingPasswordException);
+  });
+
   it('shall not create a user if user has invalid password', async () => {
     const command: SignUpCommand = {
       name: 'test',
       email: 'test@test.com',
       password: '',
+      passwordRepeat: '',
     };
 
     await fixture.whenUserSignUp(command);

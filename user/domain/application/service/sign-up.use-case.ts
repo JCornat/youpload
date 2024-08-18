@@ -4,12 +4,13 @@ import { UserRepository } from '../../repository/user.repository.ts';
 import { UserName } from '../../value-object/user-name.ts';
 import { UserEmail } from '../../value-object/user-email.ts';
 import { UserPassword } from '../../value-object/user-password.ts';
-import { ExistingUserMailException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
+import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
 
 export interface SignUpCommand {
   name: string;
   email: string;
   password: string;
+  passwordRepeat: string;
 }
 
 export class SignUpUseCase {
@@ -33,6 +34,10 @@ export class SignUpUseCase {
 
     if (user) {
       throw new ExistingUserMailException();
+    }
+
+    if (signUpCommand.password !== signUpCommand.passwordRepeat) {
+      throw new NotMatchingPasswordException();
     }
 
     const name = UserName.create(signUpCommand.name);

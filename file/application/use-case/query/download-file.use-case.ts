@@ -18,7 +18,8 @@ export class DownloadFileUseCase {
   async handle(downloadFileQuery: DownloadFileQuery) {
     const fileMetadata = await this.fileMetadataRepository.get(downloadFileQuery.id);
 
-    if (fileMetadata.expireAt.getTime() < this.dateProvider.getNow().getTime()) {
+    const now = this.dateProvider.getNow();
+    if (fileMetadata.isExpired(now)) {
       throw new ExpiredFileException();
     }
 

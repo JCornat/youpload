@@ -4,20 +4,18 @@ import { StubDateProvider } from '../../../../shared/domain/provider/date.provid
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
 import { Handlers } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
-import { getCookies } from '@std/http/cookie';
-import { PageProps } from '$fresh/server.ts';
+import { FreshContext, PageProps } from '$fresh/server.ts';
 
 interface Data {
-  isAllowed: boolean;
+  isLoggedIn?: boolean;
+  userName?: string;
 }
 
 export const handler: Handlers = {
-  async GET(req, ctx) {
-    const cookies = getCookies(req.headers);
-    console.log(cookies);
-    return await ctx.render({ isAllowed: cookies.auth === 'bar' });
+  async GET(req: Request, ctx: FreshContext) {
+    return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn, userName: ctx.state.userName });
   },
-  async POST(req, ctx) {
+  async POST(req: Request, ctx: FreshContext) {
     const form = await req.formData();
     const file = form.get('my-file') as File;
     const amount = form.get('amount') as string;
@@ -67,7 +65,7 @@ export default function Home({ data }: PageProps<Data>) {
     <>
       <div class='px-4 py-8 mx-auto bg-[#86efac]'>
         <div class='flex justify-end'>
-          <a href='/sign-in'>Login</a>
+          {data.isLoggedIn ? <a href='/account'>Welcome, {data.userName}</a> : <a href='/sign-in'>Log in</a>}
         </div>
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
@@ -80,7 +78,6 @@ export default function Home({ data }: PageProps<Data>) {
           />
           <h1 class='text-4xl font-bold'>Welcome to Fresh</h1>
 
-          You currently {data.isAllowed ? 'are' : 'are not'} logged in.
           <>
             <form method='post' encType='multipart/form-data'>
               <input type='number' name='amount' value='1' />
@@ -93,15 +90,5 @@ export default function Home({ data }: PageProps<Data>) {
         </div>
       </div>
     </>
-  );
-}
-
-function Login() {
-  return (
-    <form method='post' action='/api/login'>
-      <input type='text' name='username' />
-      <input type='password' name='password' />
-      <button type='submit'>Submit</button>
-    </form>
   );
 }

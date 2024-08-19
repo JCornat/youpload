@@ -10,6 +10,15 @@ import { setCookie } from '@std/http/cookie';
 
 export const handler: Handlers = {
   async GET(req, ctx) {
+    if (ctx.state.isLoggedIn) {
+      const headers = new Headers();
+      headers.set('location', '/');
+      return new Response(null, {
+        status: 303, // "See Other"
+        headers,
+      });
+    }
+
     const cookies = getCookies(req.headers);
     return await ctx.render({ isAllowed: cookies.auth === 'bar' });
   },
@@ -33,7 +42,7 @@ export const handler: Handlers = {
     setCookie(headers, {
       name: 'auth',
       value: sessionId,
-      maxAge: 120,
+      maxAge: 120000,
       sameSite: 'Strict',
       domain: url.hostname,
       path: '/',
@@ -63,6 +72,11 @@ export default function Home({ data }: PageProps<any>) {
 
           <h1 class='text-4xl font-bold'>Login</h1>
           <SignIn />
+
+          <br />
+          <p class='my-6'>
+            New user ? <a href='/sign-up'>Sign up</a>
+          </p>
         </div>
       </div>
     </>

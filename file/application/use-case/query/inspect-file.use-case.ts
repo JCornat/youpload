@@ -17,7 +17,8 @@ export class InspectFileUseCase {
   async handle(inspectFileQuery: InspectFileQuery): Promise<FileMetadata> {
     const fileMetadata = await this.fileMetadataRepository.get(inspectFileQuery.id);
 
-    if (fileMetadata.expireAt.getTime() < this.dateProvider.getNow().getTime()) {
+    const now = this.dateProvider.getNow();
+    if (fileMetadata.isExpired(now)) {
       throw new ExpiredFileException();
     }
 

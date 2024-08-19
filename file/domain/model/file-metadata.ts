@@ -43,6 +43,10 @@ export class FileMetadata extends AggregateRoot {
     return this._expireAt;
   }
 
+  isExpired(now: Date) {
+    return this.expireAt.getTime() < now.getTime();
+  }
+
   serialize(): SerializedPayload {
     return {
       id: this.id,

@@ -54,7 +54,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
 
   async getAllExpired(now: Date): Promise<FileMetadata[]> {
     const fileMetadataList = await this.getContent();
-    return fileMetadataList.filter((fileMetadata: FileMetadata) => fileMetadata.expireAt.getTime() < now.getTime());
+    return fileMetadataList.filter((fileMetadata: FileMetadata) => fileMetadata.isExpired(now));
   }
 
   async remove(id: EntityId): Promise<void> {

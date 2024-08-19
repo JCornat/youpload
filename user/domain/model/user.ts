@@ -1,35 +1,28 @@
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { UserEmail } from '../value-object/user-email.ts';
 import { UserName } from '../value-object/user-name.ts';
 import { UserPassword } from '../value-object/user-password.ts';
-
-export interface UserProps {
-  id: EntityId;
-  name: UserName;
-  email: UserEmail;
-  password: UserPassword;
-}
-
-export interface UserSerialized {
-  id: EntityId;
-  name: string;
-  email: string;
-  password: string;
-}
+import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './user.types.ts';
 
 export class User extends AggregateRoot {
-  private constructor(
-    id: EntityId,
-    private readonly _name: UserName,
-    private readonly _email: UserEmail,
-    private readonly _password: UserPassword,
-  ) {
-    super(id);
+  private readonly _name: UserName;
+  private readonly _email: UserEmail;
+  private readonly _password: UserPassword;
+
+  private constructor(payload: ConstructorPayload) {
+    super(payload.id);
+
+    this._name = payload.name;
+    this._email = payload.email;
+    this._password = payload.password;
   }
 
-  static create(props: UserProps): User {
-    return new User(props.id, props.name, props.email, props.password);
+  static create(props: CreatePayload): User {
+    const id = this.createEntityId();
+    const name = UserName.create(props.name);
+    const email = UserEmail.create(props.email);
+    const password = UserPassword.create(props.password);
+    return new User({ id, name, email, password });
   }
 
   get name(): UserName {
@@ -44,7 +37,7 @@ export class User extends AggregateRoot {
     return this._password;
   }
 
-  serialize(): UserSerialized {
+  serialize(): SerializedPayload {
     return {
       id: this.id,
       name: this.name.value,
@@ -53,7 +46,10 @@ export class User extends AggregateRoot {
     };
   }
 
-  static reconstitute(data: UserSerialized) {
-    return new User(data.id, UserName.create(data.name), UserEmail.create(data.email), UserPassword.create(data.password));
+  static reconstitute(payload: ReconstitutePayload) {
+    const name = UserName.create(payload.name);
+    const email = UserEmail.create(payload.email);
+    const password = UserPassword.create(payload.password);
+    return new User({ ...payload, name, email, password });
   }
 }

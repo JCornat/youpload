@@ -41,9 +41,16 @@ export class SignInUseCase {
       throw new AuthenticationFailedException();
     }
 
-    const id = crypto.randomUUID();
-    const session = Session.create({ id, userId: user.id, ip: signInCommand.ip, agent: signInCommand.agent, createdAt, lastUsedAt: createdAt });
+    const props = {
+      userId: user.id,
+      ip: signInCommand.ip,
+      agent: signInCommand.agent,
+      createdAt,
+      lastUsedAt: createdAt,
+    };
+
+    const session = Session.create(props);
     await this.sessionRepository.create(session);
-    return id;
+    return session.id;
   }
 }

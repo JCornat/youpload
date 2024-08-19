@@ -1,7 +1,8 @@
-import { FileMetadata, FileMetadataSerialized } from '../../domain/model/file-metadata.ts';
+import { FileMetadata } from '../../domain/model/file-metadata.ts';
 import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
+import { SerializedPayload } from '../../domain/model/file-metadata.types.ts';
 
 export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(
@@ -39,7 +40,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
       content = '[]';
     }
 
-    let array: FileMetadataSerialized[];
+    let array: SerializedPayload[];
 
     try {
       array = JSON.parse(content);

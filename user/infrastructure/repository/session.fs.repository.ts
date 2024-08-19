@@ -1,6 +1,7 @@
-import { Session, SessionSerialized } from '../../domain/model/session.ts';
+import { Session } from '../../domain/model/session.ts';
 import { SessionRepository } from '../../domain/repository/session.repository.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
+import { SerializedPayload } from '../../domain/model/session.types.ts';
 
 export class SessionFileSystemRepository implements SessionRepository {
   constructor(
@@ -38,7 +39,7 @@ export class SessionFileSystemRepository implements SessionRepository {
       content = '[]';
     }
 
-    let array: SessionSerialized[];
+    let array: SerializedPayload[];
 
     try {
       array = JSON.parse(content);

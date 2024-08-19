@@ -4,8 +4,6 @@ import { FileStorageProvider } from '../../../domain/provider/file-storage.provi
 import { DateProvider } from '../../../../shared/domain/provider/date.provider.ts';
 import { EntityId } from '../../../../shared/domain/model/entity-id.ts';
 import { FileStatProvider } from '../../../domain/provider/file-stat.provider.ts';
-import { FileSize } from '../../../domain/value-object/file-size.ts';
-import { FileName } from '../../../domain/value-object/file-name.ts';
 
 export interface UploadFileCommand {
   name: string;
@@ -23,18 +21,17 @@ export class UploadFileUseCase {
 
   async handle(uploadFileCommand: UploadFileCommand): Promise<EntityId> {
     const filePath = uploadFileCommand.filePath;
-
-    const createdAt = this.dateProvider.getNow();
-    const expireAt = new Date(uploadFileCommand.expireAt);
-    const id = crypto.randomUUID();
-    const name = FileName.create(uploadFileCommand.name);
     const sizeInBytes = await this.fileStatProvider.getSize(filePath);
-    const size = FileSize.create(sizeInBytes);
-    const fileMetadata = FileMetadata.create({ id, name, size, createdAt, expireAt });
+    const props = {
+      createdAt: this.dateProvider.getNow(),
+      expireAt: new Date(uploadFileCommand.expireAt),
+      name: uploadFileCommand.name,
+      size: sizeInBytes,
+    };
+
+    const fileMetadata = FileMetadata.create(props);
     await this.fileMetadataRepository.save(fileMetadata);
-
     await this.fileStorageProvider.save(fileMetadata.id, filePath);
-
-    return id;
+    return fileMetadata.id;
   }
 }

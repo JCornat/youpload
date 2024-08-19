@@ -1,17 +1,15 @@
 import { FileMetadata } from '../domain/model/file-metadata.ts';
-import { FileSize } from '../domain/value-object/file-size.ts';
-import { FileName } from '../domain/value-object/file-name.ts';
 
 export const fileMetadataBuilder = ({
   id = crypto.randomUUID(),
-  name = FileName.create('coucou.txt'),
-  size = FileSize.create(100),
+  name = 'coucou.txt',
+  size = 100,
   createdAt = new Date(),
   expireAt = new Date('2030-01-01T00:00:00.000Z'),
 }: {
   id?: string;
-  name?: FileName;
-  size?: FileSize;
+  name?: string;
+  size?: number;
   createdAt?: Date;
   expireAt?: Date;
 } = {}) => {
@@ -22,12 +20,10 @@ export const fileMetadataBuilder = ({
       return fileMetadataBuilder({ ...props, id: _id });
     },
     withName(_name: string) {
-      const name = FileName.create(_name);
-      return fileMetadataBuilder({ ...props, name });
+      return fileMetadataBuilder({ ...props, name: _name });
     },
     withSize(_size: number) {
-      const size = FileSize.create(_size);
-      return fileMetadataBuilder({ ...props, size });
+      return fileMetadataBuilder({ ...props, size: _size });
     },
     createdAt(_createdAt: Date) {
       return fileMetadataBuilder({ ...props, createdAt: _createdAt });
@@ -36,7 +32,7 @@ export const fileMetadataBuilder = ({
       return fileMetadataBuilder({ ...props, expireAt: _expireAt });
     },
     build() {
-      return FileMetadata.create(props);
+      return FileMetadata.reconstitute(props);
     },
   };
 };

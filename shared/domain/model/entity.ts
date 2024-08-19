@@ -10,4 +10,8 @@ export abstract class Entity {
   get id(): EntityId {
     return this._id;
   }
+
+  static createEntityId(): EntityId {
+    return crypto.randomUUID();
+  }
 }

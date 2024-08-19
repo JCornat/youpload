@@ -1,38 +1,29 @@
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-
-export interface SessionProps {
-  id: EntityId;
-  userId: EntityId;
-  ip: string;
-  agent: string;
-  createdAt: Date;
-  lastUsedAt: Date;
-}
-
-export interface SessionSerialized {
-  id: EntityId;
-  userId: EntityId;
-  ip: string;
-  agent: string;
-  createdAt: string;
-  lastUsedAt: string;
-}
+import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './session.types.ts';
 
 export class Session extends AggregateRoot {
-  private constructor(
-    id: EntityId,
-    private readonly _userId: EntityId,
-    private readonly _ip: string,
-    private readonly _agent: string,
-    private readonly _createdAt: Date,
-    private readonly _lastUsedAt: Date,
-  ) {
-    super(id);
+  private readonly _userId: EntityId;
+  private readonly _ip: string;
+  private readonly _agent: string;
+  private readonly _createdAt: Date;
+  private readonly _lastUsedAt: Date;
+
+  private constructor(payload: ConstructorPayload) {
+    super(payload.id);
+
+    this._userId = payload.userId;
+    this._ip = payload.ip;
+    this._agent = payload.agent;
+    this._createdAt = payload.createdAt;
+    this._lastUsedAt = payload.lastUsedAt;
   }
 
-  static create(props: SessionProps): Session {
-    return new Session(props.id, props.userId, props.ip, props.agent, props.createdAt, props.lastUsedAt);
+  static create(payload: CreatePayload): Session {
+    const id = this.createEntityId();
+    const createdAt = new Date(payload.createdAt);
+    const lastUsedAt = new Date(payload.lastUsedAt);
+    return new Session({ id, ...payload, createdAt, lastUsedAt });
   }
 
   get userId(): EntityId {
@@ -55,7 +46,7 @@ export class Session extends AggregateRoot {
     return this._lastUsedAt;
   }
 
-  serialize(): SessionSerialized {
+  serialize(): SerializedPayload {
     return {
       id: this.id,
       userId: this.userId,
@@ -66,10 +57,9 @@ export class Session extends AggregateRoot {
     };
   }
 
-  static reconstitute(data: SessionSerialized) {
-    const createdAt = new Date(data.createdAt);
-    const lastUsedAt = new Date(data.lastUsedAt);
-
-    return new Session(data.id, data.userId, data.ip, data.agent, createdAt, lastUsedAt);
+  static reconstitute(payload: ReconstitutePayload) {
+    const createdAt = new Date(payload.createdAt);
+    const lastUsedAt = new Date(payload.lastUsedAt);
+    return new Session({ ...payload, createdAt, lastUsedAt });
   }
 }

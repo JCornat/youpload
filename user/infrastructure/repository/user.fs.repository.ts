@@ -1,6 +1,7 @@
-import { User, UserSerialized } from '../../domain/model/user.ts';
+import { User } from '../../domain/model/user.ts';
 import { UserRepository } from '../../domain/repository/user.repository.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
+import { ReconstitutePayload } from '../../domain/model/user.types.ts';
 
 export class UserFileSystemRepository implements UserRepository {
   constructor(
@@ -38,7 +39,7 @@ export class UserFileSystemRepository implements UserRepository {
       content = '[]';
     }
 
-    let array: UserSerialized[];
+    let array: ReconstitutePayload[];
 
     try {
       array = JSON.parse(content);

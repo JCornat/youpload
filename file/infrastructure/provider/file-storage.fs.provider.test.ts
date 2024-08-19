@@ -27,12 +27,7 @@ describe('FileStorageFileSystemProvider', () => {
 
   describe('save', () => {
     it(`shall return an error is file doesn't exist`, async () => {
-      const fileMetadata = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(1)
-        .withName('test.txt')
-        .createdAt(new Date('2024-08-05 08:00:00'))
-        .build();
+      const fileMetadata = fileMetadataBuilder().build();
 
       let thrownError: Error | null = null;
 
@@ -46,12 +41,7 @@ describe('FileStorageFileSystemProvider', () => {
     });
 
     it('shall save a file', async () => {
-      const fileMetadata = fileMetadataBuilder()
-        .withId(crypto.randomUUID())
-        .withSize(1)
-        .withName('test.txt')
-        .createdAt(new Date('2024-08-05 08:00:00'))
-        .build();
+      const fileMetadata = fileMetadataBuilder().build();
 
       await fileStorageProvider.save(fileMetadata.id, './file/test/file/test.txt');
 
@@ -105,6 +95,7 @@ describe('FileStorageFileSystemProvider', () => {
       const notExistingId = crypto.randomUUID();
 
       let thrownError: Error | null = null;
+
       try {
         await fileStorageProvider.remove(notExistingId);
       } catch (error) {

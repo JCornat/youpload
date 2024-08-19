@@ -12,7 +12,7 @@ describe('Feature: Inspect file', () => {
     fixture = createFileFixture();
   });
 
-  it('shall give a link for a valid file', async () => {
+  it('shall give metadata for a stored file', async () => {
     fixture.givenNowIs(new Date('2023-01-19T19:10:00.000Z'));
 
     const storedFileMetadata = fileMetadataBuilder()

@@ -1,38 +1,30 @@
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 import { FileName } from '../value-object/file-name.ts';
 import { FileSize } from '../value-object/file-size.ts';
-
-export interface FileMetadataProps {
-  id: EntityId;
-  name: FileName;
-  size: FileSize;
-  createdAt: Date;
-  expireAt: Date;
-}
-
-export interface FileMetadataSerialized {
-  id: EntityId;
-  name: string;
-  size: number;
-  createdAt: string;
-  expireAt: string;
-}
+import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './file-metadata.types.ts';
 
 export class FileMetadata extends AggregateRoot {
-  private constructor(
-    id: EntityId,
-    private readonly _name: FileName,
-    private readonly _size: FileSize,
-    private readonly _createdAt: Date,
-    private readonly _expireAt: Date,
-  ) {
-    super(id);
+  private readonly _name: FileName;
+  private readonly _size: FileSize;
+  private readonly _createdAt: Date;
+  private readonly _expireAt: Date;
+
+  private constructor(payload: ConstructorPayload) {
+    super(payload.id);
+
+    this._name = payload.name;
+    this._size = payload.size;
+    this._createdAt = payload.createdAt;
+    this._expireAt = payload.expireAt;
   }
 
-  static create(props: FileMetadataProps): FileMetadata {
-    return new FileMetadata(props.id, props.name, props.size, props.createdAt, props.expireAt);
+  static create(payload: CreatePayload): FileMetadata {
+    const id = this.createEntityId();
+    const name = FileName.create(payload.name);
+    const size = FileSize.create(payload.size);
+    const createdAt = new Date(payload.createdAt);
+    const expireAt = new Date(payload.expireAt);
+    return new FileMetadata({ id, name, size, createdAt, expireAt });
   }
 
   get name(): FileName {
@@ -51,7 +43,7 @@ export class FileMetadata extends AggregateRoot {
     return this._expireAt;
   }
 
-  serialize(): FileMetadataSerialized {
+  serialize(): SerializedPayload {
     return {
       id: this.id,
       name: this.name.value,
@@ -61,10 +53,11 @@ export class FileMetadata extends AggregateRoot {
     };
   }
 
-  static reconstitute(data: FileMetadataSerialized) {
-    const createdAt = new Date(data.createdAt);
-    const expireAt = new Date(data.expireAt);
-
-    return new FileMetadata(data.id, FileName.create(data.name), FileSize.create(data.size), createdAt, expireAt);
+  static reconstitute(payload: ReconstitutePayload) {
+    const name = FileName.create(payload.name);
+    const size = FileSize.create(payload.size);
+    const createdAt = new Date(payload.createdAt);
+    const expireAt = new Date(payload.expireAt);
+    return new FileMetadata({ id: payload.id, name, size, createdAt, expireAt });
   }
 }

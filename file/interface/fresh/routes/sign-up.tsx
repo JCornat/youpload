@@ -62,16 +62,36 @@ export default function Home({ data }: PageProps<any>) {
 function Login() {
   return (
     <form method='post'>
-      <input type='name' name='name' />
-      <br />
-      <input type='email' name='email' />
-      <br />
-      <input type='password' name='password' />
-      <br />
-      <input type='password' name='password-repeat' />
-      <br />
-      <input type='text' name='referal' />
-      <br />
+      <div className='my-4'>
+        <label htmlFor='name'>Name</label>
+        <br />
+        <input type='name' name='name' />
+      </div>
+
+      <div className='my-4'>
+        <label htmlFor='email'>Email</label>
+        <br />
+        <input type='email' name='email' />
+      </div>
+
+      <div className='my-4'>
+        <label htmlFor='password'>Password</label>
+        <br />
+        <input type='password' name='password' />
+      </div>
+
+      <div className='my-4'>
+        <label htmlFor='password-repeat'>Repeat password</label>
+        <br />
+        <input type='password' name='password-repeat' />
+      </div>
+
+      <div className='my-4'>
+        <label htmlFor='referral'>Referral code</label>
+        <br />
+        <input type='text' name='referral' />
+      </div>
+
       <button type='submit'>Submit</button>
     </form>
   );

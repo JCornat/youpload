@@ -8,6 +8,16 @@ export class UserFileSystemRepository implements UserRepository {
     public filePath = './config/user.json',
   ) {}
 
+  async get(id: string): Promise<User> {
+    const userList = await this.getContent();
+    const user = userList.find((item) => item.id === id);
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
+  }
+
   async getByEmail(email: string): Promise<User> {
     const userList = await this.getContent();
     const user = userList.find((item) => item.email.value === email);

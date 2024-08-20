@@ -3,6 +3,7 @@ import { PasswordHashingProvider } from '../../provider/password-hashing.provide
 import { UserRepository } from '../../repository/user.repository.ts';
 import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
 import { CreatePayload } from '../../model/user.types.ts';
+import { ReferralProvider } from '../../provider/referral.provider.ts';
 
 export interface SignUpCommand {
   name: string;
@@ -15,6 +16,7 @@ export class SignUpUseCase {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly passwordHashingProvider: PasswordHashingProvider,
+    private readonly referralProvider: ReferralProvider,
   ) {}
 
   async handle(signUpCommand: SignUpCommand) {
@@ -36,11 +38,13 @@ export class SignUpUseCase {
       throw new NotMatchingPasswordException();
     }
 
+    const referral = await this.referralProvider.generate();
     const hashedPassword = await this.passwordHashingProvider.hash(signUpCommand.password);
     const props: CreatePayload = {
       name: signUpCommand.name,
       email: signUpCommand.email,
       password: hashedPassword,
+      referral,
     };
 
     const newUser = User.create(props);

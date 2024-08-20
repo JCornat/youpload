@@ -29,7 +29,7 @@ export default function Account({ data }: PageProps<Data>) {
           <h1 class='text-4xl font-bold'>Referral</h1>
           <fieldset>
             <legend>Information :</legend>
-            <input type='password' value='******************************'/>
+            <input type='password' value='******************************' />
             <button>Reveal</button>
           </fieldset>
 
@@ -39,8 +39,8 @@ export default function Account({ data }: PageProps<Data>) {
 
             <div className='my-4'>
               <label htmlFor='name'>Name</label>
-              <br/>
-              <input type='text' name='name'/>
+              <br />
+              <input type='text' name='name' />
             </div>
 
             <button>Update</button>
@@ -51,14 +51,14 @@ export default function Account({ data }: PageProps<Data>) {
 
             <div className='my-4'>
               <label htmlFor='email'>Email</label>
-              <br/>
-              <input type='email' name='email'/>
+              <br />
+              <input type='email' name='email' />
             </div>
 
             <div className='my-4'>
               <label htmlFor='current-password'>Current password</label>
-              <br/>
-              <input type='password' name='current-password'/>
+              <br />
+              <input type='password' name='current-password' />
             </div>
 
             <button>Update</button>
@@ -70,20 +70,20 @@ export default function Account({ data }: PageProps<Data>) {
 
             <div className='my-4'>
               <label htmlFor='current-password'>Current password</label>
-              <br/>
-              <input type='password' name='current-password'/>
+              <br />
+              <input type='password' name='current-password' />
             </div>
 
             <div className='my-4'>
               <label htmlFor='new-password'>New password</label>
-              <br/>
-              <input type='password' name='new-password'/>
+              <br />
+              <input type='password' name='new-password' />
             </div>
 
             <div className='my-4'>
               <label htmlFor='new-password-repeat'>Repeat new password</label>
-              <br/>
-              <input type='password' name='new-password-repeat'/>
+              <br />
+              <input type='password' name='new-password-repeat' />
             </div>
 
             <button>Update</button>

@@ -11,12 +11,8 @@ export class FileName extends ValueObject<FileNameProps> {
   }
 
   static create(name: string): FileName {
-    if (name?.length < 0) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be less or equal to 0');
-    }
-
-    if (name.length > 50) {
-      throw new ArgumentInvalidException('Invalid file name: Length cannot be greater than 50');
+    if (!this.isValid(name)) {
+      throw new ArgumentInvalidException();
     }
 
     return new FileName({ name });
@@ -24,5 +20,24 @@ export class FileName extends ValueObject<FileNameProps> {
 
   get value(): string {
     return this.props.name;
+  }
+
+  static isValid(value: string): boolean {
+    if (!value || value.length > 255) {
+      return false;
+    }
+
+    // Based on https://github.com/sindresorhus/filename-reserved-regex/blob/main/index.js
+    const reg = /[<>:"/\\|?*\u0000-\u001F]/g;
+    if (reg.test(value)) {
+      return false;
+    }
+
+    const reg2 = /[^\.]*\.[^\.]+/;
+    if (!reg2.test(value)) {
+      return false;
+    }
+
+    return true;
   }
 }

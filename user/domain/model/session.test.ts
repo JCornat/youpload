@@ -13,7 +13,7 @@ describe('Session', () => {
         ip: '127.0.0.1',
         agent: 'Firefox',
         createdAt: createdAt.toISOString(),
-        lastUsedAt: lastUsedAt.toISOString(), // 1 hour later
+        lastUsedAt: lastUsedAt.toISOString(),
       };
 
       const session = Session.create(payload);

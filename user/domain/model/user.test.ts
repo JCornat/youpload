@@ -212,6 +212,7 @@ describe('User', () => {
         name: 'test',
         email: 'test@test.com',
         password: 12345 as any,
+        referral: 'A',
       };
 
       let thrownError: Error | null = null;

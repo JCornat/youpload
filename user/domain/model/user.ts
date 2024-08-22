@@ -2,8 +2,35 @@ import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { UserEmail } from '../value-object/user-email.ts';
 import { UserName } from '../value-object/user-name.ts';
 import { UserPassword } from '../value-object/user-password.ts';
-import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './user.types.ts';
 import { UserReferral } from '../value-object/user-referral.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+
+type ConstructorPayload = {
+  id: EntityId;
+  name: UserName;
+  email: UserEmail;
+  password: UserPassword;
+  referral: UserReferral;
+};
+
+type CreatePayload = {
+  name: string;
+  email: string;
+  password: string;
+  referral: string;
+};
+
+type ReconstitutePayload = CreatePayload & {
+  id: EntityId;
+};
+
+type ObjectifiedProps = {
+  id: EntityId;
+  name: string;
+  email: string;
+  password: string;
+  referral: string;
+};
 
 export class User extends AggregateRoot {
   private readonly _name: UserName;
@@ -45,7 +72,7 @@ export class User extends AggregateRoot {
     return this._referral;
   }
 
-  toObject(): SerializedPayload {
+  toObject(): ObjectifiedProps {
     return {
       id: this.id,
       name: this.name.value,

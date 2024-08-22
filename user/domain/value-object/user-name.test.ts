@@ -6,7 +6,7 @@ import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 describe('UserName', () => {
   it('shall create a VO is the name is valid', () => {
     const name = UserName.create('John');
-    assertEquals('John', name.value)
+    assertEquals('John', name.value);
   });
 
   it('shall throw an error if the name is null', () => {

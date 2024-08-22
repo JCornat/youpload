@@ -1,5 +1,4 @@
-import { Handlers } from '$fresh/server.ts';
-import { FreshContext, PageProps } from '$fresh/server.ts';
+import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
 
 interface Data {
   isLoggedIn?: boolean;

@@ -6,7 +6,7 @@ import { PasswordHashingFakeRepository } from '../infrastructure/provider/passwo
 import { SignInCommand, SignInUseCase } from '../domain/application/service/sign-in.use-case.ts';
 import { SessionFakeRepository } from '../infrastructure/repository/session.fake.repository.ts';
 import { StubDateProvider } from '../../shared/domain/provider/date.provider.stub.ts';
-import {ReferralFakeProvider} from "../infrastructure/provider/referral-fake.provider.ts";
+import { ReferralFakeProvider } from '../infrastructure/provider/referral-fake.provider.ts';
 
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();

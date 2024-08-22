@@ -6,7 +6,7 @@ import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 describe('UserPassword', () => {
   it('shall create a VO is the password is valid', () => {
     const password = UserPassword.create('valid1234');
-    assertEquals('valid1234', password.value)
+    assertEquals('valid1234', password.value);
   });
 
   it('shall throw an error if the password is null', () => {

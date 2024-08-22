@@ -26,7 +26,7 @@ describe('SessionFileSystemRepository', () => {
   describe('get', () => {
     it('shall get session if id is known', async () => {
       const session = sessionBuilder().build();
-      const content = [session.serialize()];
+      const content = [session.toObject()];
       await Deno.writeTextFile(sessionPath, JSON.stringify(content));
 
       const requestedSession = await sessionFileSystemRepository.get(session.id);
@@ -35,7 +35,7 @@ describe('SessionFileSystemRepository', () => {
 
     it('shall throw an error if session is not known', async () => {
       const session = sessionBuilder().build();
-      const content = [session.serialize()];
+      const content = [session.toObject()];
       await Deno.writeTextFile(sessionPath, JSON.stringify(content));
 
       let thrownError: Error | null = null;
@@ -56,7 +56,7 @@ describe('SessionFileSystemRepository', () => {
       await sessionFileSystemRepository.create(session);
 
       const text = await Deno.readTextFile(sessionPath);
-      const expectedContent = [session.serialize()];
+      const expectedContent = [session.toObject()];
       assertEquals(JSON.parse(text), expectedContent);
     });
   });

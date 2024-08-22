@@ -6,7 +6,7 @@ import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 describe('UserEmail', () => {
   it('shall create a VO is the email is valid', () => {
     const password = UserEmail.create('test@test.com');
-    assertEquals('test@test.com', password.value)
+    assertEquals('test@test.com', password.value);
   });
 
   it('shall throw an error if the email is null', () => {

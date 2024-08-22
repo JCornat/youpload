@@ -5,7 +5,6 @@ import { UserFileSystemRepository } from '../../../../user/infrastructure/reposi
 
 export async function handler(req: Request, ctx: FreshContext) {
   const cookies = getCookies(req.headers);
-  console.log(cookies);
   const auth = cookies.auth;
   if (auth) {
     const sessionRepository = new SessionFileSystemRepository();
@@ -15,7 +14,6 @@ export async function handler(req: Request, ctx: FreshContext) {
     const user = await userRepository.get(userId);
     ctx.state.isLoggedIn = true;
     ctx.state.userName = user.name.value;
-    console.log('omg ?');
   }
 
   const resp = await ctx.next();

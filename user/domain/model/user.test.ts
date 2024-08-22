@@ -10,7 +10,7 @@ describe('User', () => {
         name: 'test',
         email: 'test@test.com',
         password: 'test123',
-        referral: 'BBBBB-CCCCC-DDDDD'
+        referral: 'BBBBB-CCCCC-DDDDD',
       };
 
       const session = User.create(payload);

@@ -29,21 +29,21 @@ describe('FileFileSystemRepository', () => {
       await fileMetadataRepository.save(fileMetadata);
 
       const text = await Deno.readTextFile(fileMetadataPath);
-      const expectedContent = [fileMetadata.serialize()];
+      const expectedContent = [fileMetadata.toObject()];
       assertEquals(JSON.parse(text), expectedContent);
     });
 
     it('shall save a valid file when there is files already saved', async () => {
       const fileMetadata1 = fileMetadataBuilder().build();
       const fileMetadata2 = fileMetadataBuilder().build();
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       const fileMetadata = fileMetadataBuilder().build();
       await fileMetadataRepository.save(fileMetadata);
 
       const text = await Deno.readTextFile(fileMetadataPath);
-      const expectedContent = [fileMetadata1.serialize(), fileMetadata2.serialize(), fileMetadata.serialize()];
+      const expectedContent = [fileMetadata1.toObject(), fileMetadata2.toObject(), fileMetadata.toObject()];
       assertEquals(JSON.parse(text), expectedContent);
     });
 
@@ -79,7 +79,7 @@ describe('FileFileSystemRepository', () => {
     it('shall get no file if requested file is not saved', async () => {
       const fileMetadata1 = fileMetadataBuilder().build();
       const fileMetadata2 = fileMetadataBuilder().build();
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       let thrownError: Error | null = null;
@@ -96,7 +96,7 @@ describe('FileFileSystemRepository', () => {
     it('shall get requested file if saved', async () => {
       const fileMetadata1 = fileMetadataBuilder().build();
       const fileMetadata2 = fileMetadataBuilder().build();
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       const requestedFileMetadata = await fileMetadataRepository.get(fileMetadata2.id);
@@ -114,7 +114,7 @@ describe('FileFileSystemRepository', () => {
         .expireAt(new Date('2024-08-07 07:59:59'))
         .build();
 
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       const now = new Date('2024-08-07 08:00:00');
@@ -131,7 +131,7 @@ describe('FileFileSystemRepository', () => {
         .expireAt(new Date('2024-08-07 08:00:02'))
         .build();
 
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       const now = new Date('2024-08-07 08:00:00');
@@ -148,12 +148,12 @@ describe('FileFileSystemRepository', () => {
       const fileMetadata2 = fileMetadataBuilder()
         .build();
 
-      const content = [fileMetadata1.serialize(), fileMetadata2.serialize()];
+      const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));
 
       await fileMetadataRepository.remove(fileMetadata1.id);
       const fileContent = await Deno.readTextFile(fileMetadataPath);
-      assertEquals(JSON.parse(fileContent), [fileMetadata2.serialize()]);
+      assertEquals(JSON.parse(fileContent), [fileMetadata2.toObject()]);
     });
   });
 });

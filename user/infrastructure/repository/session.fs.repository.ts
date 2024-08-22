@@ -1,7 +1,6 @@
 import { Session } from '../../domain/model/session.ts';
 import { SessionRepository } from '../../domain/repository/session.repository.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
-import { SerializedPayload } from '../../domain/model/session.types.ts';
 
 export class SessionFileSystemRepository implements SessionRepository {
   constructor(
@@ -22,7 +21,7 @@ export class SessionFileSystemRepository implements SessionRepository {
     const sessionList = await this.getContent();
     sessionList.push(session);
 
-    const serializedFiles = sessionList.map((temp) => temp.serialize());
+    const serializedFiles = sessionList.map((temp) => temp.toObject());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 
@@ -39,7 +38,7 @@ export class SessionFileSystemRepository implements SessionRepository {
       content = '[]';
     }
 
-    let array: SerializedPayload[];
+    let array: any[];
 
     try {
       array = JSON.parse(content);

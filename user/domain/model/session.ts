@@ -1,6 +1,35 @@
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './session.types.ts';
+
+type ConstructorPayload = {
+  id: EntityId;
+  userId: EntityId;
+  ip: string;
+  agent: string;
+  createdAt: Date;
+  lastUsedAt: Date;
+};
+
+type CreatePayload = {
+  userId: EntityId;
+  ip: string;
+  agent: string;
+  createdAt: string | Date;
+  lastUsedAt: string | Date;
+};
+
+type ReconstitutePayload = CreatePayload & {
+  id: EntityId;
+};
+
+type ObjectifiedProps = {
+  id: EntityId;
+  userId: EntityId;
+  ip: string;
+  agent: string;
+  createdAt: string;
+  lastUsedAt: string;
+};
 
 export class Session extends AggregateRoot {
   private readonly _userId: EntityId;
@@ -46,7 +75,7 @@ export class Session extends AggregateRoot {
     return this._lastUsedAt;
   }
 
-  serialize(): SerializedPayload {
+  toObject(): ObjectifiedProps {
     return {
       id: this.id,
       userId: this.userId,

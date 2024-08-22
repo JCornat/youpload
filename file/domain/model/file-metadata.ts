@@ -1,7 +1,34 @@
 import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
 import { FileName } from '../value-object/file-name.ts';
 import { FileSize } from '../value-object/file-size.ts';
-import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './file-metadata.types.ts';
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+
+type ConstructorPayload = {
+  id: EntityId;
+  name: FileName;
+  size: FileSize;
+  createdAt: Date;
+  expireAt: Date;
+};
+
+type CreatePayload = {
+  name: string;
+  size: number;
+  createdAt: string | Date;
+  expireAt: string | Date;
+};
+
+type ReconstitutePayload = CreatePayload & {
+  id: EntityId;
+};
+
+type ObjectifiedProps = {
+  id: EntityId;
+  name: string;
+  size: number;
+  createdAt: string;
+  expireAt: string;
+};
 
 export class FileMetadata extends AggregateRoot {
   private readonly _name: FileName;
@@ -47,7 +74,7 @@ export class FileMetadata extends AggregateRoot {
     return this.expireAt.getTime() < now.getTime();
   }
 
-  serialize(): SerializedPayload {
+  toObject(): ObjectifiedProps {
     return {
       id: this.id,
       name: this.name.value,

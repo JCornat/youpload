@@ -2,7 +2,6 @@ import { User } from '../../model/user.ts';
 import { PasswordHashingProvider } from '../../provider/password-hashing.provider.ts';
 import { UserRepository } from '../../repository/user.repository.ts';
 import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
-import { CreatePayload } from '../../model/user.types.ts';
 import { ReferralProvider } from '../../provider/referral.provider.ts';
 
 export interface SignUpCommand {
@@ -40,7 +39,7 @@ export class SignUpUseCase {
 
     const referral = await this.referralProvider.generate();
     const hashedPassword = await this.passwordHashingProvider.hash(signUpCommand.password);
-    const props: CreatePayload = {
+    const props = {
       name: signUpCommand.name,
       email: signUpCommand.email,
       password: hashedPassword,

@@ -2,7 +2,6 @@ import { FileMetadata } from '../../domain/model/file-metadata.ts';
 import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
 import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
-import { SerializedPayload } from '../../domain/model/file-metadata.types.ts';
 
 export class FileMetadataFileSystemRepository implements FileMetadataRepository {
   constructor(
@@ -13,7 +12,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     const fileMetadataList = await this.getContent();
     fileMetadataList.push(fileMetadata);
 
-    const serializedFiles = fileMetadataList.map((temp) => temp.serialize());
+    const serializedFiles = fileMetadataList.map((temp) => temp.toObject());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 
@@ -40,7 +39,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
       content = '[]';
     }
 
-    let array: SerializedPayload[];
+    let array: any[];
 
     try {
       array = JSON.parse(content);
@@ -61,7 +60,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     const files = await this.getContent();
     const updatedFiles = files.filter((file) => file.id !== id);
 
-    const serializedFiles = updatedFiles.map((temp) => temp.serialize());
+    const serializedFiles = updatedFiles.map((temp) => temp.toObject());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 }

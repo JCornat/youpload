@@ -2,9 +2,8 @@ import { FileMetadataFileSystemRepository } from '../../../infrastructure/reposi
 import { FileStorageFileSystemProvider } from '../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { StubDateProvider } from '../../../../shared/domain/provider/date.provider.stub.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
-import { Handlers } from '$fresh/server.ts';
+import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
-import { FreshContext, PageProps } from '$fresh/server.ts';
 
 interface Data {
   isLoggedIn?: boolean;

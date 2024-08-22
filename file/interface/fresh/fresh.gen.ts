@@ -6,7 +6,6 @@ import * as $_404 from './routes/_404.tsx';
 import * as $_app from './routes/_app.tsx';
 import * as $_middleware from './routes/_middleware.ts';
 import * as $account from './routes/account.tsx';
-import * as $api_login from './routes/api/login.ts';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
@@ -16,8 +15,8 @@ import * as $logout from './routes/logout.ts';
 import * as $sign_in from './routes/sign-in.tsx';
 import * as $sign_up from './routes/sign-up.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
-
-import { type Manifest } from '$fresh/server.ts';
+import * as $form from './islands/form.tsx';
+import type { Manifest } from '$fresh/server.ts';
 
 const manifest = {
   routes: {
@@ -25,7 +24,6 @@ const manifest = {
     './routes/_app.tsx': $_app,
     './routes/_middleware.ts': $_middleware,
     './routes/account.tsx': $account,
-    './routes/api/login.ts': $api_login,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/file/[id].tsx': $file_id_,
@@ -36,7 +34,9 @@ const manifest = {
     './routes/sign-up.tsx': $sign_up,
     './routes/success-upload/[id].tsx': $success_upload_id_,
   },
-  islands: {},
+  islands: {
+    './islands/form.tsx': $form,
+  },
   baseUrl: import.meta.url,
 } satisfies Manifest;
 

@@ -4,6 +4,8 @@ import { StubDateProvider } from '../../../../shared/domain/provider/date.provid
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
 import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
+import Header from "../components/header.tsx";
+import Form from "../islands/form.tsx";
 
 interface Data {
   isLoggedIn?: boolean;
@@ -63,9 +65,7 @@ export default function Home({ data }: PageProps<Data>) {
   return (
     <>
       <div class='px-4 py-8 mx-auto bg-[#86efac]'>
-        <div class='flex justify-end'>
-          {data.isLoggedIn ? <a href='/account'>Welcome, {data.userName}</a> : <a href='/sign-in'>Log in</a>}
-        </div>
+        <Header isLoggedIn={data.isLoggedIn} userName={data.userName}/>
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img
@@ -77,15 +77,7 @@ export default function Home({ data }: PageProps<Data>) {
           />
           <h1 class='text-4xl font-bold'>Welcome to Fresh</h1>
 
-          <>
-            <form method='post' encType='multipart/form-data'>
-              <input type='number' name='amount' value='1' />
-              <br />
-              <input type='file' name='my-file' />
-              <br />
-              <button type='submit'>Upload</button>
-            </form>
-          </>
+          <Form/>
         </div>
       </div>
     </>

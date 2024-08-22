@@ -86,7 +86,7 @@ export class User extends AggregateRoot {
     const name = UserName.create(payload.name);
     const email = UserEmail.create(payload.email);
     const password = UserPassword.create(payload.password);
-    const referral = UserReferral.create(payload.referral);
+    const referral = UserReferral.create(payload.referral || 'DEFAULT');
     return new User({ ...payload, name, email, password, referral });
   }
 }

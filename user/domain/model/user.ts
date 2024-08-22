@@ -3,7 +3,7 @@ import { UserEmail } from '../value-object/user-email.ts';
 import { UserName } from '../value-object/user-name.ts';
 import { UserPassword } from '../value-object/user-password.ts';
 import { ConstructorPayload, CreatePayload, ReconstitutePayload, SerializedPayload } from './user.types.ts';
-import {UserReferral} from "../value-object/user-referral.ts";
+import { UserReferral } from '../value-object/user-referral.ts';
 
 export class User extends AggregateRoot {
   private readonly _name: UserName;
@@ -41,12 +41,17 @@ export class User extends AggregateRoot {
     return this._password;
   }
 
-  serialize(): SerializedPayload {
+  get referral(): UserReferral {
+    return this._referral;
+  }
+
+  toObject(): SerializedPayload {
     return {
       id: this.id,
       name: this.name.value,
       email: this.email.value,
       password: this.password.value,
+      referral: this.referral.value,
     };
   }
 

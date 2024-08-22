@@ -32,7 +32,7 @@ export class UserFileSystemRepository implements UserRepository {
     const userList = await this.getContent();
     userList.push(user);
 
-    const serializedFiles = userList.map((temp) => temp.serialize());
+    const serializedFiles = userList.map((temp) => temp.toObject());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }
 

@@ -6,13 +6,15 @@ import { PasswordHashingFakeRepository } from '../infrastructure/provider/passwo
 import { SignInCommand, SignInUseCase } from '../domain/application/service/sign-in.use-case.ts';
 import { SessionFakeRepository } from '../infrastructure/repository/session.fake.repository.ts';
 import { StubDateProvider } from '../../shared/domain/provider/date.provider.stub.ts';
+import {ReferralFakeProvider} from "../infrastructure/provider/referral-fake.provider.ts";
 
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();
   const sessionRepository = new SessionFakeRepository();
   const dateProvider = new StubDateProvider();
   const passwordHashingProvider = new PasswordHashingFakeRepository();
-  const signUpUseCase = new SignUpUseCase(userRepository, passwordHashingProvider);
+  const referralProvider = new ReferralFakeProvider();
+  const signUpUseCase = new SignUpUseCase(userRepository, passwordHashingProvider, referralProvider);
   const signInUseCase = new SignInUseCase(dateProvider, passwordHashingProvider, sessionRepository, userRepository);
   let thrownError: Error;
   let sessionId: string;

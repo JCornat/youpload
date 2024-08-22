@@ -1,7 +1,7 @@
-import {ReferralProvider} from "../../domain/provider/referral.provider.ts";
+import { ReferralProvider } from '../../domain/provider/referral.provider.ts';
 
-export class ReferralFakeProvider implements ReferralProvider{
+export class ReferralFakeProvider implements ReferralProvider {
   async generate(): Promise<string> {
-    return '';
+    return 'AAAAA-AAAAA-AAAAA';
   }
 }

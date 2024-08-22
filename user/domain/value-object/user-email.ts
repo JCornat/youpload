@@ -27,8 +27,8 @@ export class UserEmail extends ValueObject<UserEmailProps> {
       throw new ArgumentInvalidException('Invalid email: Length cannot be greater than 50 characters');
     }
 
-    if (!email.includes('@')) {
-      throw new ArgumentInvalidException('Invalid email: It should contain an @');
+    if (!/[a-zA-Z0-9]@[a-zA-Z0-9]/.test(email)) {
+      throw new ArgumentInvalidException('Invalid email');
     }
 
     return new UserEmail({ email: email });

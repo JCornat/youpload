@@ -5,13 +5,15 @@ export const userBuilder = ({
   name = 'test',
   email = 'test@test.com',
   password = '12345678',
+  referral = 'AAAAA-AAAAA-AAAAA',
 }: {
   id?: string;
   name?: string;
   email?: string;
   password?: string;
+  referral?: string;
 } = {}) => {
-  const props = { id, name, email, password };
+  const props = { id, name, email, password, referral };
 
   return {
     withId(_id: string) {
@@ -25,6 +27,9 @@ export const userBuilder = ({
     },
     withPassword(_password: string) {
       return userBuilder({ ...props, password: _password });
+    },
+    withReferral(_referral: string) {
+      return userBuilder({ ...props, referral: _referral });
     },
     build() {
       return User.reconstitute(props);

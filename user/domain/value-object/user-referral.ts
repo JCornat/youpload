@@ -1,5 +1,5 @@
-import {ValueObject} from "../../../shared/lib/value-object.ts";
-import {ArgumentInvalidException} from "../../../shared/lib/exceptions.ts";
+import { ValueObject } from '../../../shared/lib/value-object.ts';
+import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
 
 interface UserReferralProps {
   code: string;
@@ -15,7 +15,7 @@ export class UserReferral extends ValueObject<UserReferralProps> {
       throw new ArgumentInvalidException('Invalid referral code: Cannot be null');
     }
 
-    return new UserReferral({code});
+    return new UserReferral({ code });
   }
 
   get value() {

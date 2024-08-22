@@ -26,7 +26,7 @@ describe('UserFileSystemRepository', () => {
   describe('getByEmail', () => {
     it('shall get user if email is known', async () => {
       const user = userBuilder().build();
-      const content = [user.serialize()];
+      const content = [user.toObject()];
       await Deno.writeTextFile(userPath, JSON.stringify(content));
 
       const requestedUser = await userFileSystemRepository.getByEmail(user.email.value);
@@ -35,7 +35,7 @@ describe('UserFileSystemRepository', () => {
 
     it('shall throw an error if user email is not known', async () => {
       const user = userBuilder().build();
-      const content = [user.serialize()];
+      const content = [user.toObject()];
       await Deno.writeTextFile(userPath, JSON.stringify(content));
 
       let thrownError: Error | null = null;
@@ -56,7 +56,7 @@ describe('UserFileSystemRepository', () => {
       await userFileSystemRepository.save(user);
 
       const text = await Deno.readTextFile(userPath);
-      const expectedContent = [user.serialize()];
+      const expectedContent = [user.toObject()];
       assertEquals(JSON.parse(text), expectedContent);
     });
   });

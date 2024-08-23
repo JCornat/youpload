@@ -15,7 +15,8 @@ import * as $logout from './routes/logout.ts';
 import * as $sign_in from './routes/sign-in.tsx';
 import * as $sign_up from './routes/sign-up.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
-import * as $form from './islands/form.tsx';
+import * as $account_password_form from './islands/account-password-form.tsx';
+import * as $file_upload_form from './islands/file-upload-form.tsx';
 import type { Manifest } from '$fresh/server.ts';
 
 const manifest = {
@@ -35,7 +36,8 @@ const manifest = {
     './routes/success-upload/[id].tsx': $success_upload_id_,
   },
   islands: {
-    './islands/form.tsx': $form,
+    './islands/account-password-form.tsx': $account_password_form,
+    './islands/file-upload-form.tsx': $file_upload_form,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

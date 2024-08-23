@@ -1,4 +1,5 @@
 import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
+import AccountPasswordForm from '../islands/account-password-form.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -36,7 +37,7 @@ export default function Account({ data }: PageProps<Data>) {
           <fieldset>
             <legend>Information :</legend>
 
-            <div className='my-4'>
+            <div class='my-4'>
               <label htmlFor='name'>Name</label>
               <br />
               <input type='text' name='name' />
@@ -48,13 +49,13 @@ export default function Account({ data }: PageProps<Data>) {
           <fieldset>
             <legend>Information :</legend>
 
-            <div className='my-4'>
+            <div class='my-4'>
               <label htmlFor='email'>Email</label>
               <br />
               <input type='email' name='email' />
             </div>
 
-            <div className='my-4'>
+            <div class='my-4'>
               <label htmlFor='current-password'>Current password</label>
               <br />
               <input type='password' name='current-password' />
@@ -67,25 +68,7 @@ export default function Account({ data }: PageProps<Data>) {
           <fieldset>
             <legend>Update password:</legend>
 
-            <div className='my-4'>
-              <label htmlFor='current-password'>Current password</label>
-              <br />
-              <input type='password' name='current-password' />
-            </div>
-
-            <div className='my-4'>
-              <label htmlFor='new-password'>New password</label>
-              <br />
-              <input type='password' name='new-password' />
-            </div>
-
-            <div className='my-4'>
-              <label htmlFor='new-password-repeat'>Repeat new password</label>
-              <br />
-              <input type='password' name='new-password-repeat' />
-            </div>
-
-            <button>Update</button>
+            <AccountPasswordForm />
           </fieldset>
 
           <h1 class='text-4xl font-bold'>Danger zone</h1>

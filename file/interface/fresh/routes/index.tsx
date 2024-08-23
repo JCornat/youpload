@@ -4,8 +4,8 @@ import { StubDateProvider } from '../../../../shared/domain/provider/date.provid
 import { UploadFileCommand, UploadFileUseCase } from '../../../application/use-case/command/upload-file.use-case.ts';
 import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
 import { FileStatFileSystemProvider } from '../../../infrastructure/provider/file-stat.fs.provider.ts';
-import Header from "../components/header.tsx";
-import Form from "../islands/form.tsx";
+import Header from '../components/header.tsx';
+import FileUploadForm from '../islands/file-upload-form.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -65,7 +65,7 @@ export default function Home({ data }: PageProps<Data>) {
   return (
     <>
       <div class='px-4 py-8 mx-auto bg-[#86efac]'>
-        <Header isLoggedIn={data.isLoggedIn} userName={data.userName}/>
+        <Header isLoggedIn={data.isLoggedIn} userName={data.userName} />
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img
@@ -77,7 +77,7 @@ export default function Home({ data }: PageProps<Data>) {
           />
           <h1 class='text-4xl font-bold'>Welcome to Fresh</h1>
 
-          <Form/>
+          <FileUploadForm />
         </div>
       </div>
     </>

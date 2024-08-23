@@ -39,11 +39,11 @@ export default function FileDetail(props: PageProps<{ url: string; name: string;
   const { url, name, size, createdAt, expireAt } = props.data;
 
   return (
-    <div className='px-4 py-8 mx-auto bg-[#86efac]'>
-      <div className='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
+    <div class='px-4 py-8 mx-auto bg-[#86efac]'>
+      <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
         <a href='/'>
           <img
-            className='my-6'
+            class='my-6'
             src='/logo.svg'
             width='128'
             height='128'
@@ -51,7 +51,7 @@ export default function FileDetail(props: PageProps<{ url: string; name: string;
           />
         </a>
 
-        <h1 className='text-4xl font-bold'>
+        <h1 class='text-4xl font-bold'>
           {name}
         </h1>
 

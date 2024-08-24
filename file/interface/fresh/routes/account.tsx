@@ -1,5 +1,9 @@
 import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
-import AccountPasswordForm from '../islands/account-password-form.tsx';
+import AccountPasswordForm from '../islands/account/password-form.tsx';
+import AccountEmailForm from '../islands/account/email-form.tsx';
+import AccountUsernameForm from '../islands/account/username-form.tsx';
+import AccountDeleteForm from '../islands/account/delete-form.tsx';
+import AccountReferralForm from '../islands/account/referral-form.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -24,55 +28,76 @@ export const handler: Handlers = {
 export default function Account({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-4 py-8 mx-auto bg-[#86efac]'>
+      <div class='px-8 py-8 mx-auto flex items-center bg-slate-100'>
+        <img
+          src='/logo.svg'
+          width='48'
+          height='48'
+          alt='the Fresh logo: a sliced lemon dripping with juice'
+        />
+
+        <h1 class={'ml-4 text-xl font-black'}>
+          <span class={'text-yellow-400'}>You</span>
+          <span class={'text-slate-500'}>pload</span>
+        </h1>
+      </div>
+
+      <div class='px-4 py-8 mx-auto bg-slate-100'>
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
-          <h1 class='text-4xl font-bold'>Referral</h1>
-          <fieldset>
-            <legend>Information :</legend>
-            <input type='password' value='******************************' />
-            <button>Reveal</button>
-          </fieldset>
-
-          <h1 class='text-4xl font-bold'>Account information</h1>
-          <fieldset>
-            <legend>Information :</legend>
-
-            <div class='my-4'>
-              <label htmlFor='name'>Name</label>
-              <br />
-              <input type='text' name='name' />
+          <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
+            <div class={'pr-8'}>
+              <h1 class='text-2xl font-bold'>Referral</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <button>Update</button>
-          </fieldset>
+            <div class={'p-8 rounded-md bg-slate-200'}>
+              <AccountReferralForm />
+            </div>
+          </div>
 
-          <fieldset>
-            <legend>Information :</legend>
-
-            <div class='my-4'>
-              <label htmlFor='email'>Email</label>
-              <br />
-              <input type='email' name='email' />
+          <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
+            <div class={'pr-8'}>
+              <h1 class='text-2xl font-bold'>Username</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class='my-4'>
-              <label htmlFor='current-password'>Current password</label>
-              <br />
-              <input type='password' name='current-password' />
+            <div class={'p-8 rounded-md bg-slate-200'}>
+              <AccountUsernameForm />
+            </div>
+          </div>
+
+          <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
+            <div class={'pr-8'}>
+              <h1 class='text-2xl font-bold'>Email</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <button>Update</button>
-          </fieldset>
+            <div class={'p-8 rounded-md bg-slate-200'}>
+              <AccountEmailForm />
+            </div>
+          </div>
 
-          <h1 class='text-4xl font-bold'>Account security</h1>
-          <fieldset>
-            <legend>Update password:</legend>
+          <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
+            <div class={'pr-8'}>
+              <h1 class='text-2xl font-bold'>Update password</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+            </div>
 
-            <AccountPasswordForm />
-          </fieldset>
+            <div class={'p-8 rounded-md bg-slate-200'}>
+              <AccountPasswordForm />
+            </div>
+          </div>
 
-          <h1 class='text-4xl font-bold'>Danger zone</h1>
-          <button>Delete account</button>
+          <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
+            <div class={'pr-8'}>
+              <h1 class='text-2xl font-bold'>Danger zone</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+            </div>
+
+            <div class={'p-8 rounded-md bg-red-200'}>
+              <AccountDeleteForm />
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,7 +1,8 @@
-import Button from '../components/button.tsx';
+import Button from '../../components/button.tsx';
 
 import { effect, signal } from '@preact/signals';
 import { JSX } from 'preact';
+import Input from '../../components/input.tsx';
 
 const currentPassword = signal<string>('');
 const newPassword = signal<string>('');
@@ -40,7 +41,7 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     if (res.ok) {
       console.log('success', res);
     } else {
-      console.error('error', res);
+      throw new Error(res.statusText);
     }
   } catch (error) {
     formError.value = error.message;
@@ -53,44 +54,50 @@ export default function AccountPasswordForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div class='my-4'>
-          <label htmlFor='current-password'>Current password</label>
-          <br />
-          <input
+        <label>
+          <span class={'flex mb-1 font-bold'}>
+            Current password <span class='text-red-500 ml-0.5'>*</span>
+          </span>
+
+          <Input
             type='password'
-            name='current-password'
+            required
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
-        </div>
+        </label>
 
-        <div class='my-4'>
-          <label htmlFor='new-password'>New password</label>
-          <br />
-          <input
+        <label>
+          <span class={'flex mb-1 font-bold'}>
+            New password <span class='text-red-500 ml-0.5'>*</span>
+          </span>
+
+          <Input
             type='password'
-            name='new-password'
+            required
             onInput={(e) => newPassword.value = e.currentTarget.value}
           />
-        </div>
+        </label>
 
-        <div class='my-4'>
-          <label htmlFor='new-password-repeat'>Repeat new password</label>
-          <br />
-          <input
+        <label>
+          <span class={'flex mb-1 font-bold'}>
+            Repeat new password <span class='text-red-500 ml-0.5'>*</span>
+          </span>
+
+          <Input
             type='password'
-            name='new-password-repeat'
+            required
             onInput={(e) => newPasswordRepeat.value = e.currentTarget.value}
           />
-        </div>
+        </label>
 
-        {formError &&
+        {formError.value &&
           (
             <div class='my-4'>
-              <p style='color: red'>{formError}</p>
+              <p class={'text-red-500'}>{formError}</p>
             </div>
           )}
 
-        <Button type='submit'>Update</Button>
+        <Button type='submit' variant='primary'>Update</Button>
       </form>
     </>
   );

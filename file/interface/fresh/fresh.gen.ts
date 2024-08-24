@@ -15,7 +15,11 @@ import * as $logout from './routes/logout.ts';
 import * as $sign_in from './routes/sign-in.tsx';
 import * as $sign_up from './routes/sign-up.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
-import * as $account_password_form from './islands/account-password-form.tsx';
+import * as $account_delete_form from './islands/account/delete-form.tsx';
+import * as $account_email_form from './islands/account/email-form.tsx';
+import * as $account_password_form from './islands/account/password-form.tsx';
+import * as $account_referral_form from './islands/account/referral-form.tsx';
+import * as $account_username_form from './islands/account/username-form.tsx';
 import * as $file_upload_form from './islands/file-upload-form.tsx';
 import type { Manifest } from '$fresh/server.ts';
 
@@ -36,7 +40,11 @@ const manifest = {
     './routes/success-upload/[id].tsx': $success_upload_id_,
   },
   islands: {
-    './islands/account-password-form.tsx': $account_password_form,
+    './islands/account/delete-form.tsx': $account_delete_form,
+    './islands/account/email-form.tsx': $account_email_form,
+    './islands/account/password-form.tsx': $account_password_form,
+    './islands/account/referral-form.tsx': $account_referral_form,
+    './islands/account/username-form.tsx': $account_username_form,
     './islands/file-upload-form.tsx': $file_upload_form,
   },
   baseUrl: import.meta.url,

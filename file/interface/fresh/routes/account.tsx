@@ -50,8 +50,12 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200'}>
-              <AccountReferralForm />
+            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+              <img src={'icons/local-activity.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
+
+              <div class={'z-10 relative'}>
+                <AccountReferralForm />
+              </div>
             </div>
           </div>
 
@@ -61,8 +65,12 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200'}>
-              <AccountUsernameForm />
+            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+              <img src={'icons/user.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
+
+              <div class={'z-10 relative'}>
+                <AccountUsernameForm />
+              </div>
             </div>
           </div>
 
@@ -72,8 +80,12 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200'}>
-              <AccountEmailForm />
+            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+              <img src={'icons/mail.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
+
+              <div class={'z-10 relative'}>
+                <AccountEmailForm />
+              </div>
             </div>
           </div>
 
@@ -83,8 +95,12 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200'}>
-              <AccountPasswordForm />
+            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+              <img src={'icons/key.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
+
+              <div class={'z-10 relative'}>
+                <AccountPasswordForm />
+              </div>
             </div>
           </div>
 
@@ -94,8 +110,12 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-red-200'}>
-              <AccountDeleteForm />
+            <div class={'p-8 rounded-md bg-red-200 relative overflow-hidden'}>
+              <img src={'icons/warning.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
+
+              <div class={'z-10 relative'}>
+                <AccountDeleteForm />
+              </div>
             </div>
           </div>
         </div>

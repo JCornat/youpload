@@ -2,7 +2,7 @@ import { Handlers, PageProps } from '$fresh/server.ts';
 import { getCookies } from '@std/http/cookie';
 import { PasswordHashingBcryptRepository } from '../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { UserFileSystemRepository } from '../../../../user/infrastructure/repository/user.fs.repository.ts';
-import { SignUpCommand, SignUpUseCase } from '../../../../user/domain/application/service/sign-up.use-case.ts';
+import { SignUpCommand, SignUpUseCase } from '../../../../user/application/service/sign-up.use-case.ts';
 
 export const handler: Handlers = {
   async GET(req, ctx) {

@@ -33,10 +33,10 @@ type ObjectifiedProps = {
 };
 
 export class User extends AggregateRoot {
-  private readonly _name: UserName;
-  private readonly _email: UserEmail;
-  private readonly _password: UserPassword;
-  private readonly _referral: UserReferral;
+  private _name: UserName;
+  private _email: UserEmail;
+  private _password: UserPassword;
+  private _referral: UserReferral;
 
   private constructor(payload: ConstructorPayload) {
     super(payload.id);
@@ -80,6 +80,18 @@ export class User extends AggregateRoot {
       password: this.password.value,
       referral: this.referral.value,
     };
+  }
+
+  updateEmail(newEmail: string) {
+    this._email = UserEmail.create(newEmail);
+  }
+
+  updateName(newName: string) {
+    this._name = UserName.create(newName);
+  }
+
+  updatePassword(newPassword: string) {
+    this._password = UserPassword.create(newPassword);
   }
 
   static reconstitute(payload: ReconstitutePayload) {

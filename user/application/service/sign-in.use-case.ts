@@ -1,10 +1,10 @@
-import { SessionRepository } from '../../repository/session.repository.ts';
-import { UserRepository } from '../../repository/user.repository.ts';
-import { PasswordHashingProvider } from '../../provider/password-hashing.provider.ts';
-import { DateProvider } from '../../../../shared/domain/provider/date.provider.ts';
-import { Session } from '../../model/session.ts';
-import { AuthenticationFailedException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
-import { User } from '../../model/user.ts';
+import { SessionRepository } from '../../domain/repository/session.repository.ts';
+import { UserRepository } from '../../domain/repository/user.repository.ts';
+import { PasswordHashingProvider } from '../../domain/provider/password-hashing.provider.ts';
+import { DateProvider } from '../../../shared/domain/provider/date.provider.ts';
+import { Session } from '../../domain/model/session.ts';
+import { AuthenticationFailedException, NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { User } from '../../domain/model/user.ts';
 
 export interface SignInCommand {
   email: string;

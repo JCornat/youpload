@@ -59,5 +59,19 @@ describe('UserFileSystemRepository', () => {
       const expectedContent = [user.toObject()];
       assertEquals(JSON.parse(text), expectedContent);
     });
+
+    it('shall replace an existing user if props are valid', async () => {
+      const user = userBuilder().build();
+      const user2 = userBuilder().build();
+      const content = [user.toObject(), user2.toObject()];
+      await Deno.writeTextFile(userPath, JSON.stringify(content));
+
+      user.updateName('YOLO')
+      await userFileSystemRepository.save(user);
+
+      const text = await Deno.readTextFile(userPath);
+      const expectedContent = [user.toObject(), user2.toObject()];
+      assertEquals(JSON.parse(text), expectedContent);
+    });
   });
 });

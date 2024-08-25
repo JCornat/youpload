@@ -30,7 +30,12 @@ export class UserFileSystemRepository implements UserRepository {
 
   async save(user: User): Promise<void> {
     const userList = await this.getContent();
-    userList.push(user);
+    const index = userList.findIndex((item) => item.id === user.id);
+    if (index === -1) {
+      userList.push(user);
+    } else {
+      userList[index] = user;
+    }
 
     await this.saveFile(userList);
   }

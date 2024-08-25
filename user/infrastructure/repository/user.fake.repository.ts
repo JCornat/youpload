@@ -6,27 +6,30 @@ import { User } from '../../domain/model/user.ts';
 export class UserFakeRepository implements UserRepository {
   store: Map<EntityId, User> = new Map();
 
-  save(user: User): Promise<void> {
-    this.store.set(user.id, user);
-    return Promise.resolve();
+  async get(id: EntityId): Promise<User> {
+    const fileMetadata = this.store.get(id);
+    if (!fileMetadata) {
+      throw new NotFoundException();
+    }
+
+    return fileMetadata;
   }
 
-  getByEmail(email: string): Promise<User> {
+  async getByEmail(email: string): Promise<User> {
     const users = [...this.store.values()];
     const filteredUser = users.find((user) => user.email.value === email);
     if (!filteredUser) {
       throw new NotFoundException();
     }
 
-    return Promise.resolve(filteredUser);
+    return filteredUser;
   }
 
-  get(id: EntityId): Promise<User> {
-    const fileMetadata = this.store.get(id);
-    if (!fileMetadata) {
-      throw new NotFoundException();
-    }
+  async save(user: User): Promise<void> {
+    this.store.set(user.id, user);
+  }
 
-    return Promise.resolve(fileMetadata);
+  async remove(id: EntityId): Promise<void> {
+    this.store.delete(id);
   }
 }

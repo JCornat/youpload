@@ -1,6 +1,7 @@
 import { User } from '../../domain/model/user.ts';
 import { UserRepository } from '../../domain/repository/user.repository.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
+import {EntityId} from "../../../shared/domain/model/entity-id.ts";
 
 export class UserFileSystemRepository implements UserRepository {
   constructor(
@@ -31,6 +32,22 @@ export class UserFileSystemRepository implements UserRepository {
     const userList = await this.getContent();
     userList.push(user);
 
+    await this.saveFile(userList);
+  }
+
+  async remove(id: EntityId): Promise<void> {
+    const userList = await this.getContent();
+    const index = userList.findIndex((item) => item.id === id);
+    if (index === -1) {
+      throw new NotFoundException();
+    }
+
+    userList.splice(index, 1);
+
+    await this.saveFile(userList);
+  }
+
+  private async saveFile(userList: User[]): Promise<void> {
     const serializedFiles = userList.map((temp) => temp.toObject());
     await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
   }

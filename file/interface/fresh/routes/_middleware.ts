@@ -14,6 +14,7 @@ export async function handler(req: Request, ctx: FreshContext) {
     const user = await userRepository.get(userId);
     ctx.state.isLoggedIn = true;
     ctx.state.userName = user.name.value;
+    ctx.state.userId = user.id;
   }
 
   const resp = await ctx.next();

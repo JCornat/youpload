@@ -6,6 +6,7 @@ import * as $_404 from './routes/_404.tsx';
 import * as $_app from './routes/_app.tsx';
 import * as $_middleware from './routes/_middleware.ts';
 import * as $account from './routes/account.tsx';
+import * as $api_referral from './routes/api/referral.ts';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
@@ -29,6 +30,7 @@ const manifest = {
     './routes/_app.tsx': $_app,
     './routes/_middleware.ts': $_middleware,
     './routes/account.tsx': $account,
+    './routes/api/referral.ts': $api_referral,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/file/[id].tsx': $file_id_,

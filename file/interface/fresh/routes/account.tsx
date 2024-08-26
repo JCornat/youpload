@@ -1,7 +1,7 @@
 import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
 import AccountPasswordForm from '../islands/account/password-form.tsx';
 import AccountEmailForm from '../islands/account/email-form.tsx';
-import AccountUsernameForm from '../islands/account/username-form.tsx';
+import AccountNameForm from '../islands/account/name-form.tsx';
 import AccountDeleteForm from '../islands/account/delete-form.tsx';
 import AccountReferralForm from '../islands/account/referral-form.tsx';
 
@@ -69,7 +69,7 @@ export default function Account({ data }: PageProps<Data>) {
               <img src={'icons/user.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
-                <AccountUsernameForm />
+                <AccountNameForm />
               </div>
             </div>
           </div>

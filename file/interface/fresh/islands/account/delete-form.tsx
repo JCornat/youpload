@@ -31,7 +31,8 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       }),
     });
 
-    const body = await res.json();
+    const isJSON = res.headers.get('content-type')?.includes('application/json');
+    const body = isJSON && await res.json();
     if (!res.ok) {
       const error = body.error ?? res.statusText;
       throw new Error(error);

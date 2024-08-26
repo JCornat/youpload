@@ -4,6 +4,7 @@ import { UserFileSystemRepository } from '../../../../../user/infrastructure/rep
 import { UpdateEmailUseCase } from '../../../../../user/application/use-case/command/update-email.use-case.ts';
 import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
+import { UpdateNameUseCase } from '../../../../../user/application/use-case/command/update-name.use-case.ts';
 
 export const handler: Handlers = {
   async PUT(req: Request, ctx: FreshContext) {
@@ -12,14 +13,12 @@ export const handler: Handlers = {
     }
 
     const userRepository = new UserFileSystemRepository();
-    const passwordHashingRepository = new PasswordHashingBcryptRepository();
-    const updateEmailUseCase = new UpdateEmailUseCase(userRepository, passwordHashingRepository);
+    const updateEmailUseCase = new UpdateNameUseCase(userRepository);
     const userId = ctx.state.userId as string;
     const form = await req.json();
     const command = {
       userId,
-      newEmail: form.newEmail as string,
-      currentPassword: form.currentPassword as string,
+      newName: form.newName as string,
     };
 
     const headers = new Headers();
@@ -30,10 +29,6 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ value: 'OK' }), { headers });
     } catch (error) {
       if (error instanceof ArgumentInvalidException) {
-        return new Response(JSON.stringify({ error: error.message }), { status: 400, headers });
-      }
-
-      if (error instanceof NotMatchingPasswordException) {
         return new Response(JSON.stringify({ error: error.message }), { status: 400, headers });
       }
 

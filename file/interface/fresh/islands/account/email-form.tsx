@@ -34,7 +34,8 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       }),
     });
 
-    const body = await res.json();
+    const isJSON = res.headers.get('content-type')?.includes('application/json');
+    const body = isJSON && await res.json();
     if (!res.ok) {
       const error = body.error ?? res.statusText;
       throw new Error(error);
@@ -91,11 +92,7 @@ export default function AccountEmailForm() {
           </div>
         )}
 
-        {emailUpdated.value ? (
-          <Button type='submit' variant='success' disabled={true}>Success</Button>
-        ) : (
-          <Button type='submit' variant='primary'>Change Email</Button>
-        )}
+        {emailUpdated.value ? <Button type='submit' variant='success' disabled={true}>Success</Button> : <Button type='submit' variant='primary'>Change Email</Button>}
       </form>
     </>
   );

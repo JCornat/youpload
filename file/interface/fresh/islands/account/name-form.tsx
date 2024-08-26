@@ -4,7 +4,7 @@ import { effect, signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
 
-const newUsername = signal<string>('');
+const newName = signal<string>('');
 const formLoading = signal<boolean>(false);
 const formError = signal<string>('');
 const usernameUpdated = signal<boolean>(false);
@@ -21,25 +21,27 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     formLoading.value = true;
     formError.value = '';
 
-    const res = await fetch('/api/username', {
+    const res = await fetch('/api/name', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        newUsername: newUsername.value,
+        newName: newName.value,
       }),
     });
 
-    const body = await res.json();
+    const isJSON = res.headers.get('content-type')?.includes('application/json');
+    console.log('isJSON', res.headers.get('content-type'));
+    const body = isJSON && await res.json();
     if (!res.ok) {
       const error = body.error ?? res.statusText;
       throw new Error(error);
     }
 
     usernameUpdated.value = true;
-    newUsername.value = '';
+    newName.value = '';
     setTimeout(() => {
       usernameUpdated.value = false;
     }, 5000);
@@ -50,7 +52,7 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   }
 };
 
-export default function AccountUsernameForm() {
+export default function AccountNameForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -62,9 +64,9 @@ export default function AccountUsernameForm() {
           <Input
             type='text'
             required
-            value={newUsername}
+            value={newName}
             autocomplete='off'
-            onInput={(e) => newUsername.value = e.currentTarget.value}
+            onInput={(e) => newName.value = e.currentTarget.value}
           />
         </label>
 
@@ -74,11 +76,7 @@ export default function AccountUsernameForm() {
           </div>
         )}
 
-        {usernameUpdated.value ? (
-          <Button type='submit' variant='success' disabled={true}>Success</Button>
-        ) : (
-          <Button type='submit' variant='primary'>Change Username</Button>
-        )}
+        {usernameUpdated.value ? <Button type='submit' variant='success' disabled={true}>Success</Button> : <Button type='submit' variant='primary'>Change Username</Button>}
       </form>
     </>
   );

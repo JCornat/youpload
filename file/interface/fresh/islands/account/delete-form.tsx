@@ -1,6 +1,6 @@
 import Button from '../../components/button.tsx';
 
-import { effect, signal } from '@preact/signals';
+import { signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
 
@@ -31,10 +31,10 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       }),
     });
 
-    if (res.ok) {
-      console.log('success', res);
-    } else {
-      throw new Error(res.statusText);
+    const body = await res.json();
+    if (!res.ok) {
+      const error = body.error ?? res.statusText;
+      throw new Error(error);
     }
   } catch (error) {
     formError.value = error.message;
@@ -55,16 +55,16 @@ export default function AccountDeleteForm() {
           <Input
             type='password'
             required
+            autocomplete='off'
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
         </label>
 
-        {formError.value &&
-          (
-            <div class='my-4'>
-              <p class={'text-red-500'}>{formError}</p>
-            </div>
-          )}
+        {formError.value && (
+          <div class='my-4'>
+            <p class={'text-red-500'}>{formError}</p>
+          </div>
+        )}
 
         <Button type='submit' variant='danger'>Delete Account</Button>
       </form>

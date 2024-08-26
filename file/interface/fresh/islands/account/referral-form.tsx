@@ -1,5 +1,4 @@
 import Button from '../../components/button.tsx';
-
 import { signal, computed } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
@@ -25,16 +24,17 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     const res = await fetch('/api/referral', {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     });
 
+    const body = await res.json();
     if (!res.ok) {
-      throw new Error(res.statusText);
+      const error = body.error ?? res.statusText;
+      throw new Error(error);
     }
 
-    const data = await res.json();
-    referral.value = data.value;
+    referral.value = body.value;
   } catch (error) {
     formError.value = error.message;
   } finally {
@@ -51,8 +51,10 @@ export default function AccountReferralForm() {
             Referral code
           </span>
 
-          <Input type='text'
+          <Input
+            type='text'
             value={referral}
+            autocomplete='off'
             disabled={true}
           />
         </label>

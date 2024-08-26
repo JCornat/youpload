@@ -1,6 +1,5 @@
 import Button from '../../components/button.tsx';
-
-import { effect, signal } from '@preact/signals';
+import { signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
 
@@ -9,6 +8,7 @@ const newPassword = signal<string>('');
 const newPasswordRepeat = signal<string>('');
 const formLoading = signal<boolean>(false);
 const formError = signal<string>('');
+const passwordUpdated = signal<boolean>(false);
 
 const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
@@ -38,11 +38,19 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       }),
     });
 
-    if (res.ok) {
-      console.log('success', res);
-    } else {
-      throw new Error(res.statusText);
+    const body = await res.json();
+    if (!res.ok) {
+      const error = body.error ?? res.statusText;
+      throw new Error(error);
     }
+
+    passwordUpdated.value = true;
+    currentPassword.value = '';
+    newPassword.value = '';
+    newPasswordRepeat.value = '';
+    setTimeout(() => {
+      passwordUpdated.value = false;
+    }, 5000);
   } catch (error) {
     formError.value = error.message;
   } finally {
@@ -62,6 +70,8 @@ export default function AccountPasswordForm() {
           <Input
             type='password'
             required
+            value={currentPassword}
+            autocomplete='off'
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
         </label>
@@ -74,6 +84,8 @@ export default function AccountPasswordForm() {
           <Input
             type='password'
             required
+            value={newPassword}
+            autocomplete='off'
             onInput={(e) => newPassword.value = e.currentTarget.value}
           />
         </label>
@@ -86,18 +98,23 @@ export default function AccountPasswordForm() {
           <Input
             type='password'
             required
+            value={newPasswordRepeat}
+            autocomplete='off'
             onInput={(e) => newPasswordRepeat.value = e.currentTarget.value}
           />
         </label>
 
-        {formError.value &&
-          (
-            <div class='my-4'>
-              <p class={'text-red-500'}>{formError}</p>
-            </div>
-          )}
+        {formError.value && (
+          <div class='my-4'>
+            <p class={'text-red-500'}>{formError}</p>
+          </div>
+        )}
 
-        <Button type='submit' variant='primary'>Update</Button>
+        {passwordUpdated.value ? (
+          <Button type='submit' variant='success' disabled={true}>Success</Button>
+        ) : (
+          <Button type='submit' variant='primary'>Change Password</Button>
+        )}
       </form>
     </>
   );

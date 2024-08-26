@@ -7,6 +7,7 @@ import Input from '../../components/input.tsx';
 const newUsername = signal<string>('');
 const formLoading = signal<boolean>(false);
 const formError = signal<string>('');
+const usernameUpdated = signal<boolean>(false);
 
 const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
@@ -31,11 +32,17 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       }),
     });
 
-    if (res.ok) {
-      console.log('success', res);
-    } else {
-      throw new Error(res.statusText);
+    const body = await res.json();
+    if (!res.ok) {
+      const error = body.error ?? res.statusText;
+      throw new Error(error);
     }
+
+    usernameUpdated.value = true;
+    newUsername.value = '';
+    setTimeout(() => {
+      usernameUpdated.value = false;
+    }, 5000);
   } catch (error) {
     formError.value = error.message;
   } finally {
@@ -55,18 +62,23 @@ export default function AccountUsernameForm() {
           <Input
             type='text'
             required
+            value={newUsername}
+            autocomplete='off'
             onInput={(e) => newUsername.value = e.currentTarget.value}
           />
         </label>
 
-        {formError.value &&
-          (
-            <div class='my-4'>
-              <p class={'text-red-500'}>{formError}</p>
-            </div>
-          )}
+        {formError.value && (
+          <div class='my-4'>
+            <p class={'text-red-500'}>{formError}</p>
+          </div>
+        )}
 
-        <Button type='submit' variant='primary'>Update</Button>
+        {usernameUpdated.value ? (
+          <Button type='submit' variant='success' disabled={true}>Success</Button>
+        ) : (
+          <Button type='submit' variant='primary'>Change Username</Button>
+        )}
       </form>
     </>
   );

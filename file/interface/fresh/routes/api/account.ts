@@ -4,7 +4,7 @@ import { UserFileSystemRepository } from '../../../../../user/infrastructure/rep
 import { UpdateEmailUseCase } from '../../../../../user/application/use-case/command/update-email.use-case.ts';
 import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
-import {DeleteAccountUseCase} from "../../../../../user/application/use-case/command/delete-account.use-case.ts";
+import { DeleteAccountUseCase } from '../../../../../user/application/use-case/command/delete-account.use-case.ts';
 
 export const handler: Handlers = {
   async DELETE(req: Request, ctx: FreshContext) {
@@ -25,7 +25,6 @@ export const handler: Handlers = {
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
 
-    console.log('omg', command)
     try {
       await deleteAccountUseCase.handle(command);
       return new Response(JSON.stringify({ value: 'OK' }), { headers });

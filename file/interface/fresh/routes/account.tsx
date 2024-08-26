@@ -4,6 +4,7 @@ import AccountEmailForm from '../islands/account/email-form.tsx';
 import AccountNameForm from '../islands/account/name-form.tsx';
 import AccountDeleteForm from '../islands/account/delete-form.tsx';
 import AccountReferralForm from '../islands/account/referral-form.tsx';
+import Header from '../components/header.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -28,21 +29,14 @@ export const handler: Handlers = {
 export default function Account({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-8 py-8 mx-auto flex items-center bg-slate-100'>
-        <img
-          src='/logo.svg'
-          width='48'
-          height='48'
-          alt='the Fresh logo: a sliced lemon dripping with juice'
-        />
+      <div class='px-4 py-4 mx-auto bg-slate-100'>
+        <Header isLoggedIn={data.isLoggedIn} />
 
-        <h1 class={'ml-4 text-xl font-black'}>
-          <span class={'text-yellow-400'}>You</span>
-          <span class={'text-slate-500'}>pload</span>
-        </h1>
-      </div>
+        <div class='max-w-screen-md mx-auto mb-8'>
+          <h1 class='text-3xl font-bold'>Account</h1>
+          <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+        </div>
 
-      <div class='px-4 py-8 mx-auto bg-slate-100'>
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
             <div class={'pr-8'}>

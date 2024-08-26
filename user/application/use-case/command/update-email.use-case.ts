@@ -31,7 +31,7 @@ export class UpdateEmailUseCase {
 
     const isPasswordValid = await this.passwordHashingProvider.compare(updateEmailCommand.currentPassword, user.password.value);
     if (!isPasswordValid) {
-      throw new NotMatchingPasswordException();
+      throw new NotMatchingPasswordException('Passwords do not match');
     }
 
     user.updateEmail(updateEmailCommand.newEmail);

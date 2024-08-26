@@ -1,7 +1,7 @@
 import { User } from '../../domain/model/user.ts';
 import { UserRepository } from '../../domain/repository/user.repository.ts';
 import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
-import {EntityId} from "../../../shared/domain/model/entity-id.ts";
+import { EntityId } from '../../../shared/domain/model/entity-id.ts';
 
 export class UserFileSystemRepository implements UserRepository {
   constructor(

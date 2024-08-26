@@ -11,10 +11,10 @@ import { GetReferralQuery, GetReferralUseCase } from '../application/use-case/qu
 import { UserReferral } from '../domain/value-object/user-referral.ts';
 import re from 'https://esm.sh/v135/preact-render-to-string@6.3.1/X-ZS8q/denonext/preact-render-to-string.mjs';
 import { UpdateEmailCommand, UpdateEmailUseCase } from '../application/use-case/command/update-email.use-case.ts';
-import {UpdatePasswordCommand, UpdatePasswordUseCase} from '../application/use-case/command/update-password.use-case.ts';
+import { UpdatePasswordCommand, UpdatePasswordUseCase } from '../application/use-case/command/update-password.use-case.ts';
 import { UpdateNameCommand, UpdateNameUseCase } from '../application/use-case/command/update-name.use-case.ts';
-import {DeleteAccountCommand, DeleteAccountUseCase} from "../application/use-case/command/delete-account.use-case.ts";
-import {NotFoundException} from "../../shared/lib/exceptions.ts";
+import { DeleteAccountCommand, DeleteAccountUseCase } from '../application/use-case/command/delete-account.use-case.ts';
+import { NotFoundException } from '../../shared/lib/exceptions.ts';
 
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();
@@ -115,7 +115,8 @@ export const createUserFixture = () => {
     },
     thenUserPasswordShouldBe: async (expectedPassword: string) => {
       const user = await userRepository.get(userId);
-      assertEquals(user.password.value, expectedPassword);
+      const compare = await passwordHashingProvider.compare(expectedPassword, user.password.value);
+      assertEquals(compare, true);
     },
     thenUserNameShouldBe: async (expectedName: string) => {
       const user = await userRepository.get(userId);

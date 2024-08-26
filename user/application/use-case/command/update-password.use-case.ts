@@ -31,10 +31,12 @@ export class UpdatePasswordUseCase {
 
     const isPasswordValid = await this.passwordHashingProvider.compare(updatePasswordCommand.currentPassword, user.password.value);
     if (!isPasswordValid) {
-      throw new NotMatchingPasswordException();
+      console.log('not valid', updatePasswordCommand.currentPassword);
+      throw new NotMatchingPasswordException('Current password do not match');
     }
 
-    user.updatePassword(updatePasswordCommand.newPassword);
+    const newPasswordHash = await this.passwordHashingProvider.hash(updatePasswordCommand.newPassword);
+    user.updatePassword(newPasswordHash);
     await this.userRepository.save(user);
   }
 }

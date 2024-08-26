@@ -1,9 +1,9 @@
 import Button from '../../components/button.tsx';
-import { signal, computed } from '@preact/signals';
+import { computed, signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
 
-const fakeReferralValue = '**********************'
+const fakeReferralValue = '**********************';
 const referral = signal<string>(fakeReferralValue);
 const formLoading = signal<boolean>(false);
 const formError = signal<string>('');
@@ -28,7 +28,8 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       },
     });
 
-    const body = await res.json();
+    const isJSON = res.headers.get('content-type')?.includes('application/json');
+    const body = isJSON && await res.json();
     if (!res.ok) {
       const error = body.error ?? res.statusText;
       throw new Error(error);

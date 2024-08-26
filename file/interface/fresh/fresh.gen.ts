@@ -7,6 +7,8 @@ import * as $_app from './routes/_app.tsx';
 import * as $_middleware from './routes/_middleware.ts';
 import * as $account from './routes/account.tsx';
 import * as $api_email from './routes/api/email.ts';
+import * as $api_name from './routes/api/name.ts';
+import * as $api_password from './routes/api/password.ts';
 import * as $api_referral from './routes/api/referral.ts';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
@@ -19,9 +21,9 @@ import * as $sign_up from './routes/sign-up.tsx';
 import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
 import * as $account_delete_form from './islands/account/delete-form.tsx';
 import * as $account_email_form from './islands/account/email-form.tsx';
+import * as $account_name_form from './islands/account/name-form.tsx';
 import * as $account_password_form from './islands/account/password-form.tsx';
 import * as $account_referral_form from './islands/account/referral-form.tsx';
-import * as $account_username_form from './islands/account/username-form.tsx';
 import * as $file_upload_form from './islands/file-upload-form.tsx';
 import type { Manifest } from '$fresh/server.ts';
 
@@ -32,6 +34,8 @@ const manifest = {
     './routes/_middleware.ts': $_middleware,
     './routes/account.tsx': $account,
     './routes/api/email.ts': $api_email,
+    './routes/api/name.ts': $api_name,
+    './routes/api/password.ts': $api_password,
     './routes/api/referral.ts': $api_referral,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
@@ -46,9 +50,9 @@ const manifest = {
   islands: {
     './islands/account/delete-form.tsx': $account_delete_form,
     './islands/account/email-form.tsx': $account_email_form,
+    './islands/account/name-form.tsx': $account_name_form,
     './islands/account/password-form.tsx': $account_password_form,
     './islands/account/referral-form.tsx': $account_referral_form,
-    './islands/account/username-form.tsx': $account_username_form,
     './islands/file-upload-form.tsx': $file_upload_form,
   },
   baseUrl: import.meta.url,

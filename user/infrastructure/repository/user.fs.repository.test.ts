@@ -66,7 +66,7 @@ describe('UserFileSystemRepository', () => {
       const content = [user.toObject(), user2.toObject()];
       await Deno.writeTextFile(userPath, JSON.stringify(content));
 
-      user.updateName('YOLO')
+      user.updateName('YOLO');
       await userFileSystemRepository.save(user);
 
       const text = await Deno.readTextFile(userPath);

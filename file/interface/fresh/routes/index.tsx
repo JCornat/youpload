@@ -9,12 +9,11 @@ import FileUploadForm from '../islands/file-upload-form.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
-  userName?: string;
 }
 
 export const handler: Handlers = {
   async GET(req: Request, ctx: FreshContext) {
-    return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn, userName: ctx.state.userName });
+    return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn });
   },
   async POST(req: Request, ctx: FreshContext) {
     const form = await req.formData();
@@ -64,8 +63,8 @@ export const handler: Handlers = {
 export default function Home({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-4 py-8 mx-auto bg-[#86efac]'>
-        <Header isLoggedIn={data.isLoggedIn} userName={data.userName} />
+      <div class='px-4 py-4 mx-auto bg-slate-100 min-h-screen'>
+        <Header isLoggedIn={data.isLoggedIn} />
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img

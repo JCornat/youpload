@@ -37,6 +37,8 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
       const error = body.error ?? res.statusText;
       throw new Error(error);
     }
+
+    window.location.replace('/logout');
   } catch (error) {
     formError.value = error.message;
   } finally {

@@ -11,10 +11,14 @@ export async function handler(req: Request, ctx: FreshContext) {
     const session = await sessionRepository.get(auth);
     const userId = session.userId;
     const userRepository = new UserFileSystemRepository();
-    const user = await userRepository.get(userId);
-    ctx.state.isLoggedIn = true;
-    ctx.state.userName = user.name.value;
-    ctx.state.userId = user.id;
+    try {
+      const user = await userRepository.get(userId);
+      ctx.state.isLoggedIn = true;
+      ctx.state.userName = user.name.value;
+      ctx.state.userId = user.id;
+    } catch {
+      //
+    }
   }
 
   const resp = await ctx.next();

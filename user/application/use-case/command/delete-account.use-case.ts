@@ -26,7 +26,7 @@ export class DeleteAccountUseCase {
 
     const isPasswordValid = await this.passwordHashingProvider.compare(deleteAccountCommand.currentPassword, user.password.value);
     if (!isPasswordValid) {
-      throw new NotMatchingPasswordException();
+      throw new NotMatchingPasswordException('Current password do not match');
     }
 
     await this.userRepository.remove(deleteAccountCommand.userId);

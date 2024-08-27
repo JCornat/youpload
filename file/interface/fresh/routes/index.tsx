@@ -64,17 +64,22 @@ export default function Home({ data }: PageProps<Data>) {
   return (
     <>
       <div class='px-4 py-4 mx-auto bg-slate-100 min-h-screen'>
-        <Header isLoggedIn={data.isLoggedIn} />
+        <Header isLoggedIn={data.isLoggedIn} hideLogo={true}/>
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img
-            class='my-6'
+            class='my-4'
             src='/logo.svg'
             width='128'
             height='128'
             alt='the Fresh logo: a sliced lemon dripping with juice'
           />
-          <h1 class='text-4xl font-bold'>Welcome to Fresh</h1>
+
+          <h1 class='text-4xl font-bold mb-8 text-center'>
+            Welcome to
+            <span class={'ml-2 text-yellow-400'}>You</span>
+            <span class={'text-slate-500'}>pload</span>
+          </h1>
 
           <FileUploadForm />
         </div>

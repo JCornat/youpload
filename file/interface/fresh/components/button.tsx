@@ -21,9 +21,7 @@ export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement> & { 
   return (
     <button
       {...props}
-      class={`rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-60 disabled:cursor-not-allowed ${color} ${
-        props.class ?? ''
-      }`}
+      class={`relative flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white ${color} ${props.class ?? ''}`}
     />
   );
 }

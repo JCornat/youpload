@@ -13,6 +13,10 @@ export default {
         // Complex site-specific column configuration
         'account': 'minmax(0, 32fr) minmax(0, 68fr)',
       },
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'],
+        serif: ['Roboto Serif', 'serif'],
+      },
     },
   },
 } satisfies Config;

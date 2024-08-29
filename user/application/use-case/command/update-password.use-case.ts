@@ -31,7 +31,7 @@ export class UpdatePasswordUseCase {
 
     const isPasswordValid = await this.passwordHashingProvider.compare(updatePasswordCommand.currentPassword, user.password.value);
     if (!isPasswordValid) {
-      console.log('not valid', updatePasswordCommand.currentPassword);
+      console.error('not valid', updatePasswordCommand.currentPassword);
       throw new NotMatchingPasswordException('Current password do not match');
     }
 

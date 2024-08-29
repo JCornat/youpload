@@ -12,7 +12,7 @@ interface Data {
 }
 
 export const handler: Handlers = {
-  async GET(req: Request, ctx: FreshContext) {
+  async GET(_req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       const headers = new Headers();
       headers.set('location', '/');
@@ -29,7 +29,7 @@ export const handler: Handlers = {
 export default function Account({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-4 py-4 mx-auto bg-slate-100'>
+      <div class='px-4 py-4 mx-auto bg-neutral-50'>
         <Header isLoggedIn={data.isLoggedIn} />
 
         <div class='max-w-screen-md mx-auto mb-8'>
@@ -44,7 +44,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 border-1 relative overflow-hidden'}>
               <img src={'icons/local-activity.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -59,7 +59,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 border-1 relative overflow-hidden'}>
               <img src={'icons/user.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -74,7 +74,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 border-1 relative overflow-hidden'}>
               <img src={'icons/mail.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -89,7 +89,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-slate-200 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 border-1 relative overflow-hidden'}>
               <img src={'icons/key.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -104,7 +104,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-md bg-red-200 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 border-1 relative overflow-hidden'}>
               <img src={'icons/warning.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>

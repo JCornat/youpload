@@ -2,6 +2,7 @@ import Button from '../../components/button.tsx';
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
+import InputNew from "../../components/input-new.tsx";
 
 const currentPassword = signal<string>('');
 const newPassword = signal<string>('');
@@ -14,7 +15,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (formLoading.value) {
-    console.log('SKIP SUBMIT');
     return;
   }
 
@@ -40,7 +40,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
 
     const isJSON = res.headers.get('content-type')?.includes('application/json');
     const body = isJSON && await res.json();
-    console.error('body', body);
     if (!res.ok) {
       const error = body.error ?? res.statusText;
       throw new Error(error);
@@ -64,47 +63,35 @@ export default function AccountPasswordForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            Current password <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='password'
             required
+            label={'Current password'}
             value={currentPassword}
-            autocomplete='off'
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            New password <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='password'
             required
+            label={'New password'}
             value={newPassword}
-            autocomplete='off'
             onInput={(e) => newPassword.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            Repeat new password <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='password'
             required
+            label={'Repeat new password'}
             value={newPasswordRepeat}
-            autocomplete='off'
             onInput={(e) => newPasswordRepeat.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
         {formError.value && (
           <div class='my-4'>

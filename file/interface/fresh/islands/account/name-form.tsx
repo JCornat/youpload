@@ -3,6 +3,7 @@ import Button from '../../components/button.tsx';
 import { effect, signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
+import InputNew from "../../components/input-new.tsx";
 
 const newName = signal<string>('');
 const formLoading = signal<boolean>(false);
@@ -13,7 +14,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (formLoading.value) {
-    console.log('SKIP SUBMIT');
     return;
   }
 
@@ -33,7 +33,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     });
 
     const isJSON = res.headers.get('content-type')?.includes('application/json');
-    console.log('isJSON', res.headers.get('content-type'));
     const body = isJSON && await res.json();
     if (!res.ok) {
       const error = body.error ?? res.statusText;
@@ -56,19 +55,15 @@ export default function AccountNameForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            New username <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='text'
             required
+            label={'New username'}
             value={newName}
-            autocomplete='off'
             onInput={(e) => newName.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
         {formError.value && (
           <div class='my-4'>

@@ -64,7 +64,7 @@ export default function Home({ data }: PageProps<Data>) {
   return (
     <>
       <div class='px-4 py-4 mx-auto bg-slate-100 min-h-screen'>
-        <Header isLoggedIn={data.isLoggedIn} hideLogo={true}/>
+        <Header isLoggedIn={data.isLoggedIn} hideLogo={true} />
 
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img

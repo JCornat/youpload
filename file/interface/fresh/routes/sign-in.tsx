@@ -1,4 +1,4 @@
-import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
+import { FreshContext, Handlers } from '$fresh/server.ts';
 import SignInForm from '../islands/sign-in/sign-in-form.tsx';
 
 export const handler: Handlers = {
@@ -13,14 +13,14 @@ export const handler: Handlers = {
     }
 
     return await ctx.render();
-  }
+  },
 };
 
 export default function SignIn() {
   return (
     <>
-      <div class='px-4 py-8 mx-auto bg-[#86efac]'>
-        <div class='max-w-screen-sm mx-auto flex flex-col items-center justify-center'>
+      <div class='px-4 py-8 mx-auto bg-neutral-50'>
+        <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <img
             class='my-6'
             src='/logo.svg'
@@ -29,14 +29,15 @@ export default function SignIn() {
             alt='the Fresh logo: a sliced lemon dripping with juice'
           />
 
-          <div class={'p-8 w-full rounded-xl border bg-neutral-50 border-gray-300 border-1 relative overflow-hidden'}>
-            <h1 class='text-4xl font-bold'>Login</h1>
-            <SignInForm />
+          <div class={'p-8 w-full rounded-xl border border-gray-300 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
+            <div class={'flex-1 mb-8'}>
+              <h1 class='text-3xl font-bold'>Login</h1>
+              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quidem!</p>
+            </div>
 
-            <br />
-            <p class='my-6'>
-              <a href='/sign-up'>New user ? Sign up</a>
-            </p>
+            <div class={'flex-1'}>
+              <SignInForm />
+            </div>
           </div>
         </div>
       </div>

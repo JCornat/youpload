@@ -1,8 +1,7 @@
 import Button from '../../components/button.tsx';
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
-import Input from '../../components/input.tsx';
-import InputNew from "../../components/input-new.tsx";
+import InputNew from '../../components/input-new.tsx';
 
 const currentPassword = signal<string>('');
 const newPassword = signal<string>('');
@@ -63,7 +62,7 @@ export default function AccountPasswordForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div className="mb-4">
+        <div className='mb-4'>
           <InputNew
             type='password'
             required
@@ -73,7 +72,7 @@ export default function AccountPasswordForm() {
           />
         </div>
 
-        <div className="mb-4">
+        <div className='mb-4'>
           <InputNew
             type='password'
             required
@@ -83,7 +82,7 @@ export default function AccountPasswordForm() {
           />
         </div>
 
-        <div className="mb-4">
+        <div className='mb-4'>
           <InputNew
             type='password'
             required

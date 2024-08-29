@@ -1,8 +1,7 @@
 import Button from '../../components/button.tsx';
 import { computed, signal } from '@preact/signals';
 import { JSX } from 'preact';
-import Input from '../../components/input.tsx';
-import InputNew from "../../components/input-new.tsx";
+import InputNew from '../../components/input-new.tsx';
 
 const fakeReferralValue = '**********************';
 const referral = signal<string>(fakeReferralValue);
@@ -47,7 +46,7 @@ export default function AccountReferralForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div className="mb-4">
+        <div className='mb-4'>
           <InputNew
             type='text'
             required

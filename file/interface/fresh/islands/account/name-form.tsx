@@ -1,9 +1,8 @@
 import Button from '../../components/button.tsx';
 
-import { effect, signal } from '@preact/signals';
+import { signal } from '@preact/signals';
 import { JSX } from 'preact';
-import Input from '../../components/input.tsx';
-import InputNew from "../../components/input-new.tsx";
+import InputNew from '../../components/input-new.tsx';
 
 const newName = signal<string>('');
 const formLoading = signal<boolean>(false);
@@ -55,7 +54,7 @@ export default function AccountNameForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div className="mb-4">
+        <div className='mb-4'>
           <InputNew
             type='text'
             required

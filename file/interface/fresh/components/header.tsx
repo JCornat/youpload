@@ -1,4 +1,4 @@
-export default function Header({ isLoggedIn, hideLogo }: { isLoggedIn?: boolean, hideLogo?: boolean }) {
+export default function Header({ isLoggedIn, hideLogo }: { isLoggedIn?: boolean; hideLogo?: boolean }) {
   return (
     <div class='flex items-center mb-4'>
       {!hideLogo && (

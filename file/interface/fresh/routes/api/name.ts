@@ -1,9 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { GetReferralUseCase } from '../../../../../user/application/use-case/query/get-referral.use-case.ts';
 import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
-import { UpdateEmailUseCase } from '../../../../../user/application/use-case/command/update-email.use-case.ts';
-import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
+import { ArgumentInvalidException } from '../../../../../shared/lib/exceptions.ts';
 import { UpdateNameUseCase } from '../../../../../user/application/use-case/command/update-name.use-case.ts';
 
 export const handler: Handlers = {

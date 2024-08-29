@@ -12,6 +12,7 @@ import * as $api_name from './routes/api/name.ts';
 import * as $api_password from './routes/api/password.ts';
 import * as $api_referral from './routes/api/referral.ts';
 import * as $api_sign_in from './routes/api/sign-in.ts';
+import * as $api_sign_up from './routes/api/sign-up.ts';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
@@ -28,6 +29,7 @@ import * as $account_password_form from './islands/account/password-form.tsx';
 import * as $account_referral_form from './islands/account/referral-form.tsx';
 import * as $file_upload_form from './islands/file-upload-form.tsx';
 import * as $sign_in_sign_in_form from './islands/sign-in/sign-in-form.tsx';
+import * as $sign_up_sign_up_form from './islands/sign-up/sign-up-form.tsx';
 import type { Manifest } from '$fresh/server.ts';
 
 const manifest = {
@@ -42,6 +44,7 @@ const manifest = {
     './routes/api/password.ts': $api_password,
     './routes/api/referral.ts': $api_referral,
     './routes/api/sign-in.ts': $api_sign_in,
+    './routes/api/sign-up.ts': $api_sign_up,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/file/[id].tsx': $file_id_,
@@ -60,6 +63,7 @@ const manifest = {
     './islands/account/referral-form.tsx': $account_referral_form,
     './islands/file-upload-form.tsx': $file_upload_form,
     './islands/sign-in/sign-in-form.tsx': $sign_in_sign_in_form,
+    './islands/sign-up/sign-up-form.tsx': $sign_up_sign_up_form,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

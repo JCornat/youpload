@@ -3,6 +3,7 @@ import Button from '../../components/button.tsx';
 import { effect, signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
+import InputNew from "../../components/input-new.tsx";
 
 const currentPassword = signal<string>('');
 const newEmail = signal<string>('');
@@ -81,6 +82,16 @@ export default function AccountEmailForm() {
             type='password'
             required
             autocomplete='off'
+            value={currentPassword}
+            onInput={(e) => currentPassword.value = e.currentTarget.value}
+          />
+
+          <InputNew
+            type='password'
+            required
+            autocomplete='off'
+            name={'coucou'}
+            label={'Current password'}
             value={currentPassword}
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />

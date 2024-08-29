@@ -15,7 +15,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (formLoading.value) {
-    console.log('SKIP SUBMIT');
     return;
   }
 
@@ -59,43 +58,25 @@ export default function AccountEmailForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            New email address <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='email'
             required
-            autocomplete='off'
+            label={'New email address'}
             value={newEmail}
             onInput={(e) => newEmail.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            Current password <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
-            type='password'
-            required
-            autocomplete='off'
-            value={currentPassword}
-            onInput={(e) => currentPassword.value = e.currentTarget.value}
-          />
-
+        <div className="mb-4">
           <InputNew
             type='password'
             required
-            autocomplete='off'
-            name={'coucou'}
             label={'Current password'}
             value={currentPassword}
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
         {formError.value && (
           <div class='my-4'>

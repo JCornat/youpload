@@ -3,6 +3,7 @@ import Button from '../../components/button.tsx';
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
+import InputNew from "../../components/input-new.tsx";
 
 const currentPassword = signal<string>('');
 const formLoading = signal<boolean>(false);
@@ -12,7 +13,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (formLoading.value) {
-    console.log('SKIP SUBMIT');
     return;
   }
 
@@ -50,18 +50,15 @@ export default function AccountDeleteForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            Current password <span class='text-red-500 ml-0.5'>*</span>
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='password'
             required
-            autocomplete='off'
+            label={'Current password'}
+            value={currentPassword}
             onInput={(e) => currentPassword.value = e.currentTarget.value}
           />
-        </label>
+        </div>
 
         {formError.value && (
           <div class='my-4'>

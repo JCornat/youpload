@@ -1,7 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { GetReferralUseCase } from '../../../../../user/application/use-case/query/get-referral.use-case.ts';
 import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
-import { UpdateEmailUseCase } from '../../../../../user/application/use-case/command/update-email.use-case.ts';
 import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
 import { UpdatePasswordUseCase } from '../../../../../user/application/use-case/command/update-password.use-case.ts';
@@ -28,7 +26,6 @@ export const handler: Handlers = {
 
     try {
       await updatePasswordUseCase.handle(command);
-      console.log('omg');
       return new Response(JSON.stringify({ value: 'OK' }), { headers });
     } catch (error) {
       if (error instanceof ArgumentInvalidException) {

@@ -2,6 +2,7 @@ import Button from '../../components/button.tsx';
 import { computed, signal } from '@preact/signals';
 import { JSX } from 'preact';
 import Input from '../../components/input.tsx';
+import InputNew from "../../components/input-new.tsx";
 
 const fakeReferralValue = '**********************';
 const referral = signal<string>(fakeReferralValue);
@@ -13,7 +14,6 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (formLoading.value) {
-    console.log('SKIP SUBMIT');
     return;
   }
 
@@ -47,18 +47,15 @@ export default function AccountReferralForm() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>
-          <span class={'flex mb-1 font-bold'}>
-            Referral code
-          </span>
-
-          <Input
+        <div className="mb-4">
+          <InputNew
             type='text'
+            required
+            label={'Referral code'}
             value={referral}
-            autocomplete='off'
-            disabled={true}
+            readonly={true}
           />
-        </label>
+        </div>
 
         {formError.value && (
           <div class='my-4'>

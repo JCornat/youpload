@@ -4,7 +4,6 @@ import { signal } from '@preact/signals';
 const amount = signal<number>(0);
 
 const log = (event: any) => {
-  console.log('mdr');
   amount.value++;
 };
 

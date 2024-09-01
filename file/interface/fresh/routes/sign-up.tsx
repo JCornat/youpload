@@ -1,5 +1,5 @@
-import SignUpForm from "../islands/sign-up/sign-up-form.tsx";
-import SignInForm from "../islands/sign-in/sign-in-form.tsx";
+import SignUpForm from '../islands/sign-up/sign-up-form.tsx';
+import SignInForm from '../islands/sign-in/sign-in-form.tsx';
 
 export default function Home() {
   return (
@@ -29,4 +29,3 @@ export default function Home() {
     </>
   );
 }
-

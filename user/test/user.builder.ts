@@ -3,7 +3,7 @@ import { User } from '../domain/model/user.ts';
 export const userBuilder = ({
   id = crypto.randomUUID(),
   name = 'test',
-  email = 'test@test.com',
+  email = 'default@email.com',
   password = '12345678',
   referral = 'AAAAA-AAAAA-AAAAA',
 }: {

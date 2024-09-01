@@ -25,6 +25,16 @@ export class UserFakeRepository implements UserRepository {
     return filteredUser;
   }
 
+  async getByReferral(email: string): Promise<User> {
+    const users = [...this.store.values()];
+    const filteredUser = users.find((user) => user.referral.value === email);
+    if (!filteredUser) {
+      throw new NotFoundException();
+    }
+
+    return filteredUser;
+  }
+
   async save(user: User): Promise<void> {
     this.store.set(user.id, user);
   }

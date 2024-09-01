@@ -28,6 +28,16 @@ export class UserFileSystemRepository implements UserRepository {
     return user;
   }
 
+  async getByReferral(referral: string): Promise<User> {
+    const userList = await this.getContent();
+    const user = userList.find((item) => item.referral.value === referral);
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
+  }
+
   async save(user: User): Promise<void> {
     const userList = await this.getContent();
     const index = userList.findIndex((item) => item.id === user.id);

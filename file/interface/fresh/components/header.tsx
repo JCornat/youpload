@@ -23,14 +23,17 @@ export default function Header({ isLoggedIn, hideLogo }: { isLoggedIn?: boolean;
 
       <div class={'grow'}></div>
 
-      {isLoggedIn
-        ? (
-          <>
-            <a href='/account' class='font-bold mr-4'>Account</a>
-            <a href='/logout' class='font-bold'>Logout</a>
-          </>
-        )
-        : <a href='/sign-in' class='font-bold'>Log in</a>}
+      {isLoggedIn ? (
+        <>
+          <a href='/account' class='font-bold mr-4'>Account</a>
+          <a href='/logout' class='font-bold'>Logout</a>
+        </>
+      ) : (
+        <>
+          <a href='/sign-up' class='font-bold mr-4'>Sign up</a>
+          <a href='/sign-in' class='font-bold'>Sign in</a>
+        </>
+      )}
     </div>
   );
 }

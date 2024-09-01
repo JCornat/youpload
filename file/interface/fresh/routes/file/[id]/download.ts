@@ -22,7 +22,7 @@ export const handler: Handlers = {
       const stream = await downloadFileUseCase.handle(query);
       return new Response(stream, {
         headers: {
-          'Content-Disposition': `attachment; filename="${fileMetadata.name}"`,
+          'Content-Disposition': `attachment; filename="${fileMetadata.name.value}"`,
         },
       });
     } catch {

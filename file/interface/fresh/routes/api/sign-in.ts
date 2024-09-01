@@ -25,8 +25,17 @@ export const handler: Handlers = {
       agent: req.headers.get('user-agent') as string,
     };
 
-    const sessionId = await signInUseCase.handle(command);
     const headers = new Headers();
+    headers.set('Content-Type', `application/json`);
+
+    let sessionId: string;
+
+    try {
+      sessionId = await signInUseCase.handle(command);
+    } catch (error) {
+      return new Response(JSON.stringify({ error: error.message }), { status: 500, headers });
+    }
+
     const url = new URL(req.url);
     setCookie(headers, {
       name: 'auth',
@@ -39,9 +48,6 @@ export const handler: Handlers = {
     });
 
     headers.set('location', '/');
-    return new Response(null, {
-      status: 303, // "See Other"
-      headers,
-    });
+    return new Response(JSON.stringify({ value: 'OK' }), { headers });
   },
 };

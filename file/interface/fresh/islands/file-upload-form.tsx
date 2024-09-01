@@ -13,7 +13,7 @@ export default function FileUploadForm() {
       <div class='flex items-center justify-center w-full mb-8'>
         <label for='dropzone-file' class='flex flex-col items-center justify-center w-full h-64 border-2 border-slate-400 border-dashed rounded-lg cursor-pointer bg-slate-200'>
           <div class='flex flex-col items-center justify-center pt-5 pb-6'>
-            <svg class='w-8 h-8 mb-4 text-gray-500' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 16'>
+            <svg class='w-16 h-16 mb-4 text-gray-500' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 16' width='128' height='128'>
               <path
                 stroke='currentColor'
                 stroke-linecap='round'

@@ -55,7 +55,10 @@ export default function SignInForm() {
         <InputNew
           type='email'
           required
+          autofocus
+          name={'email'}
           label={'Email'}
+          value={email}
           onInput={(e) => email.value = e.currentTarget.value}
         />
       </div>
@@ -65,6 +68,7 @@ export default function SignInForm() {
           type='password'
           required
           label={'Password'}
+          value={password}
           onInput={(e) => password.value = e.currentTarget.value}
         />
       </div>

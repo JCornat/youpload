@@ -32,6 +32,7 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
         name: name.value,
         email: email.value,
         password: password.value,
+        passwordRepeat: passwordRepeat.value,
         referral: referral.value,
       }),
     });
@@ -47,7 +48,8 @@ const onSubmit = async (event: JSX.TargetedSubmitEvent<HTMLFormElement>) => {
     email.value = '';
     password.value = '';
     referral.value = '';
-    window.location.replace('/');
+    passwordRepeat.value = '';
+    window.location.replace('/sign-in');
   } catch (error) {
     formError.value = error.message;
   } finally {
@@ -63,6 +65,8 @@ export default function SignUpForm() {
           type='text'
           required
           label={'Name'}
+          name={'name'}
+          value={name}
           onInput={(e) => name.value = e.currentTarget.value}
         />
       </div>
@@ -72,6 +76,9 @@ export default function SignUpForm() {
           type='email'
           required
           label={'Email'}
+          name={'email'}
+          autocomplete={'on'}
+          value={email}
           onInput={(e) => email.value = e.currentTarget.value}
         />
       </div>
@@ -81,6 +88,7 @@ export default function SignUpForm() {
           type='password'
           required
           label={'Password'}
+          value={password}
           onInput={(e) => password.value = e.currentTarget.value}
         />
       </div>
@@ -90,6 +98,7 @@ export default function SignUpForm() {
           type='password'
           required
           label={'Repeat password'}
+          value={passwordRepeat}
           onInput={(e) => passwordRepeat.value = e.currentTarget.value}
         />
       </div>
@@ -99,6 +108,8 @@ export default function SignUpForm() {
           type='text'
           required
           label={'Referral code'}
+          name={'referral'}
+          value={referral}
           onInput={(e) => referral.value = e.currentTarget.value}
         />
       </div>
@@ -110,7 +121,7 @@ export default function SignUpForm() {
       )}
 
       <div class={'flex justify-end gap-8 items-center'}>
-        <a href='/sign-up' class={'text-blue-600'}>Sign in</a>
+        <a href='/sign-in' class={'text-blue-600'}>Sign in</a>
         <Button type='submit' variant='primary'>Create account</Button>
       </div>
     </form>

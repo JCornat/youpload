@@ -30,7 +30,7 @@ export class SignInUseCase {
       user = await this.userRepository.getByEmail(signInCommand.email);
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw new AuthenticationFailedException();
+        throw new AuthenticationFailedException('No user found with matching email');
       }
 
       throw error;
@@ -38,7 +38,7 @@ export class SignInUseCase {
 
     const isPasswordValid = await this.passwordHashingProvider.compare(signInCommand.password, user.password.value);
     if (!isPasswordValid) {
-      throw new AuthenticationFailedException();
+      throw new AuthenticationFailedException('Password invalid');
     }
 
     const props = {

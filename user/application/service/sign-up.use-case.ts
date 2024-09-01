@@ -9,6 +9,7 @@ export interface SignUpCommand {
   email: string;
   password: string;
   passwordRepeat: string;
+  referral: string;
 }
 
 export class SignUpUseCase {
@@ -22,6 +23,16 @@ export class SignUpUseCase {
     let user: User | undefined;
 
     try {
+      await this.userRepository.getByReferral(signUpCommand.referral);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new NotFoundException('Referral not found');
+      }
+
+      throw error;
+    }
+
+    try {
       user = await this.userRepository.getByEmail(signUpCommand.email);
     } catch (error) {
       if (!(error instanceof NotFoundException)) {
@@ -30,11 +41,11 @@ export class SignUpUseCase {
     }
 
     if (user) {
-      throw new ExistingUserMailException();
+      throw new ExistingUserMailException('Mail already taken');
     }
 
     if (signUpCommand.password !== signUpCommand.passwordRepeat) {
-      throw new NotMatchingPasswordException();
+      throw new NotMatchingPasswordException('Passwords do not match');
     }
 
     const referral = await this.referralProvider.generate();

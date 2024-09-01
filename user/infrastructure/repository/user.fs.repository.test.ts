@@ -50,6 +50,33 @@ describe('UserFileSystemRepository', () => {
     });
   });
 
+  describe('getByReferral', () => {
+    it('shall get user if referral is known', async () => {
+      const user = userBuilder().build();
+      const content = [user.toObject()];
+      await Deno.writeTextFile(userPath, JSON.stringify(content));
+
+      const requestedUser = await userFileSystemRepository.getByReferral(user.referral.value);
+      assertEquals(requestedUser, user);
+    });
+
+    it('shall throw an error if user referral is not known', async () => {
+      const user = userBuilder().build();
+      const content = [user.toObject()];
+      await Deno.writeTextFile(userPath, JSON.stringify(content));
+
+      let thrownError: Error | null = null;
+
+      try {
+        await userFileSystemRepository.getByReferral('FAKE');
+      } catch (error) {
+        thrownError = error;
+      }
+
+      assertInstanceOf(thrownError, NotFoundException);
+    });
+  });
+
   describe('save', () => {
     it('shall save a user if props are valid', async () => {
       const user = userBuilder().build();

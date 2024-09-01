@@ -6,7 +6,6 @@ export default function InputNew(props: JSX.HTMLAttributes<HTMLInputElement>) {
       <div class='relative z-0'>
         <input
           {...props}
-          autocomplete={props.autocomplete ?? 'off'}
           class='w-full h-14 block leading-5 relative py-2 px-4 rounded bg-neutral-50 disabled:bg-neutral-200 disabled:text-neutral-600 border focus:border-2 border-gray-400 hover:border-gray-500 disabled:hover:border-gray-400 overflow-x-auto focus:outline-none focus:border-yellow-400 focus:ring-0 peer'
           placeholder=' '
         />

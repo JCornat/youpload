@@ -66,6 +66,7 @@ export default function SignUpForm() {
           required
           label={'Name'}
           name={'name'}
+          autofocus
           value={name}
           onInput={(e) => name.value = e.currentTarget.value}
         />

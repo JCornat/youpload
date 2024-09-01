@@ -13,6 +13,7 @@ import * as $api_password from './routes/api/password.ts';
 import * as $api_referral from './routes/api/referral.ts';
 import * as $api_sign_in from './routes/api/sign-in.ts';
 import * as $api_sign_up from './routes/api/sign-up.ts';
+import * as $api_upload from './routes/api/upload.ts';
 import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
@@ -45,6 +46,7 @@ const manifest = {
     './routes/api/referral.ts': $api_referral,
     './routes/api/sign-in.ts': $api_sign_in,
     './routes/api/sign-up.ts': $api_sign_up,
+    './routes/api/upload.ts': $api_upload,
     './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/file/[id].tsx': $file_id_,

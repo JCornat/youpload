@@ -2,7 +2,7 @@ import { FreshContext, Handlers } from '$fresh/server.ts';
 import { GetReferralUseCase } from '../../../../../user/application/use-case/query/get-referral.use-case.ts';
 import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       return new Response('Unauthorized', { status: 403 });
@@ -22,4 +22,4 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
     }
   },
-};
+} as Handlers;

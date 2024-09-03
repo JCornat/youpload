@@ -5,7 +5,7 @@ import { Handlers } from '$fresh/src/server/types.ts';
 import { InspectFileUseCase } from '../../../../../application/use-case/query/inspect-file.use-case.ts';
 import { StubDateProvider } from '../../../../../../shared/domain/provider/date.provider.stub.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const fileStorageProvider = new FileStorageFileSystemProvider();
@@ -34,4 +34,4 @@ export const handler: Handlers = {
       });
     }
   },
-};
+} satisfies Handlers;

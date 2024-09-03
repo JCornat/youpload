@@ -11,7 +11,7 @@ interface Data {
   userName?: string;
 }
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       const headers = new Headers();
@@ -24,7 +24,7 @@ export const handler: Handlers = {
 
     return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn, userName: ctx.state.userName });
   },
-};
+} as Handlers;
 
 export default function Account({ data }: PageProps<Data>) {
   return (

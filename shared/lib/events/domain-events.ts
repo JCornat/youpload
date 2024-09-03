@@ -18,10 +18,10 @@ export class DomainEvents {
   }
 
   static dispatch(event: DomainEvent) {
-    const eventClassName: string = event.constructor.name;
+    const eventClassName = event.constructor.name satisfies string;
 
     if (this.subscriptionsMap.has(eventClassName)) {
-      const subscriptions: DomainCallback[] | undefined = this.subscriptionsMap.get(eventClassName);
+      const subscriptions = this.subscriptionsMap.get(eventClassName) satisfies DomainCallback[] | undefined;
       if (!subscriptions) {
         return;
       }

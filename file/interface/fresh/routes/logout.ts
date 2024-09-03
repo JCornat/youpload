@@ -1,7 +1,7 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { deleteCookie } from '@std/http/cookie';
 
-export const handler: Handlers = {
+export const handler = {
   GET(req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       const headers = new Headers();
@@ -22,4 +22,4 @@ export const handler: Handlers = {
       headers,
     });
   },
-};
+} as Handlers;

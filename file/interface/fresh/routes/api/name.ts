@@ -3,7 +3,7 @@ import { UserFileSystemRepository } from '../../../../../user/infrastructure/rep
 import { ArgumentInvalidException } from '../../../../../shared/lib/exceptions.ts';
 import { UpdateNameUseCase } from '../../../../../user/application/use-case/command/update-name.use-case.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async PUT(req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       return new Response('Unauthorized', { status: 403 });
@@ -32,4 +32,4 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
     }
   },
-};
+} as Handlers;

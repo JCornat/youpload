@@ -29,9 +29,9 @@ describe('Feature: Download file', () => {
     const storedFileMetadata = fileMetadataBuilder().build();
     await fixture.givenFile(storedFileMetadata, './file/test/file/reference.txt');
 
-    const command: DownloadFileQuery = {
+    const command = {
       id: storedFileMetadata.id,
-    };
+    } as DownloadFileQuery;
 
     await fixture.whenFileIsDownloaded(command);
 
@@ -47,9 +47,9 @@ describe('Feature: Download file', () => {
 
     await fixture.givenFile(storedFileMetadata, './file/test/file/reference.txt');
 
-    const command: DownloadFileQuery = {
+    const command = {
       id: storedFileMetadata.id,
-    };
+    } as DownloadFileQuery;
 
     await fixture.whenFileIsDownloaded(command);
 
@@ -60,9 +60,9 @@ describe('Feature: Download file', () => {
     const storedFileMetadata = fileMetadataBuilder().build();
     fixture.givenFileMetadata(storedFileMetadata);
 
-    const command: DownloadFileQuery = {
+    const command = {
       id: 'A.txt',
-    };
+    } as DownloadFileQuery;
 
     await fixture.whenFileIsDownloaded(command);
 

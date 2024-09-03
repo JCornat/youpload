@@ -15,13 +15,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'a@a',
       password: '123456789',
       passwordRepeat: '123456789',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     const id = await fixture.whenUserSignUp(command);
 
@@ -40,13 +40,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'test@test.com',
       password: '123456789',
       passwordRepeat: '123456789',
       referral: 'FAKE',
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -60,13 +60,13 @@ describe('Feature: Sign up', () => {
 
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'test@test.com',
       password: '123456789',
       passwordRepeat: '123456789',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -77,13 +77,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: '',
       email: 'test@test.com',
       password: '123456789',
       passwordRepeat: '123456789',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -94,13 +94,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'email',
       password: '123456789',
       passwordRepeat: '123456789',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -111,13 +111,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'email',
       password: '123456789',
       passwordRepeat: '987654321',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -128,13 +128,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'test@test.com',
       password: '',
       passwordRepeat: '',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 
@@ -145,13 +145,13 @@ describe('Feature: Sign up', () => {
     const referralUser = userBuilder().build();
     await fixture.givenExistingUser(referralUser);
 
-    const command: SignUpCommand = {
+    const command = {
       name: 'test',
       email: 'test@test.com',
       password: '',
       passwordRepeat: '',
       referral: referralUser.referral.value,
-    };
+    } satisfies SignUpCommand;
 
     await fixture.whenUserSignUp(command);
 

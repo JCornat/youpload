@@ -4,15 +4,15 @@ import { FileMetadataFileSystemRepository } from '../../../../infrastructure/rep
 import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
 import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const dateProvider = new StubDateProvider();
     const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
 
-    const query: InspectFileQuery = {
+    const query = {
       id: ctx.params.id,
-    };
+    } satisfies InspectFileQuery;
 
     try {
       const fileMetadata = await inspectFileUseCase.handle(query);
@@ -25,7 +25,7 @@ export const handler: Handlers = {
       });
     }
   },
-};
+} satisfies Handlers;
 
 export default function SuccessUpload(props: PageProps<{ url: string }>) {
   const { url } = props.data;

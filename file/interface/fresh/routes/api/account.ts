@@ -4,7 +4,7 @@ import { PasswordHashingBcryptRepository } from '../../../../../user/infrastruct
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
 import { DeleteAccountUseCase } from '../../../../../user/application/use-case/command/delete-account.use-case.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async DELETE(req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       return new Response('Unauthorized', { status: 403 });
@@ -38,4 +38,4 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
     }
   },
-};
+} as Handlers;

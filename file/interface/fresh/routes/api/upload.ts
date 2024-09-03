@@ -15,7 +15,7 @@ function addHours(date: Date, hours: number) {
   return date;
 }
 
-export const handler: Handlers = {
+export const handler = {
   async POST(req: Request, ctx: FreshContext) {
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
@@ -35,6 +35,10 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: 'NOT FILE' }), { status: 500, headers });
     }
 
+    if (!ctx.state.isLoggedIn && file.size) {
+      return new Response('Unauthorized', { status: 403 });
+    }
+
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
@@ -44,15 +48,15 @@ export const handler: Handlers = {
     const dateProvider = new StubDateProvider();
     const uploadFileUseCase = new UploadFileUseCase(fileMetadataRepository, fileStorageProvider, fileStatProvider, dateProvider);
 
-    const command: UploadFileCommand = {
+    const command = {
       name,
       filePath: `./${name}`,
       expireAt,
-    };
+    } satisfies UploadFileCommand;
 
     const id = await uploadFileUseCase.handle(command);
     await Deno.remove(name);
 
     return new Response(JSON.stringify({ value: id }), { headers });
   },
-};
+} satisfies Handlers;

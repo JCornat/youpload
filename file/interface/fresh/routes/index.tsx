@@ -6,11 +6,11 @@ interface Data {
   isLoggedIn?: boolean;
 }
 
-export const handler: Handlers = {
+export const handler = {
   async GET(req: Request, ctx: FreshContext) {
     return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn });
   },
-};
+} as Handlers;
 
 export default function Home({ data }: PageProps<Data>) {
   return (

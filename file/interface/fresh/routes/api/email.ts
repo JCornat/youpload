@@ -4,7 +4,7 @@ import { UpdateEmailUseCase } from '../../../../../user/application/use-case/com
 import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../../shared/lib/exceptions.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async PUT(req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {
       return new Response('Unauthorized', { status: 403 });
@@ -39,4 +39,4 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
     }
   },
-};
+} as Handlers;

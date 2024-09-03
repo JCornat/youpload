@@ -19,12 +19,12 @@ describe('SignInUseCase', () => {
 
     await fixture.givenExistingUser(user);
 
-    const command: SignInCommand = {
+    const command = {
       email: 'test@test.com',
       password: '12345678',
       ip: '127.0.0.1',
       agent: 'Firefox',
-    };
+    } satisfies SignInCommand;
 
     await fixture.whenUserSignIn(command);
 
@@ -39,12 +39,12 @@ describe('SignInUseCase', () => {
 
     await fixture.givenExistingUser(user);
 
-    const command: SignInCommand = {
+    const command = {
       email: 'fail@fail.com',
       password: '12345678',
       ip: '127.0.0.1',
       agent: 'Firefox',
-    };
+    } satisfies SignInCommand;
 
     await fixture.whenUserSignIn(command);
 
@@ -59,12 +59,12 @@ describe('SignInUseCase', () => {
 
     await fixture.givenExistingUser(user);
 
-    const command: SignInCommand = {
+    const command = {
       email: 'test@test.com',
       password: 'fail',
       ip: '127.0.0.1',
       agent: 'Firefox',
-    };
+    } satisfies SignInCommand;
 
     await fixture.whenUserSignIn(command);
 

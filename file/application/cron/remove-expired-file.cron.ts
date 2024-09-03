@@ -12,15 +12,12 @@ export class RemoveExpiredFilesCron {
   async execute(): Promise<void> {
     const expiredFileMetadataList = await this.fileMetadataRepository.getAllExpired(this.dateProvider.getNow());
 
-    const promises: Promise<unknown>[] = [];
-    expiredFileMetadataList.forEach((fileMetadata) => {
-      const removeFileMetadataPromise = this.fileMetadataRepository.remove(fileMetadata.id);
-      promises.push(removeFileMetadataPromise);
+    const fileMetadataRemovePromises = expiredFileMetadataList
+      .map((item) => this.fileMetadataRepository.remove(item.id));
 
-      const removeStoredFilePromise = this.fileStorageProvider.remove(fileMetadata.id);
-      promises.push(removeStoredFilePromise);
-    });
+    const fileRemovePromises = expiredFileMetadataList
+      .map((item) => this.fileStorageProvider.remove(item.id));
 
-    await Promise.allSettled(promises);
+    await Promise.allSettled([fileMetadataRemovePromises, fileRemovePromises].flat());
   }
 }

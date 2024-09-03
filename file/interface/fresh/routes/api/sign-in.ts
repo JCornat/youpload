@@ -6,7 +6,7 @@ import { SignInCommand, SignInUseCase } from '../../../../../user/application/se
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async POST(req: Request, ctx: FreshContext) {
     if (ctx.state.isLoggedIn) {
       return new Response('Already logged', { status: 400 });
@@ -18,12 +18,12 @@ export const handler: Handlers = {
     const userRepository = new UserFileSystemRepository();
     const signInUseCase = new SignInUseCase(dateProvider, passwordHashingRepository, sessionRepository, userRepository);
     const form = await req.json();
-    const command: SignInCommand = {
+    const command = {
       email: form.email as string,
       password: form.password as string,
       ip: ctx.remoteAddr.hostname,
       agent: req.headers.get('user-agent') as string,
-    };
+    } satisfies SignInCommand;
 
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
@@ -50,4 +50,4 @@ export const handler: Handlers = {
     headers.set('location', '/');
     return new Response(JSON.stringify({ value: 'OK' }), { headers });
   },
-};
+} as Handlers;

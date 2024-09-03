@@ -21,9 +21,9 @@ describe('Feature: Inspect file', () => {
 
     fixture.givenFileMetadata(storedFileMetadata);
 
-    const command: DownloadFileQuery = {
+    const command = {
       id: storedFileMetadata.id,
-    };
+    } satisfies DownloadFileQuery;
 
     await fixture.whenFileMetadataIsInspected(command);
 
@@ -39,9 +39,9 @@ describe('Feature: Inspect file', () => {
 
     fixture.givenFileMetadata(storedFileMetadata);
 
-    const command: DownloadFileQuery = {
+    const command = {
       id: storedFileMetadata.id,
-    };
+    } satisfies DownloadFileQuery;
 
     await fixture.whenFileMetadataIsInspected(command);
 
@@ -49,9 +49,9 @@ describe('Feature: Inspect file', () => {
   });
 
   it('shall return an error for non existing file', async () => {
-    const command: InspectFileQuery = {
+    const command = {
       id: crypto.randomUUID(),
-    };
+    } satisfies InspectFileQuery;
 
     await fixture.whenFileMetadataIsInspected(command);
 

@@ -4,7 +4,7 @@ import { UserFileSystemRepository } from '../../../../../user/infrastructure/rep
 import { SignUpUseCase } from '../../../../../user/application/service/sign-up.use-case.ts';
 import { ReferralSlugProvider } from '../../../../../user/infrastructure/provider/referral-slug.provider.ts';
 
-export const handler: Handlers = {
+export const handler = {
   async POST(req: Request, ctx: FreshContext) {
     const passwordHashingRepository = new PasswordHashingBcryptRepository();
     const userRepository = new UserFileSystemRepository();
@@ -30,4 +30,4 @@ export const handler: Handlers = {
       return new Response(JSON.stringify({ error: error.message }), { status: 500, headers });
     }
   },
-};
+} as Handlers;

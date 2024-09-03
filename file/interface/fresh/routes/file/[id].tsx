@@ -6,15 +6,15 @@ import { StubDateProvider } from '../../../../../shared/domain/provider/date.pro
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const dateProvider = new StubDateProvider();
     const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
 
-    const query: InspectFileQuery = {
+    const query = {
       id: ctx.params.id,
-    };
+    } as InspectFileQuery;
 
     try {
       const fileMetadata = await inspectFileUseCase.handle(query);
@@ -33,7 +33,7 @@ export const handler: Handlers = {
       });
     }
   },
-};
+} satisfies Handlers;
 
 export default function FileDetail(props: PageProps<{ url: string; name: string; size: string; createdAt: string; expireAt: string }>) {
   const { url, name, size, createdAt, expireAt } = props.data;

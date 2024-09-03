@@ -1,7 +1,7 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import SignInForm from '../islands/sign-in/sign-in-form.tsx';
 
-export const handler: Handlers = {
+export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
     if (ctx.state.isLoggedIn) {
       const headers = new Headers();
@@ -14,7 +14,7 @@ export const handler: Handlers = {
 
     return await ctx.render();
   },
-};
+} as Handlers;
 
 export default function SignIn() {
   return (

@@ -15,11 +15,11 @@ describe('Feature: Send file', () => {
     fixture.givenNowIs(new Date('2024-08-05 08:00:00'));
     fixture.givenFileHasSize('./file/test/file/test.txt', 6);
 
-    const command: UploadFileCommand = {
+    const command = {
       name: 'test-file.txt',
       filePath: './file/test/file/test.txt',
       expireAt: new Date('2024-08-05 08:00:00'),
-    };
+    } satisfies UploadFileCommand;
 
     const fileId = await fixture.whenFileIsSent(command);
 
@@ -35,11 +35,11 @@ describe('Feature: Send file', () => {
   });
 
   it('shall not save a non existing file', async () => {
-    const command: UploadFileCommand = {
+    const command = {
       name: '404.txt',
       filePath: './file/test/file/404.txt',
       expireAt: new Date('2024-08-05 08:00:00'),
-    };
+    } satisfies UploadFileCommand;
 
     await fixture.whenFileIsSent(command);
 

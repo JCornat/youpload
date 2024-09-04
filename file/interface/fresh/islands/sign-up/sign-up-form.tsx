@@ -1,4 +1,4 @@
-import InputNew from '../../components/input-new.tsx';
+import Input from '../../components/input.tsx';
 import Button from '../../components/button.tsx';
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
@@ -61,7 +61,7 @@ export default function SignUpForm() {
   return (
     <form onSubmit={onSubmit}>
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='text'
           required
           label={'Name'}
@@ -73,7 +73,7 @@ export default function SignUpForm() {
       </div>
 
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='email'
           required
           label={'Email'}
@@ -85,7 +85,7 @@ export default function SignUpForm() {
       </div>
 
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='password'
           required
           label={'Password'}
@@ -95,7 +95,7 @@ export default function SignUpForm() {
       </div>
 
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='password'
           required
           label={'Repeat password'}
@@ -105,7 +105,7 @@ export default function SignUpForm() {
       </div>
 
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='text'
           required
           label={'Referral code'}

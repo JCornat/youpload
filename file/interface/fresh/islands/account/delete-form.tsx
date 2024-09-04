@@ -2,7 +2,7 @@ import Button from '../../components/button.tsx';
 
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
-import InputNew from '../../components/input-new.tsx';
+import Input from '../../components/input.tsx';
 
 const currentPassword = signal<string>('');
 const formLoading = signal<boolean>(false);
@@ -50,7 +50,7 @@ export default function AccountDeleteForm() {
     <>
       <form onSubmit={onSubmit}>
         <div className='mb-4'>
-          <InputNew
+          <Input
             type='password'
             required
             label={'Current password'}

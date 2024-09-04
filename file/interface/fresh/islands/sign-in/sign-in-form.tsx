@@ -1,4 +1,4 @@
-import InputNew from '../../components/input-new.tsx';
+import Input from '../../components/input.tsx';
 import Button from '../../components/button.tsx';
 import { signal } from '@preact/signals';
 import { JSX } from 'preact';
@@ -52,7 +52,7 @@ export default function SignInForm() {
   return (
     <form onSubmit={onSubmit}>
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='email'
           required
           autofocus
@@ -64,7 +64,7 @@ export default function SignInForm() {
       </div>
 
       <div className='mb-4'>
-        <InputNew
+        <Input
           type='password'
           required
           label={'Password'}

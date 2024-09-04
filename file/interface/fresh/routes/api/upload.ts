@@ -3,11 +3,11 @@ import { PasswordHashingBcryptRepository } from '../../../../../user/infrastruct
 import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
 import { SignUpUseCase } from '../../../../../user/application/service/sign-up.use-case.ts';
 import { ReferralSlugProvider } from '../../../../../user/infrastructure/provider/referral-slug.provider.ts';
-import {FileMetadataFileSystemRepository} from "../../../../infrastructure/repository/file-metadata.fs.repository.ts";
-import {FileStorageFileSystemProvider} from "../../../../infrastructure/provider/file-storage.fs.provider.ts";
-import {FileStatFileSystemProvider} from "../../../../infrastructure/provider/file-stat.fs.provider.ts";
-import {StubDateProvider} from "../../../../../shared/domain/provider/date.provider.stub.ts";
-import {UploadFileCommand, UploadFileUseCase} from "../../../../application/use-case/command/upload-file.use-case.ts";
+import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
+import { FileStorageFileSystemProvider } from '../../../../infrastructure/provider/file-storage.fs.provider.ts';
+import { FileStatFileSystemProvider } from '../../../../infrastructure/provider/file-stat.fs.provider.ts';
+import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
+import { UploadFileCommand, UploadFileUseCase } from '../../../../application/use-case/command/upload-file.use-case.ts';
 
 function addHours(date: Date, hours: number) {
   const hoursToAdd = hours * 60 * 60 * 1000;
@@ -28,15 +28,21 @@ export const handler = {
     }
 
     const file = form.get('file') as File;
-    const amount = form.get('amount') as string;
-    const expireAt = addHours(new Date(), +amount);
-
-    if (!file) {
-      return new Response(JSON.stringify({ error: 'NOT FILE' }), { status: 500, headers });
+    const amount = +(form.get('amount') as string);
+    const allowedAmounts = [1, 24, 24 * 7];
+    if (!allowedAmounts.includes(amount)) {
+      return new Response(JSON.stringify({ error: 'BAD AMOUNT' }), { status: 400, headers });
     }
 
-    if (!ctx.state.isLoggedIn && file.size) {
-      return new Response('Unauthorized', { status: 403 });
+    const expireAt = addHours(new Date(), amount);
+
+    if (!file) {
+      return new Response(JSON.stringify({ error: 'NO FILE' }), { status: 500, headers });
+    }
+
+    const maxFileSize = 10 * 1000 * 1000;
+    if (!ctx.state.isLoggedIn && file.size > maxFileSize) {
+      return new Response(JSON.stringify({ error: 'FILE SIZE EXCEEDED' }), { status: 400, headers });
     }
 
     const name = file.name;

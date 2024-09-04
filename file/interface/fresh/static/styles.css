@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Segmented button style */
+
+  .btn-segmented .segmented-item {
+    margin-right: -1px;
+    overflow: hidden;
+  }
+
+  .btn-segmented .segmented-item::after {
+    border-radius: 0px;
+  }
+
+  .btn-segmented .segmented-item:first-child {
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
+  }
+
+  .btn-segmented .segmented-item:last-child {
+    margin-right: 0px;
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+  }
+
+  .check-icon {
+    display: none !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .segmented-item input:checked + label > span {
+    display: inline-flex !important;
+  }
+
+  /* Input style */
+
+  .peer:focus ~ .peer-focus\:left-4 {
+    left: 1rem;
+  }
+
+  .peer:focus ~ .peer-focus\:left-14 {
+    left: 3.5rem;
+  }
+
+  .peer:focus ~ .peer-focus\:left-12 {
+    left: 3rem;
+  }
+
+  .peer:focus ~ .peer-focus\:-translate-y-3\.5 {
+    --tw-translate-y: -0.875rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .peer:focus ~ .peer-focus\:-translate-y-3 {
+    --tw-translate-y: -0.75rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .peer:focus ~ .peer-focus\:-translate-y-7 {
+    --tw-translate-y: -1.75rem;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .peer:focus ~ .peer-focus\:scale-75 {
+    --tw-scale-x: .75;
+    --tw-scale-y: .75;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .peer:focus ~ .peer-focus\:bg-neutral-10 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 251 254 / var(--tw-bg-opacity));
+  }
+
+  .peer:focus ~ .peer-focus\:px-1 {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .peer:focus ~ .peer-focus\:text-primary-600 {
+    --tw-text-opacity: 1;
+    color: rgb(103 80 164 / var(--tw-text-opacity));
+  }
+}

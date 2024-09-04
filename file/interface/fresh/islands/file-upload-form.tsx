@@ -1,8 +1,9 @@
 import Button from '../components/button.tsx';
 import { computed, signal } from '@preact/signals';
 import SegmentedButton from '../components/segmented-button.tsx';
+import ProgressBar from '../components/progress-bar.tsx';
 
-const uploadProgress = signal(0);
+const uploadProgress = signal<number>(0);
 const fileInput = signal<File | undefined>(undefined);
 const amount = signal<number>(1);
 const fileSize = computed(() => formatBytes(fileInput.value?.size));
@@ -144,14 +145,9 @@ export default function FileUploadForm() {
         <SegmentedButton value={24 * 7} type={'radio'} state={amount}>One week</SegmentedButton>
       </div>
 
-      {uploadProgress.value > 0 && (
-        <div class='w-full mb-4 bg-gray-200 rounded-full'>
-          <div
-            class='bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full'
-            style={{ width: `${uploadProgress.value}%` }}
-          >
-            {uploadProgress.value}%
-          </div>
+      {uploadInProgress.value && (
+        <div class={'mb-4 w-full'}>
+          <ProgressBar value={uploadProgress.value} />
         </div>
       )}
 
@@ -164,7 +160,7 @@ export default function FileUploadForm() {
       {uploadInProgress.value
         ? (
           <>
-            <Button onClick={abort} variant={'primary'} class={'w-full'}>Abort</Button>
+            <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort</Button>
           </>
         )
         : (

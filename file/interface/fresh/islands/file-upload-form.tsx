@@ -92,82 +92,89 @@ const formatBytes = (bytes: number = 0, decimals = 2) => {
 export default function FileUploadForm() {
   return (
     <>
-      <div class='flex items-center justify-center w-full mb-8'>
-        <label class='flex flex-col items-center justify-center w-full h-64 border-2 border-slate-400 border-dashed rounded-lg cursor-pointer bg-slate-200'>
-          <div class='flex flex-col items-center justify-center pt-5 pb-6'>
-            {!fileInput.value
-              ? (
-                <>
-                  <svg
-                    class='w-16 h-16 mb-4 text-gray-500'
-                    aria-hidden='true'
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 20 16'
-                    width='128'
-                    height='128'
-                  >
-                    <path
-                      stroke='currentColor'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      stroke-width='2'
-                      d='M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2'
-                    />
-                  </svg>
+      <div class="flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 max-w-screen-xl">
+        <div class="flex items-center justify-center w-full bg-indigo-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
+          <div class="absolute top-0 right-0 opacity-10 pointer-events-none rotate-[20deg] z-0 material-symbols-outlined check-icon">check</div>
+          <img alt="" loading="lazy" width="919" height="1351" decoding="async" data-nimg="1" class="absolute left-1/2 top-0 translate-x-[-10%] translate-y-[-45%] lg:translate-x-[-32%]" style="color:transparent" src="https://keynote.tailwindui.com/_next/static/media/background-newsletter.488a0204.jpg"/>
+          <label class="flex flex-col items-center justify-center w-full h-64 border-2 border-slate-400 border-dashed rounded-lg cursor-pointer z-10">
+            <div class="flex flex-col items-center text-gray-500 justify-center pt-5 pb-6 px-4">
+              <svg
+                class="w-16 h-16 mb-4 text-gray-500"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 16"
+                width="128"
+                height="128"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                />
+              </svg>
+              {!fileInput.value
+                ? (
+                  <>
+                    <div class="mb-2 mx-4 text-center">
+                      <span class="font-semibold">Click to upload</span> or drag and drop
+                    </div>
+                  </>
+                )
+                : (
+                  <>
+                    <div class="text-lg text-center font-semibold leading-5">{fileInput.value.name}</div>
+                    <div class="text-md text-center opacity-70">{fileSize}</div>
+                  </>
+                )}
+            </div>
 
-                  <p class='mb-2 mx-4 text-sm text-gray-500 text-center'>
-                    <span class='font-semibold'>Click to upload</span> or drag and drop
-                  </p>
-                </>
-              )
-              : (
-                <>
-                  <p class='mb-2 mx-4 text-sm text-gray-500 text-center font-semibold'>{fileInput.value.name}</p>
-                  <p class='mb-2 mx-4 text-sm text-gray-500 text-center font-semibold'>{fileSize}</p>
-                </>
-              )}
+            <input
+              type="file"
+              class="hidden"
+              onInput={(e) => fileInput.value = e.currentTarget?.files?.[0]}
+            />
+          </label>
+        </div>
+
+        <div class={'flex flex-col border border-gray-300 border-1 -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 md:pl-10 p-8 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem]'}>
+          <h3 class="mb-2 font-medium text-gray-900">Expire in :</h3>
+
+          <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
+            <SegmentedButton value={1} type={'radio'} state={amount}>1 hour</SegmentedButton>
+            <SegmentedButton value={24} type={'radio'} state={amount}>1 day</SegmentedButton>
+            <SegmentedButton value={24 * 7} type={'radio'} state={amount}>1 week</SegmentedButton>
           </div>
 
-          <input
-            type='file'
-            class='hidden'
-            onInput={(e) => fileInput.value = e.currentTarget?.files?.[0]}
-          />
-        </label>
-      </div>
+          <div className="flex-auto"></div>
 
-      <h3 class='mb-2 font-medium text-gray-900'>Expire in :</h3>
+          {uploadInProgress.value && (
+            <div class={'mb-4 w-full'}>
+              <ProgressBar value={uploadProgress.value} />
+            </div>
+          )}
 
-      <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
-        <SegmentedButton value={1} type={'radio'} state={amount}>One hour</SegmentedButton>
-        <SegmentedButton value={24} type={'radio'} state={amount}>One day</SegmentedButton>
-        <SegmentedButton value={24 * 7} type={'radio'} state={amount}>One week</SegmentedButton>
-      </div>
+          {formError.value && (
+            <div class='mb-4'>
+              <p class={'text-red-500'}>{formError}</p>
+            </div>
+          )}
 
-      {uploadInProgress.value && (
-        <div class={'mb-4 w-full'}>
-          <ProgressBar value={uploadProgress.value} />
+          {uploadInProgress.value
+            ? (
+              <>
+                <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort</Button>
+              </>
+            )
+            : (
+              <>
+                <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
+              </>
+            )}
         </div>
-      )}
-
-      {formError.value && (
-        <div class='mb-4'>
-          <p class={'text-red-500'}>{formError}</p>
-        </div>
-      )}
-
-      {uploadInProgress.value
-        ? (
-          <>
-            <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort</Button>
-          </>
-        )
-        : (
-          <>
-            <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
-          </>
-        )}
+      </div>
     </>
   );
 }

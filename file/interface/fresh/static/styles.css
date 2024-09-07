@@ -25,7 +25,7 @@
     border-bottom-right-radius: 9999px;
   }
 
-  .check-icon {
+  .btn-segmented .check-icon {
     display: none !important;
     font-size: 1rem !important;
     line-height: 1.5rem !important;
@@ -324,4 +324,24 @@
       opacity: 1;
     }
   }
+}
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url('fonts/material-symbols.woff2') format('woff');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 }

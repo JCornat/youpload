@@ -15,31 +15,29 @@ export const handler = {
 export default function Home({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-4 py-4 mx-auto bg-slate-100 min-h-screen'>
-        <Header isLoggedIn={data.isLoggedIn} hideLogo={true} />
+      <Header isLoggedIn={data.isLoggedIn} />
 
-        <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
+      <div class='max-w-screen-md mx-auto px-4 flex flex-col items-center justify-center'>
+        <a href='/'>
+          <img
+            class='my-4'
+            src='/logo.svg'
+            width='128'
+            height='128'
+            alt='the Fresh logo: a sliced lemon dripping with juice'
+          />
+        </a>
+
+        <h1 class='text-4xl font-bold mb-8 text-center'>
+          Welcome to
           <a href='/'>
-            <img
-              class='my-4'
-              src='/logo.svg'
-              width='128'
-              height='128'
-              alt='the Fresh logo: a sliced lemon dripping with juice'
-            />
+            <span class={'ml-2 text-yellow-400'}>You</span>
+            <span class={'text-slate-500'}>pload</span>
           </a>
-
-          <h1 class='text-4xl font-bold mb-8 text-center'>
-            Welcome to
-            <a href='/'>
-              <span class={'ml-2 text-yellow-400'}>You</span>
-              <span class={'text-slate-500'}>pload</span>
-            </a>
-          </h1>
-
-          <FileUploadForm />
-        </div>
+        </h1>
       </div>
+
+      <FileUploadForm />
     </>
   );
 }

@@ -29,15 +29,15 @@ export const handler = {
 export default function Account({ data }: PageProps<Data>) {
   return (
     <>
-      <div class='px-4 py-4 mx-auto bg-neutral-50'>
-        <Header isLoggedIn={data.isLoggedIn} />
+      <Header isLoggedIn={data.isLoggedIn} />
 
-        <div class='max-w-screen-md mx-auto mb-8'>
+      <div class='max-w-screen-md mx-auto px-4'>
+        <div class='mb-8'>
           <h1 class='text-3xl font-bold'>Account</h1>
           <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
         </div>
 
-        <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
+        <div class='flex flex-col items-center justify-center'>
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
             <div class={'pr-8'}>
               <h1 class='text-2xl font-bold'>Referral</h1>

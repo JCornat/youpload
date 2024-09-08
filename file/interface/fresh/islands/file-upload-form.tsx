@@ -93,19 +93,18 @@ export default function FileUploadForm() {
   return (
     <>
       <div class="flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 max-w-screen-xl">
-        <div class="flex items-center justify-center w-full bg-indigo-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
-          <div class="absolute top-0 right-0 opacity-10 pointer-events-none rotate-[20deg] z-0 material-symbols-outlined check-icon">check</div>
-          <img alt="" loading="lazy" width="919" height="1351" decoding="async" data-nimg="1" class="absolute left-1/2 top-0 translate-x-[-10%] translate-y-[-45%] lg:translate-x-[-32%]" style="color:transparent" src="https://keynote.tailwindui.com/_next/static/media/background-newsletter.488a0204.jpg"/>
-          <label class="flex flex-col items-center justify-center w-full h-64 border-2 border-slate-400 border-dashed rounded-lg cursor-pointer z-10">
-            <div class="flex flex-col items-center text-gray-500 justify-center pt-5 pb-6 px-4">
+        <div class="flex items-center justify-center w-full bg-white/10 p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
+          <label class="flex flex-col items-center justify-center w-full h-64 border-2 border-white border-dashed rounded-lg cursor-pointer z-10">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
               <svg
-                class="w-16 h-16 mb-4 text-gray-500"
+                class="w-16 h-16 mb-4"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 20 16"
                 width="128"
                 height="128"
+                className={'animate-bounce opacity-20'}
               >
                 <path
                   stroke="currentColor"
@@ -139,7 +138,9 @@ export default function FileUploadForm() {
           </label>
         </div>
 
-        <div class={'flex flex-col border border-gray-300 border-1 -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 md:pl-10 p-8 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem]'}>
+        <div class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 md:pl-10 p-8 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem]'}>
+          <img alt="" loading="lazy" width="919" height="1351" decoding="async" data-nimg="1" class="absolute left-1/2 top-0 translate-x-[-10%] translate-y-[-45%] lg:translate-x-[-32%]" style="color:transparent" src="https://keynote.tailwindui.com/_next/static/media/background-newsletter.488a0204.jpg"/>
+          <div class={'z-10 flex flex-col'}>
           <h3 class="mb-2 font-medium text-gray-900">Expire in :</h3>
 
           <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
@@ -173,6 +174,7 @@ export default function FileUploadForm() {
                 <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
               </>
             )}
+          </div>
         </div>
       </div>
     </>

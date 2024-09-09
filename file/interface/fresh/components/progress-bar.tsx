@@ -1,7 +1,7 @@
 import { JSX } from 'preact';
 
 export default function ProgressBar(props: JSX.HTMLAttributes<HTMLInputElement> & { value?: number }) {
-  const isDeterminate = (typeof props.value === 'number');
+  const isDeterminate = typeof props.value === 'number';
 
   return (
     <>

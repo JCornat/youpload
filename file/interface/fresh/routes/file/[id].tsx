@@ -5,6 +5,18 @@ import { InspectFileQuery, InspectFileUseCase } from '../../../../application/us
 import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
+import Header from '../../components/header.tsx';
+import Button from '../../components/button.tsx';
+import Footer from '../../components/footer.tsx';
+
+interface Data {
+  url: string;
+  name: string;
+  size: string;
+  createdAt: string;
+  expireAt: string;
+  isLoggedIn?: boolean;
+}
 
 export const handler = {
   async GET(_req, ctx) {
@@ -24,7 +36,8 @@ export const handler = {
         name: fileMetadata.name.value,
         size: formatBytes(fileMetadata.size.value, { locale: 'fr' }),
         createdAt: formatDate(fileMetadata.createdAt, 'dd/MM/yyyy'),
-        expireAt: formatDate(fileMetadata.expireAt, 'dd/MM/yyyy'),
+        expireAt: formatDate(fileMetadata.expireAt, 'dd/MM/yyyy, HH:mm'),
+        isLoggedIn: ctx.state.isLoggedIn,
       });
     } catch {
       return new Response('', {
@@ -35,32 +48,51 @@ export const handler = {
   },
 } satisfies Handlers;
 
-export default function FileDetail(props: PageProps<{ url: string; name: string; size: string; createdAt: string; expireAt: string }>) {
-  const { url, name, size, createdAt, expireAt } = props.data;
+export default function FileDetail(props: PageProps<Data>) {
+  const { url, name, size, createdAt, expireAt, isLoggedIn } = props.data;
 
   return (
-    <div class='px-4 py-8 mx-auto bg-[#86efac]'>
-      <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
-        <a href='/'>
+    <>
+      <Header isLoggedIn={isLoggedIn} />
+
+      <div class={'mx-auto px-4 flex flex-col items-center justify-center'}>
+        <a href="/">
           <img
-            class='my-6'
-            src='/logo.svg'
-            width='128'
-            height='128'
-            alt='the Fresh logo: a sliced lemon dripping with juice'
+            class="my-6"
+            src="/logo.svg"
+            width="128"
+            height="128"
+            alt="the Fresh logo: a sliced lemon dripping with juice"
           />
         </a>
 
-        <h1 class='text-4xl font-bold'>
-          {name}
+        <h1 class="text-3xl font-bold mb-8 text-center text-slate-700">Download
+          your <span class={'text-blue-600'}>file</span>
         </h1>
-
-        <p>Size : {size}</p>
-        <p>Created at : {createdAt}</p>
-        <p>Expire at : {expireAt}</p>
-
-        <a href={url} download>Download</a>
       </div>
-    </div>
+
+      <div className="mb-32">
+        <div class='flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center'>
+          <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
+            <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center pt-5 pb-6 px-4">
+              <span class="material-symbols-outlined opacity-20 text-[7rem]">cloud_download</span>
+              <div class="text-xl text-center font-semibold leading-5">{name}</div>
+              <div class="text-md text-center opacity-70">{size}</div>
+            </div>
+          </div>
+
+          <div
+            class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}
+          >
+            <h3 class='mb-2 font-medium text-slate-700 text-center'>Expires at <span class={'font-semibold'}>{expireAt}</span></h3>
+            <div class={'flex-auto'}></div>
+            <Button variant={'primary'} class={'w-full'}>Download</Button>
+            {/*<a href={url} download>Download</a>*/}
+          </div>
+        </div>
+      </div>
+
+      <Footer/>
+    </>
   );
 }

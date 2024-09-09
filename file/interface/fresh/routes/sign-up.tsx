@@ -1,5 +1,4 @@
 import SignUpForm from '../islands/sign-up/sign-up-form.tsx';
-import SignInForm from '../islands/sign-in/sign-in-form.tsx';
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
             />
           </a>
 
-          <div class={'p-8 w-full rounded-xl border border-gray-300 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
+          <div class={'p-8 w-full rounded-xl border bg-white border-gray-300 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
             <div class={'flex-1 mb-8'}>
               <h1 class='text-3xl font-bold'>Sign up</h1>
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quidem!</p>

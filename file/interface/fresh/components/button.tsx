@@ -4,7 +4,7 @@ export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement> & { 
   function getColor(variant: 'primary' | 'secondary' | 'success' | 'danger') {
     switch (variant) {
       case 'primary':
-        return 'bg-yellow-400 hover:bg-yellow-400 focus-visible:outline-yellow-400 text-slate-800';
+        return 'bg-blue-600 hover:bg-blue-600 focus-visible:outline-blue-600 text-white';
       case 'secondary':
         return 'bg-blue-600 hover:bg-blue-500 focus-visible:outline-blue-600';
       case 'success':
@@ -21,7 +21,7 @@ export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement> & { 
   return (
     <button
       {...props}
-      class={`relative flex flex-row items-center disabled:bg-zinc-200 disabled:text-zinc-400 justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md disabled:hover:shadow-none disabled:cursor-not-allowed text-sm tracking-[.00714em] font-medium bg-primary-600 text-white ${color} ${
+      class={`relative flex flex-row items-center disabled:bg-white/30 disabled:text-slate-500 justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md disabled:hover:shadow-none disabled:cursor-not-allowed text-sm tracking-[.00714em] font-medium bg-primary-600 text-white ${color} ${
         props.class ?? ''
       }`}
     />

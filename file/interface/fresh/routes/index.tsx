@@ -28,10 +28,10 @@ export default function Home({ data }: PageProps<Data>) {
           />
         </a>
 
-        <h1 class='text-4xl font-bold mb-8 text-center text-white'>
+        <h1 class='text-4xl font-bold mb-8 text-center text-slate-700'>
           Welcome to
           <a href='/'>
-            <span class={'ml-2 text-purple-400'}>You</span>
+            <span class={'ml-2 text-blue-600'}>You</span>
             <span>pload</span>
           </a>
         </h1>

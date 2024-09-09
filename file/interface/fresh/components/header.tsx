@@ -1,6 +1,6 @@
 export default function Header({ isLoggedIn }: { isLoggedIn?: boolean }) {
   return (
-    <div class='flex items-center mb-4 p-4 gap-4 text-white'>
+    <div class='flex items-center mb-4 p-4 gap-4 text-slate-700'>
       <a href="/">
         <img
           src="/logo.svg"
@@ -12,7 +12,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn?: boolean }) {
 
       <h1 class={'text-xl font-black'}>
         <a href="/">
-          <span class={'text-purple-400'}>You</span>
+          <span class={'text-blue-600'}>You</span>
           <span class={'text-500'}>pload</span>
         </a>
       </h1>

@@ -92,38 +92,40 @@ const formatBytes = (bytes: number = 0, decimals = 2) => {
 export default function FileUploadForm() {
   return (
     <>
-      <div class="flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center mb-52 md:mb-32">
-        <div class="flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
-          <label class="flex flex-col items-center justify-center w-full md:h-56 border-2 border-white border-dashed rounded-lg cursor-pointer z-10">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-              <span class="material-symbols-outlined opacity-20 text-[7rem]">cloud_upload</span>
+      <div class='flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center'>
+        <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
+          <label class='flex flex-col items-center justify-center w-full md:h-56 border-2 border-white border-dashed rounded-lg cursor-pointer z-10'>
+            <div class='flex flex-col items-center justify-center pt-5 pb-6 px-4'>
+              <span class='material-symbols-outlined opacity-20 text-[7rem]'>cloud_upload</span>
 
               {!fileInput.value
                 ? (
                   <>
-                    <div class="mb-2 mx-4 text-center">
-                      <span class="font-semibold">Click to upload</span> or drag and drop
+                    <div class='mb-2 mx-4 text-center'>
+                      <span class='font-semibold'>Click to upload</span> or drag and drop
                     </div>
                   </>
                 )
                 : (
                   <>
-                    <div class="text-lg text-center font-semibold leading-5">{fileInput.value.name}</div>
-                    <div class="text-md text-center opacity-70">{fileSize}</div>
+                    <div class='text-xl text-center font-semibold leading-5'>{fileInput.value.name}</div>
+                    <div class='text-md text-center opacity-70'>{fileSize}</div>
                   </>
                 )}
             </div>
 
             <input
-              type="file"
-              class="hidden"
+              type='file'
+              class='hidden'
               onInput={(e) => fileInput.value = e.currentTarget?.files?.[0]}
             />
           </label>
         </div>
 
-        <div class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}>
-          <h3 class="mb-2 font-medium text-slate-700 font-semibold text-center">Expire in</h3>
+        <div
+          class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}
+        >
+          <h3 class='mb-2 font-medium text-slate-700 font-semibold text-center'>Expire in</h3>
 
           <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
             <SegmentedButton value={1} type={'radio'} state={amount}>1 hour</SegmentedButton>
@@ -131,7 +133,7 @@ export default function FileUploadForm() {
             <SegmentedButton value={24 * 7} type={'radio'} state={amount}>1 week</SegmentedButton>
           </div>
 
-          <div className="flex-auto"></div>
+          <div className='flex-auto'></div>
 
           {uploadInProgress.value && (
             <div class={'mb-4 w-full'}>
@@ -147,14 +149,10 @@ export default function FileUploadForm() {
 
           {uploadInProgress.value
             ? (
-              <>
-                <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort ({uploadProgress.value}%)</Button>
-              </>
+              <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort ({uploadProgress.value}%)</Button>
             )
             : (
-              <>
-                <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
-              </>
+              <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
             )}
         </div>
       </div>

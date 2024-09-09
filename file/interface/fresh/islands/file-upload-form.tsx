@@ -92,28 +92,12 @@ const formatBytes = (bytes: number = 0, decimals = 2) => {
 export default function FileUploadForm() {
   return (
     <>
-      <div class="flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 max-w-screen-xl">
-        <div class="flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
-          <label class="flex flex-col items-center justify-center w-full h-64 border-2 border-white border-dashed rounded-lg cursor-pointer z-10">
+      <div class="flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center mb-52 md:mb-32">
+        <div class="flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden">
+          <label class="flex flex-col items-center justify-center w-full md:h-56 border-2 border-white border-dashed rounded-lg cursor-pointer z-10">
             <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
-              <svg
-                class="w-16 h-16 mb-4"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 16"
-                width="128"
-                height="128"
-                className={'animate-bounce opacity-20'}
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                />
-              </svg>
+              <span class="material-symbols-outlined opacity-20 text-[7rem]">cloud_upload</span>
+
               {!fileInput.value
                 ? (
                   <>
@@ -138,7 +122,7 @@ export default function FileUploadForm() {
           </label>
         </div>
 
-        <div class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 md:pl-10 p-8 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}>
+        <div class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}>
           <h3 class="mb-2 font-medium text-slate-700 font-semibold text-center">Expire in</h3>
 
           <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
@@ -164,7 +148,7 @@ export default function FileUploadForm() {
           {uploadInProgress.value
             ? (
               <>
-                <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort</Button>
+                <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort ({uploadProgress.value}%)</Button>
               </>
             )
             : (

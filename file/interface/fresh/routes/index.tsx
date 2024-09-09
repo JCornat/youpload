@@ -15,7 +15,7 @@ export const handler = {
 export default function Home({ data }: PageProps<Data>) {
   return (
     <>
-      <Header isLoggedIn={data.isLoggedIn} />
+      <Header isLoggedIn={data.isLoggedIn}/>
 
       <div class='max-w-screen-md mx-auto px-4 flex flex-col items-center justify-center'>
         <a href='/'>
@@ -37,7 +37,7 @@ export default function Home({ data }: PageProps<Data>) {
         </h1>
       </div>
 
-      <FileUploadForm />
+      <FileUploadForm/>
     </>
   );
 }

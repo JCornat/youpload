@@ -5,6 +5,7 @@ import AccountNameForm from '../islands/account/name-form.tsx';
 import AccountDeleteForm from '../islands/account/delete-form.tsx';
 import AccountReferralForm from '../islands/account/referral-form.tsx';
 import Header from '../components/header.tsx';
+import Footer from '../components/footer.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -44,7 +45,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
               <img src={'icons/local-activity.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -59,7 +60,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
               <img src={'icons/user.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -74,7 +75,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
               <img src={'icons/mail.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -89,7 +90,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
               <img src={'icons/key.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -104,7 +105,7 @@ export default function Account({ data }: PageProps<Data>) {
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
             </div>
 
-            <div class={'p-8 rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden'}>
+            <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
               <img src={'icons/warning.svg'} class={'absolute -top-8 -right-4 opacity-10 pointer-events-none rotate-[20deg] z-0'} />
 
               <div class={'z-10 relative'}>
@@ -114,6 +115,8 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { Head } from '$fresh/runtime.ts';
+import Footer from '../components/footer.tsx';
 
 export default function FileNotFound() {
   return (
@@ -23,6 +24,8 @@ export default function FileNotFound() {
           <a href='/' class='underline'>Go back home</a>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

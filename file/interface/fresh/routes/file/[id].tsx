@@ -76,7 +76,7 @@ export default function FileDetail(props: PageProps<Data>) {
           <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
             <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center pt-5 pb-6 px-4">
               <span class="material-symbols-outlined opacity-20 text-[7rem]">cloud_download</span>
-              <div class="text-xl text-center font-semibold leading-5">{name}</div>
+              <div class="text-xl text-center font-semibold leading-5 break-all">{name}</div>
               <div class="text-md text-center opacity-70">{size}</div>
             </div>
           </div>
@@ -87,7 +87,6 @@ export default function FileDetail(props: PageProps<Data>) {
             <h3 class='mb-2 font-medium text-slate-700 text-center'>Expires at <span class={'font-semibold'}>{expireAt}</span></h3>
             <div class={'flex-auto'}></div>
             <Button variant={'primary'} class={'w-full'}>Download</Button>
-            {/*<a href={url} download>Download</a>*/}
           </div>
         </div>
       </div>

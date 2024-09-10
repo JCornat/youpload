@@ -14,7 +14,6 @@ import * as $api_referral from './routes/api/referral.ts';
 import * as $api_sign_in from './routes/api/sign-in.ts';
 import * as $api_sign_up from './routes/api/sign-up.ts';
 import * as $api_upload from './routes/api/upload.ts';
-import * as $f_id_ from './routes/f/[id].tsx';
 import * as $file_not_found from './routes/file-not-found.tsx';
 import * as $file_id_ from './routes/file/[id].tsx';
 import * as $file_id_download from './routes/file/[id]/download.ts';
@@ -22,7 +21,6 @@ import * as $index from './routes/index.tsx';
 import * as $logout from './routes/logout.ts';
 import * as $sign_in from './routes/sign-in.tsx';
 import * as $sign_up from './routes/sign-up.tsx';
-import * as $success_upload_id_ from './routes/success-upload/[id].tsx';
 import * as $account_delete_form from './islands/account/delete-form.tsx';
 import * as $account_email_form from './islands/account/email-form.tsx';
 import * as $account_name_form from './islands/account/name-form.tsx';
@@ -47,7 +45,6 @@ const manifest = {
     './routes/api/sign-in.ts': $api_sign_in,
     './routes/api/sign-up.ts': $api_sign_up,
     './routes/api/upload.ts': $api_upload,
-    './routes/f/[id].tsx': $f_id_,
     './routes/file-not-found.tsx': $file_not_found,
     './routes/file/[id].tsx': $file_id_,
     './routes/file/[id]/download.ts': $file_id_download,
@@ -55,7 +52,6 @@ const manifest = {
     './routes/logout.ts': $logout,
     './routes/sign-in.tsx': $sign_in,
     './routes/sign-up.tsx': $sign_up,
-    './routes/success-upload/[id].tsx': $success_upload_id_,
   },
   islands: {
     './islands/account/delete-form.tsx': $account_delete_form,

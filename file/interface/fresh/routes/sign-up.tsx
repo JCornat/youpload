@@ -17,9 +17,9 @@ export default function Home() {
           </a>
 
           <div class={'p-8 w-full rounded-xl border bg-white/30 border-gray-300 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
-            <div class={'flex-1 mb-8'}>
-              <h1 class='text-3xl font-bold'>Sign up</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quidem!</p>
+            <div class={'flex-1 mb-8 md:pr-4'}>
+              <h1 class='text-3xl font-bold mb-2'>Sign up</h1>
+              <p class={'opacity-50'}>Create your account to upload larger files. Please note you’ll need a referral code to join our platform.</p>
             </div>
 
             <div class={'flex-1'}>

@@ -35,14 +35,14 @@ export default function Account({ data }: PageProps<Data>) {
       <div class='max-w-screen-md mx-auto px-4'>
         <div class='mb-8'>
           <h1 class='text-3xl font-bold'>Account</h1>
-          <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+          <p class={'opacity-50'}>Manage your information, and retrieve your referral code.</p>
         </div>
 
         <div class='flex flex-col items-center justify-center'>
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
-            <div class={'pr-8'}>
+            <div>
               <h1 class='text-2xl font-bold'>Referral</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+              <p class={'opacity-50'}>Retrieve and share your referral code to invite others and help them create an account.</p>
             </div>
 
             <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
@@ -55,9 +55,9 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
 
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
-            <div class={'pr-8'}>
+            <div>
               <h1 class='text-2xl font-bold'>Username</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+              <p class={'opacity-50'}>Update your display name to personalize your account experience.</p>
             </div>
 
             <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
@@ -70,9 +70,9 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
 
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
-            <div class={'pr-8'}>
+            <div>
               <h1 class='text-2xl font-bold'>Email</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+              <p class={'opacity-50'}>Change or update the email address associated with your account for notifications and recovery.</p>
             </div>
 
             <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
@@ -85,9 +85,9 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
 
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
-            <div class={'pr-8'}>
-              <h1 class='text-2xl font-bold'>Update password</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+            <div>
+              <h1 class='text-2xl font-bold'>Password</h1>
+              <p class={'opacity-50'}>Set a new password to enhance the security of your account.</p>
             </div>
 
             <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>
@@ -100,9 +100,9 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
 
           <div class='w-full grid gap-4 mb-8 grid-cols-1 md:grid-cols-account'>
-            <div class={'pr-8'}>
+            <div>
               <h1 class='text-2xl font-bold'>Danger zone</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, dolore!</p>
+              <p class={'opacity-50'}>Permanently delete your account and all associated data. Proceed with caution!</p>
             </div>
 
             <div class={'p-8 rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden'}>

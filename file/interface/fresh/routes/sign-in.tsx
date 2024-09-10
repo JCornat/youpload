@@ -33,9 +33,9 @@ export default function SignIn() {
           </a>
 
           <div class={'p-8 w-full rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
-            <div class={'flex-1 mb-8'}>
-              <h1 class='text-3xl font-bold'>Login</h1>
-              <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quidem!</p>
+            <div class={'flex-1 mb-8 md:pr-4'}>
+              <h1 class='text-3xl font-bold mb-2'>Login</h1>
+              <p class={'opacity-50'}>Access your account to upload larger files.</p>
             </div>
 
             <div class={'flex-1'}>

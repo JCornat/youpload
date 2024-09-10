@@ -95,7 +95,7 @@ export default function FileUploadForm() {
       <div class='flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center'>
         <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
           <label class='flex flex-col items-center justify-center w-full md:h-56 border-2 border-white border-dashed rounded-lg cursor-pointer z-10'>
-            <div class='flex flex-col items-center justify-center pt-5 pb-6 px-4'>
+            <div class='flex flex-col items-center justify-center pt-5 pb-6 px-12'>
               <span class='material-symbols-outlined opacity-20 text-[7rem]'>cloud_upload</span>
 
               {!fileInput.value
@@ -108,7 +108,7 @@ export default function FileUploadForm() {
                 )
                 : (
                   <>
-                    <div class='text-xl text-center font-semibold leading-5'>{fileInput.value.name}</div>
+                    <div class='text-xl text-center font-semibold leading-5 break-all'>{fileInput.value.name}</div>
                     <div class='text-md text-center opacity-70'>{fileSize}</div>
                   </>
                 )}

@@ -1,5 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import SignInForm from '../islands/sign-in/sign-in-form.tsx';
+import Footer from '../components/footer.tsx';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
@@ -19,7 +20,7 @@ export const handler = {
 export default function SignIn() {
   return (
     <>
-      <div class='px-4 py-8 mx-auto'>
+      <div class='px-4 pt-8 pb-24 mx-auto'>
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
           <a href='/'>
             <img
@@ -31,7 +32,7 @@ export default function SignIn() {
             />
           </a>
 
-          <div class={'p-8 w-full rounded-xl border border-gray-300 bg-white border-1 relative overflow-hidden flex flex-col md:flex-row'}>
+          <div class={'p-8 w-full rounded-xl border border-gray-300 bg-white/30 border-1 relative overflow-hidden flex flex-col md:flex-row'}>
             <div class={'flex-1 mb-8'}>
               <h1 class='text-3xl font-bold'>Login</h1>
               <p class={'opacity-50'}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quidem!</p>
@@ -43,6 +44,8 @@ export default function SignIn() {
           </div>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

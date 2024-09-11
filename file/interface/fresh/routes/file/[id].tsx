@@ -48,6 +48,11 @@ export const handler = {
   },
 } satisfies Handlers;
 
+const copyLink = () => {
+  console.log(  '???');
+  // navigator.clipboard['writeText']('this.input');
+}
+
 export default function FileDetail(props: PageProps<Data>) {
   const { url, name, size, createdAt, expireAt, isLoggedIn } = props.data;
 
@@ -84,8 +89,9 @@ export default function FileDetail(props: PageProps<Data>) {
           <div
             class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}
           >
-            <h3 class='mb-2 font-medium text-slate-700 text-center'>Expires at <span class={'font-semibold'}>{expireAt}</span></h3>
+            <Button variant={'secondary'} class={'w-full'} onClick={copyLink}>Copy link</Button>
             <div class={'flex-auto'}></div>
+            <h3 class='mb-2 font-medium text-slate-700 text-center'>Expires at <span class={'font-semibold'}>{expireAt}</span></h3>
             <Button variant={'primary'} class={'w-full'}>Download</Button>
           </div>
         </div>

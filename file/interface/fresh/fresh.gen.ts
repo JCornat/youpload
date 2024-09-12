@@ -27,6 +27,8 @@ import * as $account_name_form from './islands/account/name-form.tsx';
 import * as $account_password_form from './islands/account/password-form.tsx';
 import * as $account_referral_form from './islands/account/referral-form.tsx';
 import * as $file_upload_form from './islands/file-upload-form.tsx';
+import * as $file_copy_link_button from './islands/file/copy-link-button.tsx';
+import * as $file_download_link_button from './islands/file/download-link-button.tsx';
 import * as $sign_in_sign_in_form from './islands/sign-in/sign-in-form.tsx';
 import * as $sign_up_sign_up_form from './islands/sign-up/sign-up-form.tsx';
 import type { Manifest } from '$fresh/server.ts';
@@ -60,6 +62,8 @@ const manifest = {
     './islands/account/password-form.tsx': $account_password_form,
     './islands/account/referral-form.tsx': $account_referral_form,
     './islands/file-upload-form.tsx': $file_upload_form,
+    './islands/file/copy-link-button.tsx': $file_copy_link_button,
+    './islands/file/download-link-button.tsx': $file_download_link_button,
     './islands/sign-in/sign-in-form.tsx': $sign_in_sign_in_form,
     './islands/sign-up/sign-up-form.tsx': $sign_up_sign_up_form,
   },

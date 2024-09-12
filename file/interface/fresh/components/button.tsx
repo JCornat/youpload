@@ -8,7 +8,7 @@ export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement> & { 
       case 'secondary':
         return 'bg-blue-400/50 hover:bg-blue-400 focus-visible:outline-cyan-600 text-white';
       case 'success':
-        return 'bg-green-600 hover:bg-green-500 focus-visible:outline-green-600';
+        return 'bg-green-500 hover:bg-green-500 focus-visible:outline-green-500 text-white';
       case 'danger':
         return 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600 text-white';
       default:

@@ -23,13 +23,13 @@ export default function Home() {
             </div>
 
             <div class={'flex-1'}>
-              <SignUpForm/>
+              <SignUpForm />
             </div>
           </div>
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

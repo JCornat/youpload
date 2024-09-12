@@ -148,12 +148,8 @@ export default function FileUploadForm() {
           )}
 
           {uploadInProgress.value
-            ? (
-              <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort ({uploadProgress.value}%)</Button>
-            )
-            : (
-              <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>
-            )}
+            ? <Button onClick={abort} variant={'secondary'} class={'w-full'}>Abort ({uploadProgress.value}%)</Button>
+            : <Button onClick={upload} disabled={!fileInput.value} variant={'primary'} class={'w-full'}>Upload</Button>}
         </div>
       </div>
     </>

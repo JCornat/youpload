@@ -39,14 +39,16 @@ export default function Home(props: PageProps<Data>) {
           </a>
         </h1>
 
-        <h2 class={'text-xl'}>Upload and share <span class={'text-blue-600'}>safely</span></h2>
+        <h2 class={'text-xl'}>
+          Upload and share <span class={'text-blue-600'}>safely</span>
+        </h2>
       </div>
 
       <div className='mb-32'>
         <FileUploadForm />
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

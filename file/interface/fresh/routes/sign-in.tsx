@@ -45,7 +45,7 @@ export default function SignIn() {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

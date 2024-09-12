@@ -116,7 +116,7 @@ export default function Account({ data }: PageProps<Data>) {
         </div>
       </div>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

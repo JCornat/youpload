@@ -5,7 +5,7 @@ import { UserFakeRepository } from '../infrastructure/repository/user.fake.repos
 import { PasswordHashingFakeRepository } from '../infrastructure/provider/password-hashing.fake.repository.ts';
 import { SignInCommand, SignInUseCase } from '../application/service/sign-in.use-case.ts';
 import { SessionFakeRepository } from '../infrastructure/repository/session.fake.repository.ts';
-import { StubDateProvider } from '../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../shared/infrastructure/provider/date.stub.provider.ts';
 import { ReferralFakeProvider } from '../infrastructure/provider/referral-fake.provider.ts';
 import { GetReferralQuery, GetReferralUseCase } from '../application/use-case/query/get-referral.use-case.ts';
 import { UserReferral } from '../domain/value-object/user-referral.ts';
@@ -19,7 +19,7 @@ import { NotFoundException } from '../../shared/lib/exceptions.ts';
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();
   const sessionRepository = new SessionFakeRepository();
-  const dateProvider = new StubDateProvider();
+  const dateProvider = new DateStubProvider();
   const passwordHashingProvider = new PasswordHashingFakeRepository();
   const referralProvider = new ReferralFakeProvider();
   const signUpUseCase = new SignUpUseCase(userRepository, passwordHashingProvider, referralProvider);

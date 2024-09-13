@@ -6,7 +6,7 @@ import { ReferralSlugProvider } from '../../../../../user/infrastructure/provide
 import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { FileStorageFileSystemProvider } from '../../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { FileStatFileSystemProvider } from '../../../../infrastructure/provider/file-stat.fs.provider.ts';
-import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../../../../shared/infrastructure/provider/date.stub.provider.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../../../../application/use-case/command/upload-file.use-case.ts';
 
 function addHours(date: Date, hours: number) {
@@ -51,7 +51,7 @@ export const handler = {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const fileStorageProvider = new FileStorageFileSystemProvider();
     const fileStatProvider = new FileStatFileSystemProvider();
-    const dateProvider = new StubDateProvider();
+    const dateProvider = new DateStubProvider();
     const uploadFileUseCase = new UploadFileUseCase(fileMetadataRepository, fileStorageProvider, fileStatProvider, dateProvider);
 
     const command = {

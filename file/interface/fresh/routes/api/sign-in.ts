@@ -1,4 +1,4 @@
-import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../../../../shared/infrastructure/provider/date.stub.provider.ts';
 import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { SessionFileSystemRepository } from '../../../../../user/infrastructure/repository/session.fs.repository.ts';
 import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
@@ -12,7 +12,7 @@ export const handler = {
       return new Response('Already logged', { status: 400 });
     }
 
-    const dateProvider = new StubDateProvider();
+    const dateProvider = new DateStubProvider();
     const passwordHashingRepository = new PasswordHashingBcryptRepository();
     const sessionRepository = new SessionFileSystemRepository();
     const userRepository = new UserFileSystemRepository();

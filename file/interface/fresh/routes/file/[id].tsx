@@ -2,7 +2,7 @@ import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
 import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { InspectFileQuery, InspectFileUseCase } from '../../../../application/use-case/query/inspect-file.use-case.ts';
-import { StubDateProvider } from '../../../../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../../../../shared/infrastructure/provider/date.stub.provider.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
 import Header from '../../components/header.tsx';
@@ -23,7 +23,7 @@ interface Data {
 export const handler = {
   async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
-    const dateProvider = new StubDateProvider();
+    const dateProvider = new DateStubProvider();
     const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
 
     const query = {

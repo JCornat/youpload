@@ -3,13 +3,13 @@ import { FileStorageFileSystemProvider } from '../../../../../infrastructure/pro
 import { DownloadFileUseCase } from '../../../../../application/use-case/query/download-file.use-case.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
 import { InspectFileUseCase } from '../../../../../application/use-case/query/inspect-file.use-case.ts';
-import { StubDateProvider } from '../../../../../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../../../../../shared/infrastructure/provider/date.stub.provider.ts';
 
 export const handler = {
   async GET(_req, ctx) {
     const fileMetadataRepository = new FileMetadataFileSystemRepository();
     const fileStorageProvider = new FileStorageFileSystemProvider();
-    const dateProvider = new StubDateProvider();
+    const dateProvider = new DateStubProvider();
     const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
     const downloadFileUseCase = new DownloadFileUseCase(fileMetadataRepository, fileStorageProvider, dateProvider);
 

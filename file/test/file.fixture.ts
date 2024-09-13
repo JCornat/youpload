@@ -1,5 +1,5 @@
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { StubDateProvider } from '../../shared/domain/provider/date.provider.stub.ts';
+import { DateStubProvider } from '../../shared/infrastructure/provider/date.stub.provider.ts';
 import { FileMetadataFakeRepository } from '../infrastructure/repository/file-metadata.fake.repository.ts';
 import { FileStorageFakeProvider } from '../infrastructure/provider/file-storage.fake.provider.ts';
 import { UploadFileCommand, UploadFileUseCase } from '../application/use-case/command/upload-file.use-case.ts';
@@ -12,7 +12,7 @@ import { RemoveExpiredFilesCron } from '../application/cron/remove-expired-file.
 import { EntityId } from '../../shared/domain/model/entity-id.ts';
 
 export const createFileFixture = () => {
-  const dateProvider = new StubDateProvider();
+  const dateProvider = new DateStubProvider();
   const fileMetadataRepository = new FileMetadataFakeRepository();
   const fileStorageProvider = new FileStorageFakeProvider();
   const fileStatProvider = new FileStatFakeProvider();

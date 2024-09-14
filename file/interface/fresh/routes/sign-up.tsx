@@ -1,5 +1,4 @@
 import SignUpForm from '../islands/sign-up/sign-up-form.tsx';
-import Footer from '../components/footer.tsx';
 
 export default function Home() {
   return (
@@ -28,8 +27,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

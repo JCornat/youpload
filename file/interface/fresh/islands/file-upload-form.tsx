@@ -125,7 +125,7 @@ export default function FileUploadForm() {
         <div
           class={'border border-gray-300 border-1 bg-indigo-50 overflow-hidden flex flex-col relative -mt-4 mx-6 md:-ml-2 md:mr-0 md:my-8 p-4 pt-8 md:p-8 md:pl-10 shadow-md hover:shadow-lg transition-shadow ease-in-out duration-300 rounded-xl md:min-w-[25rem] bg-white/30'}
         >
-          <h3 class='mb-2 font-medium text-slate-700 font-semibold text-center'>Expire in</h3>
+          <h3 class='mb-2 font-medium font-semibold text-center'>Expire in</h3>
 
           <div class={'btn-segmented inline-flex flex-row items-center mb-4'}>
             <SegmentedButton value={1} type={'radio'} state={amount}>1 hour</SegmentedButton>

@@ -1,8 +1,4 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { PasswordHashingBcryptRepository } from '../../../../../user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { UserFileSystemRepository } from '../../../../../user/infrastructure/repository/user.fs.repository.ts';
-import { SignUpUseCase } from '../../../../../user/application/service/sign-up.use-case.ts';
-import { ReferralSlugProvider } from '../../../../../user/infrastructure/provider/referral-slug.provider.ts';
 import { FileMetadataFileSystemRepository } from '../../../../infrastructure/repository/file-metadata.fs.repository.ts';
 import { FileStorageFileSystemProvider } from '../../../../infrastructure/provider/file-storage.fs.provider.ts';
 import { FileStatFileSystemProvider } from '../../../../infrastructure/provider/file-stat.fs.provider.ts';

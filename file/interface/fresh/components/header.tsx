@@ -12,7 +12,7 @@ export default function Header({ isLoggedIn }: { isLoggedIn?: boolean }) {
 
       <h1 class={'text-xl font-black'}>
         <a href='/'>
-          <span class={'text-blue-600'}>You</span>
+          <span class={'text-primary-600'}>You</span>
           <span class={'text-500'}>pload</span>
         </a>
       </h1>

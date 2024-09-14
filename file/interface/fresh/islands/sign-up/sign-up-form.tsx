@@ -122,7 +122,7 @@ export default function SignUpForm() {
       )}
 
       <div class={'flex justify-end gap-8 items-center'}>
-        <a href='/sign-in' class={'text-blue-600'}>Sign in</a>
+        <a href='/sign-in' class={'text-primary-600'}>Sign in</a>
         <Button type='submit' variant='primary'>Create account</Button>
       </div>
     </form>

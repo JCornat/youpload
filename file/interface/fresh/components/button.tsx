@@ -4,9 +4,9 @@ export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement> & { 
   function getColor(variant?: 'primary' | 'secondary' | 'success' | 'danger') {
     switch (variant) {
       case 'primary':
-        return 'bg-blue-600 hover:bg-blue-600 focus-visible:outline-blue-600 text-white';
+        return 'bg-primary-600 hover:bg-primary-600 focus-visible:outline-primary-600 text-white';
       case 'secondary':
-        return 'bg-blue-400/50 hover:bg-blue-400 focus-visible:outline-cyan-600 text-white';
+        return 'bg-primary-400/50 hover:bg-primary-400 focus-visible:outline-cyan-600 text-white';
       case 'success':
         return 'bg-green-500 hover:bg-green-500 focus-visible:outline-green-500 text-white';
       case 'danger':

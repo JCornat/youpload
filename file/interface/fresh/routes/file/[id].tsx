@@ -64,13 +64,13 @@ export default function FileDetail(props: PageProps<Data>) {
         </a>
 
         <h1 class='text-3xl font-bold mb-8 text-center text-slate-700'>
-          Download your <span class={'text-blue-600'}>file</span>
+          Download your <span class={'text-primary-600'}>file</span>
         </h1>
       </div>
 
       <div className='mb-32'>
         <div class='flex flex-col md:flex-row mx-auto px-4 md:px-8 lg:px-16 justify-center'>
-          <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-blue-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
+          <div class='flex items-center justify-center w-full bg-[url(images/bg-blue.jpg)] bg-primary-600 lg:max-w-xl bg-cover p-8 rounded-xl text-white shadow-lg hover:shadow-xl transition-shadow ease-in-out duration-300 z-10 relative overflow-hidden'>
             <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center pt-5 pb-6 px-4'>
               <span class='material-symbols-outlined opacity-20 text-[7rem]'>cloud_download</span>
               <div class='text-xl text-center font-semibold leading-5 break-all'>{name}</div>

@@ -17,13 +17,13 @@ export default function Home() {
         <h1 class='text-3xl font-bold text-center'>
           Welcome to
           <a href='/'>
-            <span class={'ml-2 text-blue-600'}>You</span>
+            <span class={'ml-2 text-primary-600'}>You</span>
             <span>pload</span>
           </a>
         </h1>
 
         <h2 class={'text-xl font-semibold'}>
-          Upload and share <span class={'text-blue-600'}>safely</span>
+          Upload and share <span class={'text-primary-600'}>safely</span>
         </h2>
       </div>
 

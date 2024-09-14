@@ -5,9 +5,6 @@ import { InspectFileQuery, InspectFileUseCase } from '../../../../application/us
 import { DateStubProvider } from '../../../../../shared/infrastructure/provider/date.stub.provider.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
-import Header from '../../components/header.tsx';
-import Button from '../../components/button.tsx';
-import Footer from '../../components/footer.tsx';
 import FileCopyLinkButton from '../../islands/file/copy-link-button.tsx';
 import FileDownloadLinkButton from '../../islands/file/download-link-button.tsx';
 
@@ -50,18 +47,11 @@ export const handler = {
   },
 } satisfies Handlers;
 
-const copyLink = () => {
-  console.log('???');
-  // navigator.clipboard['writeText']('this.input');
-};
-
 export default function FileDetail(props: PageProps<Data>) {
-  const { url, name, size, createdAt, expireAt, isLoggedIn } = props.data;
+  const { url, name, size, expireAt } = props.data;
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
-
       <div class={'mx-auto px-4 flex flex-col items-center justify-center'}>
         <a href='/'>
           <img
@@ -100,8 +90,6 @@ export default function FileDetail(props: PageProps<Data>) {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

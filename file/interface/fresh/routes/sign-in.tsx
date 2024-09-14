@@ -1,6 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import SignInForm from '../islands/sign-in/sign-in-form.tsx';
-import Footer from '../components/footer.tsx';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
@@ -44,8 +43,6 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

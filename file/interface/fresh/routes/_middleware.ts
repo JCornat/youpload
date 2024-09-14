@@ -3,7 +3,13 @@ import { getCookies } from '@std/http/cookie';
 import { SessionFileSystemRepository } from '../../../../user/infrastructure/repository/session.fs.repository.ts';
 import { UserFileSystemRepository } from '../../../../user/infrastructure/repository/user.fs.repository.ts';
 
-export async function handler(req: Request, ctx: FreshContext) {
+export interface State {
+  isLoggedIn: boolean;
+  userName: string;
+  userId: string;
+}
+
+export async function handler(req: Request, ctx: FreshContext<State>) {
   const cookies = getCookies(req.headers);
   const auth = cookies.auth;
   if (auth) {
@@ -21,6 +27,5 @@ export async function handler(req: Request, ctx: FreshContext) {
     }
   }
 
-  const resp = await ctx.next();
-  return resp;
+  return await ctx.next();
 }

@@ -1,11 +1,9 @@
-import { FreshContext, Handlers, PageProps } from '$fresh/server.ts';
+import { FreshContext, Handlers } from '$fresh/server.ts';
 import AccountPasswordForm from '../islands/account/password-form.tsx';
 import AccountEmailForm from '../islands/account/email-form.tsx';
 import AccountNameForm from '../islands/account/name-form.tsx';
 import AccountDeleteForm from '../islands/account/delete-form.tsx';
 import AccountReferralForm from '../islands/account/referral-form.tsx';
-import Header from '../components/header.tsx';
-import Footer from '../components/footer.tsx';
 
 interface Data {
   isLoggedIn?: boolean;
@@ -23,15 +21,13 @@ export const handler = {
       });
     }
 
-    return await ctx.render({ isLoggedIn: ctx.state.isLoggedIn, userName: ctx.state.userName });
+    return await ctx.render();
   },
 } as Handlers;
 
-export default function Account({ data }: PageProps<Data>) {
+export default function Account() {
   return (
     <>
-      <Header isLoggedIn={data.isLoggedIn} />
-
       <div class='max-w-screen-md mx-auto px-4'>
         <div class='mb-8'>
           <h1 class='text-3xl font-bold'>Account</h1>
@@ -115,8 +111,6 @@ export default function Account({ data }: PageProps<Data>) {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

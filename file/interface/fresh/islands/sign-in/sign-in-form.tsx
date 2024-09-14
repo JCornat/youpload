@@ -80,7 +80,7 @@ export default function SignInForm() {
       )}
 
       <div class={'flex justify-end gap-8 items-center'}>
-        <a href='/sign-up' class={'text-blue-600'}>Sign up</a>
+        <a href='/sign-up' class={'text-primary-600'}>Sign up</a>
         <Button type='submit' variant='primary'>Login</Button>
       </div>
     </form>

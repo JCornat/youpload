@@ -1,4 +1,5 @@
 import { type Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors';
 
 export default {
   content: [
@@ -13,6 +14,9 @@ export default {
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],
         serif: ['Roboto Serif', 'serif'],
+      },
+      colors: {
+        primary: colors.blue,
       },
     },
   },

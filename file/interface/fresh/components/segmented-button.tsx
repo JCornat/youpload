@@ -11,8 +11,8 @@ export default function SegmentedButton(props: JSX.HTMLAttributes<HTMLButtonElem
   return (
     <>
       <div
-        class={`segmented-item h-10 btn-outline relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 text-sm tracking-[.00714em] border border-blue-600 c flex-auto ${
-          checked.value ? 'bg-blue-600 text-white' : 'bg-white/30'
+        class={`segmented-item h-10 btn-outline relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 text-sm tracking-[.00714em] border border-primary-600 c flex-auto ${
+          checked.value ? 'bg-primary-600 text-white' : 'bg-white/30'
         }`}
       >
         <input type={props.type} class='z-10 opacity-0 absolute inset-0 cursor-pointer' checked={checked} onClick={updateState} />

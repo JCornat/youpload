@@ -86,6 +86,8 @@
     color: rgb(103 80 164 / var(--tw-text-opacity));
   }
 
+  /* Progress bar style */
+
   .progress-bar-determinate > * {
     transition: width 0.3s cubic-bezier(0.4, 0, 1, 1);
   }
@@ -325,6 +327,8 @@
     }
   }
 }
+
+/* Icons style */
 
 @font-face {
   font-family: 'Material Symbols Outlined';

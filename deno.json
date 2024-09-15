@@ -42,9 +42,9 @@
     "preact": "https://esm.sh/preact@10.19.6",
     "preact/": "https://esm.sh/preact@10.19.6/",
     "tailwindcss": "npm:tailwindcss@3.4.1",
-    "tailwindcss/": "npm:/tailwindcss@3.4.1/",
-    "tailwindcss/colors": "npm:/tailwindcss@3.4.1/colors.js",
-    "tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js"
+    "tailwindcss/": "npm:tailwindcss@3.4.1/",
+    "tailwindcss/colors": "npm:tailwindcss@3.4.1/colors.js",
+    "tailwindcss/plugin": "npm:tailwindcss@3.4.1/plugin.js"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

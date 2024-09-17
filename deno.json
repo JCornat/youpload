@@ -7,19 +7,17 @@
   },
   "test": {
     "include": [
-      "file/**/*.spec.ts",
-      "file/**/*.test.ts",
-      "user/**/*.spec.ts",
-      "user/**/*.test.ts"
+      "app/**/*.spec.ts",
+      "app/**/*.test.ts"
     ]
   },
   "tasks": {
-    "build": "deno run -A file/interface/fresh/dev.ts build",
+    "build": "deno run -A interface/dev.ts build",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
-    "preview": "deno run -A file/interface/fresh/main.ts",
-    "start": "deno run -A --watch=file/interface/fresh/static/,file/interface/fresh/routes/ ./file/interface/fresh/dev.ts",
+    "preview": "deno run -A interface/main.ts",
+    "start": "deno run -A --watch=interface/static/,interface/routes/ ./interface/dev.ts",
     "test": "deno test --allow-read --allow-write --allow-net=deno.land",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
     "watch-test": "deno test --watch --allow-read --allow-write"

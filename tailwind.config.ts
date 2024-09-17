@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors';
 
 export default {
   content: [
-    './file/interface/fresh/{routes,islands,components}/**/*.{ts,tsx}',
+    './interface/{routes,islands,components}/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

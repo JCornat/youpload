@@ -4,12 +4,12 @@ config
 !config/.gitkeep
 !config/storage/.gitkeep
 
-file/test/file/tmp
-file/test/tmp
-!file/test/tmp/.gitkeep
+app/file/test/file/tmp
+app/file/test/tmp
+!app/file/test/tmp/.gitkeep
 
-user/test/tmp
-!user/test/tmp/.gitkeep
+app/user/test/tmp
+!app/user/test/tmp/.gitkeep
 
 # Fresh build directory
-_fresh/
+interface/_fresh/

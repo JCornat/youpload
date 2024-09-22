@@ -13,3 +13,5 @@ app/user/test/tmp
 
 # Fresh build directory
 interface/_fresh/
+
+.env

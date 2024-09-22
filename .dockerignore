@@ -3,3 +3,8 @@
 config/*
 !config/.gitkeep
 !config/storage/.gitkeep
+
+docker-compose.yml
+Dockerfile
+.dockerignore
+.env

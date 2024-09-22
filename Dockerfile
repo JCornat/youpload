@@ -1,9 +1,8 @@
-FROM denoland/deno:1.46.3
+ARG image
 
-ARG GIT_REVISION
-ENV DENO_DEPLOYMENT_ID=${GIT_REVISION}
+FROM $image
 
-WORKDIR /app
+WORKDIR /src
 
 COPY . .
 RUN deno cache interface/main.ts && \

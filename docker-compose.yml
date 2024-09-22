@@ -1,0 +1,14 @@
+services:
+    deno:
+        build:
+            context: .
+            args:
+                - image=${DENO_IMAGE}
+        container_name: deno
+        restart: unless-stopped
+        volumes:
+            - ./config:/src/config/
+networks:
+    default:
+        name: main
+        external: true

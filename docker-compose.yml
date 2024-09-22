@@ -1,14 +1,19 @@
 services:
-    deno:
-        build:
-            context: .
-            args:
-                - image=${DENO_IMAGE}
-        container_name: deno
-        restart: unless-stopped
-        volumes:
-            - ./config:/src/config/
+  deno:
+    build:
+      context: .
+      args:
+        - image=${DENO_IMAGE}
+    container_name: deno
+    restart: unless-stopped
+    volumes:
+      - ./config:/src/config/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 networks:
-    default:
-        name: main
-        external: true
+  default:
+    name: main
+    external: true

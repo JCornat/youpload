@@ -29,7 +29,7 @@ export const handler = {
 
     try {
       const fileMetadata = await inspectFileUseCase.handle(query);
-      const url = `${ctx.url.origin}/file/${fileMetadata.id}/download`;
+      const url = `/file/${fileMetadata.id}/download`;
       return ctx.render({
         url,
         name: fileMetadata.name.value,

@@ -17,7 +17,7 @@ export default function FileNotFound() {
           The file requested doesn't exist
         </h1>
 
-        <a href={'/app/file/interface/fresh/static'} class={'underline'}>
+        <a href={'/'} class={'underline'}>
           Go back home
         </a>
       </div>

@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <div class='mx-auto px-4 flex flex-col items-center justify-center mb-8'>
-        <a href='/app/file/interface/fresh/static'>
+        <a href='/'>
           <img
             class='my-4'
             src='/logo.svg'
@@ -16,7 +16,7 @@ export default function Home() {
 
         <h1 class='text-3xl font-bold text-center'>
           Welcome to
-          <a href='/app/file/interface/fresh/static'>
+          <a href='/'>
             <span class={'ml-2 text-primary-600'}>You</span>
             <span>pload</span>
           </a>

@@ -12,7 +12,7 @@ export default function Error404() {
           The page you were looking for doesn't exist
         </h1>
 
-        <a href={'/app/file/interface/fresh/static'} class={'underline'}>
+        <a href={'/'} class={'underline'}>
           Go back home
         </a>
       </div>

@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <div class='px-4 pt-8 pb-24 mx-auto'>
         <div class='max-w-screen-md mx-auto flex flex-col items-center justify-center'>
-          <a href='/app/file/interface/fresh/static'>
+          <a href='/'>
             <img
               class='my-6'
               src='/logo.svg'

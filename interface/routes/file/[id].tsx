@@ -53,7 +53,7 @@ export default function FileDetail(props: PageProps<Data>) {
   return (
     <>
       <div class={'mx-auto px-4 flex flex-col items-center justify-center'}>
-        <a href='/app/file/interface/fresh/static'>
+        <a href='/'>
           <img
             class='my-6'
             src='/logo.svg'

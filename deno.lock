@@ -3,15 +3,22 @@
   "packages": {
     "specifiers": {
       "jsr:@luca/esbuild-deno-loader@0.10.3": "jsr:@luca/esbuild-deno-loader@0.10.3",
+      "jsr:@std/assert@1.0.5": "jsr:@std/assert@1.0.5",
       "jsr:@std/assert@^0.213.1": "jsr:@std/assert@0.213.1",
+      "jsr:@std/crypto": "jsr:@std/crypto@1.0.3",
       "jsr:@std/datetime@0.225.2": "jsr:@std/datetime@0.225.2",
       "jsr:@std/dotenv@0.225.2": "jsr:@std/dotenv@0.225.2",
+      "jsr:@std/encoding": "jsr:@std/encoding@1.0.5",
       "jsr:@std/encoding@0.213": "jsr:@std/encoding@0.213.1",
       "jsr:@std/fmt@1.0.2": "jsr:@std/fmt@1.0.2",
+      "jsr:@std/fs@1.0.3": "jsr:@std/fs@1.0.3",
       "jsr:@std/http@1.0.6": "jsr:@std/http@1.0.6",
+      "jsr:@std/internal@^1.0.3": "jsr:@std/internal@1.0.3",
       "jsr:@std/json@^0.213.1": "jsr:@std/json@0.213.1",
       "jsr:@std/jsonc@0.213": "jsr:@std/jsonc@0.213.1",
       "jsr:@std/path@0.213": "jsr:@std/path@0.213.1",
+      "jsr:@std/path@^1.0.4": "jsr:@std/path@1.0.6",
+      "jsr:@std/testing@1.0.2": "jsr:@std/testing@1.0.2",
       "npm:autoprefixer@10.4.17": "npm:autoprefixer@10.4.17_postcss@8.4.35",
       "npm:cssnano@6.0.3": "npm:cssnano@6.0.3_postcss@8.4.35",
       "npm:postcss@8.4.35": "npm:postcss@8.4.35",
@@ -29,6 +36,15 @@
       "@std/assert@0.213.1": {
         "integrity": "24c28178b30c8e0782c18e8e94ea72b16282207569cdd10ffb9d1d26f2edebfe"
       },
+      "@std/assert@1.0.5": {
+        "integrity": "e37da8e4033490ce613eec4ac1d78dba1faf5b02a3f6c573a28f15365b9b440f",
+        "dependencies": [
+          "jsr:@std/internal@^1.0.3"
+        ]
+      },
+      "@std/crypto@1.0.3": {
+        "integrity": "a2a32f51ddef632d299e3879cd027c630dcd4d1d9a5285d6e6788072f4e51e7f"
+      },
       "@std/datetime@0.225.2": {
         "integrity": "45f0100554a912cd65f48089ef0a33aa1eb6ea21f08090840b539ab582827eaa"
       },
@@ -38,11 +54,23 @@
       "@std/encoding@0.213.1": {
         "integrity": "fcbb6928713dde941a18ca5db88ca1544d0755ec8fb20fe61e2dc8144b390c62"
       },
+      "@std/encoding@1.0.5": {
+        "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
+      },
       "@std/fmt@1.0.2": {
         "integrity": "87e9dfcdd3ca7c066e0c3c657c1f987c82888eb8103a3a3baa62684ffeb0f7a7"
       },
+      "@std/fs@1.0.3": {
+        "integrity": "3cb839b1360b0a42d8b367c3093bfe4071798e6694fa44cf1963e04a8edba4fe",
+        "dependencies": [
+          "jsr:@std/path@^1.0.4"
+        ]
+      },
       "@std/http@1.0.6": {
         "integrity": "20a6f3fa4a914fbb19ea96572f2519b656232597092581ed706cd865d842d0d0"
+      },
+      "@std/internal@1.0.3": {
+        "integrity": "208e9b94a3d5649bd880e9ca38b885ab7651ab5b5303a56ed25de4755fb7b11e"
       },
       "@std/json@0.213.1": {
         "integrity": "f572b1de605d07c4a5602445dac54bfc51b1fb87a3710a17aed2608bfca54e68"
@@ -59,6 +87,12 @@
         "dependencies": [
           "jsr:@std/assert@^0.213.1"
         ]
+      },
+      "@std/path@1.0.6": {
+        "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+      },
+      "@std/testing@1.0.2": {
+        "integrity": "9e8a7f4e26c219addabe7942d09c3450fa0a74e9662341961bc0ef502274dec3"
       }
     },
     "npm": {
@@ -1401,6 +1435,7 @@
     "https://deno.land/x/bcrypt@v0.4.1/src/bcrypt/base64.ts": "b8266450a4f1eb6960f60f2f7986afc4dde6b45bd2d7ee7ba10789e67e17b9f7",
     "https://deno.land/x/bcrypt@v0.4.1/src/bcrypt/bcrypt.ts": "ec221648cc6453ea5e3803bc817c01157dada06aa6f7a0ba6b9f87aae32b21e2",
     "https://deno.land/x/bcrypt@v0.4.1/src/main.ts": "08d201b289c8d9c46f8839c69cd6625b213863db29775c7a200afc3b540e64f8",
+    "https://deno.land/x/bcrypt@v0.4.1/src/worker.ts": "5a73bdfee9c9e622f47c9733d374b627dce52fb3ec1e74c8226698b3fc57ffac",
     "https://deno.land/x/code_block_writer@12.0.0/mod.ts": "2c3448060e47c9d08604c8f40dee34343f553f33edcdfebbf648442be33205e5",
     "https://deno.land/x/code_block_writer@12.0.0/utils/string_utils.ts": "60cb4ec8bd335bf241ef785ccec51e809d576ff8e8d29da43d2273b69ce2a6ff",
     "https://deno.land/x/denoflate@1.2.1/mod.ts": "f5628e44b80b3d80ed525afa2ba0f12408e3849db817d47a883b801f9ce69dd6",

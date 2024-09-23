@@ -3,10 +3,10 @@ export default function Header({ isLoggedIn }: { isLoggedIn?: boolean }) {
     <div class='flex items-center mb-4 p-4 gap-4'>
       <a href='/'>
         <img
-          src='/logo.svg'
-          width='48'
-          height='48'
-          alt='the Fresh logo: a sliced lemon dripping with juice'
+          src='/logo.png'
+          width='20'
+          height='20'
+          alt='Youpload logo: a stylized hourglass'
         />
       </a>
 

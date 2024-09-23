@@ -55,11 +55,11 @@ export default function FileDetail(props: PageProps<Data>) {
       <div class={'mx-auto px-4 flex flex-col items-center justify-center'}>
         <a href='/'>
           <img
-            class='my-6'
-            src='/logo.svg'
-            width='128'
-            height='128'
-            alt='the Fresh logo: a sliced lemon dripping with juice'
+            class='mt-4 mb-12'
+            src='/logo.png'
+            width='64'
+            height='64'
+            alt='Youpload logo: a stylized hourglass'
           />
         </a>
 

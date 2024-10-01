@@ -43,7 +43,12 @@ describe('UserFileSystemRepository', () => {
       try {
         await userFileSystemRepository.getByEmail('fail@fail.com');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);
@@ -70,7 +75,12 @@ describe('UserFileSystemRepository', () => {
       try {
         await userFileSystemRepository.getByReferral('FAKE');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);

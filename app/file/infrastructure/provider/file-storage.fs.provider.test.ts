@@ -34,7 +34,12 @@ describe('FileStorageFileSystemProvider', () => {
       try {
         await fileStorageProvider.save(fileMetadata.id, './app/file/test/file/404.txt');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);
@@ -59,7 +64,12 @@ describe('FileStorageFileSystemProvider', () => {
       try {
         await fileStorageProvider.getStream(id);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
       assertInstanceOf(thrownError, NotFoundException);
     });
@@ -86,7 +96,12 @@ describe('FileStorageFileSystemProvider', () => {
       try {
         await Deno.lstat(`./app/file/test/file/tmp/${id}`);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
       assertInstanceOf(thrownError, Deno.errors.NotFound);
     });
@@ -99,7 +114,12 @@ describe('FileStorageFileSystemProvider', () => {
       try {
         await fileStorageProvider.remove(notExistingId);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);

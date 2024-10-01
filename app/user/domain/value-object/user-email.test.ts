@@ -15,7 +15,12 @@ describe('UserEmail', () => {
     try {
       UserEmail.create(null as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -27,7 +32,12 @@ describe('UserEmail', () => {
     try {
       UserEmail.create(12345 as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -39,7 +49,12 @@ describe('UserEmail', () => {
     try {
       UserEmail.create('a@');
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -52,7 +67,12 @@ describe('UserEmail', () => {
       const longEmail = 'a'.repeat(40) + '@example.com';
       UserEmail.create(longEmail);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -64,7 +84,12 @@ describe('UserEmail', () => {
     try {
       UserEmail.create('test123');
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -76,7 +101,12 @@ describe('UserEmail', () => {
     try {
       UserEmail.create('test123@');
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);

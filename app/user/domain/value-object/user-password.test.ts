@@ -15,7 +15,12 @@ describe('UserPassword', () => {
     try {
       UserPassword.create(null as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -27,7 +32,12 @@ describe('UserPassword', () => {
     try {
       UserPassword.create(12345 as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);

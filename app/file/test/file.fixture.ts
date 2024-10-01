@@ -45,7 +45,12 @@ export const createFileFixture = () => {
       try {
         fileId = await uploadFileUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       return fileId;
@@ -54,14 +59,24 @@ export const createFileFixture = () => {
       try {
         inspectedFileMetadata = await inspectFileUseCase.handle(query);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenExpiredFilesAreRemoved: async () => {
       try {
         await removeExpiredFilesCron.execute();
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenFileIsDownloaded: async (query: DownloadFileQuery) => {
@@ -72,7 +87,12 @@ export const createFileFixture = () => {
         const stream = await downloadFileUseCase.handle(query);
         await stream.pipeTo(file.writable);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       try {

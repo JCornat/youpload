@@ -43,7 +43,12 @@ describe('SessionFileSystemRepository', () => {
       try {
         await sessionFileSystemRepository.get('AAAA');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);

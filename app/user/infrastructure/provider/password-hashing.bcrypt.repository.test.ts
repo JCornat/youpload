@@ -25,7 +25,12 @@ describe('PasswordHashingBcryptRepository', () => {
         // deno-lint-ignore no-explicit-any
         await passwordHashingBcryptRepository.hash(null as any);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -38,7 +43,12 @@ describe('PasswordHashingBcryptRepository', () => {
         // deno-lint-ignore no-explicit-any
         await passwordHashingBcryptRepository.hash(1 as any);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -50,7 +60,12 @@ describe('PasswordHashingBcryptRepository', () => {
       try {
         await passwordHashingBcryptRepository.hash('1234567');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -62,7 +77,12 @@ describe('PasswordHashingBcryptRepository', () => {
       try {
         await passwordHashingBcryptRepository.hash('012345678901234567890123456789012345678901234567890');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, ArgumentInvalidException);

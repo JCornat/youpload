@@ -56,7 +56,12 @@ describe('FileFileSystemRepository', () => {
       try {
         await fileMetadataRepository.save(fileMetadata);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, ParseErrorException);
@@ -70,7 +75,12 @@ describe('FileFileSystemRepository', () => {
       try {
         await fileMetadataRepository.get(crypto.randomUUID());
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);
@@ -87,7 +97,12 @@ describe('FileFileSystemRepository', () => {
       try {
         await fileMetadataRepository.get('AAAA');
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertInstanceOf(thrownError, NotFoundException);

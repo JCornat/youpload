@@ -44,7 +44,12 @@ export const createUserFixture = () => {
       try {
         userId = await signUpUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       return userId;
@@ -53,14 +58,24 @@ export const createUserFixture = () => {
       try {
         sessionId = await signInUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenGetReferral: async (query: GetReferralQuery) => {
       try {
         referral = await getReferralUseCase.handle(query);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenUpdateEmail: async (command: UpdateEmailCommand) => {
@@ -69,7 +84,12 @@ export const createUserFixture = () => {
       try {
         await updateEmailUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenUpdatePassword: async (command: UpdatePasswordCommand) => {
@@ -78,7 +98,12 @@ export const createUserFixture = () => {
       try {
         await updatePasswordUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenUpdateName: async (command: UpdateNameCommand) => {
@@ -87,7 +112,12 @@ export const createUserFixture = () => {
       try {
         await updateNameUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     whenDeleteAccount: async (command: DeleteAccountCommand) => {
@@ -96,7 +126,12 @@ export const createUserFixture = () => {
       try {
         await deleteAccountUseCase.handle(command);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
     },
     thenCreatedUserShallBeEqualToUser(expectedUser: User) {
@@ -128,7 +163,12 @@ export const createUserFixture = () => {
       try {
         user = await userRepository.get(userId);
       } catch (error) {
-        thrownError = error;
+        if (error instanceof Error) {
+          thrownError = error;
+        } else {
+          console.error('Unexpected error: ', error);
+          throw error;
+        }
       }
 
       assertEquals(user!, undefined);

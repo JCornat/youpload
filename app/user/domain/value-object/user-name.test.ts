@@ -15,7 +15,12 @@ describe('UserName', () => {
     try {
       UserName.create(null as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -27,7 +32,12 @@ describe('UserName', () => {
     try {
       UserName.create(12345 as any);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -39,7 +49,12 @@ describe('UserName', () => {
     try {
       UserName.create('Jo');
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);
@@ -52,7 +67,12 @@ describe('UserName', () => {
       const longName = 'a'.repeat(51);
       UserName.create(longName);
     } catch (error) {
-      thrownError = error;
+      if (error instanceof Error) {
+        thrownError = error;
+      } else {
+        console.error('Unexpected error: ', error);
+        throw error;
+      }
     }
 
     assertInstanceOf(thrownError, ArgumentInvalidException);

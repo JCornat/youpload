@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { createUserFixture, UserFixture } from '../../../test/user.fixture.ts';
-import { userBuilder } from '../../../test/user.builder.ts';
-import { ArgumentInvalidException, NotFoundException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
+import { createUserFixture, UserFixture } from '../../test/user.fixture.ts';
+import { userBuilder } from '../../test/user.builder.ts';
+import { ArgumentInvalidException, NotFoundException, NotMatchingPasswordException } from '../../../shared/lib/exceptions.ts';
 
 describe('DeleteAccountUseCase', () => {
   let fixture: UserFixture;

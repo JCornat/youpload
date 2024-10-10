@@ -1,5 +1,5 @@
-import { UserRepository } from '../../../domain/repository/user.repository.ts';
-import { UserReferral } from '../../../domain/value-object/user-referral.ts';
+import { UserRepository } from '../../domain/repository/user.repository.ts';
+import { UserReferral } from '../../domain/value-object/user-referral.ts';
 
 export interface GetReferralQuery {
   userId: string;

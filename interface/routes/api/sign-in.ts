@@ -2,7 +2,7 @@ import { DateStubProvider } from '../../../app/shared/infrastructure/provider/da
 import { PasswordHashingBcryptRepository } from '../../../app/user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { SessionFileSystemRepository } from '../../../app/user/infrastructure/repository/session.fs.repository.ts';
 import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
-import { SignInCommand, SignInUseCase } from '../../../app/user/application/service/sign-in.use-case.ts';
+import { SignInCommand, SignInUseCase } from '../../../app/user/application/command/sign-in.use-case.ts';
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
 

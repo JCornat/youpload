@@ -1,7 +1,7 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { PasswordHashingBcryptRepository } from '../../../app/user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
-import { SignUpUseCase } from '../../../app/user/application/service/sign-up.use-case.ts';
+import { SignUpUseCase } from '../../../app/user/application/command/sign-up.use-case.ts';
 import { ReferralSlugProvider } from '../../../app/user/infrastructure/provider/referral-slug.provider.ts';
 
 export const handler = {

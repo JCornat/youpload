@@ -1,7 +1,7 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
 import { ArgumentInvalidException } from '../../../app/shared/lib/exceptions.ts';
-import { UpdateNameUseCase } from '../../../app/user/application/use-case/command/update-name.use-case.ts';
+import { UpdateNameUseCase } from '../../../app/user/application/command/update-name.use-case.ts';
 
 export const handler = {
   async PUT(req: Request, ctx: FreshContext) {

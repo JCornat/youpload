@@ -1,7 +1,5 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { assertEquals, assertInstanceOf, assertNotEquals } from '@std/assert';
-import { sessionBuilder } from '../../test/session.builder.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { assertEquals, assertNotEquals } from '@std/assert';
 import { ReferralSlugProvider } from './referral-slug.provider.ts';
 
 describe('SessionFileSystemRepository', () => {

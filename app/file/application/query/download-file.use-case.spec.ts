@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
-import { createFileFixture, FileFixture } from '../../../test/file.fixture.ts';
-import { fileMetadataBuilder } from '../../../test/file-metadata.builder.ts';
+import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
+import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
 import { DownloadFileQuery } from './download-file.use-case.ts';
-import { ExpiredFileException, NotFoundException } from '../../../../shared/lib/exceptions.ts';
+import { ExpiredFileException, NotFoundException } from '../../../shared/lib/exceptions.ts';
 
 describe('Feature: Download file', () => {
   let fixture: FileFixture;

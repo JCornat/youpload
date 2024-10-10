@@ -1,41 +1,41 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { createUserFixture, UserFixture } from '../../../test/user.fixture.ts';
-import { userBuilder } from '../../../test/user.builder.ts';
-import { ArgumentInvalidException, NotFoundException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
+import { createUserFixture, UserFixture } from '../../test/user.fixture.ts';
+import { userBuilder } from '../../test/user.builder.ts';
+import { ArgumentInvalidException, NotFoundException, NotMatchingPasswordException } from '../../../shared/lib/exceptions.ts';
 
-describe('UpdateEmailUseCase', () => {
+describe('UpdatePasswordUseCase', () => {
   let fixture: UserFixture;
 
   beforeEach(() => {
     fixture = createUserFixture();
   });
 
-  it('shall update user email', async () => {
+  it('shall update user password', async () => {
     const user = userBuilder()
-      .withEmail('old@email.com')
+      .withPassword('test1234')
       .build();
 
     await fixture.givenExistingUser(user);
 
     const command = {
       userId: user.id,
-      newEmail: 'new@email.com',
+      newPassword: '1234test',
       currentPassword: user.password.value,
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
-    await fixture.thenUserEmailShouldBe(command.newEmail);
+    await fixture.thenUserPasswordShouldBe(command.newPassword);
   });
 
   it(`shall throw an exception if user doesn't exist`, async () => {
     const command = {
       userId: '404',
-      newEmail: 'new@email.com',
+      newPassword: '1234test',
       currentPassword: 'test1234',
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(NotFoundException);
   });
@@ -49,27 +49,27 @@ describe('UpdateEmailUseCase', () => {
 
     const command = {
       userId: user.id,
-      newEmail: 'new@email.com',
+      newPassword: '1234test',
       currentPassword: 'FAIL',
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(NotMatchingPasswordException);
   });
 
-  it(`shall throw an exception if new email is not valid`, async () => {
+  it(`shall throw an exception if new password is not valid`, async () => {
     const user = userBuilder().build();
 
     await fixture.givenExistingUser(user);
 
     const command = {
       userId: user.id,
-      newEmail: 'invalid',
+      newPassword: 1 as any,
       currentPassword: user.password.value,
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(ArgumentInvalidException);
   });
@@ -81,11 +81,11 @@ describe('UpdateEmailUseCase', () => {
 
     const command = {
       userId: null as any,
-      newEmail: 'new@email.com',
+      newPassword: '1234test',
       currentPassword: user.password.value,
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(ArgumentInvalidException);
   });
@@ -97,11 +97,11 @@ describe('UpdateEmailUseCase', () => {
 
     const command = {
       userId: user.id,
-      newEmail: null as any,
+      newPassword: null as any,
       currentPassword: user.password.value,
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(ArgumentInvalidException);
   });
@@ -113,11 +113,11 @@ describe('UpdateEmailUseCase', () => {
 
     const command = {
       userId: user.id,
-      newEmail: 'new@email.com',
+      newPassword: '1234test',
       currentPassword: null as any,
     };
 
-    await fixture.whenUpdateEmail(command);
+    await fixture.whenUpdatePassword(command);
 
     fixture.thenExpectedErrorShallBe(ArgumentInvalidException);
   });

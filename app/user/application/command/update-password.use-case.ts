@@ -1,6 +1,6 @@
-import { UserRepository } from '../../../domain/repository/user.repository.ts';
-import { PasswordHashingProvider } from '../../../domain/provider/password-hashing.provider.ts';
-import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../../shared/lib/exceptions.ts';
+import { UserRepository } from '../../domain/repository/user.repository.ts';
+import { PasswordHashingProvider } from '../../domain/provider/password-hashing.provider.ts';
+import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../shared/lib/exceptions.ts';
 
 export interface UpdatePasswordCommand {
   userId: string;

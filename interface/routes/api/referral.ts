@@ -1,5 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { GetReferralUseCase } from '../../../app/user/application/use-case/query/get-referral.use-case.ts';
+import { GetReferralUseCase } from '../../../app/user/application/query/get-referral.use-case.ts';
 import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
 
 export const handler = {

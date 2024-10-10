@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
-import { UpdateEmailUseCase } from '../../../app/user/application/use-case/command/update-email.use-case.ts';
+import { UpdateEmailUseCase } from '../../../app/user/application/command/update-email.use-case.ts';
 import { PasswordHashingBcryptRepository } from '../../../app/user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../app/shared/lib/exceptions.ts';
 

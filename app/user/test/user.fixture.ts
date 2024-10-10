@@ -1,19 +1,18 @@
-import { SignUpCommand, SignUpUseCase } from '../application/service/sign-up.use-case.ts';
+import { SignUpCommand, SignUpUseCase } from '../application/command/sign-up.use-case.ts';
 import { User } from '../domain/model/user.ts';
 import { assertEquals, assertInstanceOf } from '@std/assert';
 import { UserFakeRepository } from '../infrastructure/repository/user.fake.repository.ts';
 import { PasswordHashingFakeRepository } from '../infrastructure/provider/password-hashing.fake.repository.ts';
-import { SignInCommand, SignInUseCase } from '../application/service/sign-in.use-case.ts';
+import { SignInCommand, SignInUseCase } from '../application/command/sign-in.use-case.ts';
 import { SessionFakeRepository } from '../infrastructure/repository/session.fake.repository.ts';
 import { DateStubProvider } from '../../shared/infrastructure/provider/date.stub.provider.ts';
 import { ReferralFakeProvider } from '../infrastructure/provider/referral-fake.provider.ts';
-import { GetReferralQuery, GetReferralUseCase } from '../application/use-case/query/get-referral.use-case.ts';
+import { GetReferralQuery, GetReferralUseCase } from '../application/query/get-referral.use-case.ts';
 import { UserReferral } from '../domain/value-object/user-referral.ts';
-import re from 'https://esm.sh/v135/preact-render-to-string@6.3.1/X-ZS8q/denonext/preact-render-to-string.mjs';
-import { UpdateEmailCommand, UpdateEmailUseCase } from '../application/use-case/command/update-email.use-case.ts';
-import { UpdatePasswordCommand, UpdatePasswordUseCase } from '../application/use-case/command/update-password.use-case.ts';
-import { UpdateNameCommand, UpdateNameUseCase } from '../application/use-case/command/update-name.use-case.ts';
-import { DeleteAccountCommand, DeleteAccountUseCase } from '../application/use-case/command/delete-account.use-case.ts';
+import { UpdateEmailCommand, UpdateEmailUseCase } from '../application/command/update-email.use-case.ts';
+import { UpdatePasswordCommand, UpdatePasswordUseCase } from '../application/command/update-password.use-case.ts';
+import { UpdateNameCommand, UpdateNameUseCase } from '../application/command/update-name.use-case.ts';
+import { DeleteAccountCommand, DeleteAccountUseCase } from '../application/command/delete-account.use-case.ts';
 import { NotFoundException } from '../../shared/lib/exceptions.ts';
 
 export const createUserFixture = () => {

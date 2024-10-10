@@ -2,7 +2,8 @@
   "version": "4",
   "specifiers": {
     "jsr:@luca/esbuild-deno-loader@0.10.3": "0.10.3",
-    "jsr:@std/assert@1.0.5": "1.0.5",
+    "jsr:@std/assert@1.0.6": "1.0.6",
+    "jsr:@std/assert@^1.0.6": "1.0.6",
     "jsr:@std/assert@~0.213.1": "0.213.1",
     "jsr:@std/crypto@*": "1.0.3",
     "jsr:@std/datetime@0.225.2": "0.225.2",
@@ -10,18 +11,18 @@
     "jsr:@std/encoding@*": "1.0.5",
     "jsr:@std/encoding@0.213": "0.213.1",
     "jsr:@std/fmt@1.0.2": "1.0.2",
-    "jsr:@std/fs@1.0.3": "1.0.3",
-    "jsr:@std/http@1.0.6": "1.0.6",
-    "jsr:@std/internal@^1.0.3": "1.0.3",
+    "jsr:@std/fs@1.0.4": "1.0.4",
+    "jsr:@std/http@1.0.8": "1.0.8",
+    "jsr:@std/internal@^1.0.4": "1.0.4",
     "jsr:@std/json@~0.213.1": "0.213.1",
     "jsr:@std/jsonc@0.213": "0.213.1",
     "jsr:@std/path@0.213": "0.213.1",
-    "jsr:@std/path@^1.0.4": "1.0.6",
-    "jsr:@std/testing@1.0.2": "1.0.2",
+    "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/testing@1.0.3": "1.0.3",
     "npm:autoprefixer@10.4.17": "10.4.17_postcss@8.4.35",
     "npm:cssnano@6.0.3": "6.0.3_postcss@8.4.35",
     "npm:postcss@8.4.35": "8.4.35",
-    "npm:tailwindcss@3.4.12": "3.4.12_postcss@8.4.47"
+    "npm:tailwindcss@3.4.13": "3.4.13_postcss@8.4.47"
   },
   "jsr": {
     "@luca/esbuild-deno-loader@0.10.3": {
@@ -35,8 +36,8 @@
     "@std/assert@0.213.1": {
       "integrity": "24c28178b30c8e0782c18e8e94ea72b16282207569cdd10ffb9d1d26f2edebfe"
     },
-    "@std/assert@1.0.5": {
-      "integrity": "e37da8e4033490ce613eec4ac1d78dba1faf5b02a3f6c573a28f15365b9b440f",
+    "@std/assert@1.0.6": {
+      "integrity": "1904c05806a25d94fe791d6d883b685c9e2dcd60e4f9fc30f4fc5cf010c72207",
       "dependencies": [
         "jsr:@std/internal"
       ]
@@ -59,17 +60,17 @@
     "@std/fmt@1.0.2": {
       "integrity": "87e9dfcdd3ca7c066e0c3c657c1f987c82888eb8103a3a3baa62684ffeb0f7a7"
     },
-    "@std/fs@1.0.3": {
-      "integrity": "3cb839b1360b0a42d8b367c3093bfe4071798e6694fa44cf1963e04a8edba4fe",
+    "@std/fs@1.0.4": {
+      "integrity": "2907d32d8d1d9e540588fd5fe0ec21ee638134bd51df327ad4e443aaef07123c",
       "dependencies": [
-        "jsr:@std/path@^1.0.4"
+        "jsr:@std/path@^1.0.6"
       ]
     },
-    "@std/http@1.0.6": {
-      "integrity": "20a6f3fa4a914fbb19ea96572f2519b656232597092581ed706cd865d842d0d0"
+    "@std/http@1.0.8": {
+      "integrity": "6ea1b2e8d33929967754a3b6d6c6f399ad6647d7bbb5a466c1eaf9b294a6ebcd"
     },
-    "@std/internal@1.0.3": {
-      "integrity": "208e9b94a3d5649bd880e9ca38b885ab7651ab5b5303a56ed25de4755fb7b11e"
+    "@std/internal@1.0.4": {
+      "integrity": "62e8e4911527e5e4f307741a795c0b0a9e6958d0b3790716ae71ce085f755422"
     },
     "@std/json@0.213.1": {
       "integrity": "f572b1de605d07c4a5602445dac54bfc51b1fb87a3710a17aed2608bfca54e68"
@@ -90,8 +91,12 @@
     "@std/path@1.0.6": {
       "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
     },
-    "@std/testing@1.0.2": {
-      "integrity": "9e8a7f4e26c219addabe7942d09c3450fa0a74e9662341961bc0ef502274dec3"
+    "@std/testing@1.0.3": {
+      "integrity": "f98c2bee53860a5916727d7e7d3abe920dd6f9edace022e2d059f00d05c2cf42",
+      "dependencies": [
+        "jsr:@std/assert@^1.0.6",
+        "jsr:@std/internal"
+      ]
     }
   },
   "npm": {
@@ -999,8 +1004,8 @@
         "picocolors"
       ]
     },
-    "tailwindcss@3.4.12_postcss@8.4.47": {
-      "integrity": "sha512-Htf/gHj2+soPb9UayUNci/Ja3d8pTmu9ONTfh4QY8r3MATTZOzmv6UYWF7ZwikEIC8okpfqmGqrmDehua8mF8w==",
+    "tailwindcss@3.4.13_postcss@8.4.47": {
+      "integrity": "sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw==",
       "dependencies": [
         "@alloc/quick-lru",
         "arg",
@@ -1497,6 +1502,10 @@
     "https://esm.sh/preact@10.24.0/debug": "53255e82f0345f03ce83a205045dc2449814f16338a19028c9b33f9bbc72f42c",
     "https://esm.sh/preact@10.24.0/hooks": "04b706c1c9e891654301fe78cacc75077e6dfb4e71d8ae9a013133054ff16266",
     "https://esm.sh/preact@10.24.0/jsx-runtime": "d898b1fdad81449e33c827d962f7d56510ef26e7ca4b385c32612d56332aa695",
+    "https://esm.sh/preact@10.24.2": "831c381988736942887a5fd68a936ca116c4b8fc99b9f0cff4f9084d325fda8e",
+    "https://esm.sh/preact@10.24.2/debug": "09e7d8914532ab29d10ecf1053eb725ac2cab4eb836639ffe95685554f76b0d3",
+    "https://esm.sh/preact@10.24.2/hooks": "29259d9e61bbf9051cf6c6c645c4a09eaf1b5affcdc48d60d57275d2e1764494",
+    "https://esm.sh/preact@10.24.2/jsx-runtime": "0eefab34a2439424a9c9ac0a4222f0a8b57473a183c71e1acd81b6c48d667996",
     "https://esm.sh/stable/preact@10.22.0/denonext/jsx-runtime.js": "de60943799b1cbe6066c4f83f4ca71ef37011d7f5be7bef58ed980e8ff3f996a",
     "https://esm.sh/stable/preact@10.22.0/denonext/preact.mjs": "20c9563e051dd66e053d3afb450f61b48f2fa0d0ce4f69f8f0a2f23c1ef090da",
     "https://esm.sh/stable/preact@10.24.0/denonext/debug.js": "266ba544377384ad9406aeb7c1a00b176819927a226ee6327e5978d84f4b4160",
@@ -1504,6 +1513,11 @@
     "https://esm.sh/stable/preact@10.24.0/denonext/hooks.js": "7f2625e6bc0a8e6f23bb9af4af2c255e8fb74265c2327220d83dd488603cdb82",
     "https://esm.sh/stable/preact@10.24.0/denonext/jsx-runtime.js": "f3b467eb1bcf8852afd2d6f827fa592edb60859c4bd571b9c3954cd1d2d37190",
     "https://esm.sh/stable/preact@10.24.0/denonext/preact.mjs": "c914516d9df1c45afa542a588beb077ff6a1ab57ec97eb4593006e8794c1752e",
+    "https://esm.sh/stable/preact@10.24.2/denonext/debug.js": "1943d6fde1b85681eb0492b4bfa6e227a3956476e1a138f10af12893e1f4477a",
+    "https://esm.sh/stable/preact@10.24.2/denonext/devtools.js": "797f034f64c417e52dcadce280d8b00ca17959451285b70346019c453efae74e",
+    "https://esm.sh/stable/preact@10.24.2/denonext/hooks.js": "8af3856a1a696211332ef6372c5ee956a0c4ecb37adb2776ef121e237847c101",
+    "https://esm.sh/stable/preact@10.24.2/denonext/jsx-runtime.js": "bc4dbd5c8941c61f5d45d58a9e5f0e09bed22fb88bc0d466ac71320ed11fd556",
+    "https://esm.sh/stable/preact@10.24.2/denonext/preact.mjs": "6aebc2ced876881c6c2df672124f2dd64529e86914d181421a37d4161bf2faaa",
     "https://esm.sh/v135/@babel/helper-validator-identifier@7.22.20/denonext/helper-validator-identifier.mjs": "1ad312a9040d1f3b096e90a3e6a9da7ecfc99662140852fe3862a316c2591c93",
     "https://esm.sh/v135/@preact/signals-core@1.8.0/X-ZS8q/denonext/signals-core.mjs": "2f03fe54c582037d4ad97103d494480917c62ad4d040280b2589e67245aaca9d",
     "https://esm.sh/v135/@preact/signals@1.3.0/X-ZS8q/denonext/signals.mjs": "7dc4fee1f623b9e329894f91ac89b799a9df2c63b81bd75d04c1b96e7fedb9d2",
@@ -1511,14 +1525,14 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@1.0.5",
+      "jsr:@std/assert@1.0.6",
       "jsr:@std/datetime@0.225.2",
       "jsr:@std/dotenv@0.225.2",
       "jsr:@std/fmt@1.0.2",
-      "jsr:@std/fs@1.0.3",
-      "jsr:@std/http@1.0.6",
-      "jsr:@std/testing@1.0.2",
-      "npm:tailwindcss@3.4.12"
+      "jsr:@std/fs@1.0.4",
+      "jsr:@std/http@1.0.8",
+      "jsr:@std/testing@1.0.3",
+      "npm:tailwindcss@3.4.13"
     ]
   }
 }

@@ -12,11 +12,11 @@
     ]
   },
   "tasks": {
-    "build": "deno run -A interface/dev.ts build",
+    "build": "deno run --unstable-cron -A interface/dev.ts build",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
     "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
     "manifest": "deno task cli manifest $(pwd)",
-    "preview": "deno run -A interface/main.ts",
+    "preview": "deno run --unstable-cron -A interface/main.ts",
     "start": "deno run --unstable-cron -A --watch=interface/static/,interface/routes/ ./interface/dev.ts",
     "test": "deno test --allow-read --allow-write --allow-net=deno.land",
     "update": "deno run -A -r https://fresh.deno.dev/update .",

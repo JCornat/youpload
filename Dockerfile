@@ -10,4 +10,4 @@ RUN deno cache interface/main.ts && \
 
 EXPOSE 8000
 
-CMD ["run", "-A", "interface/main.ts"]
+CMD ["run", "--unstable-cron", "-A", "interface/main.ts"]

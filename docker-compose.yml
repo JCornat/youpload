@@ -4,7 +4,7 @@ services:
       context: .
       args:
         - image=${DENO_IMAGE}
-    container_name: deno
+    container_name: youpload_deno
     restart: unless-stopped
     volumes:
       - ./config:/src/config/

@@ -1,4 +1,4 @@
-import { Session } from '../domain/model/session.ts';
+import { Session } from '@user/domain/model/session.ts';
 
 export const sessionBuilder = ({
   id = crypto.randomUUID(),

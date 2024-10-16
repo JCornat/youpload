@@ -1,7 +1,7 @@
 import { describe, it } from '@std/testing/bdd';
 import { assertEquals } from '@std/assert';
-import { sessionBuilder } from '../../test/session.builder.ts';
-import { Session } from './session.ts';
+import { sessionBuilder } from '@user/test/session.builder.ts';
+import { Session } from '@user/domain/model/session.ts';
 
 describe('Session', () => {
   describe('create', () => {

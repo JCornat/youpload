@@ -1,7 +1,7 @@
-import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
-import { FileName } from '../value-object/file-name.ts';
-import { FileSize } from '../value-object/file-size.ts';
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { AggregateRoot } from '@shared/lib/aggregate-root.ts';
+import { FileName } from '@file/domain/value-object/file-name.ts';
+import { FileSize } from '@file/domain/value-object/file-size.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 type ConstructorPayload = {
   id: EntityId;

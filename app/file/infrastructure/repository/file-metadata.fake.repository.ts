@@ -1,7 +1,7 @@
-import { FileMetadata } from '../../domain/model/file-metadata.ts';
-import { FileMetadataRepository } from '../../domain/repository/file-metadata.repository.ts';
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { FileMetadata } from '@file/domain/model/file-metadata.ts';
+import { FileMetadataRepository } from '@file/domain/repository/file-metadata.repository.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 export class FileMetadataFakeRepository implements FileMetadataRepository {
   store: Map<EntityId, FileMetadata> = new Map();

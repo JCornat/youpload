@@ -1,8 +1,8 @@
 import { describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { FileMetadata } from './file-metadata.ts';
-import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { FileMetadata } from '@file/domain/model/file-metadata.ts';
+import { fileMetadataBuilder } from '@file/test/file-metadata.builder.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 describe('FileMetadata', () => {
   describe('create', () => {

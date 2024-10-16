@@ -1,6 +1,6 @@
-import { Session } from '../../domain/model/session.ts';
-import { SessionRepository } from '../../domain/repository/session.repository.ts';
-import { NotFoundException, ParseErrorException } from '../../../shared/lib/exceptions.ts';
+import { Session } from '@user/domain/model/session.ts';
+import { SessionRepository } from '@user/domain/repository/session.repository.ts';
+import { NotFoundException, ParseErrorException } from '@shared/lib/exceptions.ts';
 
 export class SessionFileSystemRepository implements SessionRepository {
   constructor(

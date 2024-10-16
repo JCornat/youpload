@@ -1,5 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import SignInForm from '../islands/sign-in/sign-in-form.tsx';
+import SignInForm from '@interface/islands/sign-in/sign-in-form.tsx';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {

@@ -1,7 +1,7 @@
 import { FreshContext } from '$fresh/server.ts';
 import { getCookies } from '@std/http/cookie';
-import { SessionFileSystemRepository } from '../../app/user/infrastructure/repository/session.fs.repository.ts';
-import { UserFileSystemRepository } from '../../app/user/infrastructure/repository/user.fs.repository.ts';
+import { SessionFileSystemRepository } from '@user/infrastructure/repository/session.fs.repository.ts';
+import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
 
 export interface State {
   isLoggedIn: boolean;

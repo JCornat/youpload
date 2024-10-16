@@ -1,6 +1,6 @@
-import { PasswordHashingProvider } from '../../domain/provider/password-hashing.provider.ts';
+import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
 import * as bcrypt from 'bcrypt';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 export class PasswordHashingBcryptRepository implements PasswordHashingProvider {
   async compare(password: string, hashedPassword: string): Promise<boolean> {

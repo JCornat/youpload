@@ -42,7 +42,11 @@
     "tailwindcss": "npm:tailwindcss@3.4.13",
     "tailwindcss/": "npm:tailwindcss@3.4.13/",
     "tailwindcss/colors": "npm:tailwindcss@3.4.13/colors.js",
-    "tailwindcss/plugin": "npm:tailwindcss@3.4.13/plugin.js"
+    "tailwindcss/plugin": "npm:tailwindcss@3.4.13/plugin.js",
+    "@shared/": "./app/shared/",
+    "@file/": "./app/file/",
+    "@interface/": "./interface/",
+    "@user/": "./app/user/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

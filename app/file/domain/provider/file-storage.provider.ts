@@ -1,4 +1,4 @@
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 export interface FileStorageProvider {
   save(fileId: EntityId, filePath: string): Promise<void>;

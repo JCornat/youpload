@@ -1,4 +1,4 @@
-import { EntityId } from '../../domain/model/entity-id.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 export interface DomainEvent {
   dateTimeOccurred: Date;

@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { UserFileSystemRepository } from './user.fs.repository.ts';
-import { userBuilder } from '../../test/user.builder.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
+import { userBuilder } from '@user/test/user.builder.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 const userPath = './app/user/test/tmp/user.json';
 

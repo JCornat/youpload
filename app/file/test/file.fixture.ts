@@ -1,15 +1,15 @@
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { DateStubProvider } from '../../shared/infrastructure/provider/date.stub.provider.ts';
-import { FileMetadataFakeRepository } from '../infrastructure/repository/file-metadata.fake.repository.ts';
-import { FileStorageFakeProvider } from '../infrastructure/provider/file-storage.fake.provider.ts';
-import { UploadFileCommand, UploadFileUseCase } from '../application/command/upload-file.use-case.ts';
-import { FileMetadata } from '../domain/model/file-metadata.ts';
-import { DownloadFileQuery, DownloadFileUseCase } from '../application/query/download-file.use-case.ts';
-import { getFileHash } from './helper/file-hash.ts';
-import { InspectFileQuery, InspectFileUseCase } from '../application/query/inspect-file.use-case.ts';
-import { FileStatFakeProvider } from '../infrastructure/provider/file-stat.fake.provider.ts';
-import { RemoveExpiredFilesCron } from '../application/cron/remove-expired-file.cron.ts';
-import { EntityId } from '../../shared/domain/model/entity-id.ts';
+import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { FileMetadataFakeRepository } from '@file/infrastructure/repository/file-metadata.fake.repository.ts';
+import { FileStorageFakeProvider } from '@file/infrastructure/provider/file-storage.fake.provider.ts';
+import { UploadFileCommand, UploadFileUseCase } from '@file/application/command/upload-file.use-case.ts';
+import { FileMetadata } from '@file/domain/model/file-metadata.ts';
+import { DownloadFileQuery, DownloadFileUseCase } from '@file/application/query/download-file.use-case.ts';
+import { getFileHash } from '@file/test/helper/file-hash.ts';
+import { InspectFileQuery, InspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
+import { FileStatFakeProvider } from '@file/infrastructure/provider/file-stat.fake.provider.ts';
+import { RemoveExpiredFilesCron } from '@file/application/cron/remove-expired-file.cron.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 export const createFileFixture = () => {
   const dateProvider = new DateStubProvider();

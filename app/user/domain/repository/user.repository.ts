@@ -1,4 +1,4 @@
-import { User } from '../model/user.ts';
+import { User } from '@user/domain/model/user.ts';
 
 export interface UserRepository {
   get(id: string): Promise<User>;

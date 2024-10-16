@@ -1,4 +1,4 @@
-import { ReferralProvider } from '../../domain/provider/referral.provider.ts';
+import { ReferralProvider } from '@user/domain/provider/referral.provider.ts';
 
 const words = [
   'abandoned',

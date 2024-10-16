@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
-import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
-import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
+import { createFileFixture, FileFixture } from '@file/test/file.fixture.ts';
+import { fileMetadataBuilder } from '@file/test/file-metadata.builder.ts';
 import * as fs from '@std/fs';
 
 describe('Feature: Remove expired file', () => {

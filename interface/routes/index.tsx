@@ -1,4 +1,4 @@
-import FileUploadForm from '../islands/file-upload-form.tsx';
+import FileUploadForm from '@interface/islands/file-upload-form.tsx';
 
 export default function Home() {
   return (

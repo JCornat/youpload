@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { PasswordHashingBcryptRepository } from './password-hashing.bcrypt.repository.ts';
+import { PasswordHashingBcryptRepository } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import * as bcrypt from 'bcrypt';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 describe('PasswordHashingBcryptRepository', () => {
   let passwordHashingBcryptRepository: PasswordHashingBcryptRepository;

@@ -1,19 +1,19 @@
-import { SignUpCommand, SignUpUseCase } from '../application/command/sign-up.use-case.ts';
-import { User } from '../domain/model/user.ts';
+import { SignUpCommand, SignUpUseCase } from '@user/application/command/sign-up.use-case.ts';
+import { User } from '@user/domain/model/user.ts';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { UserFakeRepository } from '../infrastructure/repository/user.fake.repository.ts';
-import { PasswordHashingFakeRepository } from '../infrastructure/provider/password-hashing.fake.repository.ts';
-import { SignInCommand, SignInUseCase } from '../application/command/sign-in.use-case.ts';
-import { SessionFakeRepository } from '../infrastructure/repository/session.fake.repository.ts';
-import { DateStubProvider } from '../../shared/infrastructure/provider/date.stub.provider.ts';
-import { ReferralFakeProvider } from '../infrastructure/provider/referral-fake.provider.ts';
-import { GetReferralQuery, GetReferralUseCase } from '../application/query/get-referral.use-case.ts';
-import { UserReferral } from '../domain/value-object/user-referral.ts';
-import { UpdateEmailCommand, UpdateEmailUseCase } from '../application/command/update-email.use-case.ts';
-import { UpdatePasswordCommand, UpdatePasswordUseCase } from '../application/command/update-password.use-case.ts';
-import { UpdateNameCommand, UpdateNameUseCase } from '../application/command/update-name.use-case.ts';
-import { DeleteAccountCommand, DeleteAccountUseCase } from '../application/command/delete-account.use-case.ts';
-import { NotFoundException } from '../../shared/lib/exceptions.ts';
+import { UserFakeRepository } from '@user/infrastructure/repository/user.fake.repository.ts';
+import { PasswordHashingFakeRepository } from '@user/infrastructure/provider/password-hashing.fake.repository.ts';
+import { SignInCommand, SignInUseCase } from '@user/application/command/sign-in.use-case.ts';
+import { SessionFakeRepository } from '@user/infrastructure/repository/session.fake.repository.ts';
+import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { ReferralFakeProvider } from '@user/infrastructure/provider/referral-fake.provider.ts';
+import { GetReferralQuery, GetReferralUseCase } from '@user/application/query/get-referral.use-case.ts';
+import { UserReferral } from '@user/domain/value-object/user-referral.ts';
+import { UpdateEmailCommand, UpdateEmailUseCase } from '@user/application/command/update-email.use-case.ts';
+import { UpdatePasswordCommand, UpdatePasswordUseCase } from '@user/application/command/update-password.use-case.ts';
+import { UpdateNameCommand, UpdateNameUseCase } from '@user/application/command/update-name.use-case.ts';
+import { DeleteAccountCommand, DeleteAccountUseCase } from '@user/application/command/delete-account.use-case.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 export const createUserFixture = () => {
   const userRepository = new UserFakeRepository();

@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import { assertEquals, assertNotEquals } from '@std/assert';
-import { ReferralSlugProvider } from './referral-slug.provider.ts';
+import { ReferralSlugProvider } from '@user/infrastructure/provider/referral-slug.provider.ts';
 
 describe('SessionFileSystemRepository', () => {
   let referralSlugProvider: ReferralSlugProvider;

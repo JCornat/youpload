@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { UploadFileCommand } from './upload-file.use-case.ts';
-import { fileMetadataBuilder } from '../../test/file-metadata.builder.ts';
-import { createFileFixture, FileFixture } from '../../test/file.fixture.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { UploadFileCommand } from '@file/application/command/upload-file.use-case.ts';
+import { fileMetadataBuilder } from '@file/test/file-metadata.builder.ts';
+import { createFileFixture, FileFixture } from '@file/test/file.fixture.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 describe('Feature: Send file', () => {
   let fixture: FileFixture;

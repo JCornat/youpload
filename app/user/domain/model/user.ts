@@ -1,9 +1,9 @@
-import { AggregateRoot } from '../../../shared/lib/aggregate-root.ts';
-import { UserEmail } from '../value-object/user-email.ts';
-import { UserName } from '../value-object/user-name.ts';
-import { UserPassword } from '../value-object/user-password.ts';
-import { UserReferral } from '../value-object/user-referral.ts';
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
+import { AggregateRoot } from '@shared/lib/aggregate-root.ts';
+import { UserEmail } from '@user/domain/value-object/user-email.ts';
+import { UserName } from '@user/domain/value-object/user-name.ts';
+import { UserPassword } from '@user/domain/value-object/user-password.ts';
+import { UserReferral } from '@user/domain/value-object/user-referral.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 type ConstructorPayload = {
   id: EntityId;

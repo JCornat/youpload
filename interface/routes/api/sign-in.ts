@@ -1,8 +1,8 @@
-import { DateStubProvider } from '../../../app/shared/infrastructure/provider/date.stub.provider.ts';
-import { PasswordHashingBcryptRepository } from '../../../app/user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { SessionFileSystemRepository } from '../../../app/user/infrastructure/repository/session.fs.repository.ts';
-import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
-import { SignInCommand, SignInUseCase } from '../../../app/user/application/command/sign-in.use-case.ts';
+import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { PasswordHashingBcryptRepository } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { SessionFileSystemRepository } from '@user/infrastructure/repository/session.fs.repository.ts';
+import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
+import { SignInCommand, SignInUseCase } from '@user/application/command/sign-in.use-case.ts';
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
 

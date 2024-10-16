@@ -7,12 +7,12 @@
 import '@std/dotenv';
 
 import { start } from '$fresh/server.ts';
-import manifest from './fresh.gen.ts';
-import config from './fresh.config.ts';
-import { FileMetadataFileSystemRepository } from '../app/file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { FileStorageFileSystemProvider } from '../app/file/infrastructure/provider/file-storage.fs.provider.ts';
-import { DateStubProvider } from '../app/shared/infrastructure/provider/date.stub.provider.ts';
-import { RemoveExpiredFilesCron } from '../app/file/application/cron/remove-expired-file.cron.ts';
+import manifest from '@interface/fresh.gen.ts';
+import config from '@interface/fresh.config.ts';
+import { FileMetadataFileSystemRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { FileStorageFileSystemProvider } from '@file/infrastructure/provider/file-storage.fs.provider.ts';
+import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { RemoveExpiredFilesCron } from '@file/application/cron/remove-expired-file.cron.ts';
 
 const isBuildMode = Deno.args.includes('build');
 if (!isBuildMode) {

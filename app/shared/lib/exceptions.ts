@@ -1,4 +1,4 @@
-import { ExceptionBase } from './exception.base.ts';
+import { ExceptionBase } from '@shared/lib/exception.base.ts';
 
 export class ArgumentNotProvidedException extends ExceptionBase {}
 export class ArgumentInvalidException extends ExceptionBase {}

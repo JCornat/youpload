@@ -1,4 +1,4 @@
-import Button from '../../components/button.tsx';
+import Button from '@interface/components/button.tsx';
 import { signal } from '@preact/signals';
 
 const linkDownloaded = signal<boolean>(false);

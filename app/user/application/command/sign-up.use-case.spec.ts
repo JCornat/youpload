@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { createUserFixture, UserFixture } from '../../test/user.fixture.ts';
-import { SignUpCommand } from './sign-up.use-case.ts';
-import { userBuilder } from '../../test/user.builder.ts';
-import { ArgumentInvalidException, ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '../../../shared/lib/exceptions.ts';
+import { createUserFixture, UserFixture } from '@user/test/user.fixture.ts';
+import { SignUpCommand } from '@user/application/command/sign-up.use-case.ts';
+import { userBuilder } from '@user/test/user.builder.ts';
+import { ArgumentInvalidException, ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
 
 describe('Feature: Sign up', () => {
   let fixture: UserFixture;

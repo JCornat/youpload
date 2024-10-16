@@ -1,4 +1,4 @@
-import { PasswordHashingProvider } from '../../domain/provider/password-hashing.provider.ts';
+import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
 
 export class PasswordHashingFakeRepository implements PasswordHashingProvider {
   compare(value: string, hash: string): Promise<boolean> {

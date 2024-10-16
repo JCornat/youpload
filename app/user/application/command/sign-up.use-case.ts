@@ -1,8 +1,8 @@
-import { User } from '../../domain/model/user.ts';
-import { PasswordHashingProvider } from '../../domain/provider/password-hashing.provider.ts';
-import { UserRepository } from '../../domain/repository/user.repository.ts';
-import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '../../../shared/lib/exceptions.ts';
-import { ReferralProvider } from '../../domain/provider/referral.provider.ts';
+import { User } from '@user/domain/model/user.ts';
+import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
+import { UserRepository } from '@user/domain/repository/user.repository.ts';
+import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
+import { ReferralProvider } from '@user/domain/provider/referral.provider.ts';
 
 export interface SignUpCommand {
   name: string;

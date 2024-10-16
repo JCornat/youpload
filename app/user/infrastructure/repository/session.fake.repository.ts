@@ -1,7 +1,7 @@
-import { Session } from '../../domain/model/session.ts';
-import { SessionRepository } from '../../domain/repository/session.repository.ts';
-import { EntityId } from '../../../shared/domain/model/entity-id.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { Session } from '@user/domain/model/session.ts';
+import { SessionRepository } from '@user/domain/repository/session.repository.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 export class SessionFakeRepository implements SessionRepository {
   store: Map<EntityId, Session> = new Map();

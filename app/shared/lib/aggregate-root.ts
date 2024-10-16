@@ -1,6 +1,6 @@
-import { Entity } from '../domain/model/entity.ts';
-import { DomainEvent } from './events/domain-event.ts';
-import { DomainEvents } from './events/domain-events.ts';
+import { Entity } from '@shared/domain/model/entity.ts';
+import { DomainEvent } from '@shared/lib/events/domain-event.ts';
+import { DomainEvents } from '@shared/lib/events/domain-events.ts';
 
 export abstract class AggregateRoot extends Entity {
   private _domainEvents: DomainEvent[] = [];

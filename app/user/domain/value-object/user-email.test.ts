@@ -1,7 +1,7 @@
 import { describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { UserEmail } from './user-email.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { UserEmail } from '@user/domain/value-object/user-email.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 describe('UserEmail', () => {
   it('shall create a VO is the email is valid', () => {

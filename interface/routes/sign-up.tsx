@@ -1,4 +1,4 @@
-import SignUpForm from '../islands/sign-up/sign-up-form.tsx';
+import SignUpForm from '@interface/islands/sign-up/sign-up-form.tsx';
 
 export default function Home() {
   return (

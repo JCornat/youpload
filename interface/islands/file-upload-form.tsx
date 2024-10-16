@@ -1,7 +1,7 @@
-import Button from '../components/button.tsx';
+import Button from '@interface/components/button.tsx';
 import { computed, signal } from '@preact/signals';
-import SegmentedButton from '../components/segmented-button.tsx';
-import ProgressBar from '../components/progress-bar.tsx';
+import SegmentedButton from '@interface/components/segmented-button.tsx';
+import ProgressBar from '@interface/components/progress-bar.tsx';
 
 const uploadProgress = signal<number>(0);
 const fileInput = signal<File | undefined>(undefined);

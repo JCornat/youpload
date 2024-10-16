@@ -1,4 +1,4 @@
-import { DateProvider } from '../../domain/provider/date.provider.ts';
+import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 
 export class DateStubProvider implements DateProvider {
   now: Date = new Date();

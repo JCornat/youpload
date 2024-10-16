@@ -1,8 +1,8 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { UserFileSystemRepository } from '../../../app/user/infrastructure/repository/user.fs.repository.ts';
-import { PasswordHashingBcryptRepository } from '../../../app/user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { ArgumentInvalidException, NotMatchingPasswordException } from '../../../app/shared/lib/exceptions.ts';
-import { DeleteAccountUseCase } from '../../../app/user/application/command/delete-account.use-case.ts';
+import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
+import { PasswordHashingBcryptRepository } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
+import { DeleteAccountUseCase } from '@user/application/command/delete-account.use-case.ts';
 
 export const handler = {
   async DELETE(req: Request, ctx: FreshContext) {

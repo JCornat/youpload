@@ -1,5 +1,5 @@
-import { UserRepository } from '../../domain/repository/user.repository.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { UserRepository } from '@user/domain/repository/user.repository.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 export interface UpdateNameCommand {
   userId: string;

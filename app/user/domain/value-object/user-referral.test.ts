@@ -1,7 +1,7 @@
 import { describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { UserReferral } from './user-referral.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { UserReferral } from '@user/domain/value-object/user-referral.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 describe('UserReferral', () => {
   it('shall create a VO is the referral is valid', () => {

@@ -1,7 +1,7 @@
-import Button from '../../components/button.tsx';
+import Button from '@interface/components/button.tsx';
 import { computed, signal } from '@preact/signals';
 import { JSX } from 'preact';
-import Input from '../../components/input.tsx';
+import Input from '@interface/components/input.tsx';
 
 const fakeReferralValue = '**********************';
 const referral = signal<string>(fakeReferralValue);

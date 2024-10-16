@@ -1,7 +1,7 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
-import { FileStatFileSystemProvider } from './file-stat.fs.provider.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
+import { FileStatFileSystemProvider } from '@file/infrastructure/provider/file-stat.fs.provider.ts';
 
 describe('FileStatFileSystemProvider', () => {
   let fileStatProvider: FileStatFileSystemProvider;

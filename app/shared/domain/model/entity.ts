@@ -1,4 +1,4 @@
-import { EntityId } from './entity-id.ts';
+import { EntityId } from '@shared/domain/model/entity-id.ts';
 
 export abstract class Entity {
   private readonly _id: EntityId;

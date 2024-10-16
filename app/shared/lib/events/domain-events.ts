@@ -1,4 +1,4 @@
-import { DomainEvent } from './domain-event.ts';
+import { DomainEvent } from '@shared/lib/events/domain-event.ts';
 
 type DomainCallback = (event: DomainEvent) => void;
 

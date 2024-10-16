@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
-import { createUserFixture, UserFixture } from '../../test/user.fixture.ts';
-import { userBuilder } from '../../test/user.builder.ts';
-import { SignInCommand } from './sign-in.use-case.ts';
-import { AuthenticationFailedException } from '../../../shared/lib/exceptions.ts';
+import { createUserFixture, UserFixture } from '@user/test/user.fixture.ts';
+import { userBuilder } from '@user/test/user.builder.ts';
+import { SignInCommand } from '@user/application/command/sign-in.use-case.ts';
+import { AuthenticationFailedException } from '@shared/lib/exceptions.ts';
 
 describe('SignInUseCase', () => {
   let fixture: UserFixture;

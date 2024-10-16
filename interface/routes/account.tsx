@@ -1,9 +1,9 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import AccountPasswordForm from '../islands/account/password-form.tsx';
-import AccountEmailForm from '../islands/account/email-form.tsx';
-import AccountNameForm from '../islands/account/name-form.tsx';
-import AccountDeleteForm from '../islands/account/delete-form.tsx';
-import AccountReferralForm from '../islands/account/referral-form.tsx';
+import AccountPasswordForm from '@interface/islands/account/password-form.tsx';
+import AccountEmailForm from '@interface/islands/account/email-form.tsx';
+import AccountNameForm from '@interface/islands/account/name-form.tsx';
+import AccountDeleteForm from '@interface/islands/account/delete-form.tsx';
+import AccountReferralForm from '@interface/islands/account/referral-form.tsx';
 
 interface Data {
   isLoggedIn?: boolean;

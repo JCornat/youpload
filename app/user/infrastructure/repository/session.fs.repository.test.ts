@@ -1,8 +1,8 @@
 import { beforeEach, describe, it } from '@std/testing/bdd';
 import { assertEquals, assertInstanceOf } from '@std/assert';
-import { SessionFileSystemRepository } from './session.fs.repository.ts';
-import { sessionBuilder } from '../../test/session.builder.ts';
-import { NotFoundException } from '../../../shared/lib/exceptions.ts';
+import { SessionFileSystemRepository } from '@user/infrastructure/repository/session.fs.repository.ts';
+import { sessionBuilder } from '@user/test/session.builder.ts';
+import { NotFoundException } from '@shared/lib/exceptions.ts';
 
 const sessionPath = './app/user/test/tmp/session.json';
 

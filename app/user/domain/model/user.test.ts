@@ -1,7 +1,7 @@
 import { describe, it } from '@std/testing/bdd';
 import { assertEquals } from '@std/assert';
-import { userBuilder } from '../../test/user.builder.ts';
-import { User } from './user.ts';
+import { userBuilder } from '@user/test/user.builder.ts';
+import { User } from '@user/domain/model/user.ts';
 
 describe('User', () => {
   describe('create', () => {

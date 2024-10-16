@@ -1,12 +1,12 @@
 import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
-import { FileMetadataFileSystemRepository } from '../../../app/file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { InspectFileQuery, InspectFileUseCase } from '../../../app/file/application/query/inspect-file.use-case.ts';
-import { DateStubProvider } from '../../../app/shared/infrastructure/provider/date.stub.provider.ts';
+import { FileMetadataFileSystemRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { InspectFileQuery, InspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
+import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
-import FileCopyLinkButton from '../../islands/file/copy-link-button.tsx';
-import FileDownloadLinkButton from '../../islands/file/download-link-button.tsx';
+import FileCopyLinkButton from '@interface/islands/file/copy-link-button.tsx';
+import FileDownloadLinkButton from '@interface/islands/file/download-link-button.tsx';
 
 interface Data {
   url: string;

@@ -1,5 +1,5 @@
-import { ValueObject } from '../../../shared/lib/value-object.ts';
-import { ArgumentInvalidException } from '../../../shared/lib/exceptions.ts';
+import { ValueObject } from '@shared/lib/value-object.ts';
+import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
 
 interface UserReferralProps {
   code: string;

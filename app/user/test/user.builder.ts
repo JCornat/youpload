@@ -1,4 +1,4 @@
-import { User } from '../domain/model/user.ts';
+import { User } from '@user/domain/model/user.ts';
 
 export const userBuilder = ({
   id = crypto.randomUUID(),

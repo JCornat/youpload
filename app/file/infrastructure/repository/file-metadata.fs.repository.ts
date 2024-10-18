@@ -9,11 +9,18 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
   ) {}
 
   async save(fileMetadata: FileMetadata): Promise<void> {
-    const fileMetadataList = await this.getContent();
-    fileMetadataList.push(fileMetadata);
+    using file = await Deno.open(this.filePath, { read: true, write: true, create: true });
+    await file.lock(true);
+    const fileInfo = await Deno.stat(this.filePath);
+    const buffer = new Uint8Array(fileInfo.size);
+    await file.read(buffer);
+    const rawContent = new TextDecoder().decode(buffer) || '[]';
 
-    const serializedFiles = fileMetadataList.map((temp) => temp.toObject());
-    await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
+    const parsedContent = JSON.parse(rawContent);
+    const fileMetadataList = parsedContent.map((item: any) => FileMetadata.reconstitute(item))
+    const newContent  = [...fileMetadataList, fileMetadata];
+    const serializedFiles = newContent.map((temp) => temp.toObject());
+    await file.write(new TextEncoder().encode(JSON.stringify(serializedFiles, null, 2)));
   }
 
   async get(id: EntityId): Promise<FileMetadata> {
@@ -32,19 +39,23 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     try {
       content = await Deno.readTextFile(this.filePath);
     } catch (error) {
-      if (!(error instanceof Deno.errors.NotFound)) {
+      if (error instanceof Deno.errors.NotFound) {
         throw error;
       }
 
       content = '[]';
     }
 
-    let array: any[];
+    let array: unknown;
 
     try {
       array = JSON.parse(content);
     } catch (error) {
       console.log(error);
+      throw new ParseErrorException();
+    }
+
+    if (!Array.isArray(array)) {
       throw new ParseErrorException();
     }
 

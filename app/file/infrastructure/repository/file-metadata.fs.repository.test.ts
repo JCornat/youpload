@@ -157,11 +157,8 @@ describe('FileFileSystemRepository', () => {
 
   describe('remove', () => {
     it('shall remove file expired', async () => {
-      const fileMetadata1 = fileMetadataBuilder()
-        .build();
-
-      const fileMetadata2 = fileMetadataBuilder()
-        .build();
+      const fileMetadata1 = fileMetadataBuilder().build();
+      const fileMetadata2 = fileMetadataBuilder().build();
 
       const content = [fileMetadata1.toObject(), fileMetadata2.toObject()];
       await Deno.writeTextFile(fileMetadataPath, JSON.stringify(content));

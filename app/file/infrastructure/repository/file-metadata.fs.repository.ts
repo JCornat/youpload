@@ -9,22 +9,15 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
   ) {}
 
   async save(fileMetadata: FileMetadata): Promise<void> {
-    using file = await Deno.open(this.filePath, { read: true, write: true, create: true });
-    await file.lock(true);
-    const fileInfo = await Deno.stat(this.filePath);
-    const buffer = new Uint8Array(fileInfo.size);
-    await file.read(buffer);
-    const rawContent = new TextDecoder().decode(buffer) || '[]';
-
-    const parsedContent = JSON.parse(rawContent);
-    const fileMetadataList = parsedContent.map((item: any) => FileMetadata.reconstitute(item))
-    const newContent  = [...fileMetadataList, fileMetadata];
-    const serializedFiles = newContent.map((temp) => temp.toObject());
-    await file.write(new TextEncoder().encode(JSON.stringify(serializedFiles, null, 2)));
+    using file = await this.openFile();
+    const fileMetadataList = await this.readFile(file);
+    const newContent = [...fileMetadataList, fileMetadata];
+    await this.writeFile(newContent, file);
   }
 
   async get(id: EntityId): Promise<FileMetadata> {
-    const fileMetadataList = await this.getContent();
+    using file = await this.openFile();
+    const fileMetadataList = await this.readFile(file);
     const fileMetadata = fileMetadataList.find((item) => item.id === id);
     if (!fileMetadata) {
       throw new NotFoundException();
@@ -33,45 +26,49 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     return fileMetadata;
   }
 
-  private async getContent(): Promise<FileMetadata[]> {
-    let content: string;
-
-    try {
-      content = await Deno.readTextFile(this.filePath);
-    } catch (error) {
-      if (error instanceof Deno.errors.NotFound) {
-        throw error;
-      }
-
-      content = '[]';
-    }
-
-    let array: unknown;
-
-    try {
-      array = JSON.parse(content);
-    } catch (error) {
-      console.log(error);
-      throw new ParseErrorException();
-    }
-
-    if (!Array.isArray(array)) {
-      throw new ParseErrorException();
-    }
-
-    return array.map((item) => FileMetadata.reconstitute(item));
-  }
-
   async getAllExpired(now: Date): Promise<FileMetadata[]> {
-    const fileMetadataList = await this.getContent();
+    using file = await this.openFile();
+    const fileMetadataList = await this.readFile(file);
     return fileMetadataList.filter((fileMetadata: FileMetadata) => fileMetadata.isExpired(now));
   }
 
   async remove(id: EntityId): Promise<void> {
-    const files = await this.getContent();
-    const updatedFiles = files.filter((file) => file.id !== id);
+    using file = await this.openFile();
+    const fileMetadataList = await this.readFile(file);
+    const filteredFileMetadataList = fileMetadataList.filter((file) => file.id !== id);
+    await this.writeFile(filteredFileMetadataList, file);
+  }
 
-    const serializedFiles = updatedFiles.map((temp) => temp.toObject());
-    await Deno.writeTextFile(this.filePath, JSON.stringify(serializedFiles), { create: true });
+  private async openFile(): Promise<Deno.FsFile> {
+    return await Deno.open(this.filePath, { read: true, write: true, create: true });
+  }
+
+  private async readFile(file: Deno.FsFile): Promise<FileMetadata[]> {
+    await file.lock(true);
+    const fileInfo = await Deno.stat(this.filePath);
+    const buffer = new Uint8Array(fileInfo.size);
+    await file.read(buffer);
+    const rawContent = new TextDecoder().decode(buffer) || '[]';
+
+    let parsedContent: unknown;
+
+    try {
+      parsedContent = JSON.parse(rawContent);
+    } catch {
+      throw new ParseErrorException();
+    }
+
+    if (!Array.isArray(parsedContent)) {
+      throw new ParseErrorException();
+    }
+
+    return parsedContent.map((item) => FileMetadata.reconstitute(item));
+  }
+
+  private async writeFile(fileMetadataList: FileMetadata[], file: Deno.FsFile): Promise<void> {
+    await file.seek(0, Deno.SeekMode.Start);
+    await file.truncate();
+    const serializedFileMetadataList = fileMetadataList.map((fileMetadata) => fileMetadata.toObject());
+    await file.write(new TextEncoder().encode(JSON.stringify(serializedFileMetadataList, null, 2)));
   }
 }

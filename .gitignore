@@ -15,3 +15,5 @@ app/user/test/tmp
 interface/_fresh/
 
 .env
+
+coverage

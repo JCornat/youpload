@@ -3,7 +3,8 @@
     "indentWidth": 2,
     "lineWidth": 200,
     "semiColons": true,
-    "singleQuote": true
+    "singleQuote": true,
+    "exclude": ["config/**/*.json", "app/**/*.json"]
   },
   "test": {
     "include": [
@@ -19,6 +20,7 @@
     "preview": "deno run --unstable-cron -A interface/main.ts",
     "start": "deno run --unstable-cron -A --watch=interface/static/,interface/routes/ ./interface/dev.ts",
     "test": "deno test --allow-read --allow-write --allow-net=deno.land",
+    "test-coverage": "deno test --allow-read --allow-write --coverage --allow-net=deno.land",
     "update": "deno run -A -r https://fresh.deno.dev/update .",
     "watch-test": "deno test --watch --allow-read --allow-write"
   },

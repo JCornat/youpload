@@ -6,11 +6,11 @@ const linkDownloaded = signal<boolean>(false);
 export default function FileDownloadLinkButton(props: { url: string }) {
   const { url } = props;
   const downloadLink = () => {
-    const a = document.createElement('a');
-    a.href = url;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const link = document.createElement('a');
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     linkDownloaded.value = true;
   };
 

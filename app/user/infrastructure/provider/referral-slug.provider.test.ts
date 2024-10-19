@@ -14,7 +14,6 @@ describe('SessionFileSystemRepository', () => {
       const referral = await referralSlugProvider.generate();
       const referral2 = await referralSlugProvider.generate();
       assertNotEquals(referral, referral2);
-      console.log(referral, referral2);
       const regexTest = /\w+-\w+-\w+/.test(referral);
       assertEquals(regexTest, true);
     });

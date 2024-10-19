@@ -4,8 +4,9 @@ import { signal } from '@preact/signals';
 const linkCopied = signal<boolean>(false);
 
 export default function FileCopyLinkButton(props: { payload: string }) {
-  const copyLink = () => {
-    navigator.clipboard['writeText'](props.payload);
+  const copyLink = async () => {
+    const link = `${location.origin}${props.payload}`;
+    await navigator.clipboard.writeText(link);
     linkCopied.value = true;
     setTimeout(() => {
       linkCopied.value = false;

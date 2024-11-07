@@ -1,15 +1,9 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { PasswordHashingBcryptRepository } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
-import { SignUpUseCase } from '@user/application/command/sign-up.use-case.ts';
-import { ReferralSlugProvider } from '@user/infrastructure/provider/referral-slug.provider.ts';
+import { defaultSignUpUseCase } from '../../../app/user/application/command/sign-up.use-case.ts';
 
 export const handler = {
   async POST(req: Request, ctx: FreshContext) {
-    const passwordHashingRepository = new PasswordHashingBcryptRepository();
-    const userRepository = new UserFileSystemRepository();
-    const referralProvider = new ReferralSlugProvider();
-    const signUpUseCase = new SignUpUseCase(userRepository, passwordHashingRepository, referralProvider);
+    const signUpUseCase = defaultSignUpUseCase;
     const form = await req.json();
     const command = {
       name: form.name as string,

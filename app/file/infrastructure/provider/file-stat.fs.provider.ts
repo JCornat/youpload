@@ -15,3 +15,5 @@ export class FileStatFileSystemProvider implements FileStatProvider {
     }
   }
 }
+
+export const defaultFileStatProvider = new FileStatFileSystemProvider();

@@ -1,7 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
 import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
-import { UpdateNameUseCase } from '@user/application/command/update-name.use-case.ts';
+import { defaultUpdateEmailUseCase } from '../../../app/user/application/command/update-email.use-case.ts';
 
 export const handler = {
   async PUT(req: Request, ctx: FreshContext) {
@@ -9,8 +8,7 @@ export const handler = {
       return new Response('Unauthorized', { status: 403 });
     }
 
-    const userRepository = new UserFileSystemRepository();
-    const updateEmailUseCase = new UpdateNameUseCase(userRepository);
+    const updateEmailUseCase = defaultUpdateEmailUseCase;
     const userId = ctx.state.userId as string;
     const form = await req.json();
     const command = {

@@ -50,3 +50,5 @@ export class SessionFileSystemRepository implements SessionRepository {
     return array.map((item) => Session.reconstitute(item));
   }
 }
+
+export const defaultSessionRepository = new SessionFileSystemRepository();

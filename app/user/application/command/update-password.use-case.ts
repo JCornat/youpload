@@ -1,6 +1,8 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
 
 export interface UpdatePasswordCommand {
   userId: string;
@@ -10,8 +12,8 @@ export interface UpdatePasswordCommand {
 
 export class UpdatePasswordUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly passwordHashingProvider: PasswordHashingProvider,
+    private readonly userRepository: UserRepository = defaultUserRepository,
+    private readonly passwordHashingProvider: PasswordHashingProvider = defaultPasswordHashingProvider,
   ) {}
 
   async handle(updatePasswordCommand: UpdatePasswordCommand): Promise<void> {
@@ -40,3 +42,5 @@ export class UpdatePasswordUseCase {
     await this.userRepository.save(user);
   }
 }
+
+export const defaultUpdatePasswordUseCase = new UpdatePasswordUseCase();

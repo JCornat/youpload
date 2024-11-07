@@ -1,6 +1,8 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
 
 export interface DeleteAccountCommand {
   userId: string;
@@ -9,8 +11,8 @@ export interface DeleteAccountCommand {
 
 export class DeleteAccountUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly passwordHashingProvider: PasswordHashingProvider,
+    private readonly userRepository: UserRepository = defaultUserRepository,
+    private readonly passwordHashingProvider: PasswordHashingProvider = defaultPasswordHashingProvider,
   ) {}
 
   async handle(deleteAccountCommand: DeleteAccountCommand): Promise<void> {
@@ -32,3 +34,5 @@ export class DeleteAccountUseCase {
     await this.userRepository.remove(deleteAccountCommand.userId);
   }
 }
+
+export const defaultDeleteAccountUseCase = new DeleteAccountUseCase();

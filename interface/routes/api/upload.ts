@@ -1,9 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { FileMetadataFileSystemRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { FileStorageFileSystemProvider } from '@file/infrastructure/provider/file-storage.fs.provider.ts';
-import { FileStatFileSystemProvider } from '@file/infrastructure/provider/file-stat.fs.provider.ts';
-import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
-import { UploadFileCommand, UploadFileUseCase } from '@file/application/command/upload-file.use-case.ts';
+import { UploadFileCommand } from '@file/application/command/upload-file.use-case.ts';
+import { defaultUploadFileUseCase } from '../../../app/file/application/command/upload-file.use-case.ts';
 
 function addHours(date: Date, hours: number) {
   const hoursToAdd = hours * 60 * 60 * 1000;
@@ -44,11 +41,7 @@ export const handler = {
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
-    const fileMetadataRepository = new FileMetadataFileSystemRepository();
-    const fileStorageProvider = new FileStorageFileSystemProvider();
-    const fileStatProvider = new FileStatFileSystemProvider();
-    const dateProvider = new DateStubProvider();
-    const uploadFileUseCase = new UploadFileUseCase(fileMetadataRepository, fileStorageProvider, fileStatProvider, dateProvider);
+    const uploadFileUseCase = defaultUploadFileUseCase;
 
     const command = {
       name,

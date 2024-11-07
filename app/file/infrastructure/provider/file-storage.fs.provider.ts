@@ -55,3 +55,5 @@ export class FileStorageFileSystemProvider implements FileStorageProvider {
     await Deno.remove(destination);
   }
 }
+
+export const defaultFileStorageProvider = new FileStorageFileSystemProvider();

@@ -1,5 +1,6 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { UserReferral } from '@user/domain/value-object/user-referral.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
 
 export interface GetReferralQuery {
   userId: string;
@@ -7,7 +8,7 @@ export interface GetReferralQuery {
 
 export class GetReferralUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: UserRepository = defaultUserRepository,
   ) {}
 
   async handle(getReferralQuery: GetReferralQuery): Promise<UserReferral> {
@@ -15,3 +16,5 @@ export class GetReferralUseCase {
     return user.referral;
   }
 }
+
+export const defaultGetReferralUseCase = new GetReferralUseCase();

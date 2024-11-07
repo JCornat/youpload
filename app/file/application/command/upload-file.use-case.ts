@@ -4,6 +4,10 @@ import { FileStorageProvider } from '@file/domain/provider/file-storage.provider
 import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { EntityId } from '@shared/domain/model/entity-id.ts';
 import { FileStatProvider } from '@file/domain/provider/file-stat.provider.ts';
+import { defaultFileMetadataRepository } from '../../infrastructure/repository/file-metadata.fs.repository.ts';
+import { defaultFileStorageProvider } from '../../infrastructure/provider/file-storage.fs.provider.ts';
+import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultFileStatProvider } from '../../infrastructure/provider/file-stat.fs.provider.ts';
 
 export interface UploadFileCommand {
   name: string;
@@ -13,10 +17,10 @@ export interface UploadFileCommand {
 
 export class UploadFileUseCase {
   constructor(
-    private readonly fileMetadataRepository: FileMetadataRepository,
-    private readonly fileStorageProvider: FileStorageProvider,
-    private readonly fileStatProvider: FileStatProvider,
-    private readonly dateProvider: DateProvider,
+    private readonly fileMetadataRepository: FileMetadataRepository = defaultFileMetadataRepository,
+    private readonly fileStorageProvider: FileStorageProvider = defaultFileStorageProvider,
+    private readonly fileStatProvider: FileStatProvider = defaultFileStatProvider,
+    private readonly dateProvider: DateProvider = defaultDateProvider,
   ) {}
 
   async handle(uploadFileCommand: UploadFileCommand): Promise<EntityId> {
@@ -35,3 +39,5 @@ export class UploadFileUseCase {
     return fileMetadata.id;
   }
 }
+
+export const defaultUploadFileUseCase = new UploadFileUseCase();

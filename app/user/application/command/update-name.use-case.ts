@@ -1,5 +1,6 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
 
 export interface UpdateNameCommand {
   userId: string;
@@ -8,7 +9,7 @@ export interface UpdateNameCommand {
 
 export class UpdateNameUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: UserRepository = defaultUserRepository,
   ) {}
 
   async handle(updateNameCommand: UpdateNameCommand): Promise<void> {
@@ -26,3 +27,5 @@ export class UpdateNameUseCase {
     await this.userRepository.save(user);
   }
 }
+
+export const defaultUpdateNameUseCase = new UpdateNameUseCase();

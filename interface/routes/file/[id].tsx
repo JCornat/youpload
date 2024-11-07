@@ -1,12 +1,11 @@
 import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
-import { FileMetadataFileSystemRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
-import { InspectFileQuery, InspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
-import { DateStubProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { InspectFileQuery } from '@file/application/query/inspect-file.use-case.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
 import FileCopyLinkButton from '@interface/islands/file/copy-link-button.tsx';
 import FileDownloadLinkButton from '@interface/islands/file/download-link-button.tsx';
+import { defaultInspectFileUseCase } from '../../../app/file/application/query/inspect-file.use-case.ts';
 
 interface Data {
   url: string;
@@ -19,9 +18,7 @@ interface Data {
 
 export const handler = {
   async GET(_req, ctx) {
-    const fileMetadataRepository = new FileMetadataFileSystemRepository();
-    const dateProvider = new DateStubProvider();
-    const inspectFileUseCase = new InspectFileUseCase(fileMetadataRepository, dateProvider);
+    const inspectFileUseCase = defaultInspectFileUseCase;
 
     const query = {
       id: ctx.params.id,

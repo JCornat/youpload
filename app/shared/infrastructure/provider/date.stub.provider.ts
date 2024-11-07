@@ -7,3 +7,5 @@ export class DateStubProvider implements DateProvider {
     return this.now;
   }
 }
+
+export const defaultDateProvider = new DateStubProvider();

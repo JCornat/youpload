@@ -72,3 +72,5 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
     await file.write(new TextEncoder().encode(JSON.stringify(serializedFileMetadataList, null, 2)));
   }
 }
+
+export const defaultFileMetadataRepository = new FileMetadataFileSystemRepository();

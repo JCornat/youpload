@@ -92,3 +92,5 @@ export class UserFileSystemRepository implements UserRepository {
     return array.map((item) => User.reconstitute(item));
   }
 }
+
+export const defaultUserRepository = new UserFileSystemRepository();

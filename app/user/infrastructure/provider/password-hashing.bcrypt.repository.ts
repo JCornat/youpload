@@ -28,3 +28,5 @@ export class PasswordHashingBcryptRepository implements PasswordHashingProvider 
     return await bcrypt.hash(password, salt);
   }
 }
+
+export const defaultPasswordHashingProvider = new PasswordHashingBcryptRepository();

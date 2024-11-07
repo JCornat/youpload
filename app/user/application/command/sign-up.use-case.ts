@@ -3,6 +3,9 @@ import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { ExistingUserMailException, NotFoundException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
 import { ReferralProvider } from '@user/domain/provider/referral.provider.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { defaultReferralProvider } from '../../infrastructure/provider/referral-slug.provider.ts';
 
 export interface SignUpCommand {
   name: string;
@@ -14,9 +17,9 @@ export interface SignUpCommand {
 
 export class SignUpUseCase {
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly passwordHashingProvider: PasswordHashingProvider,
-    private readonly referralProvider: ReferralProvider,
+    private readonly userRepository: UserRepository = defaultUserRepository,
+    private readonly passwordHashingProvider: PasswordHashingProvider = defaultPasswordHashingProvider,
+    private readonly referralProvider: ReferralProvider = defaultReferralProvider,
   ) {}
 
   async handle(signUpCommand: SignUpCommand) {
@@ -63,3 +66,5 @@ export class SignUpUseCase {
     return newUser.id;
   }
 }
+
+export const defaultSignUpUseCase = new SignUpUseCase();

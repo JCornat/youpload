@@ -1,8 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { UserFileSystemRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
-import { UpdateEmailUseCase } from '@user/application/command/update-email.use-case.ts';
-import { PasswordHashingBcryptRepository } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
+import { defaultUpdateEmailUseCase } from '../../../app/user/application/command/update-email.use-case.ts';
 
 export const handler = {
   async PUT(req: Request, ctx: FreshContext) {
@@ -10,9 +8,7 @@ export const handler = {
       return new Response('Unauthorized', { status: 403 });
     }
 
-    const userRepository = new UserFileSystemRepository();
-    const passwordHashingRepository = new PasswordHashingBcryptRepository();
-    const updateEmailUseCase = new UpdateEmailUseCase(userRepository, passwordHashingRepository);
+    const updateEmailUseCase = defaultUpdateEmailUseCase;
     const userId = ctx.state.userId as string;
     const form = await req.json();
     const command = {

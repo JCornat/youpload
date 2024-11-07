@@ -5,6 +5,10 @@ import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { Session } from '@user/domain/model/session.ts';
 import { AuthenticationFailedException, NotFoundException } from '@shared/lib/exceptions.ts';
 import { User } from '@user/domain/model/user.ts';
+import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { defaultSessionRepository } from '../../infrastructure/repository/session.fs.repository.ts';
+import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
 
 export interface SignInCommand {
   email: string;
@@ -15,10 +19,10 @@ export interface SignInCommand {
 
 export class SignInUseCase {
   constructor(
-    private readonly dateProvider: DateProvider,
-    private readonly passwordHashingProvider: PasswordHashingProvider,
-    private readonly sessionRepository: SessionRepository,
-    private readonly userRepository: UserRepository,
+    private readonly dateProvider: DateProvider = defaultDateProvider,
+    private readonly passwordHashingProvider: PasswordHashingProvider = defaultPasswordHashingProvider,
+    private readonly sessionRepository: SessionRepository = defaultSessionRepository,
+    private readonly userRepository: UserRepository = defaultUserRepository,
   ) {}
 
   async handle(signInCommand: SignInCommand): Promise<string> {
@@ -54,3 +58,5 @@ export class SignInUseCase {
     return session.id;
   }
 }
+
+export const defaultSignInUseCase = new SignInUseCase();

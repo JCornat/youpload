@@ -648,3 +648,5 @@ export class ReferralSlugProvider implements ReferralProvider {
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
   }
 }
+
+export const defaultReferralProvider = new ReferralSlugProvider();

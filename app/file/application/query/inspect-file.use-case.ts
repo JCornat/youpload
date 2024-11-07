@@ -3,6 +3,8 @@ import { FileMetadataRepository } from '@file/domain/repository/file-metadata.re
 import { ExpiredFileException } from '@shared/lib/exceptions.ts';
 import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { FileMetadata } from '@file/domain/model/file-metadata.ts';
+import { defaultFileMetadataRepository } from '../../infrastructure/repository/file-metadata.fs.repository.ts';
+import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
 
 export interface InspectFileQuery {
   id: EntityId;
@@ -10,8 +12,8 @@ export interface InspectFileQuery {
 
 export class InspectFileUseCase {
   constructor(
-    private readonly fileMetadataRepository: FileMetadataRepository,
-    private readonly dateProvider: DateProvider,
+    private readonly fileMetadataRepository: FileMetadataRepository = defaultFileMetadataRepository,
+    private readonly dateProvider: DateProvider = defaultDateProvider,
   ) {}
 
   async handle(inspectFileQuery: InspectFileQuery): Promise<FileMetadata> {
@@ -25,3 +27,5 @@ export class InspectFileUseCase {
     return fileMetadata;
   }
 }
+
+export const defaultInspectFileUseCase = new InspectFileUseCase();

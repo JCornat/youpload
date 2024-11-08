@@ -1,6 +1,6 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { UserReferral } from '@user/domain/value-object/user-referral.ts';
-import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultUserRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
 
 export interface GetReferralQuery {
   userId: string;
@@ -17,4 +17,4 @@ export class GetReferralUseCase {
   }
 }
 
-export const defaultGetReferralUseCase = new GetReferralUseCase();
+export const getReferralUseCase = new GetReferralUseCase();

@@ -5,7 +5,6 @@ import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
 import FileCopyLinkButton from '@interface/islands/file/copy-link-button.tsx';
 import FileDownloadLinkButton from '@interface/islands/file/download-link-button.tsx';
-import { defaultInspectFileUseCase } from '../../../app/file/application/query/inspect-file.use-case.ts';
 
 interface Data {
   url: string;
@@ -18,7 +17,7 @@ interface Data {
 
 export const handler = {
   async GET(_req, ctx) {
-    const inspectFileUseCase = defaultInspectFileUseCase;
+    const inspectFileUseCase = inspectFileUseCase;
 
     const query = {
       id: ctx.params.id,

@@ -1,5 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { defaultGetReferralUseCase } from '../../../app/user/application/query/get-referral.use-case.ts';
+import { getReferralUseCase } from '../../../app/user/application/query/get-referral.use-case.ts';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
@@ -7,7 +7,6 @@ export const handler = {
       return new Response('Unauthorized', { status: 403 });
     }
 
-    const getReferralUseCase = defaultGetReferralUseCase;
     const userId = ctx.state.userId as string;
 
     const headers = new Headers();

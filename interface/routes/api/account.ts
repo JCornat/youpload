@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { defaultDeleteAccountUseCase } from '../../../app/user/application/command/delete-account.use-case.ts';
+import { deleteAccountUseCase } from '../../../app/user/application/command/delete-account.use-case.ts';
 
 export const handler = {
   async DELETE(req: Request, ctx: FreshContext) {
@@ -8,7 +8,6 @@ export const handler = {
       return new Response('Unauthorized', { status: 403 });
     }
 
-    const deleteAccountUseCase = defaultDeleteAccountUseCase;
     const userId = ctx.state.userId as string;
     const form = await req.json();
     const command = {

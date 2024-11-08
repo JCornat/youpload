@@ -5,10 +5,10 @@ import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { Session } from '@user/domain/model/session.ts';
 import { AuthenticationFailedException, NotFoundException } from '@shared/lib/exceptions.ts';
 import { User } from '@user/domain/model/user.ts';
-import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
-import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
-import { defaultSessionRepository } from '../../infrastructure/repository/session.fs.repository.ts';
-import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultDateProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultPasswordHashingProvider } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { defaultSessionRepository } from '@user/infrastructure/repository/session.fs.repository.ts';
+import { defaultUserRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
 
 export interface SignInCommand {
   email: string;
@@ -59,4 +59,4 @@ export class SignInUseCase {
   }
 }
 
-export const defaultSignInUseCase = new SignInUseCase();
+export const signInUseCase = new SignInUseCase();

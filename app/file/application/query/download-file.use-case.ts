@@ -3,9 +3,9 @@ import { FileMetadataRepository } from '@file/domain/repository/file-metadata.re
 import { FileStorageProvider } from '@file/domain/provider/file-storage.provider.ts';
 import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { ExpiredFileException } from '@shared/lib/exceptions.ts';
-import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
-import { defaultFileStorageProvider } from '../../infrastructure/provider/file-storage.fs.provider.ts';
-import { defaultFileMetadataRepository } from '../../infrastructure/repository/file-metadata.fs.repository.ts';
+import { defaultDateProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultFileStorageProvider } from '@file/infrastructure/provider/file-storage.fs.provider.ts';
+import { defaultFileMetadataRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
 
 export interface DownloadFileQuery {
   id: EntityId;
@@ -30,4 +30,4 @@ export class DownloadFileUseCase {
   }
 }
 
-export const defaultDownloadFileUseCase = new DownloadFileUseCase();
+export const downloadFileUseCase = new DownloadFileUseCase();

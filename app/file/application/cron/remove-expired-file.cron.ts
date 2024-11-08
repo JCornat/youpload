@@ -1,9 +1,9 @@
 import { FileMetadataRepository } from '@file/domain/repository/file-metadata.repository.ts';
 import { FileStorageProvider } from '@file/domain/provider/file-storage.provider.ts';
 import { DateProvider } from '@shared/domain/provider/date.provider.ts';
-import { defaultFileMetadataRepository } from '../../infrastructure/repository/file-metadata.fs.repository.ts';
-import { defaultFileStorageProvider } from '../../infrastructure/provider/file-storage.fs.provider.ts';
-import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultFileMetadataRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { defaultFileStorageProvider } from '@file/infrastructure/provider/file-storage.fs.provider.ts';
+import { defaultDateProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
 
 export class RemoveExpiredFilesCron {
   constructor(
@@ -25,4 +25,4 @@ export class RemoveExpiredFilesCron {
   }
 }
 
-export const defaultRemoveExpiredFilesCron = new RemoveExpiredFilesCron();
+export const removeExpiredFilesCron = new RemoveExpiredFilesCron();

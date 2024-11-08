@@ -4,10 +4,10 @@ import { FileStorageProvider } from '@file/domain/provider/file-storage.provider
 import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { EntityId } from '@shared/domain/model/entity-id.ts';
 import { FileStatProvider } from '@file/domain/provider/file-stat.provider.ts';
-import { defaultFileMetadataRepository } from '../../infrastructure/repository/file-metadata.fs.repository.ts';
-import { defaultFileStorageProvider } from '../../infrastructure/provider/file-storage.fs.provider.ts';
-import { defaultDateProvider } from '../../../shared/infrastructure/provider/date.stub.provider.ts';
-import { defaultFileStatProvider } from '../../infrastructure/provider/file-stat.fs.provider.ts';
+import { defaultFileMetadataRepository } from '@file/infrastructure/repository/file-metadata.fs.repository.ts';
+import { defaultFileStorageProvider } from '@file/infrastructure/provider/file-storage.fs.provider.ts';
+import { defaultDateProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultFileStatProvider } from '@file/infrastructure/provider/file-stat.fs.provider.ts';
 
 export interface UploadFileCommand {
   name: string;
@@ -40,4 +40,4 @@ export class UploadFileUseCase {
   }
 }
 
-export const defaultUploadFileUseCase = new UploadFileUseCase();
+export const uploadFileUseCase = new UploadFileUseCase();

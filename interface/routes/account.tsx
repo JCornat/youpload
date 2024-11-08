@@ -5,11 +5,6 @@ import AccountNameForm from '@interface/islands/account/name-form.tsx';
 import AccountDeleteForm from '@interface/islands/account/delete-form.tsx';
 import AccountReferralForm from '@interface/islands/account/referral-form.tsx';
 
-interface Data {
-  isLoggedIn?: boolean;
-  userName?: string;
-}
-
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
     if (!ctx.state.isLoggedIn) {

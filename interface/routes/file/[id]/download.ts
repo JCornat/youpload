@@ -1,12 +1,9 @@
 import { Handlers } from '$fresh/src/server/types.ts';
-import { defaultInspectFileUseCase } from '../../../../app/file/application/query/inspect-file.use-case.ts';
-import { defaultDownloadFileUseCase } from '../../../../app/file/application/query/download-file.use-case.ts';
+import { inspectFileUseCase } from '../../../../app/file/application/query/inspect-file.use-case.ts';
+import { downloadFileUseCase } from '../../../../app/file/application/query/download-file.use-case.ts';
 
 export const handler = {
   async GET(_req, ctx) {
-    const inspectFileUseCase = defaultInspectFileUseCase;
-    const downloadFileUseCase = defaultDownloadFileUseCase;
-
     const query = {
       id: ctx.params.id,
     };

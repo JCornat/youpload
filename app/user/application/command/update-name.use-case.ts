@@ -1,6 +1,6 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { ArgumentInvalidException } from '@shared/lib/exceptions.ts';
-import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
+import { defaultUserRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
 
 export interface UpdateNameCommand {
   userId: string;
@@ -28,4 +28,4 @@ export class UpdateNameUseCase {
   }
 }
 
-export const defaultUpdateNameUseCase = new UpdateNameUseCase();
+export const updateNameUseCase = new UpdateNameUseCase();

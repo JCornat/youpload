@@ -1,8 +1,8 @@
 import { UserRepository } from '@user/domain/repository/user.repository.ts';
 import { PasswordHashingProvider } from '@user/domain/provider/password-hashing.provider.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { defaultUserRepository } from '../../infrastructure/repository/user.fs.repository.ts';
-import { defaultPasswordHashingProvider } from '../../infrastructure/provider/password-hashing.bcrypt.repository.ts';
+import { defaultUserRepository } from '@user/infrastructure/repository/user.fs.repository.ts';
+import { defaultPasswordHashingProvider } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 
 export interface DeleteAccountCommand {
   userId: string;
@@ -35,4 +35,4 @@ export class DeleteAccountUseCase {
   }
 }
 
-export const defaultDeleteAccountUseCase = new DeleteAccountUseCase();
+export const deleteAccountUseCase = new DeleteAccountUseCase();

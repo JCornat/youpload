@@ -1,7 +1,7 @@
 import { SignInCommand } from '@user/application/command/sign-in.use-case.ts';
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { defaultSignInUseCase } from '../../../app/user/application/command/sign-in.use-case.ts';
+import { signInUseCase } from '../../../app/user/application/command/sign-in.use-case.ts';
 
 export const handler = {
   async POST(req: Request, ctx: FreshContext) {
@@ -9,7 +9,6 @@ export const handler = {
       return new Response('Already logged', { status: 400 });
     }
 
-    const signInUseCase = defaultSignInUseCase;
     const form = await req.json();
     const command = {
       email: form.email as string,

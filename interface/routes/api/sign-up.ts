@@ -1,9 +1,8 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { defaultSignUpUseCase } from '../../../app/user/application/command/sign-up.use-case.ts';
+import { signUpUseCase } from '../../../app/user/application/command/sign-up.use-case.ts';
 
 export const handler = {
   async POST(req: Request, ctx: FreshContext) {
-    const signUpUseCase = defaultSignUpUseCase;
     const form = await req.json();
     const command = {
       name: form.name as string,

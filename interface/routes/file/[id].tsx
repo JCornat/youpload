@@ -28,8 +28,8 @@ export const handler = {
         url,
         name: fileMetadata.name.value,
         size: formatBytes(fileMetadata.size.value, { locale: 'fr' }),
-        createdAt: formatDate(fileMetadata.createdAt, 'dd/MM/yyyy'),
-        expireAt: formatDate(fileMetadata.expireAt, 'dd/MM/yyyy, HH:mm'),
+        createdAt: formatDate(fileMetadata.createdAt, 'dd/MM/yyyy', { utc: true }),
+        expireAt: formatDate(fileMetadata.expireAt, 'dd/MM/yyyy, HH:mm', { utc: true }),
         isLoggedIn: ctx.state.isLoggedIn,
       });
     } catch {

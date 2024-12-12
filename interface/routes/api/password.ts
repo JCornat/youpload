@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { updatePasswordUseCase } from '../../../app/user/application/command/update-password.use-case.ts';
+import { updatePasswordUseCase } from '@user/application/command/update-password.use-case.ts';
 
 export const handler = {
   async PUT(req: Request, ctx: FreshContext) {

@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { UploadFileCommand } from '@file/application/command/upload-file.use-case.ts';
-import { uploadFileUseCase } from '../../../app/file/application/command/upload-file.use-case.ts';
+import { uploadFileUseCase } from '@file/application/command/upload-file.use-case.ts';
 
 function addHours(date: Date, hours: number) {
   const hoursToAdd = hours * 60 * 60 * 1000;

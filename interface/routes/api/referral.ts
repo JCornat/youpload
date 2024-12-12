@@ -1,5 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { getReferralUseCase } from '../../../app/user/application/query/get-referral.use-case.ts';
+import { getReferralUseCase } from '@user/application/query/get-referral.use-case.ts';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {

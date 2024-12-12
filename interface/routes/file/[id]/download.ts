@@ -1,6 +1,6 @@
 import { Handlers } from '$fresh/src/server/types.ts';
-import { inspectFileUseCase } from '../../../../app/file/application/query/inspect-file.use-case.ts';
-import { downloadFileUseCase } from '../../../../app/file/application/query/download-file.use-case.ts';
+import { inspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
+import { downloadFileUseCase } from '@file/application/query/download-file.use-case.ts';
 
 export const handler = {
   async GET(_req, ctx) {

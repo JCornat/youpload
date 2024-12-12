@@ -1,7 +1,7 @@
 import { SignInCommand } from '@user/application/command/sign-in.use-case.ts';
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { signInUseCase } from '../../../app/user/application/command/sign-in.use-case.ts';
+import { signInUseCase } from '@user/application/command/sign-in.use-case.ts';
 
 export const handler = {
   async POST(req: Request, ctx: FreshContext) {

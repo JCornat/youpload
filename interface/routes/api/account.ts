@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { deleteAccountUseCase } from '../../../app/user/application/command/delete-account.use-case.ts';
+import { deleteAccountUseCase } from '@user/application/command/delete-account.use-case.ts';
 
 export const handler = {
   async DELETE(req: Request, ctx: FreshContext) {

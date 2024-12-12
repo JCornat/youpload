@@ -45,7 +45,7 @@ export class FileMetadataFileSystemRepository implements FileMetadataRepository 
 
   private async readFile(file: Deno.FsFile): Promise<FileMetadata[]> {
     await file.lock(true);
-    const fileInfo = await Deno.stat(this.filePath);
+    const fileInfo = await file.stat();
     const buffer = new Uint8Array(fileInfo.size);
     await file.read(buffer);
     const rawContent = new TextDecoder().decode(buffer) || '[]';

@@ -22,7 +22,7 @@ const upload = () => {
 
   const formData = new FormData();
   formData.append('file', fileInput.value);
-  formData.append('amount', '1');
+  formData.append('amount', `${amount.value}`);
 
   try {
     xhr = new XMLHttpRequest();

@@ -5,7 +5,7 @@ import { DateProvider } from '@shared/domain/provider/date.provider.ts';
 import { Session } from '@user/domain/model/session.ts';
 import { AuthenticationFailedException, NotFoundException } from '@shared/lib/exceptions.ts';
 import { User } from '@user/domain/model/user.ts';
-import { defaultDateProvider } from '@shared/infrastructure/provider/date.stub.provider.ts';
+import { defaultDateProvider } from '@shared/infrastructure/provider/date.native.provider.ts';
 import { defaultPasswordHashingProvider } from '@user/infrastructure/provider/password-hashing.bcrypt.repository.ts';
 import { defaultSessionRepository } from '@user/infrastructure/repository/session.fs.repository.ts';
 import { defaultUserRepository } from '@user/infrastructure/repository/user.fs.repository.ts';

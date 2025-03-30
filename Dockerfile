@@ -1,6 +1,5 @@
-ARG image
-
-FROM $image
+ARG variant=alpine
+FROM denoland/deno:$variant
 
 WORKDIR /src
 

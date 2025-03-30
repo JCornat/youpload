@@ -3,7 +3,7 @@ services:
     build:
       context: .
       args:
-        - image=${DENO_IMAGE}
+        - variant=${DENO_VARIANT}
     container_name: youpload_deno
     restart: unless-stopped
     volumes:

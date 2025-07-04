@@ -1,7 +1,6 @@
-import { SignInCommand } from '@user/application/command/sign-in.use-case.ts';
+import { SignInUseCase } from '@user/application/command/sign-in.use-case.ts';
 import { setCookie } from '@std/http/cookie';
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { signInUseCase } from '@user/application/command/sign-in.use-case.ts';
 
 export const handler = {
   async POST(req: Request, ctx: FreshContext) {
@@ -10,12 +9,6 @@ export const handler = {
     }
 
     const form = await req.json();
-    const command = {
-      email: form.email as string,
-      password: form.password as string,
-      ip: ctx.remoteAddr.hostname,
-      agent: req.headers.get('user-agent') as string,
-    } satisfies SignInCommand;
 
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
@@ -23,7 +16,12 @@ export const handler = {
     let sessionId: string;
 
     try {
-      sessionId = await signInUseCase.handle(command);
+      sessionId = await new SignInUseCase().handle({
+        email: form.email as string,
+        password: form.password as string,
+        ip: ctx.remoteAddr.hostname,
+        agent: req.headers.get('user-agent') as string,
+      });
     } catch (error) {
       return new Response(JSON.stringify({ error: error.message }), { status: 500, headers });
     }

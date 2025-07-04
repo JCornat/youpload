@@ -1,5 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { getReferralUseCase } from '@user/application/query/get-referral.use-case.ts';
+import { GetReferralUseCase } from '@user/application/query/get-referral.use-case.ts';
 
 export const handler = {
   async GET(_req: Request, ctx: FreshContext) {
@@ -13,7 +13,7 @@ export const handler = {
     headers.set('Content-Type', `application/json`);
 
     try {
-      const referral = await getReferralUseCase.handle({ userId });
+      const referral = await new GetReferralUseCase().handle({ userId });
       return new Response(JSON.stringify({ value: referral.value }), { headers });
     } catch {
       return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });

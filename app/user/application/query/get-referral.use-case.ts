@@ -16,5 +16,3 @@ export class GetReferralUseCase {
     return user.referral;
   }
 }
-
-export const getReferralUseCase = new GetReferralUseCase();

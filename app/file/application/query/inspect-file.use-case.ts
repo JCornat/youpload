@@ -27,5 +27,3 @@ export class InspectFileUseCase {
     return fileMetadata;
   }
 }
-
-export const inspectFileUseCase = new InspectFileUseCase();

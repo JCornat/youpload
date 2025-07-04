@@ -29,5 +29,3 @@ export class DownloadFileUseCase {
     return this.fileStorageProvider.getStream(fileMetadata.id);
   }
 }
-
-export const downloadFileUseCase = new DownloadFileUseCase();

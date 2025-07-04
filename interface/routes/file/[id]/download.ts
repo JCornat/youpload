@@ -1,16 +1,12 @@
 import { Handlers } from '$fresh/src/server/types.ts';
-import { inspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
-import { downloadFileUseCase } from '@file/application/query/download-file.use-case.ts';
+import { InspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
+import { DownloadFileUseCase } from '@file/application/query/download-file.use-case.ts';
 
 export const handler = {
   async GET(_req, ctx) {
-    const query = {
-      id: ctx.params.id,
-    };
-
     try {
-      const fileMetadata = await inspectFileUseCase.handle(query);
-      const stream = await downloadFileUseCase.handle(query);
+      const fileMetadata = await new InspectFileUseCase().handle({ id: ctx.params.id });
+      const stream = await new DownloadFileUseCase().handle({ id: ctx.params.id });
       return new Response(stream, {
         headers: {
           'Content-Disposition': `attachment; filename="${fileMetadata.name.value}"`,

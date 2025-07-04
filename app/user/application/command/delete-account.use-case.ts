@@ -34,5 +34,3 @@ export class DeleteAccountUseCase {
     await this.userRepository.remove(deleteAccountCommand.userId);
   }
 }
-
-export const deleteAccountUseCase = new DeleteAccountUseCase();

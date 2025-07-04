@@ -39,5 +39,3 @@ export class UploadFileUseCase {
     return fileMetadata.id;
   }
 }
-
-export const uploadFileUseCase = new UploadFileUseCase();

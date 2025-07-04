@@ -42,5 +42,3 @@ export class UpdatePasswordUseCase {
     await this.userRepository.save(user);
   }
 }
-
-export const updatePasswordUseCase = new UpdatePasswordUseCase();

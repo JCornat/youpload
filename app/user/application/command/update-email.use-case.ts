@@ -40,5 +40,3 @@ export class UpdateEmailUseCase {
     await this.userRepository.save(user);
   }
 }
-
-export const updateEmailUseCase = new UpdateEmailUseCase();

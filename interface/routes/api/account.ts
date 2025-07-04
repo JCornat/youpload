@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { deleteAccountUseCase } from '@user/application/command/delete-account.use-case.ts';
+import {DeleteAccountUseCase} from '@user/application/command/delete-account.use-case.ts';
 
 export const handler = {
   async DELETE(req: Request, ctx: FreshContext) {
@@ -10,16 +10,16 @@ export const handler = {
 
     const userId = ctx.state.userId as string;
     const form = await req.json();
-    const command = {
-      userId,
-      currentPassword: form.currentPassword as string,
-    };
 
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
 
     try {
-      await deleteAccountUseCase.handle(command);
+      await new DeleteAccountUseCase().handle({
+        userId,
+        currentPassword: form.currentPassword as string,
+      });
+
       return new Response(JSON.stringify({ value: 'OK' }), { headers });
     } catch (error) {
       if (error instanceof ArgumentInvalidException) {

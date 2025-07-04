@@ -1,6 +1,6 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
 import { ArgumentInvalidException, NotMatchingPasswordException } from '@shared/lib/exceptions.ts';
-import { updatePasswordUseCase } from '@user/application/command/update-password.use-case.ts';
+import { UpdatePasswordUseCase } from '@user/application/command/update-password.use-case.ts';
 
 export const handler = {
   async PUT(req: Request, ctx: FreshContext) {
@@ -10,17 +10,17 @@ export const handler = {
 
     const userId = ctx.state.userId as string;
     const form = await req.json();
-    const command = {
-      userId,
-      newPassword: form.newPassword as string,
-      currentPassword: form.currentPassword as string,
-    };
 
     const headers = new Headers();
     headers.set('Content-Type', `application/json`);
 
     try {
-      await updatePasswordUseCase.handle(command);
+      await new UpdatePasswordUseCase().handle({
+        userId,
+        newPassword: form.newPassword as string,
+        currentPassword: form.currentPassword as string,
+      });
+
       return new Response(JSON.stringify({ value: 'OK' }), { headers });
     } catch (error) {
       if (error instanceof ArgumentInvalidException) {

@@ -66,5 +66,3 @@ export class SignUpUseCase {
     return newUser.id;
   }
 }
-
-export const signUpUseCase = new SignUpUseCase();

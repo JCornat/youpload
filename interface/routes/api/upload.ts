@@ -1,6 +1,5 @@
 import { FreshContext, Handlers } from '$fresh/server.ts';
-import { UploadFileCommand } from '@file/application/command/upload-file.use-case.ts';
-import { uploadFileUseCase } from '@file/application/command/upload-file.use-case.ts';
+import { UploadFileUseCase } from '@file/application/command/upload-file.use-case.ts';
 
 function addHours(date: Date, hours: number) {
   const hoursToAdd = hours * 60 * 60 * 1000;
@@ -41,15 +40,13 @@ export const handler = {
     const name = file.name;
     await Deno.writeFile(name, file.stream());
 
-    const command = {
+    const id = await new UploadFileUseCase().handle({
       name,
       filePath: `./${name}`,
       expireAt,
-    } satisfies UploadFileCommand;
+    });
 
-    const id = await uploadFileUseCase.handle(command);
     await Deno.remove(name);
-
     return new Response(JSON.stringify({ value: id }), { headers });
   },
 } satisfies Handlers;

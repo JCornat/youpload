@@ -58,5 +58,3 @@ export class SignInUseCase {
     return session.id;
   }
 }
-
-export const signInUseCase = new SignInUseCase();

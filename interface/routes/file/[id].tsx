@@ -1,6 +1,6 @@
 import { type PageProps } from '$fresh/server.ts';
 import { Handlers } from '$fresh/src/server/types.ts';
-import { InspectFileQuery, inspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
+import { InspectFileUseCase } from '@file/application/query/inspect-file.use-case.ts';
 import { format as formatDate } from '@std/datetime';
 import { format as formatBytes } from '@std/fmt/bytes';
 import FileCopyLinkButton from '@interface/islands/file/copy-link-button.tsx';
@@ -17,12 +17,8 @@ interface Data {
 
 export const handler = {
   async GET(_req, ctx) {
-    const query = {
-      id: ctx.params.id,
-    } as InspectFileQuery;
-
     try {
-      const fileMetadata = await inspectFileUseCase.handle(query);
+      const fileMetadata = await new InspectFileUseCase().handle({ id: ctx.params.id });
       const url = `/file/${fileMetadata.id}/download`;
       return ctx.render({
         url,

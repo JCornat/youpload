@@ -27,5 +27,3 @@ export class UpdateNameUseCase {
     await this.userRepository.save(user);
   }
 }
-
-export const updateNameUseCase = new UpdateNameUseCase();
